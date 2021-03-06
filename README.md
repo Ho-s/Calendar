@@ -13,7 +13,7 @@
 <br>
 
 ## :checkered_flag:Main function
-* Management schedules
+* Management schedules 
 * Basic Calendar
 * Alert alarm when you want
 * Informations will be stored in `local-storage`
