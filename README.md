@@ -24,7 +24,7 @@
 ### Add schedule
 |                Calendar              |                 Adding               |
 | :----------------------------------: | :----------------------------------: | 
-| <img src='https://user-images.githubusercontent.com/71132893/103136895-aeec5880-4707-11eb-9299-70b12ff0eeea.gif' width='400px' height='300px'>                                | <img src='https://user-images.githubusercontent.com/71132893/103136889-a09e3c80-4707-11eb-9dae-29d091f87488.gif' width='400px' height='300px'>                                 |
+| <img src='https://user-images.githubusercontent.com/71132893/103136895-aeec5880-4707-11eb-9299-70b12ff0eeea.gif' width='400px' height='300px'>                                | <img src='https://user-images.githubusercontent.com/71132893/103136889-a09e3c80-4707-11eb-9dae-29d091f87488.gif' width='400px'  height='300px'>                                 |
 
 |                Deleting              |                Summary               |
 | :----------------------------------: | :----------------------------------: |

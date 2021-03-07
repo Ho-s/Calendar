@@ -74,11 +74,11 @@ class Week extends PureComponent {
                                 </div>
                             </div>
                             <div style={{ width: '100%' }}>
-                            {Array(24).fill().map(() => {
-                            return (
-                                <div style={{ float: 'left', borderBottom: '1px solid #e9e9e9', height: '60px', width: '100%', borderLeft: '1px solid #e9e9e9' }}></div>
-                            )
-                            })}
+                                {Array(24).fill().map(() => {
+                                    return (
+                                        <div style={{ float: 'left', borderBottom: '1px solid #e9e9e9', height: '60px', width: '100%', borderLeft: '1px solid #e9e9e9' }}></div>
+                                    )
+                                })}
                             </div>
                             {Array(day.length).fill().map((v, n) => {
                                 const height = (Number(day[n].endHours) - Number(day[n].startHours)) * 61 + Number(day[n].endMinutes) - Number(day[n].startMinutes)
@@ -102,7 +102,7 @@ class Week extends PureComponent {
                                         <div style={{ position: 'relative', top: -height, fontSize: '15px', fontWeight: '600', color: day[n].color }}>
                                             <div style={{ position: 'absolute', top: height, left: 0, backgroundColor: day[n].color, height: height, width: '10px' }}></div>
                                             <div style={{ marginLeft: '10px' }}>{day[n].startHours}:{day[n].startMinutes}</div>
-                                            <div style={{ width: 'calc(100% - 10px)', textOverflow:'ellipsis',overflow: 'hidden',whiteSpace:'nowrap',height:'17px', marginLeft: '10px' }}>{day[n].title}</div>
+                                            <div style={{ width: 'calc(100% - 10px)', textOverflow: 'ellipsis', overflow: 'hidden', whiteSpace: 'nowrap', height: '17px', marginLeft: '10px' }}>{day[n].title}</div>
                                         </div>
                                     </div>
                                 )

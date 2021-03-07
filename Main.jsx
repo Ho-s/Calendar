@@ -139,7 +139,7 @@ class Main extends PureComponent {
     onClickDayInMonth = (e) => {
         this.setState(({
             nowDay: e.target.childNodes[0].textContent,
-            nowWeek: moment().set({'year':this.state.nowYear,'month': this.state.nowMonth,'date':e.target.childNodes[0].textContent }).week()===1&&e.target.childNodes[0].textContent>24 ? 53:moment().set({'year':this.state.nowYear,'month': this.state.nowMonth,'date':e.target.childNodes[0].textContent }).week(),
+            nowWeek: moment().set({ 'year': this.state.nowYear, 'month': this.state.nowMonth, 'date': e.target.childNodes[0].textContent }).week() === 1 && e.target.childNodes[0].textContent > 24 ? 53 : moment().set({ 'year': this.state.nowYear, 'month': this.state.nowMonth, 'date': e.target.childNodes[0].textContent }).week(),
             monthStorage: this.state.nowMonth,
             yearStorage: this.state.nowYear,
             setYear: this.state.nowYear,
@@ -160,14 +160,14 @@ class Main extends PureComponent {
     onClickDayInYear = (e) => {
         this.setState(({
             nowDay: e.target.textContent,
-            nowWeek: moment().set({'year':this.state.nowYear,'month': e.target.parentNode.parentNode.id,'date':e.target.childNodes[0].textContent }).week()===1&&e.target.childNodes[0].textContent>24 ? 53:moment().set({'year':this.state.nowYear,'month': e.target.parentNode.parentNode.id,'date':e.target.childNodes[0].textContent }).week(),
+            nowWeek: moment().set({ 'year': this.state.nowYear, 'month': e.target.parentNode.parentNode.id, 'date': e.target.childNodes[0].textContent }).week() === 1 && e.target.childNodes[0].textContent > 24 ? 53 : moment().set({ 'year': this.state.nowYear, 'month': e.target.parentNode.parentNode.id, 'date': e.target.childNodes[0].textContent }).week(),
             monthStorage: Number(e.target.parentNode.parentNode.id),
             nowMonth: Number(e.target.parentNode.parentNode.id),
             yearStorage: this.state.nowYear,
             setYear: this.state.nowYear,
             setMonth: Number(e.target.parentNode.parentNode.id) + 1,
             setDay: e.target.textContent
-        }),console.log(this.state.nowWeek))
+        }), console.log(this.state.nowWeek))
         Array(7).fill().map((v, i) => {
             const get = e.target.parentNode.childNodes[i].textContent === e.target.textContent ?
                 this.setState(({
@@ -462,7 +462,7 @@ class Main extends PureComponent {
                                 onClickSubmit={this.onClickSubmit}
                             />}
                     </div>
-                    
+
                     <Calendar
                         openCal={this.openCal}
                         nowDay={this.state.nowDay}
@@ -477,7 +477,7 @@ class Main extends PureComponent {
                         onClickDay={this.onClickDay}
                         onClickWeek={this.onClickWeek}
                     />
-                    
+
                     <Summary
                         storage={this.state.storage}
                         onClickDelete={this.onClickDelete}
@@ -503,9 +503,9 @@ class Main extends PureComponent {
                         onClickDayInMonth={this.onClickDayInMonth}
                         onClickDayInYear={this.onClickDayInYear}
                         onClickDeleteInDayTable={this.onClickDeleteInDayTable}
-                    /> 
+                    />
                 </div>
-               
+
             </>
         )
     }

@@ -103,7 +103,7 @@ class MainCalendar extends PureComponent {
                     {this.state.day && <Day nowDay={this.props.nowDay} nowWeek={this.props.nowWeek} monthStorage={this.props.monthStorage} yearStorage={this.props.yearStorage} whatDay={this.props.whatDay} storage={this.props.storage} onClickDeleteInDayTable={this.props.onClickDeleteInDayTable} />}
                     {this.state.week && <Week nowDay={this.props.nowDay} nowWeek={this.props.nowWeek} monthStorage={this.props.monthStorage} yearStorage={this.props.yearStorage} monthStorage={this.props.monthStorage} yearStorage={this.props.yearStorage} storage={this.props.storage} />}
                     {this.state.month && <Month nowDay={this.props.nowDay} nowWeek={this.props.nowWeek} monthStorage={this.props.monthStorage} yearStorage={this.props.yearStorage} nowMonth={this.props.nowMonth} nowYear={this.props.nowYear} onClickDayInMonth={this.props.onClickDayInMonth} storage={this.props.storage} />}
-                    {this.state.year && <Year nowDay={this.props.nowDay} nowWeek={this.props.nowWeek} monthStorage={this.props.monthStorage} yearStorage={this.props.yearStorage} nowMonth={this.props.nowMonth} nowYear={this.props.nowYear} onClickDayInYear={this.props.onClickDayInYear} storage={this.props.storage} />} 
+                    {this.state.year && <Year nowDay={this.props.nowDay} nowWeek={this.props.nowWeek} monthStorage={this.props.monthStorage} yearStorage={this.props.yearStorage} nowMonth={this.props.nowMonth} nowYear={this.props.nowYear} onClickDayInYear={this.props.onClickDayInYear} storage={this.props.storage} />}
                 </div>
             </div>
         )

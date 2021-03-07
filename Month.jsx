@@ -64,7 +64,7 @@ class Month extends PureComponent {
                                             return (
                                                 <div style={{ display: 'block', width: '100%', height: '1.7vh', position: 'relative' }}>
                                                     <div style={{ marginLeft: '3px', marginTop: '3px', position: 'absolute', left: '5px', width: '10px', height: '10px', backgroundColor: day[n].color, borderRadius: '10px' }}></div>
-                                                    <div style={{ marginLeft: '20px', width: 'calc(100% - 55px)', textOverflow:'ellipsis',overflow: 'hidden',whiteSpace:'nowrap',height:'100%', fontWeight: '600', color: 'black' }}>{day[n].title}</div>
+                                                    <div style={{ marginLeft: '20px', width: 'calc(100% - 55px)', textOverflow: 'ellipsis', overflow: 'hidden', whiteSpace: 'nowrap', height: '100%', fontWeight: '600', color: 'black' }}>{day[n].title}</div>
                                                     <div style={{ lineHeight: '1.5', position: 'absolute', right: '5px', fontSize: '14px', fontWeight: '600', color: 'gray' }}>{day[n].startHours}:{day[n].startMinutes}</div>
                                                 </div>
                                             )

@@ -63,8 +63,8 @@ class Summary extends PureComponent {
                                 {Array(day.length).fill().map((v, n) => {
                                     return (
                                         <div name={day[n].name} className='summary-schedule' >
-                                            <div style={{  marginTop: '6px', position: 'absolute',left:'3px', width: '10px', height: '10px', backgroundColor: day[n].color, borderRadius: '10px' }}></div>
-                                            <div style={{ lineHeight:'1',float: 'left', fontSize: '20px', marginLeft: '17px', width: '11.6vw', textOverflow:'ellipsis',overflow: 'hidden',whiteSpace:'nowrap', fontWeight: '100', color: 'white' }}>{day[n].title}</div>
+                                            <div style={{ marginTop: '6px', position: 'absolute', left: '3px', width: '10px', height: '10px', backgroundColor: day[n].color, borderRadius: '10px' }}></div>
+                                            <div style={{ lineHeight: '1', float: 'left', fontSize: '20px', marginLeft: '17px', width: '11.6vw', textOverflow: 'ellipsis', overflow: 'hidden', whiteSpace: 'nowrap', fontWeight: '100', color: 'white' }}>{day[n].title}</div>
                                             <div style={{ lineHeight: '1.5', position: 'absolute', right: '40px', overflow: 'noWrap', fontSize: '14px', fontWeight: '600', color: 'gray' }}>{day[n].startHours}:{day[n].startMinutes}~</div>
                                             <div style={{ lineHeight: '1.5', position: 'absolute', right: '5px', overflow: 'noWrap', fontSize: '14px', fontWeight: '600', color: 'gray' }}>{day[n].endHours}:{day[n].endMinutes}</div>
                                             <button onClick={this.onClickDelete} className='summary-delete-button'></button>
