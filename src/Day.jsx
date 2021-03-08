@@ -113,11 +113,11 @@ class Day extends PureComponent {
             <div className='day-table'>
                 <>
                     {Array(day.length).fill().map((v, i) => {
-                        const isAlert = day[i].alertTime === 0 ? 'There is no alert' : `Alert : ${day[i].alertTime}${day[i].alertType}`
+                        // const isAlert = day[i].alertTime === 0 ? 'There is no alert' : `Alert : ${day[i].alertTime}${day[i].alertType} before`
                         return (
                             <div name={day[i].name} style={{ position: 'relative', marginBottom: '20px', border: '1px solid #e9e9e9', backgroundColor: 'mintcream' }}>
                                 <div style={{ width:'253px', textOverflow:'ellipsis',overflow:'hidden',whiteSpace:'nowrap',borderBottom: '1px solid #e9e9e9', padding: '15px', fontWeight: '600', fontSize: '20px' }}>{day[i].title}</div>
-                                <div style={{ width: '300px', height: '150px', padding: '15px' }}>
+                                <div style={{ width: '300px', padding: '15px' }}>
                                     <div style={{ marginBottom: '10px' }}>
                                         <span style={{ fontSize: '17px', fontWeight: '600', marginRight: '20px' }}>date</span>
                                         <span>{day[i].month}/{day[i].day}/{day[i].year}</span>
@@ -134,7 +134,7 @@ class Day extends PureComponent {
                                         <span style={{ float: 'left', fontSize: '17px', fontWeight: '600', marginRight: '20px' }}>display</span>
                                         <div style={{ float: 'left', width: '20px', marginRight: '200px', height: '20px', backgroundColor: day[i].color }}></div>
                                     </div>
-                                    <div style={{ fontSize: '17px', fontWeight: '600', marginRight: '20px' }}>{isAlert}</div>
+                                    {/* <div style={{ fontSize: '17px', fontWeight: '600', marginRight: '20px' }}>{isAlert}</div> */}
                                 </div>
                                 <div onClick={this.props.onClickDeleteInDayTable} style={{ position: 'absolute', top: '15px', right: '15px', backgroundRepeat: 'none', backgroundSize: 'contain', width: '24px', height: '24px', backgroundImage: 'url(https://user-images.githubusercontent.com/71132893/103125964-2e5e3580-46d0-11eb-9cdd-15ce0c5ca318.png)', cursor: 'pointer' }}></div>
                             </div>
@@ -172,7 +172,7 @@ class Day extends PureComponent {
             <div className='day-component'>
                 <div style={{ marginLeft: '30px', height: '56px' }}>
                     <span style={{ color: 'rgb(47, 72, 218)', fontSize: '15px', fontWeight: '600' }}>CW{moment().set('week', this.props.nowWeek).format('W')}</span>
-                    <span style={{ marginLeft: '20px', color: 'rgb(47, 72, 218)', fontSize: '40px', }}>{this.whatDayToday()}</span>
+                    <span style={{ marginLeft: '20px', color: 'rgb(47, 72, 218)', fontSize: '40px', fontWeight: '600'  }}>{this.whatDayToday()}</span>
                     <span style={{ marginLeft: '10px', color: 'black', fontSize: '25px', fontWeight: '600' }}>{moment().set('month', this.props.monthStorage).format('MMMM')}{this.props.nowDay},</span>
                     <span style={{ color: 'red', fontSize: '40px', fontWeight: '600' }}>{this.props.yearStorage}</span>
                 </div>

@@ -440,9 +440,9 @@ body,html{
     padding: 0;
 }
 
-/* .scheduler-body-alert input{
+.scheduler-body-alert input{
     width: 60px;
-} */
+}
 
 .scheduler-foot{
     width: 100%;

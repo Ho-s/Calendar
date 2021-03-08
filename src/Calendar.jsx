@@ -93,8 +93,8 @@ class Calendar extends PureComponent {
         return (
             <div className="calendar">
                 <div className="body">
-                    <span style={{ fontSize: '36px' }} >{moment().set('month', this.props.nowMonth).format('MMMM')}</span>
-                    <span style={{ fontSize: '36px', color: 'red' }}>{this.props.nowYear}</span>
+                    <span style={{ fontSize: '32px', fontWeight: '600'  }} >{moment().set('month', this.props.nowMonth).format('MMMM')}</span>
+                    <span style={{ fontSize: '32px', color: 'red', fontWeight: '600'  }}>{this.props.nowYear}</span>
                     <button style={{ marginLeft: '10px' }} onClick={this.onClickRight}>&gt;</button>
                     <button onClick={this.onClickLeft}>&lt;</button>
                 </div>

@@ -20,7 +20,7 @@ class Summary extends PureComponent {
         let num = 0
         return (
             <div className='load-list'>
-                <span style={{ fontSize: '16px', fontWeight: '600', color: 'black', textShadow: '-1px 0 white, 0 1px white, 1px 0 white, 0 -1px white' }}>Schedules of a week</span>
+                <span style={{ fontSize: '16px', fontWeight: '600', color: 'black', textShadow: '-1px 0 white, 0 1px white, 1px 0 white, 0 -1px white' }}>Schedules of the week</span>
                 {Array(7).fill(0).map((n, i) => {
                     let current = today.week(week).startOf('week').add(n + i, 'day')
                     let selectedColor = (Number(this.props.nowDay) === Number(current.format('D')) && Number(this.props.yearStorage) === this.props.nowYear && this.props.monthStorage === this.props.nowMonth) ? '#4D4FFF' : 'gray'
