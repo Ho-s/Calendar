@@ -8,14 +8,6 @@ class Week extends PureComponent {
         location: moment().hours() * 61 + 51 + moment().minutes()
     }
 
-    makeTime = () => {
-        return (
-            <>
-
-            </>
-        )
-    }
-
     makeClock = () => {
         return (
             <>

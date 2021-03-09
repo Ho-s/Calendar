@@ -64,7 +64,7 @@ class Year extends PureComponent {
                 {Array(12).fill().map((v, i) => {
                     return (
                         <div id={i} style={{ marginRight: '10px', height: '28vh', float: 'left', marginTop: '20px' }}>
-                            <div style={{ fontWeight: '600', marginBottom: '5px' }}>{moment().add(i + 1, 'month').format('MMMM')}</div>
+                            <div style={{ fontWeight: '600', marginBottom: '5px' }}>{moment().add(i - 2, 'month').format('MMMM')}</div>
                             <div className="year-row">
                                 <div className="year-day">
                                     <span>SUN</span>
