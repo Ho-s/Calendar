@@ -2,7 +2,6 @@ import React, { PureComponent } from 'react';
 import moment from 'moment'
 
 class AddScheduler extends PureComponent {
-
     state = {
         // addAlert: false,
         // alertType: false,
