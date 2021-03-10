@@ -91,7 +91,7 @@ class Week extends PureComponent {
                                 return (
                                     <div style={style}>
                                         <div style={back}></div>
-                                        <div style={{ position: 'relative', top: -height, fontSize: '15px', fontWeight: '600', color: day[n].color }}>
+                                        <div style={{ position: 'relative', top: -height, fontSize: '15px', fontWeight: '600', color: 'black' }}>
                                             <div style={{ position: 'absolute', top: height, left: 0, backgroundColor: day[n].color, height: height, width: '10px' }}></div>
                                             <div style={{ marginLeft: '10px' }}>{day[n].startHours}:{day[n].startMinutes}</div>
                                             <div style={{ width: 'calc(100% - 10px)', textOverflow: 'ellipsis', overflow: 'hidden', whiteSpace: 'nowrap', height: '17px', marginLeft: '10px' }}>{day[n].title}</div>

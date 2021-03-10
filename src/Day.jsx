@@ -84,7 +84,7 @@ class Day extends PureComponent {
                     return (
                         <div style={style}>
                             <div style={back}></div>
-                            <div style={{ position: 'relative', top: -height, fontSize: '15px', fontWeight: '600', color: day[i].color }}>
+                            <div style={{ position: 'relative', top: -height, fontSize: '15px', fontWeight: '600', color: 'black'}}>
                                 <div style={{ position: 'absolute', top: height, left: 0, backgroundColor: day[i].color, height: height, width: '10px' }}></div>
                                 <div style={{ marginLeft: '10px' }}>{day[i].startHours}:{day[i].startMinutes}</div>
                                 <div style={{ marginLeft: '10px' }}>{day[i].title}</div>
