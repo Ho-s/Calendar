@@ -63,9 +63,9 @@ class Month extends PureComponent {
                                         {Array(day.length).fill().map((v, n) => {
                                             return (
                                                 <div style={{ display: 'block', width: '100%', height: '18px', position: 'relative' }}>
-                                                    <div style={{ marginLeft: '6px', marginTop: '4px', float:'left', width: '10px', height: '10px', backgroundColor: day[n].color, borderRadius: '10px' }}></div>
-                                                    <div style={{ marginLeft: '6px',float:'left', width: 'calc(100% - 71px)', textOverflow: 'ellipsis', overflow: 'hidden', whiteSpace: 'nowrap',  fontWeight: '600', color: 'black' }}>{day[n].title}</div>
-                                                    <div style={{ lineHeight: '1.5',float:'right',marginRight:'6px', fontSize: '14px', fontWeight: '600', color: 'gray' }}>{day[n].startHours}:{day[n].startMinutes}</div>
+                                                    <div style={{ marginLeft: '6px', marginTop: '4px', float: 'left', width: '10px', height: '10px', backgroundColor: day[n].color, borderRadius: '10px' }}></div>
+                                                    <div style={{ marginLeft: '6px', float: 'left', width: 'calc(100% - 71px)', textOverflow: 'ellipsis', overflow: 'hidden', whiteSpace: 'nowrap', fontWeight: '600', color: 'black' }}>{day[n].title}</div>
+                                                    <div style={{ lineHeight: '1.5', float: 'right', marginRight: '6px', fontSize: '14px', fontWeight: '600', color: 'gray' }}>{day[n].startHours}:{day[n].startMinutes}</div>
                                                 </div>
                                             )
                                         })}

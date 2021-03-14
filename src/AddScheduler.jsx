@@ -7,13 +7,13 @@ class AddScheduler extends PureComponent {
         // alertType: false,
         timeError: false,
         dayError: false,
-        dayStyle:0,
-        timeStyle:0,
-        titleStyle:{
-            border:0,
-            backgroundColor:'white',
-            color:null,
-            placeholder:'Title'
+        dayStyle: 0,
+        timeStyle: 0,
+        titleStyle: {
+            border: 0,
+            backgroundColor: 'white',
+            color: null,
+            placeholder: 'Title'
         },
         // alertStyle:'+'
     }
@@ -29,7 +29,7 @@ class AddScheduler extends PureComponent {
         this.props.onChangeTitle(e)
         if (this.props.setTitle) {
             this.setState(({
-                titleStyle:{...this.titleStyle,border:'0',placeholder:'Title'}
+                titleStyle: { ...this.titleStyle, border: '0', placeholder: 'Title' }
             }))
         }
     }
@@ -47,7 +47,7 @@ class AddScheduler extends PureComponent {
         if (this.props.setDay <= moment().set({ 'year': Number(this.props.setYear), 'month': Number(this.props.setMonth - 1) }).endOf('month').date()) {
             this.setState(({
                 dayError: false,
-                dayStyle:'0'
+                dayStyle: '0'
             }))
         }
     }
@@ -57,7 +57,7 @@ class AddScheduler extends PureComponent {
         if (Number(String(this.props.setEndHours) + String(this.props.setEndMinutes)) - Number(String(this.props.setStartHours) + String(this.props.setStartMinutes)) < 0) {
             this.setState(({
                 timeError: false,
-                timeStyle:'0'
+                timeStyle: '0'
             }))
         }
     }
@@ -67,7 +67,7 @@ class AddScheduler extends PureComponent {
         if (Number(String(this.props.setEndHours) + String(this.props.setEndMinutes)) - Number(String(this.props.setStartHours) + String(this.props.setStartMinutes)) < 0) {
             this.setState(({
                 timeError: false,
-                timeStyle:'0'
+                timeStyle: '0'
             }))
         }
     }
@@ -77,7 +77,7 @@ class AddScheduler extends PureComponent {
         if (Number(String(this.props.setEndHours) + String(this.props.setEndMinutes)) - Number(String(this.props.setStartHours) + String(this.props.setStartMinutes)) < 0) {
             this.setState(({
                 timeError: false,
-                timeStyle:'0'
+                timeStyle: '0'
             }))
         }
     }
@@ -87,7 +87,7 @@ class AddScheduler extends PureComponent {
         if (Number(String(this.props.setEndHours) + String(this.props.setEndMinutes)) - Number(String(this.props.setStartHours) + String(this.props.setStartMinutes)) < 0) {
             this.setState(({
                 timeError: false,
-                timeStyle:'0'
+                timeStyle: '0'
             }))
         }
     }
@@ -148,22 +148,22 @@ class AddScheduler extends PureComponent {
                 } else {
                     this.setState(({
                         dayError: true,
-                        dayStyle:'1px solid red'
+                        dayStyle: '1px solid red'
                     }))
                 }
             } else {
                 this.setState(({
                     timeError: true,
-                    timeStyle:'1px solid red'
+                    timeStyle: '1px solid red'
                 }))
             }
         } else {
             this.setState(({
-                titleStyle:{...this.titleStyle,border :'4px solid red',placeholder : 'There must be a title',backgroundColor : 'red',color : 'white'}
+                titleStyle: { ...this.titleStyle, border: '4px solid red', placeholder: 'There must be a title', backgroundColor: 'red', color: 'white' }
             }))
             setTimeout(() => {
                 this.setState(({
-                    titleStyle:{...this.titleStyle,backgroundColor : 'transparent',color : 'black',border :'4px solid red',placeholder : 'There must be a title'}
+                    titleStyle: { ...this.titleStyle, backgroundColor: 'transparent', color: 'black', border: '4px solid red', placeholder: 'There must be a title' }
                 }))
             }, 400)
         }
@@ -173,19 +173,19 @@ class AddScheduler extends PureComponent {
         return (
             <div className='scheduler'>
                 <div className='scheduler-head'>
-                    <input spellCheck='false' placeholder={this.state.titleStyle.placeholder} style={{border:this.state.titleStyle.border,backgroundColor:this.state.titleStyle.backgroundColor,color:this.state.titleStyle.color}} onChange={this.onChangeTitle}></input>
+                    <input spellCheck='false' placeholder={this.state.titleStyle.placeholder} style={{ border: this.state.titleStyle.border, backgroundColor: this.state.titleStyle.backgroundColor, color: this.state.titleStyle.color }} onChange={this.onChangeTitle}></input>
                 </div>
                 <div className='scheduler-body'>
                     <div style={{ marginBottom: '0' }} className='scheduler-body-time'>
                         <span style={{ float: 'left' }}>date</span>
                         <div style={{ marginLeft: '20px', float: 'left', }}>
                             <input max='12' min='1' type='number' value={this.props.setMonth} onChange={this.onChangeMonth}></input>/
-                            <input style={{border:this.state.dayStyle}} max={moment().set({ 'year': Number(this.props.setYear), 'month': Number(this.props.setMonth - 1) }).endOf('month').date()} min='1' type='number' value={this.props.setDay} onChange={this.onChangeDay}></input>/
+                            <input style={{ border: this.state.dayStyle }} max={moment().set({ 'year': Number(this.props.setYear), 'month': Number(this.props.setMonth - 1) }).endOf('month').date()} min='1' type='number' value={this.props.setDay} onChange={this.onChangeDay}></input>/
                             <input max='9999' min='1' type='number' value={this.props.setYear} onChange={this.onChangeYear}></input>
                         </div>
                         {this.state.dayError && <div className='scheduler-day-error'><span>This setting have to be under {moment().set({ 'year': Number(this.props.setYear), 'month': Number(this.props.setMonth - 1) }).endOf('month').date() + 1}</span></div>}
                     </div>
-                    <div style={{border:this.state.timeStyle}} className='scheduler-body-time'>
+                    <div style={{ border: this.state.timeStyle }} className='scheduler-body-time'>
                         <span style={{ float: 'left' }}>starts</span>
                         <div style={{ marginLeft: '26px', float: 'left' }}>
                             <input max='24' min='0' type='number' style={{ marginRight: '10px' }} value={this.props.setStartHours} onChange={this.onChangeSHours}></input>:

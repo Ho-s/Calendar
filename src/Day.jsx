@@ -39,11 +39,11 @@ class Day extends PureComponent {
             <>
                 <div style={{ width: '48vw', float: 'left' }}>
                     <div style={{ width: '100%' }}>
-                    {Array(24).fill().map(() => {
-                    return (
-                        <div style={{ float: 'left', borderBottom: '1px solid #e9e9e9', height: '60px', width: '100%', borderRight: '1px solid #e9e9e9' }}></div>
-                    )
-                    })}
+                        {Array(24).fill().map(() => {
+                            return (
+                                <div style={{ float: 'left', borderBottom: '1px solid #e9e9e9', height: '60px', width: '100%', borderRight: '1px solid #e9e9e9' }}></div>
+                            )
+                        })}
                     </div>
                 </div>
             </>
@@ -84,7 +84,7 @@ class Day extends PureComponent {
                     return (
                         <div style={style}>
                             <div style={back}></div>
-                            <div style={{ position: 'relative', top: -height, fontSize: '15px', fontWeight: '600', color: 'black'}}>
+                            <div style={{ position: 'relative', top: -height, fontSize: '15px', fontWeight: '600', color: 'black' }}>
                                 <div style={{ position: 'absolute', top: height, left: 0, backgroundColor: day[i].color, height: height, width: '10px' }}></div>
                                 <div style={{ marginLeft: '10px' }}>{day[i].startHours}:{day[i].startMinutes}</div>
                                 <div style={{ marginLeft: '10px' }}>{day[i].title}</div>
@@ -116,7 +116,7 @@ class Day extends PureComponent {
                         // const isAlert = day[i].alertTime === 0 ? 'There is no alert' : `Alert : ${day[i].alertTime}${day[i].alertType} before`
                         return (
                             <div name={day[i].name} style={{ position: 'relative', marginBottom: '20px', border: '1px solid #e9e9e9', backgroundColor: 'mintcream' }}>
-                                <div style={{ width:'253px', textOverflow:'ellipsis',overflow:'hidden',whiteSpace:'nowrap',borderBottom: '1px solid #e9e9e9', padding: '15px', fontWeight: '600', fontSize: '20px' }}>{day[i].title}</div>
+                                <div style={{ width: '253px', textOverflow: 'ellipsis', overflow: 'hidden', whiteSpace: 'nowrap', borderBottom: '1px solid #e9e9e9', padding: '15px', fontWeight: '600', fontSize: '20px' }}>{day[i].title}</div>
                                 <div style={{ width: '300px', padding: '15px' }}>
                                     <div style={{ marginBottom: '10px' }}>
                                         <span style={{ fontSize: '17px', fontWeight: '600', marginRight: '20px' }}>date</span>
@@ -172,7 +172,7 @@ class Day extends PureComponent {
             <div className='day-component'>
                 <div style={{ marginLeft: '30px', height: '56px' }}>
                     <span style={{ color: 'rgb(47, 72, 218)', fontSize: '15px', fontWeight: '600' }}>CW{moment().set('week', this.props.nowWeek).format('W')}</span>
-                    <span style={{ marginLeft: '20px', color: 'rgb(47, 72, 218)', fontSize: '40px', fontWeight: '600'  }}>{this.whatDayToday()}</span>
+                    <span style={{ marginLeft: '20px', color: 'rgb(47, 72, 218)', fontSize: '40px', fontWeight: '600' }}>{this.whatDayToday()}</span>
                     <span style={{ marginLeft: '10px', color: 'black', fontSize: '25px', fontWeight: '600' }}>{moment().set('month', this.props.monthStorage).format('MMMM')}{this.props.nowDay},</span>
                     <span style={{ color: 'red', fontSize: '40px', fontWeight: '600' }}>{this.props.yearStorage}</span>
                 </div>

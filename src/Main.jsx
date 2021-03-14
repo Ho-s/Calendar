@@ -29,11 +29,11 @@ class Main extends PureComponent {
         // setAlertType: null,
         storage: [],
 
-        spanStyle:{
-            paddingRight:0,
-            textContent:'Add Schedule',
+        spanStyle: {
+            paddingRight: 0,
+            textContent: 'Add Schedule',
         },
-        divStyle:''
+        divStyle: ''
     }
 
     onClickDay = (e) => {
@@ -308,15 +308,15 @@ class Main extends PureComponent {
         if (!this.state.addSchedule) {
             this.setState(({
                 addSchedule: true,
-                spanStyle:{...this.state.spanStyle,paddingRight:'20px',textContent:'Close Scheduler'},
-                divStyle:'forward .4s forwards',
+                spanStyle: { ...this.state.spanStyle, paddingRight: '20px', textContent: 'Close Scheduler' },
+                divStyle: 'forward .4s forwards',
             }))
 
         } else {
             this.setState(({
                 addSchedule: false,
-                spanStyle:{...this.state.spanStyle,paddingRight:'0',textContent:'Add Schedule'},
-                divStyle:'backward .4s forwards',
+                spanStyle: { ...this.state.spanStyle, paddingRight: '0', textContent: 'Add Schedule' },
+                divStyle: 'backward .4s forwards',
             }))
         }
         this.setState(({
@@ -352,8 +352,8 @@ class Main extends PureComponent {
         if (this.state.storage.length === 0) {
             this.setState((prevState) => {
                 return {
-                    spanStyle:{...prevState.spanStyle,paddingRight:'0',textContent:'Add Schedule'},
-                    divStyle:'backward .4s forwards',
+                    spanStyle: { ...prevState.spanStyle, paddingRight: '0', textContent: 'Add Schedule' },
+                    divStyle: 'backward .4s forwards',
                     storage: [...prevState.storage, storage],
                     addSchedule: false,
                 }
@@ -373,8 +373,8 @@ class Main extends PureComponent {
                     if (i === this.state.storage.length - 1) {
                         this.setState((prevState) => {
                             return {
-                                spanStyle:{...prevState.spanStyle,paddingRight:'0',textContent:'Add Schedule'},
-                                divStyle:'backward .4s forwards',
+                                spanStyle: { ...prevState.spanStyle, paddingRight: '0', textContent: 'Add Schedule' },
+                                divStyle: 'backward .4s forwards',
                                 storage: [...prevState.storage, storage],
                                 addSchedule: false,
                             }
@@ -422,8 +422,8 @@ class Main extends PureComponent {
                 <div style={{ height: '100vh', float: 'left' }}>
                     <div style={{ backgroundColor: '#292726' }}>
                         <button onClick={this.onClickAddSchedule} className='add-schedule'>
-                            <span style={{ paddingRight:this.state.spanStyle.paddingRight,position: 'relative', transition: 'all .6s' }}>{this.state.spanStyle.textContent}</span>
-                            <div style={{animation:this.state.divStyle}} className='add-schedule-div'>▶</div>
+                            <span style={{ paddingRight: this.state.spanStyle.paddingRight, position: 'relative', transition: 'all .6s' }}>{this.state.spanStyle.textContent}</span>
+                            <div style={{ animation: this.state.divStyle }} className='add-schedule-div'>▶</div>
                         </button>
                         {this.state.addSchedule &&
                             <AddScheduler
