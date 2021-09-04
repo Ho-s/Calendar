@@ -1,9 +1,10 @@
 import React, { PureComponent } from 'react';
 import moment from 'moment'
-import Calendar from './Calendar'
-import Summary from './Summary'
-import MainCalendar from './MainCalendar'
-import AddScheduler from './AddScheduler'
+import Calendar from '../Calendar/Calendar'
+import Summary from '../Summary/Summary'
+import MainCalendar from '../MainCalendar/MainCalendar'
+import AddScheduler from '../AddScheduler/AddScheduler'
+import './style.css'
 
 class Main extends PureComponent {
     state = {

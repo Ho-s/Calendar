@@ -1,4 +1,5 @@
 import React, { PureComponent } from 'react';
+import './style.css'
 import moment from 'moment'
 
 class Calendar extends PureComponent {

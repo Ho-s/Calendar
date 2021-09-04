@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react';
 import moment from 'moment'
-
+import './style.css'
 class Day extends PureComponent {
     state = {
         location: moment().hours() * 61 + moment().minutes(),

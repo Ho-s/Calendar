@@ -1,5 +1,6 @@
 import React, { PureComponent } from 'react';
 import moment from 'moment'
+import './style.css'
 
 class Month extends PureComponent {
 
