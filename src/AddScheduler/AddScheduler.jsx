@@ -4,8 +4,6 @@ import './style.css'
 
 class AddScheduler extends PureComponent {
     state = {
-        // addAlert: false,
-        // alertType: false,
         timeError: false,
         dayError: false,
         dayStyle: 0,
@@ -16,16 +14,8 @@ class AddScheduler extends PureComponent {
             color: null,
             placeholder: 'Title'
         },
-        // alertStyle:'+'
     }
 
-    // onClickAlertType = () => {
-    //     this.setState(({
-    //         alertType: true,
-    //     }))
-    // }
-
-    //propsHandiling
     onChangeTitle = (e) => {
         this.props.onChangeTitle(e)
         if (this.props.setTitle) {
@@ -97,50 +87,6 @@ class AddScheduler extends PureComponent {
         this.props.onChangeColor(e)
     }
 
-    // onChangeAlertTime = (e) => {
-    //     this.props.onChangeAlertTime(e)
-    // }
-
-    // onClickMinutes = () => {
-    //     this.setState(({
-    //         alertType: false,
-    //         setAlertType: 'minutes'
-    //     }))
-    //     this.props.onClickMinutes()
-    // }
-
-    // onClickHours = () => {
-    //     this.setState(({
-    //         alertType: false,
-    //         setAlertType: 'hours'
-    //     }))
-    //     this.props.onClickHours()
-    // }
-
-    // onClickDays = () => {
-    //     this.setState(({
-    //         alertType: false,
-    //         setAlertType: 'days'
-    //     }))
-    //     this.props.onClickDays()
-    // }
-
-    // onClickAddAlert = () => {
-    //     if (!this.state.addAlert) {
-    //         this.setState(({
-    //             addAlert: true,
-    //             alertStyle:'-'
-    //         }))
-    //         this.props.onClickAddAlert()
-    //     } else {
-    //         this.setState(({
-    //             addAlert: false,
-    //             alertStyle:'+'
-    //         }))
-    //         this.props.onClickRemoveAlert()
-    //     }
-    // }
-
     onClickSubmit = () => {
         if (this.props.setTitle) {
             if (Number(String(this.props.setEndHours) + String(this.props.setEndMinutes)) - Number(String(this.props.setStartHours) + String(this.props.setStartMinutes)) > 0) {
@@ -203,26 +149,6 @@ class AddScheduler extends PureComponent {
                         <span style={{ float: 'left' }}>display</span>
                         <input type='color' value={this.props.setColor} onChange={this.onChangeColor}></input>
                     </div>
-                    {/* <div className='scheduler-body-alert'>
-                        <span style={{ fontWeight: '600', marginRight: '265px' }}>alert</span>
-                        <span onClick={this.onClickAddAlert} style={{ cursor: 'pointer' }}>{this.state.alertStyle}</span>
-                        <div style={{ height: '34px' }}>
-                            <div style={{ position: 'relative', textAlign: 'center' }}>
-                                {this.state.addAlert &&
-                                    <>
-                                        <input min='1' type='number' value={this.props.setAlertTime} onChange={this.props.onChangeAlertTime}></input>
-                                        <span onClick={this.onClickAlertType} style={{ width: '60px', cursor: 'pointer' }}>{this.props.setAlertType}</span>
-                                        {this.state.alertType &&
-                                            <>
-                                                <div onClick={this.onClickMinutes} style={{fontSize:'10px', position: 'absolute', top: '20px', left: '123px', cursor: 'pointer' }}>minutes</div>
-                                                <div onClick={this.onClickHours} style={{ fontSize:'10px',position: 'absolute', top: '35px', left: '123px', cursor: 'pointer' }}>hours</div>
-                                                <div onClick={this.onClickDays} style={{fontSize:'10px', position: 'absolute', top: '50px', left: '123px', cursor: 'pointer' }}>days</div>
-                                            </>}
-                                        <span style={{ marginLeft: '20px' }}>before</span>
-                                    </>}
-                            </div>
-                        </div>
-                    </div> */}
                 </div>
                 <div className='scheduler-foot'>
                     <button onClick={this.onClickSubmit} style={{ backgroundColor: this.props.setColor }}>Add Event</button>
