@@ -4,19 +4,18 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 module.exports = {
   mode: 'development',
   // mode : 'production',
-  devtool: 'inline-source-map',
   resolve: {
-    extensions: ['.js', '.jsx'],
+    extensions: ['.js', '.jsx', 'ts', 'tsx'],
   },
-  entry: './client',
+  entry: path.resolve(__dirname,'./src/client.jsx'),
   output: {
-    path: path.join(__dirname, 'dist'),
-    filename: 'app.js',
+    path: path.resolve(__dirname, './dist'),
+    filename: 'bundle.js',
   },
 
   module: {
     rules: [{
-      test: /\.jsx?$/,
+      test: /\.(js|ts)x?$/,
       loader: 'babel-loader',
       options: {
         presets: [
@@ -25,29 +24,31 @@ module.exports = {
             debug: true,
           }],
           '@babel/preset-react',
+          '@babel/preset-typescript',
         ],
         plugins: [
           'react-refresh/babel',
           '@babel/plugin-proposal-class-properties',
         ],
       },
-      exclude: path.join(__dirname, 'node_modules'),
+      exclude: path.resolve(__dirname, './node_modules'),
     },
-    // { test: /\.tsx$/, use: 'ts-loader'}
+    {
+      test: /\.tsx$/, 
+      use: 'ts-loader'
+    },
+    {
+      test:/\.css$/,
+      use:['style-loader','css-loader'],
+    }
   ],
   },
   plugins: [
     new HtmlWebpackPlugin({template: './index.html'})
   ],
-
-  performance: {
-    hints: false,
-    maxEntrypointSize: 512000,
-    maxAssetSize: 512000
-},
   devServer: {
     hot: true,
     host: "localhost",
-    port: 5500
+    port: 8080
   }
 };
