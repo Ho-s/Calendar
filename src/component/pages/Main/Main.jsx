@@ -1,9 +1,9 @@
 import React, { PureComponent } from 'react';
 import moment from 'moment'
-import Calendar from '../../../Calendar/Calendar'
+import Calendar from '../../organisms/Calendar/Calendar'
 import Summary from '../../organisms/Summary/Summary'
 import MainCalendar from '../../organisms/MainCalendar/MainCalendar'
-import AddScheduler from '../../../AddScheduler/AddScheduler'
+import AddScheduler from '../../organisms/AddScheduler/AddScheduler'
 import './style.css'
 
 class Main extends PureComponent {
