@@ -26,8 +26,6 @@ class Main extends PureComponent {
         setEndHours: moment().hour() + 1,
         setEndMinutes: 0,
         setColor: '#04B910',
-        // setAlertTime: 0,
-        // setAlertType: null,
         storage: [],
 
         spanStyle: {
@@ -261,50 +259,6 @@ class Main extends PureComponent {
         }))
     }
 
-    // onChangeAlertTime = (e) => {
-    //     this.setState(({
-    //         setAlertTime: e.target.value
-    //     }))
-    // }
-
-    // onClickAlertType = () => {
-    //     this.setState(({
-    //         alertType: true,
-    //     }))
-    // }
-
-    // onClickMinutes = () => {
-    //     this.setState(({
-    //         setAlertType: 'minutes'
-    //     }))
-    // }
-
-    // onClickHours = () => {
-    //     this.setState(({
-    //         setAlertType: 'hours'
-    //     }))
-    // }
-
-    // onClickDays = () => {
-    //     this.setState(({
-    //         setAlertType: 'days'
-    //     }))
-    // }
-
-    // onClickAddAlert = () => {
-    //     this.setState(({
-    //         setAlertTime: 15,
-    //         setAlertType: 'minutes'
-    //     }))
-    // }
-
-    // onClickRemoveAlert = () => {
-    //     this.setState(({
-    //         setAlertTime: null,
-    //         setAlertType: null
-    //     }))
-    // }
-
     onClickAddSchedule = () => {
         if (!this.state.addSchedule) {
             this.setState(({
@@ -329,8 +283,6 @@ class Main extends PureComponent {
             setStartMinutes: 0,
             setEndHours: moment().hour() + 1,
             setEndMinutes: 0,
-            // setAlertTime: null,
-            // setAlertType: null
         }))
     }
 
@@ -347,8 +299,6 @@ class Main extends PureComponent {
             endHours: this.state.setEndHours === 0 ? '00' : this.state.setEndHours,
             endMinutes: this.state.setEndMinutes === 0 ? '00' : this.state.setEndMinutes,
             color: this.state.setColor,
-            // alertTime: Number(this.state.setAlertTime),
-            // alertType: this.state.setAlertType,
         }
         if (this.state.storage.length === 0) {
             this.setState((prevState) => {
@@ -442,8 +392,6 @@ class Main extends PureComponent {
                                 setEndHours={this.state.setEndHours}
                                 setEndMinutes={this.state.setEndMinutes}
                                 setColor={this.state.setColor}
-                                // setAlertTime={this.state.setAlertTime}
-                                // setAlertType={this.state.setAlertType}
 
                                 onChangeTitle={this.onChangeTitle}
                                 onChangeYear={this.onChangeYear}
@@ -454,12 +402,9 @@ class Main extends PureComponent {
                                 onChangeEHours={this.onChangeEHours}
                                 onChangeEMinutes={this.onChangeEMinutes}
                                 onChangeColor={this.onChangeColor}
-                                // onChangeAlertTime={this.onChangeAlertTime}
                                 onClickMinutes={this.onClickMinutes}
                                 onClickHours={this.onClickHours}
                                 onClickDays={this.onClickDays}
-                                // onClickAddAlert={this.onClickAddAlert}
-                                // onClickRemoveAlert={this.onClickRemoveAlert}
                                 onClickSubmit={this.onClickSubmit}
                             />}
                     </div>
