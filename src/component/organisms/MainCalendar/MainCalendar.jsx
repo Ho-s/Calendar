@@ -1,9 +1,9 @@
 import React, { PureComponent } from 'react';
 import moment from 'moment'
-import Day from '../Day/Day'
-import Week from '../Week/Week'
-import Month from '../Month/Month'
-import Year from '../Year/Year'
+import Day from '../component/Day/Day'
+import Week from '../../molcules/Week/Week'
+import Month from '../component/Month/Month'
+import Year from '../component/Year/Year'
 import './style.css'
 
 class MainCalendar extends PureComponent {
