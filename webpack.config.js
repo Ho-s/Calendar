@@ -28,7 +28,6 @@ module.exports = {
         ],
         plugins: [
           'react-refresh/babel',
-          '@babel/plugin-proposal-class-properties',
         ],
       },
       exclude: path.resolve(__dirname, './node_modules'),
