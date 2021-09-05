@@ -1,4 +1,4 @@
-import React, { PureComponent } from 'react';
+import React, { useState } from 'react';
 import moment from 'moment'
 import Calendar from '../../organisms/Calendar/Calendar'
 import Summary from '../../organisms/Summary/Summary'
@@ -6,56 +6,49 @@ import MainCalendar from '../../organisms/MainCalendar/MainCalendar'
 import AddScheduler from '../../organisms/AddScheduler/AddScheduler'
 import './style.css'
 
-class Main extends PureComponent {
-    state = {
-        nowDay: moment().date(),
-        nowWeek: moment().week(),
-        nowMonth: moment().month(),
-        nowYear: moment().year(),
-        whatDay: -1,
-        yearStorage: moment().year(),
-        monthStorage: moment().month(),
+const Main = () => {
+    const [nowDay, setNowDay] = useState<number>(moment().date())
+    const [nowWeek, setNowWeek] = useState<number>(moment().week())
+    const [nowMonth, setNowMonth] = useState<number>(moment().month())
+    const [nowYear, setNowYear] = useState<number>(moment().year())
+    const [whatDay, setWhatDay] = useState<number>(-1)
+    const [yearStorage, setYearStorage] = useState<number>(moment().year())
+    const [monthStorage, setMonthStorage] = useState<number>(moment().month())
 
-        addSchedule: false,
-        setTitle: null,
-        setYear: moment().year(),
-        setMonth: moment().month() + 1,
-        setDay: moment().date(),
-        setStartHours: moment().hour(),
-        setStartMinutes: 0,
-        setEndHours: moment().hour() + 1,
-        setEndMinutes: 0,
-        setColor: '#04B910',
-        storage: [],
+    const [addSchedule, setAddSchedule] = useState<boolean>(false)
+    const [title, setTitle] = useState<string>('')
+    const [year, setYear] = useState<number>(moment().year())
+    const [month, setMonth] = useState<number>(moment().month() + 1)
+    const [day, setDay] = useState<number>(moment().date())
+    const [startHours, setStartHours] = useState<number>(moment().hour())
+    const [startMinutes, setStartMinutes] = useState<number>(0)
+    const [endHours, setEndHours] = useState<number>(moment().hour() + 1)
+    const [endMinutes, setEndMinutes] =useState<number>(0)
+    const [color,setColor] = useState<string>('#04B910')
+    const [storage, setStorage] = useState<any[]>([])
+    const [spanStyle, setSpanStyle] = useState<Object>({
+        paddingRight: 0,
+        textContent: 'Add Schedule',
+    })
+    const [divStyle, setDivStyle] = useState<string>('')
 
-        spanStyle: {
-            paddingRight: 0,
-            textContent: 'Add Schedule',
-        },
-        divStyle: ''
-    }
+    const onClickDay = (e: any) => {
+        setNowDay(e.target.textContent)
+        setNowWeek(e.target.parentNode.childNodes[0].textContent)
+        setYearStorage(nowYear)
+        setMonthStorage(nowMonth)
+        setYear(nowYear)
+        setMonth(nowMonth + 1)
+        setDay(e.target.textContent)
 
-    onClickDay = (e) => {
-        this.setState(({
-            nowDay: e.target.textContent,
-            nowWeek: e.target.parentNode.childNodes[0].textContent,
-            yearStorage: this.state.nowYear,
-            monthStorage: this.state.nowMonth,
-            setYear: this.state.nowYear,
-            setMonth: this.state.nowMonth + 1,
-            setDay: e.target.textContent
-        }))
-        Array(8).fill().map((v, i) => {
-            const get = e.target.parentNode.childNodes[i].textContent === e.target.textContent ?
-                this.setState(({
-                    whatDay: i - 1
-                }))
-                :
-                ''
+        Array(8).forEach((v, i) => {
+            if(e.target.parentNode.childNodes[i].textContent === e.target.textContent) {
+                setWhatDay(i - 1)
+            }
         })
     }
 
-    onClickWeek = (e) => {
+    const onClickWeek = (e: any) => {
         if (e.target.parentNode.childNodes[1].className === 'box  grayed ') {
             this.setState(({
                 nowDay: 1,
