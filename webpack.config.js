@@ -5,7 +5,7 @@ module.exports = {
   mode: 'development',
   // mode : 'production',
   resolve: {
-    extensions: ['.js', '.jsx', 'ts', 'tsx'],
+    extensions: ['.js', '.jsx', '.ts', '.tsx'],
   },
   entry: path.resolve(__dirname,'./src/client.jsx'),
   output: {
