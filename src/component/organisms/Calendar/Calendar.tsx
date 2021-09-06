@@ -125,7 +125,7 @@ const Calendar = ({nowDay,
                         <span>SAT</span>
                     </div>
                 </div>
-                {Generate}
+                {Generate()}
             </div>
         </div>
     )
