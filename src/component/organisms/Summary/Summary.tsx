@@ -65,7 +65,7 @@ const Summary = ({storage,onClickDelete,nowDay,nowWeek,nowMonth,nowYear,monthSto
                             <>
                                 <div style={{ color: selectedColor, fontWeight: 600, fontSize: '18PX', marginBottom: '10px' }}>{current.month() + 1} / {current.date()} / {current.year()}  {current.format('dddd')}</div>
                                 {Array(day.length).fill(0).map((v, n) => (
-                                    <div name={day[n].name} className='summary-schedule' >
+                                    <div data-name={day[n].name} className='summary-schedule' >
                                         <div style={{ marginTop: '6px', position: 'absolute', left: '3px', width: '10px', height: '10px', backgroundColor: day[n].color, borderRadius: '10px' }}></div>
                                         <div style={{ lineHeight: '1', float: 'left', fontSize: '20px', marginLeft: '17px', width: '11.6vw', textOverflow: 'ellipsis', overflow: 'hidden', whiteSpace: 'nowrap', fontWeight: 100, color: 'white' }}>{day[n].title}</div>
                                         <div style={{ lineHeight: '1.5', position: 'absolute', right: '40px', overflow: 'noWrap', fontSize: '14px', fontWeight: 600, color: 'gray' }}>{day[n].startHours}:{day[n].startMinutes}~</div>

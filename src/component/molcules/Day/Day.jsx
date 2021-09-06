@@ -114,7 +114,7 @@ class Day extends PureComponent {
                 <>
                     {Array(day.length).fill().map((v, i) => {
                         return (
-                            <div name={day[i].name} style={{ position: 'relative', marginBottom: '20px', border: '1px solid #e9e9e9', backgroundColor: 'mintcream' }}>
+                            <div data-name={day[i].name} style={{ position: 'relative', marginBottom: '20px', border: '1px solid #e9e9e9', backgroundColor: 'mintcream' }}>
                                 <div style={{ width: '253px', textOverflow: 'ellipsis', overflow: 'hidden', whiteSpace: 'nowrap', borderBottom: '1px solid #e9e9e9', padding: '15px', fontWeight: '600', fontSize: '20px' }}>{day[i].title}</div>
                                 <div style={{ width: '300px', padding: '15px' }}>
                                     <div style={{ marginBottom: '10px' }}>
