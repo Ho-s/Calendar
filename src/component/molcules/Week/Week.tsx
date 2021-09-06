@@ -1,40 +1,37 @@
-import React, { PureComponent } from 'react';
+import React, { useEffect, useState } from 'react';
 import moment from 'moment'
 import './style.css'
 
-class Week extends PureComponent {
-    state = {
-        today: moment().format('YYYYMMDD'),
-        time: moment().format('LT'),
-        location: moment().hours() * 61 + 51 + moment().minutes()
-    }
+interface IWeek {
+    nowDay: number
+    nowWeek: number
+    monthStorage: number
+    yearStorage: number
+    storage: any
+}
 
-    makeClock = () => {
-        return (
-            <>
-                {Array(24).fill().map((v, i) => {
-                    return (
-                        <div style={{ color: 'gray', fontWeight: 600, textAlign: 'right', float: 'left', height: '61px', width: '100%' }}>
-                            {`${i + 1}:00`}
-                        </div>
-                    )
-                })}
-            </>
-        )
-    }
+const Week = ({
+    nowDay,
+    nowWeek,
+    monthStorage,
+    yearStorage,
+    storage
+}:IWeek) => {
+    const [today, setToday] = useState(moment().format('YYYYMMDD'))
+    const [time, setTime] = useState(moment().format('LT'))
+    const [location, setLocation] = useState(moment().hours() * 61 + 51 + moment().minutes())
 
-    generate = () => {
-        const today = moment();
-        const nowYear = today.set('year', this.props.yearStorage)
-        const nowMonth = today.set('month', this.props.monthStorage)
-        const nowWeek = today.set('week', this.props.nowWeek)
-        const week = today.week();
+    const Generate = () => {
+        moment().set('year', yearStorage)
+        moment().set('month', monthStorage)
+        moment().set('week', nowWeek)
+        const week = moment().week();
         return (
             <>
                 {Array(7).fill(0).map((n, i) => {
-                    let current = today.week(week).startOf('week').add(n + i, 'day')
-                    let todaySelect = this.state.today === current.format('YYYYMMDD') ? 'week-selected' : '';
-                    let isGrayed = Number(current.format('MM')) === Number(this.props.monthStorage) + 1 ? '' : 'week-grayed';
+                    let current = moment().week(week).startOf('week').add(n + i, 'day')
+                    let todaySelect = today === current.format('YYYYMMDD') ? 'week-selected' : '';
+                    let isGrayed = Number(current.format('MM')) === Number(monthStorage) + 1 ? '' : 'week-grayed';
                     let sun = i === 0 ? 'SUN' : ''
                     let mon = i === 1 ? 'MON' : ''
                     let tue = i === 2 ? 'TUE' : ''
@@ -43,13 +40,13 @@ class Week extends PureComponent {
                     let fri = i === 5 ? 'FRI' : ''
                     let sat = i === 6 ? 'SAT' : ''
 
-                    const day = []
+                    const day: any = []
                     {
-                        Array(this.props.storage.length).fill().map((v, n) => {
-                            if (this.props.storage[n].year === Number(current.year())) {
-                                if (this.props.storage[n].month === Number(current.month() + 1)) {
-                                    if (this.props.storage[n].day === Number(current.date())) {
-                                        day.push(this.props.storage[n])
+                        Array(storage.length).forEach((v, n) => {
+                            if (storage[n].year === Number(current.year())) {
+                                if (storage[n].month === Number(current.month() + 1)) {
+                                    if (storage[n].day === Number(current.date())) {
+                                        day.push(storage[n])
                                     }
                                 }
                             }
@@ -67,13 +64,13 @@ class Week extends PureComponent {
                                 </div>
                             </div>
                             <div style={{ width: '100%' }}>
-                                {Array(24).fill().map(() => {
+                                {Array(24).fill(0).map(() => {
                                     return (
                                         <div style={{ float: 'left', borderBottom: '1px solid #e9e9e9', height: '60px', width: '100%', borderLeft: '1px solid #e9e9e9' }}></div>
                                     )
                                 })}
                             </div>
-                            {Array(day.length).fill().map((v, n) => {
+                            {Array(day.length).fill(0).map((v, n) => {
                                 const height = (Number(day[n].endHours) - Number(day[n].startHours)) * 61 + Number(day[n].endMinutes) - Number(day[n].startMinutes)
                                 const style = {
                                     position: 'absolute',
@@ -92,7 +89,7 @@ class Week extends PureComponent {
                                 return (
                                     <div style={style}>
                                         <div style={back}></div>
-                                        <div style={{ position: 'relative', top: -height, fontSize: '15px', fontWeight: '600', color: 'black' }}>
+                                        <div style={{ position: 'relative', top: -height, fontSize: '15px', fontWeight: 600, color: 'black' }}>
                                             <div style={{ position: 'absolute', top: height, left: 0, backgroundColor: day[n].color, height: height, width: '10px' }}></div>
                                             <div style={{ marginLeft: '10px' }}>{day[n].startHours}:{day[n].startMinutes}</div>
                                             <div style={{ width: 'calc(100% - 10px)', textOverflow: 'ellipsis', overflow: 'hidden', whiteSpace: 'nowrap', height: '17px', marginLeft: '10px' }}>{day[n].title}</div>
@@ -107,46 +104,39 @@ class Week extends PureComponent {
         )
     }
 
-    setTimeLine = () => {
-        return (
-            <div style={{ borderBottom: '1px solid red', width: '100%', position: 'absolute', top: `${this.state.location}px` }}>
-                <div style={{ fontWeight: '600', color: 'red', height: '0' }}>{this.state.time}</div>
-            </div>
-        )
-    }
-
-    componentDidMount() {
-        this.timer = setInterval(() => {
-            this.setState(({
-                location: moment().hours() * 61 + 51 + moment().minutes(),
-                time: moment().format('LT')
-            }))
+    useEffect(() => {
+        const timer = setInterval(() => {
+            setLocation(moment().hours() * 61 + 51 + moment().minutes())
+            setTime(moment().format('LT'))
         }, 5000)
-    }
+        return clearInterval(timer)
+    }, [])
 
-    componentWillUnmount() {
-        clearInterval(this.timer)
-    }
-
-    render() {
-        return (
-            <div className='week-component'>
-                <div style={{ float: 'left' }}>
-                    <div className='week-left'>
-                        <div style={{ float: 'left', width: '70px', height: '55.55px', marginBottom: '45px', fontSize: '15px', fontWeight: '600' }}>
-                            <div style={{ color: 'rgb(47, 72, 218)' }}>CW{moment().set('week', this.props.nowWeek).format('W')}</div>
-                            <div style={{ color: 'black', fontSize: '14px' }}>{moment().set('month', this.props.monthStorage).format('MMMM')}</div>
-                            <div style={{ color: 'red' }}>{this.props.yearStorage}</div>
-                        </div>
-                        <div>
-                            <this.makeClock />
-                        </div>
+    return (
+        <div className='week-component'>
+            <div style={{ float: 'left' }}>
+                <div className='week-left'>
+                    <div style={{ float: 'left', width: '70px', height: '55.55px', marginBottom: '45px', fontSize: '15px', fontWeight: 600 }}>
+                        <div style={{ color: 'rgb(47, 72, 218)' }}>CW{moment().set('week', nowWeek).format('W')}</div>
+                        <div style={{ color: 'black', fontSize: '14px' }}>{moment().set('month', monthStorage).format('MMMM')}</div>
+                        <div style={{ color: 'red' }}>{yearStorage}</div>
                     </div>
-                    <this.generate />
+                    <div>
+                    {Array(24).fill(0).map((v, i) => {
+                        return (
+                            <div style={{ color: 'gray', fontWeight: 600, textAlign: 'right', float: 'left', height: '61px', width: '100%' }}>
+                                {`${i + 1}:00`}
+                            </div>
+                        )
+                    })}
+                    </div>
                 </div>
-                <this.setTimeLine />
+                <Generate />
             </div>
-        )
-    }
+            <div style={{ borderBottom: '1px solid red', width: '100%', position: 'absolute', top: `${location}px` }}>
+                <div style={{ fontWeight: 600, color: 'red', height: '0' }}>{time}</div>
+            </div>
+        </div>
+    )
 };
 export default Week
