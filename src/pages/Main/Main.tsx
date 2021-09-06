@@ -268,7 +268,7 @@ const Main = () => {
     }
 
     useEffect(() => {
-        setStorage(JSON.parse(localStorage.getItem('storage')))
+        setStorage(JSON.parse(localStorage.getItem('storage') || '{}'))
     }, [])
 
     return (
@@ -321,6 +321,8 @@ const Main = () => {
                     onClickRight={onClickRight}
                     onClickDay={(e:any)=>onClickDay}
                     onClickWeek={(e:any)=>onClickWeek}
+                    setMonth={setMonth(Number(moment().set('month', nowMonth).format('MMMM')))}
+                    setYear={setYear(Number(moment().set('year', nowYear).format('YYYY')))}
                 />
 
                 <Summary

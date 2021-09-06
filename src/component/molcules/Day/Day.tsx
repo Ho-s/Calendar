@@ -62,14 +62,14 @@ const Day = ({nowDay,
                         right: 0,
                         width: '48vw',
                         height: height,
-                    }
+                    } as React.CSSProperties
                     const back = {
                         backgroundColor: day[i].color,
                         opacity: '0.5',
                         width: '100%',
                         height: '100%',
                         float: 'left'
-                    }
+                    } as React.CSSProperties
                     return (
                         <div style={style}>
                             <div style={back}></div>

@@ -14,6 +14,8 @@ interface ICalendar {
     onClickRight:()=>void
     onClickDay:any
     onClickWeek:any
+    setMonth:any
+    setYear:any
 }
 
 const Calendar = ({nowDay,
@@ -26,7 +28,10 @@ const Calendar = ({nowDay,
     onClickLeft,
     onClickRight,
     onClickDay,
-    onClickWeek}:ICalendar) => {
+    onClickWeek,
+    setMonth,
+    setYear
+}:ICalendar) => {
     const [today, setToday] = useState<string>(moment().format('YYYYMMDD'))
     const [thisWeek, setThisWeek] = useState<string>(moment().format('w'))
 
@@ -86,8 +91,8 @@ const Calendar = ({nowDay,
     }
 
     useEffect(() => {
-        setMonth(moment().set('month', nowMonth).format('MMMM'))
-        setYear(moment().set('year', nowYear).format('YYYY'))
+        setMonth()
+        setYear()
     }, [])
 
     return (
