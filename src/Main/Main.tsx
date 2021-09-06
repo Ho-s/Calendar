@@ -296,15 +296,15 @@ const Main = () => {
                             endMinutes={endMinutes}
                             color={color}
 
-                            onChangeTitle={onChangeTitle}
-                            onChangeYear={onChangeYear}
-                            onChangeMonth={onChangeMonth}
-                            onChangeDay={onChangeDay}
-                            onChangeSHours={onChangeSHours}
-                            onChangeSMinutes={onChangeSMinutes}
-                            onChangeEHours={onChangeEHours}
-                            onChangeEMinutes={onChangeEMinutes}
-                            onChangeColor={onChangeColor}
+                            onChangeTitle={(e:any) => {onChangeTitle}}
+                            onChangeYear={(e:any) =>onChangeYear}
+                            onChangeMonth={(e:any) =>onChangeMonth}
+                            onChangeDay={(e:any) =>onChangeDay}
+                            onChangeSHours={(e:any) =>onChangeSHours}
+                            onChangeSMinutes={(e:any) =>onChangeSMinutes}
+                            onChangeEHours={(e:any) =>onChangeEHours}
+                            onChangeEMinutes={(e:any) =>onChangeEMinutes}
+                            onChangeColor={(e:any) =>onChangeColor}
                             onClickSubmit={onClickSubmit}
                         />}
                 </div>
