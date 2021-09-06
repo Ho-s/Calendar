@@ -26,9 +26,6 @@ module.exports = {
           '@babel/preset-react',
           '@babel/preset-typescript',
         ],
-        plugins: [
-          'react-refresh/babel',
-        ],
       },
       exclude: path.resolve(__dirname, './node_modules'),
     },
