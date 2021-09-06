@@ -286,15 +286,15 @@ const Main = () => {
                             nowDay={nowDay}
                             addSchedule={addSchedule}
 
-                            setTitle={title}
-                            setYear={year}
-                            setMonth={month}
-                            setDay={day}
-                            setStartHours={startHours}
-                            setStartMinutes={startMinutes}
-                            setEndHours={endHours}
-                            setEndMinutes={endMinutes}
-                            setColor={color}
+                            title={title}
+                            year={year}
+                            month={month}
+                            day={day}
+                            startHours={startHours}
+                            startMinutes={startMinutes}
+                            endHours={endHours}
+                            endMinutes={endMinutes}
+                            color={color}
 
                             onChangeTitle={onChangeTitle}
                             onChangeYear={onChangeYear}
