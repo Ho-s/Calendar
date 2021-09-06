@@ -345,9 +345,9 @@ const Main = () => {
                     yearStorage={yearStorage}
                     storage={storage}
                     onClickToday={onClickToday}
-                    onClickDayInMonth={onClickDayInMonth}
-                    onClickDayInYear={onClickDayInYear}
-                    onClickDeleteInDayTable={onClickDeleteInDayTable}
+                    onClickDayInMonth={(e:any)=>onClickDayInMonth}
+                    onClickDayInYear={(e:any)=>onClickDayInYear}
+                    onClickDeleteInDayTable={(e:any)=>onClickDeleteInDayTable}
                 />
             </div>
 

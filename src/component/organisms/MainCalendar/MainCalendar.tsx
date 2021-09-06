@@ -16,9 +16,9 @@ interface IMainCalendar {
     yearStorage: number
     storage: any
     onClickToday: () => void
-    onClickDayInMonth: () => void
-    onClickDayInYear: () => void
-    onClickDeleteInDayTable: () => void
+    onClickDayInMonth: any
+    onClickDayInYear: any
+    onClickDeleteInDayTable: any
 }
 
 const MainCalendar = ({
