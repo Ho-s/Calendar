@@ -319,8 +319,8 @@ const Main = () => {
                     storage={storage}
                     onClickLeft={onClickLeft}
                     onClickRight={onClickRight}
-                    onClickDay={onClickDay}
-                    onClickWeek={onClickWeek}
+                    onClickDay={(e:any)=>onClickDay}
+                    onClickWeek={(e:any)=>onClickWeek}
                 />
 
                 <Summary
