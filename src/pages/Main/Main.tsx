@@ -250,7 +250,7 @@ const Main = () => {
     }, [storage])
 
     const onClickDelete = (e:any):void => {
-        const filteredStorage = storage.filter((v) => {
+        const filteredStorage = storage.filter((v:any) => {
             return (
                 v.name !== Number(e.target.parentNode.getAttribute('data-name'))
             )
@@ -259,7 +259,7 @@ const Main = () => {
     }
 
     const onClickDeleteInDayTable = (e:any):void => {
-        const filteredStorage = storage.filter((v) => {
+        const filteredStorage = storage.filter((v:any) => {
             return (
                 v.name !== Number(e.target.parentNode.getAttribute('data-name'))
             )
