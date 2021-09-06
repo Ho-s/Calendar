@@ -71,7 +71,7 @@ const Week = ({
                                 })}
                             </div>
                             {Array(day.length).fill(0).map((v, n) => {
-                                const height = (Number(day[n].endHours) - Number(day[n].startHours)) * 61 + Number(day[n].endMinutes) - Number(day[n].startMinutes)
+                                const height:number = (Number(day[n].endHours) - Number(day[n].startHours)) * 61 + Number(day[n].endMinutes) - Number(day[n].startMinutes)
                                 const style = {
                                     position: 'absolute',
                                     top: Number(day[n].startHours) * 61 + Number(day[n].startMinutes) + 48.55,

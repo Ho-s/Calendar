@@ -25,7 +25,7 @@ const Main = () => {
     const [endHours, setEndHours] = useState<number | string>(moment().hour() + 1)
     const [endMinutes, setEndMinutes] =useState<number | string>(0)
     const [color,setColor] = useState<string>('#04B910')
-    const [storage, setStorage] = useState<any[] | any>([])
+    const [storage, setStorage] = useState<any>([])
     const [spanStyle, setSpanStyle] = useState<any>({
         paddingRight: 0,
         textContent: 'Add Schedule',
