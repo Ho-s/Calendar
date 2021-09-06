@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import moment from 'moment'
-import Calendar from '../component/organisms/Calendar/Calendar'
-import Summary from '../component/organisms/Summary/Summary'
-import MainCalendar from '../component/organisms/MainCalendar/MainCalendar'
-import AddScheduler from '../component/organisms/AddScheduler/AddScheduler'
+import Calendar from '../../component/organisms/Calendar/Calendar'
+import Summary from '../../component/organisms/Summary/Summary'
+import MainCalendar from '../../component/organisms/MainCalendar/MainCalendar'
+import AddScheduler from '../../component/organisms/AddScheduler/AddScheduler'
 import './style.css'
 
 const Main = () => {
