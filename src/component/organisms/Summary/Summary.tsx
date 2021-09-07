@@ -14,19 +14,18 @@ interface ISummary {
 }
 
 const Summary = ({storage,onClickDelete,nowDay,nowWeek,nowMonth,nowYear,monthStorage,yearStorage}: ISummary) => {
-    const [today, setToday] = useState(moment().format('YYYYMMDD'))
+    const m = moment();
 
     const Generate = () => {
-        const today = moment();
-        today.set('year', yearStorage)
-        today.set('month', monthStorage)
-        today.set('week', nowWeek)
+        m.set('year', yearStorage)
+        m.set('month', monthStorage)
+        m.set('week', nowWeek)
         let num = 0
         return (
             <div className='load-list'>
                 <span style={{ fontSize: '16px', fontWeight: 600, color: 'black', textShadow: '-1px 0 white, 0 1px white, 1px 0 white, 0 -1px white' }}>Schedules of the week</span>
                 {Array(7).fill(0).map((n:any, i:number) => {
-                    let current = today.week(today.week()).startOf('week').add(n + i, 'day')
+                    let current = m.week(m.week()).startOf('week').add(n + i, 'day')
                     let selectedColor = (Number(nowDay) === Number(current.format('D')) && Number(yearStorage) === nowYear && monthStorage === nowMonth) ? '#4D4FFF' : 'gray'
 
                     const day:any[] = []

@@ -17,19 +17,20 @@ const Week = ({
     yearStorage,
     storage
 }:IWeek) => {
-    const [today, setToday] = useState(moment().format('YYYYMMDD'))
-    const [time, setTime] = useState(moment().format('LT'))
-    const [location, setLocation] = useState(moment().hours() * 61 + 51 + moment().minutes())
+    const m = moment()
+    const [today, setToday] = useState(m.format('YYYYMMDD'))
+    const [time, setTime] = useState(m.format('LT'))
+    const [location, setLocation] = useState(m.hours() * 61 + 51 + m.minutes())
 
     const Generate = () => {
-        moment().set('year', yearStorage)
-        moment().set('month', monthStorage)
-        moment().set('week', nowWeek)
-        const week = moment().week();
+        m.set('year', yearStorage)
+        m.set('month', monthStorage)
+        m.set('week', nowWeek)
+        const week = m.week();
         return (
             <>
                 {Array(7).fill(0).map((n, i) => {
-                    let current = moment().week(week).startOf('week').add(n + i, 'day')
+                    let current = m.week(week).startOf('week').add(n + i, 'day')
                     let todaySelect = today === current.format('YYYYMMDD') ? 'week-selected' : '';
                     let isGrayed = Number(current.format('MM')) === Number(monthStorage) + 1 ? '' : 'week-grayed';
                     let sun = i === 0 ? 'SUN' : ''
@@ -106,8 +107,8 @@ const Week = ({
 
     useEffect(() => {
         const timer = setInterval(() => {
-            setLocation(moment().hours() * 61 + 51 + moment().minutes())
-            setTime(moment().format('LT'))
+            setLocation(m.hours() * 61 + 51 + m.minutes())
+            setTime(m.format('LT'))
         }, 5000)
         return () => clearInterval(timer)
     }, [])
@@ -117,8 +118,8 @@ const Week = ({
             <div style={{ float: 'left' }}>
                 <div className='week-left'>
                     <div style={{ float: 'left', width: '70px', height: '55.55px', marginBottom: '45px', fontSize: '15px', fontWeight: 600 }}>
-                        <div style={{ color: 'rgb(47, 72, 218)' }}>CW{moment().set('week', nowWeek).format('W')}</div>
-                        <div style={{ color: 'black', fontSize: '14px' }}>{moment().set('month', monthStorage).format('MMMM')}</div>
+                        <div style={{ color: 'rgb(47, 72, 218)' }}>CW{m.set('week', nowWeek).format('W')}</div>
+                        <div style={{ color: 'black', fontSize: '14px' }}>{m.set('month', monthStorage).format('MMMM')}</div>
                         <div style={{ color: 'red' }}>{yearStorage}</div>
                     </div>
                     <div>

@@ -19,11 +19,12 @@ const Day = ({nowDay,
     whatDay,
     storage,
     onClickDeleteInDayTable}:IDay) => {
-    const [location, setLocation] = useState(moment().hours() * 61 + moment().minutes())
-    const [time, setTime] = useState(moment().format('LT'))
+    const m = moment()
+    const [location, setLocation] = useState(m.hours() * 61 + m.minutes())
+    const [time, setTime] = useState(m.format('LT'))
 
     const Generate = () => {
-        const today = moment();
+        const today = m;
         today.set('year', yearStorage)
         today.set('month', monthStorage)
         today.set('week', nowWeek)
@@ -133,16 +134,16 @@ const Day = ({nowDay,
 
     const whatDayToday = () => {
         if (whatDay === -1) {
-            return moment().set('date', nowDay).format('dddd')
+            return m.set('date', nowDay).format('dddd')
         } else {
-            return moment().day(whatDay).format('dddd')
+            return m.day(whatDay).format('dddd')
         }
     }
 
     useEffect(() => {
         const timer = setInterval(() => {
-            setLocation(moment().hours() * 61 + moment().minutes())
-            setTime(moment().format('LT'))
+            setLocation(m.hours() * 61 + m.minutes())
+            setTime(m.format('LT'))
         }, 5000)
         return () => clearInterval(timer)
     },[])
@@ -150,9 +151,9 @@ const Day = ({nowDay,
     return (
         <div className='day-component'>
             <div style={{ marginLeft: '30px', height: '56px' }}>
-                <span style={{ color: 'rgb(47, 72, 218)', fontSize: '15px', fontWeight: 600 }}>CW{moment().set('week', nowWeek).format('W')}</span>
+                <span style={{ color: 'rgb(47, 72, 218)', fontSize: '15px', fontWeight: 600 }}>CW{m.set('week', nowWeek).format('W')}</span>
                 <span style={{ marginLeft: '20px', color: 'rgb(47, 72, 218)', fontSize: '40px', fontWeight: 600 }}>{whatDayToday()}</span>
-                <span style={{ marginLeft: '10px', color: 'black', fontSize: '25px', fontWeight: 600 }}>{moment().set('month', monthStorage).format('MMMM')}{nowDay},</span>
+                <span style={{ marginLeft: '10px', color: 'black', fontSize: '25px', fontWeight: 600 }}>{m.set('month', monthStorage).format('MMMM')}{nowDay},</span>
                 <span style={{ color: 'red', fontSize: '40px', fontWeight: 600 }}>{yearStorage}</span>
             </div>
             <div style={{ position: 'relative', float: 'left', height: '89vh', overflowY: 'auto', overflowX: 'hidden' }}>

@@ -33,6 +33,7 @@ interface IAddScheduler {
 const AddScheduler =({yearStorage,monthStorage,nowDay,addSchedule,title,year,month,day,startHours,startMinutes,endHours,endMinutes,color,onChangeTitle,
     onChangeYear,onChangeMonth,onChangeDay,onChangeSHours,onChangeSMinutes,onChangeEHours,onChangeEMinutes,onChangeColor,onClickSubmit}:IAddScheduler) => {
 
+    const m = moment()
     const [timeError, setTimeError] = useState<boolean>(false)
     const [dayError, setDayError] = useState<boolean>(false)
     const [dayStyle, setDayStyle] = useState<string>('')
@@ -54,7 +55,7 @@ const AddScheduler =({yearStorage,monthStorage,nowDay,addSchedule,title,year,mon
 
     const changeDay = ():void => {
         onChangeDay()
-        if (day <= moment().set({ 'year': Number(year), 'month': Number(month - 1) }).endOf('month').date()) {
+        if (day <= m.set({ 'year': Number(year), 'month': Number(month - 1) }).endOf('month').date()) {
             setDayError(false)
             setDayStyle('')
         }
@@ -95,7 +96,7 @@ const AddScheduler =({yearStorage,monthStorage,nowDay,addSchedule,title,year,mon
     const clickSubmit = () => {
         if (title) {
             if (Number(String(endHours) + String(endMinutes)) - Number(String(startHours) + String(startMinutes)) > 0) {
-                if (day <= moment().set({ 'year': Number(year), 'month': Number(month - 1) }).endOf('month').date()) {
+                if (day <= m.set({ 'year': Number(year), 'month': Number(month - 1) }).endOf('month').date()) {
                     onClickSubmit()
                 } else {
                     setDayError(true)
@@ -123,10 +124,10 @@ const AddScheduler =({yearStorage,monthStorage,nowDay,addSchedule,title,year,mon
                     <span style={{ float: 'left' }}>date</span>
                     <div style={{ marginLeft: '20px', float: 'left', }}>
                         <input max='12' min='1' type='number' value={month} onChange={onChangeMonth}></input>/
-                        <input style={{ border: dayStyle }} max={moment().set({ 'year': Number(year), 'month': Number(month - 1) }).endOf('month').date()} min='1' type='number' value={day} onChange={changeDay}></input>/
+                        <input style={{ border: dayStyle }} max={m.set({ 'year': Number(year), 'month': Number(month - 1) }).endOf('month').date()} min='1' type='number' value={day} onChange={changeDay}></input>/
                         <input max='9999' min='1' type='number' value={year} onChange={onChangeYear}></input>
                     </div>
-                    {dayError && <div className='scheduler-day-error'><span>This setting have to be under {moment().set({ 'year': Number(year), 'month': Number(month - 1) }).endOf('month').date() + 1}</span></div>}
+                    {dayError && <div className='scheduler-day-error'><span>This setting have to be under {m.set({ 'year': Number(year), 'month': Number(month - 1) }).endOf('month').date() + 1}</span></div>}
                 </div>
                 <div style={{ border: timeStyle }} className='scheduler-body-time'>
                     <span style={{ float: 'left' }}>starts</span>

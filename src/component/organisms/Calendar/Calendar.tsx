@@ -32,28 +32,29 @@ const Calendar = ({nowDay,
     setMonth,
     setYear
 }:ICalendar) => {
+    const m = moment()
     const Generate = () => {
-        moment().set('year', nowYear)
-        moment().set('month', nowMonth)
-        const startWeek = moment().clone().startOf('month').week();
-        const endWeek = moment().clone().endOf('month').week() === 1 ? 53 : moment().clone().endOf('month').week();
+        m.set('year', nowYear)
+        m.set('month', nowMonth)
+        const startWeek = m.clone().startOf('month').week();
+        const endWeek = m.clone().endOf('month').week() === 1 ? 53 : m.clone().endOf('month').week();
         const calendar = [];
         for (let week = startWeek; week <= endWeek; week++) {
-            const thisWeekConst = Number(moment().format('w')) === week ? 'today' : ''
+            const thisWeekConst = Number(m.format('w')) === week ? 'today' : ''
             const weekSelected = (Number(nowWeek) === week && Number(yearStorage) === nowYear && monthStorage === nowMonth) ? 'selected' : ''
             calendar.push(
                 <div className='row' key={week}>
                     <div onClick={onClickWeek} className={`cw ${thisWeekConst} ${weekSelected}`}>{week}</div>
                     {
                         Array(7).fill(0).map((n, i) => {
-                            let current = moment().clone().week(week).startOf('week').add(n + i, 'day')
-                            let todaySelect = moment().format('YYYYMMDD') === current.format('YYYYMMDD') ? 'today' : '';
+                            let current = m.clone().week(week).startOf('week').add(n + i, 'day')
+                            let todaySelect = m.format('YYYYMMDD') === current.format('YYYYMMDD') ? 'today' : '';
                             let isSelected = (Number(nowDay) === Number(current.format('D')) && Number(yearStorage) === nowYear && monthStorage === nowMonth) ? 'selected' : ''
-                            let clicking = current.format('MM') === moment().format('MM') ? onClickDay : ((e: any) => e.preventDefault());
-                            let isGrayed = current.format('MM') === moment().format('MM') ? '' : 'grayed';
+                            let clicking = current.format('MM') === m.format('MM') ? onClickDay : ((e: any) => e.preventDefault());
+                            let isGrayed = current.format('MM') === m.format('MM') ? '' : 'grayed';
 
                             const day: any = []
-                            if (current.format('MM') === moment().format('MM')) {
+                            if (current.format('MM') === m.format('MM')) {
                                 Array(storage.length).forEach((v, n) => {
                                     if (storage[n].year === Number(nowYear)) {
                                         if (storage[n].month === Number(nowMonth + 1)) {
@@ -88,14 +89,14 @@ const Calendar = ({nowDay,
     }
 
     useEffect(() => {
-        setYear(Number(moment().set('year', nowYear).format('YYYY')))
-        setMonth(Number(moment().set('month', nowMonth).format('MMMM')))
+        setYear(Number(m.set('year', nowYear).format('YYYY')))
+        setMonth(Number(m.set('month', nowMonth).format('MMMM')))
     }, [])
 
     return (
         <div className="calendar">
             <div className="body">
-                <span style={{ fontSize: '32px', fontWeight: 600 }} >{moment().set('month', nowMonth).format('MMMM')}</span>
+                <span style={{ fontSize: '32px', fontWeight: 600 }} >{m.set('month', nowMonth).format('MMMM')}</span>
                 <span style={{ fontSize: '32px', color: 'red', fontWeight: 600 }}>{nowYear}</span>
                 <button style={{ marginLeft: '10px' }} onClick={onClickRight}>&gt;</button>
                 <button onClick={onClickLeft}>&lt;</button>

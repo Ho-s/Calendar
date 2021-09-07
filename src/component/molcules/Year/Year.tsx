@@ -24,26 +24,27 @@ const Year = ({
     nowYear,
     onClickDayInYear
 }: IYear) => {
-    const [today, setToday] = useState(moment().format('YYYYMMDD'))
+    const m = moment()
+    const [today, setToday] = useState(m.format('YYYYMMDD'))
 
     const Generate = (year: any, month: any) => {
-        moment().set('year', year)
-        moment().set('month', month)
-        const startWeek = moment().clone().startOf('month').week();
-        const endWeek = moment().clone().endOf('month').week() === 1 ? 53 : moment().clone().endOf('month').week();
+        m.set('year', year)
+        m.set('month', month)
+        const startWeek = m.clone().startOf('month').week();
+        const endWeek = m.clone().endOf('month').week() === 1 ? 53 : m.clone().endOf('month').week();
         const calendar = [];
         for (let week = startWeek; week <= endWeek; week++) {
             calendar.push(
                 <div className="year-row" key={week}>
                     {
                         Array(7).fill(0).map((n, i) => {
-                            const current = moment().clone().week(week).startOf('week').add(n + i, 'day')
+                            const current = m.clone().week(week).startOf('week').add(n + i, 'day')
                             const todaySelected = today === current.format('YYYYMMDD') ? 'year-selected' : '';
                             const isSelected = (Number(nowDay) === Number(current.format('D')) && Number(yearStorage) === nowYear && nowWeek === week) ? 'yearSelected' : ''
-                            const isGrayed = current.format('MM') === moment().format('MM') ? '' : 'year-grayed';
-                            const clicking = current.format('MM') === moment().format('MM') ? onClickDayInYear : ((e: any) => e.preventDefault());
+                            const isGrayed = current.format('MM') === m.format('MM') ? '' : 'year-grayed';
+                            const clicking = current.format('MM') === m.format('MM') ? onClickDayInYear : ((e: any) => e.preventDefault());
                             const day = []
-                            if (current.format('MM') === moment().format('MM')) {
+                            if (current.format('MM') === m.format('MM')) {
                                 {Array(storage.length).forEach((v, n) => {
                                     if (storage[n].year === Number(current.year())) {
                                         if (storage[n].month === Number(current.month() + 1)) {
@@ -79,7 +80,7 @@ const Year = ({
             <>
                 {Array(12).fill(0).map((v, i) => (
                     <div id={i.toString()} style={{ marginRight: '10px', height: '28vh', float: 'left', marginTop: '20px' }}>
-                        <div style={{ fontWeight: 600, marginBottom: '5px' }}>{moment().add(i - 2, 'month').format('MMMM')}</div>
+                        <div style={{ fontWeight: 600, marginBottom: '5px' }}>{m.add(i - 2, 'month').format('MMMM')}</div>
                         <div className="year-row">
                             <div className="year-day">
                                 <span>SUN</span>

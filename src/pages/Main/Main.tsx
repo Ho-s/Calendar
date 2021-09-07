@@ -7,22 +7,23 @@ import AddScheduler from '../../component/organisms/AddScheduler/AddScheduler'
 import './style.css'
 
 const Main = () => {
-    const [nowDay, setNowDay] = useState<number>(moment().date())
-    const [nowWeek, setNowWeek] = useState<number>(moment().week())
-    const [nowMonth, setNowMonth] = useState<number>(moment().month())
-    const [nowYear, setNowYear] = useState<number>(moment().year())
+    const m = moment()
+    const [nowDay, setNowDay] = useState<number>(m.date())
+    const [nowWeek, setNowWeek] = useState<number>(m.week())
+    const [nowMonth, setNowMonth] = useState<number>(m.month())
+    const [nowYear, setNowYear] = useState<number>(m.year())
     const [whatDay, setWhatDay] = useState<number | string>(-1)
-    const [yearStorage, setYearStorage] = useState<number>(moment().year())
-    const [monthStorage, setMonthStorage] = useState<number>(moment().month())
+    const [yearStorage, setYearStorage] = useState<number>(m.year())
+    const [monthStorage, setMonthStorage] = useState<number>(m.month())
 
     const [addSchedule, setAddSchedule] = useState<boolean>(false)
     const [title, setTitle] = useState<string>('')
-    const [year, setYear] = useState<number>(moment().year())
-    const [month, setMonth] = useState<number>(moment().month() + 1)
-    const [day, setDay] = useState<number>(moment().date())
-    const [startHours, setStartHours] = useState<number | string>(moment().hour())
+    const [year, setYear] = useState<number>(m.year())
+    const [month, setMonth] = useState<number>(m.month() + 1)
+    const [day, setDay] = useState<number>(m.date())
+    const [startHours, setStartHours] = useState<number | string>(m.hour())
     const [startMinutes, setStartMinutes] = useState<number | string>(0)
-    const [endHours, setEndHours] = useState<number | string>(moment().hour() + 1)
+    const [endHours, setEndHours] = useState<number | string>(m.hour() + 1)
     const [endMinutes, setEndMinutes] =useState<number | string>(0)
     const [color,setColor] = useState<string>('#04B910')
     const [storage, setStorage] = useState<any>([])
@@ -76,16 +77,16 @@ const Main = () => {
     }
 
     const onClickToday = ():void => {
-        setNowDay(moment().date())
-        setNowWeek(moment().week())
-        setNowMonth(moment().month())
-        setNowYear(moment().year())
+        setNowDay(m.date())
+        setNowWeek(m.week())
+        setNowMonth(m.month())
+        setNowYear(m.year())
         setWhatDay(-1)
-        setYearStorage(moment().year())
-        setMonthStorage(moment().month())
-        setYear(moment().year())
-        setMonth(moment().month() + 1)
-        setDay(moment().date())
+        setYearStorage(m.year())
+        setMonthStorage(m.month())
+        setYear(m.year())
+        setMonth(m.month() + 1)
+        setDay(m.date())
     }
 
     const onClickRight = ():void => {
@@ -108,7 +109,7 @@ const Main = () => {
 
     const onClickDayInMonth = (e: any):void => {
         setNowDay(e.target.childNodes[0].textContent)
-        setNowWeek(moment().set({ 'year': nowYear, 'month': nowMonth, 'date': e.target.childNodes[0].textContent }).week() === 1 && e.target.childNodes[0].textContent > 24 ? 53 : moment().set({ 'year': nowYear, 'month': nowMonth, 'date': e.target.childNodes[0].textContent }).week())
+        setNowWeek(m.set({ 'year': nowYear, 'month': nowMonth, 'date': e.target.childNodes[0].textContent }).week() === 1 && e.target.childNodes[0].textContent > 24 ? 53 : m.set({ 'year': nowYear, 'month': nowMonth, 'date': e.target.childNodes[0].textContent }).week())
         setYearStorage(nowYear)
         setMonthStorage(nowMonth)
         setYear(nowYear)
@@ -124,7 +125,7 @@ const Main = () => {
 
     const onClickDayInYear = (e:any):void => {
         setNowDay(e.target.textContent)
-        setNowWeek(moment().set({ 'year': nowYear, 'month': e.target.parentNode.parentNode.id, 'date': e.target.childNodes[0].textContent }).week() === 1 && e.target.childNodes[0].textContent > 24 ? 53 : moment().set({ 'year': nowYear, 'month': e.target.parentNode.parentNode.id, 'date': e.target.childNodes[0].textContent }).week())
+        setNowWeek(m.set({ 'year': nowYear, 'month': e.target.parentNode.parentNode.id, 'date': e.target.childNodes[0].textContent }).week() === 1 && e.target.childNodes[0].textContent > 24 ? 53 : m.set({ 'year': nowYear, 'month': e.target.parentNode.parentNode.id, 'date': e.target.childNodes[0].textContent }).week())
         setNowMonth(Number(e.target.parentNode.parentNode.id))
         setYearStorage(nowYear)
         setMonthStorage(Number(e.target.parentNode.parentNode.id))
@@ -205,9 +206,9 @@ const Main = () => {
         setYear(yearStorage)
         setMonth(monthStorage + 1)
         setDay(nowDay)
-        setStartHours(moment().hour())
+        setStartHours(m.hour())
         setStartMinutes(0)
-        setEndHours(moment().hour() + 1)
+        setEndHours(m.hour() + 1)
         setEndMinutes(0)
     }
 
@@ -218,7 +219,7 @@ const Main = () => {
             year: Number(year),
             month: Number(month),
             day: Number(day),
-            week: Number(moment().set({ 'year': Number(year), 'month': Number(month - 1), 'date': Number(day) }).week()),
+            week: Number(m.set({ 'year': Number(year), 'month': Number(month - 1), 'date': Number(day) }).week()),
             startHours: startHours === 0 ? '00' : startHours,
             startMinutes: startMinutes === 0 ? '00' : startMinutes,
             endHours: endHours === 0 ? '00' : endHours,

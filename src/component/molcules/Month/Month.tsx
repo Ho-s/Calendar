@@ -21,27 +21,28 @@ const Month = ({nowDay,
     nowYear,
     onClickDayInMonth,
     storage}:IMonth) => {
-    const [today, setToday] = useState(moment().format('YYYYMMDD'))
+    const m = moment()
+    const [today, setToday] = useState(m.format('YYYYMMDD'))
 
     const Generate = () => {
-        moment().set('year', nowYear)
-        moment().set('month', nowMonth)
-        const startWeek = moment().clone().startOf('month').week();
-        const endWeek = moment().clone().endOf('month').week() === 1 ? 53 : moment().clone().endOf('month').week();
+        m.set('year', nowYear)
+        m.set('month', nowMonth)
+        const startWeek = m.clone().startOf('month').week();
+        const endWeek = m.clone().endOf('month').week() === 1 ? 53 : m.clone().endOf('month').week();
         let calendar = [];
         for (let week = startWeek; week <= endWeek; week++) {
             calendar.push(
                 <div className="month-row" key={week}>
                     {
                         Array(7).fill(0).map((n, i) => {
-                            let current = moment().clone().week(week).startOf('week').add(n + i, 'day')
+                            let current = m.clone().week(week).startOf('week').add(n + i, 'day')
                             let todaySelected = today === current.format('YYYYMMDD') ? 'month-selected' : '';
                             let isSelected = (Number(nowDay) === Number(current.format('D')) && Number(yearStorage) === nowYear && monthStorage === nowMonth) ? 'monthSelected' : ''
-                            let isGrayed = current.format('MM') === moment().format('MM') ? '' : 'month-grayed';
-                            let clicking = current.format('MM') === moment().format('MM') ? onClickDayInMonth : ((e: any) => e.preventDefault());
+                            let isGrayed = current.format('MM') === m.format('MM') ? '' : 'month-grayed';
+                            let clicking = current.format('MM') === m.format('MM') ? onClickDayInMonth : ((e: any) => e.preventDefault());
 
                             const day: any = []
-                            if (current.format('MM') === moment().format('MM')) {
+                            if (current.format('MM') === m.format('MM')) {
                                 {
                                     Array(storage.length).forEach((v, n) => {
                                         if (storage[n].year === Number(current.year())) {
@@ -95,7 +96,7 @@ const Month = ({nowDay,
     return (
         <div className='month-component'>
             <div>
-                <span style={{ color: 'black', fontSize: '30px', fontWeight: 500 }}>{moment().set('month', nowMonth).format('MMMM')}</span>
+                <span style={{ color: 'black', fontSize: '30px', fontWeight: 500 }}>{m.set('month', nowMonth).format('MMMM')}</span>
                 <span style={{ fontSize: '36px', color: 'red' }}>{nowYear}</span>
             </div>
             <div className="month-row">

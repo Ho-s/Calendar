@@ -34,11 +34,12 @@ const MainCalendar = ({
     onClickDayInMonth,
     onClickDayInYear,
     onClickDeleteInDayTable}: IMainCalendar) => {
+    const m = moment()
     const [dayCheck, setDayCheck] = useState<boolean>(true)
     const [weekCheck, setWeekCheck] = useState<boolean>(false)
     const [monthCheck, setMonthCheck] = useState<boolean>(false)
     const [yearCheck, setYearCheck] = useState<boolean>(false)
-    const [time, setTime] = useState<string>(moment().format('HH:mm:ss'))
+    const [time, setTime] = useState<string>(m.format('HH:mm:ss'))
 
     const onClickDay = () => {
         setDayCheck(true)
@@ -77,7 +78,7 @@ const MainCalendar = ({
     }
 
     const Generate = () => {
-        let todayStyle = (dayCheck && Number(nowDay) === moment().date() && Number(nowWeek) === moment().week() && monthStorage === moment().month() && yearStorage === moment().year()) ? 'clicked' : ''
+        let todayStyle = (dayCheck && Number(nowDay) === m.date() && Number(nowWeek) === m.week() && monthStorage === m.month() && yearStorage === m.year()) ? 'clicked' : ''
         return (
             <>
                 <div onClick={clickToday} className={`main-calendar-head-div   ${todayStyle}`} style={{ position: 'absolute', left: '14px', lineHeight: 1.7 }}>Today</div>
@@ -95,7 +96,7 @@ const MainCalendar = ({
 
     useEffect(() => {
         const timer = setInterval(() => {
-            setTime(moment().format('HH:mm:ss'))
+            setTime(m.format('HH:mm:ss'))
         }, 1000)
         return () => clearInterval(timer)
     }, [])
