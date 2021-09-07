@@ -78,18 +78,14 @@ const MainCalendar = ({
 
     const Generate = () => {
         let todayStyle = (dayCheck && Number(nowDay) === moment().date() && Number(nowWeek) === moment().week() && monthStorage === moment().month() && yearStorage === moment().year()) ? 'clicked' : ''
-        let dayStyle = dayCheck ? 'clicked' : ''
-        let weekStyle = weekCheck ? 'clicked' : ''
-        let monthStyle = monthCheck ? 'clicked' : ''
-        let yearStyle = yearCheck ? 'clicked' : ''
         return (
             <>
                 <div onClick={clickToday} className={`main-calendar-head-div   ${todayStyle}`} style={{ position: 'absolute', left: '14px', lineHeight: 1.7 }}>Today</div>
                 <div style={{ margin: '0 auto', lineHeight: 1.7 }}>
-                    <span onClick={onClickDay} className={`${dayStyle}`}>Day</span>
-                    <span onClick={onClickWeek} className={`${weekStyle}`}>Week</span>
-                    <span onClick={onClickMonth} className={`${monthStyle}`}>Month</span>
-                    <span onClick={onClickYear} className={`${yearStyle}`}>Year</span>
+                    <span onClick={onClickDay} className={dayCheck ? 'clicked' : ''}>Day</span>
+                    <span onClick={onClickWeek} className={weekCheck ? 'clicked' : ''}>Week</span>
+                    <span onClick={onClickMonth} className={monthCheck ? 'clicked' : ''}>Month</span>
+                    <span onClick={onClickYear} className={yearCheck ? 'clicked' : ''}>Year</span>
                 </div>
                 <div style={{ textAlign: 'center', fontWeight: 600, height: '28px', width: '80px', lineHeight: '1.7', backgroundColor: 'rgb(201, 201, 201)', borderRadius: '7px', fontSize: '', position: 'absolute', right: '14px' }}>{time}</div>
             </>
