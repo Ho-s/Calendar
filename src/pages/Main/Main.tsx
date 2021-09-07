@@ -304,15 +304,15 @@ const Main = () => {
                             endMinutes={endMinutes}
                             color={color}
 
-                            onChangeTitle={(e:any) => {onChangeTitle}}
-                            onChangeYear={(e:any) =>onChangeYear}
-                            onChangeMonth={(e:any) =>onChangeMonth}
-                            onChangeDay={(e:any) =>onChangeDay}
-                            onChangeSHours={(e:any) =>onChangeSHours}
-                            onChangeSMinutes={(e:any) =>onChangeSMinutes}
-                            onChangeEHours={(e:any) =>onChangeEHours}
-                            onChangeEMinutes={(e:any) =>onChangeEMinutes}
-                            onChangeColor={(e:any) =>onChangeColor}
+                            onChangeTitle={(e:any) => onChangeTitle(e)}
+                            onChangeYear={(e:any) =>onChangeYear(e)}
+                            onChangeMonth={(e:any) =>onChangeMonth(e)}
+                            onChangeDay={(e:any) =>onChangeDay(e)}
+                            onChangeSHours={(e:any) =>onChangeSHours(e)}
+                            onChangeSMinutes={(e:any) =>onChangeSMinutes(e)}
+                            onChangeEHours={(e:any) =>onChangeEHours(e)}
+                            onChangeEMinutes={(e:any) =>onChangeEMinutes(e)}
+                            onChangeColor={(e:any) =>onChangeColor(e)}
                             onClickSubmit={onClickSubmit}
                         />}
                 </div>
@@ -327,15 +327,15 @@ const Main = () => {
                     storage={storage}
                     onClickLeft={onClickLeft}
                     onClickRight={onClickRight}
-                    onClickDay={(e:any)=>onClickDay}
-                    onClickWeek={(e:any)=>onClickWeek}
+                    onClickDay={(e:any)=>onClickDay(e)}
+                    onClickWeek={(e:any)=>onClickWeek(e)}
                     setMonth={propsSetMonth}
                     setYear={propsSetYear}
                 />
 
                 <Summary
                     storage={storage}
-                    onClickDelete={(e:any) =>{onClickDelete}}
+                    onClickDelete={(e:any) =>onClickDelete(e)}
                     nowDay={nowDay}
                     nowWeek={nowWeek}
                     nowMonth={nowMonth}
@@ -355,9 +355,9 @@ const Main = () => {
                     yearStorage={yearStorage}
                     storage={storage}
                     onClickToday={onClickToday}
-                    onClickDayInMonth={(e:any)=>onClickDayInMonth}
-                    onClickDayInYear={(e:any)=>onClickDayInYear}
-                    onClickDeleteInDayTable={(e:any)=>onClickDeleteInDayTable}
+                    onClickDayInMonth={(e:any)=>onClickDayInMonth(e)}
+                    onClickDayInYear={(e:any)=>onClickDayInYear(e)}
+                    onClickDeleteInDayTable={(e:any)=>onClickDeleteInDayTable(e)}
                 />
             </div>
 
