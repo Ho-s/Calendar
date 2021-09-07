@@ -22,7 +22,10 @@
     }
   },
   "lint-staged": {
-    "*.tsx": "eslint --fix"
+    "*.{ts,tsx}": [
+      "prettier --write .",
+      "eslint --fix ."
+    ]
   },
   "author": "ho-s",
   "license": "ISC",
@@ -46,7 +49,6 @@
     "babel-loader": "^8.2.2",
     "css-loader": "^6.2.0",
     "eslint": "^7.32.0",
-    "eslint-config-google": "^0.14.0",
     "eslint-plugin-prettier": "^4.0.0",
     "eslint-plugin-react": "^7.25.1",
     "gh-pages": "^3.2.3",
@@ -61,7 +63,6 @@
     "typescript": "^4.4.2",
     "webpack": "^5.52.0",
     "webpack-cli": "^4.8.0",
-    "webpack-dev-server": "^4.1.0",
-    "webpack-merge": "^5.8.0"
+    "webpack-dev-server": "^4.1.0"
   }
 }
