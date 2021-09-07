@@ -14,8 +14,8 @@ interface ICalendar {
     onClickRight:()=>void
     onClickDay:any
     onClickWeek:any
-    // setMonth:any
-    // setYear:any
+    setMonth:any
+    setYear:any
 }
 
 const Calendar = ({nowDay,
@@ -29,12 +29,9 @@ const Calendar = ({nowDay,
     onClickRight,
     onClickDay,
     onClickWeek,
-    // setMonth,
-    // setYear
+    setMonth,
+    setYear
 }:ICalendar) => {
-    const [today, setToday] = useState<string>(moment().format('YYYYMMDD'))
-    const [thisWeek, setThisWeek] = useState<string>(moment().format('w'))
-
     const Generate = () => {
         moment().set('year', nowYear)
         moment().set('month', nowMonth)
@@ -42,7 +39,7 @@ const Calendar = ({nowDay,
         const endWeek = moment().clone().endOf('month').week() === 1 ? 53 : moment().clone().endOf('month').week();
         const calendar = [];
         for (let week = startWeek; week <= endWeek; week++) {
-            const thisWeekConst = Number(thisWeek) === week ? 'today' : ''
+            const thisWeekConst = Number(moment().format('w')) === week ? 'today' : ''
             const weekSelected = (Number(nowWeek) === week && Number(yearStorage) === nowYear && monthStorage === nowMonth) ? 'selected' : ''
             calendar.push(
                 <div className='row' key={week}>
@@ -50,7 +47,7 @@ const Calendar = ({nowDay,
                     {
                         Array(7).fill(0).map((n, i) => {
                             let current = moment().clone().week(week).startOf('week').add(n + i, 'day')
-                            let todaySelect = today === current.format('YYYYMMDD') ? 'today' : '';
+                            let todaySelect = moment().format('YYYYMMDD') === current.format('YYYYMMDD') ? 'today' : '';
                             let isSelected = (Number(nowDay) === Number(current.format('D')) && Number(yearStorage) === nowYear && monthStorage === nowMonth) ? 'selected' : ''
                             let clicking = current.format('MM') === moment().format('MM') ? onClickDay : ((e: any) => e.preventDefault());
                             let isGrayed = current.format('MM') === moment().format('MM') ? '' : 'grayed';
@@ -90,10 +87,10 @@ const Calendar = ({nowDay,
         return calendar
     }
 
-    // useEffect(() => {
-    //     setMonth()
-    //     setYear()
-    // }, [])
+    useEffect(() => {
+        setYear(Number(moment().set('year', nowYear).format('YYYY')))
+        setMonth(Number(moment().set('month', nowMonth).format('MMMM')))
+    }, [])
 
     return (
         <div className="calendar">

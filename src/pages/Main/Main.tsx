@@ -271,6 +271,14 @@ const Main = () => {
         setStorage(JSON.parse(localStorage.getItem('storage') || '{}'))
     }, [])
 
+    const propsSetMonth = (v: any) => {
+        setMonth(v)
+    }
+
+    const propsSetYear = (v: any) => {
+        setYear(v)
+    }
+
     return (
         <>
             <div style={{ height: '100vh', float: 'left' }}>
@@ -321,8 +329,8 @@ const Main = () => {
                     onClickRight={onClickRight}
                     onClickDay={(e:any)=>onClickDay}
                     onClickWeek={(e:any)=>onClickWeek}
-                    // setMonth={setMonth(Number(moment().set('month', nowMonth).format('MMMM')))}
-                    // setYear={setYear(Number(moment().set('year', nowYear).format('YYYY')))}
+                    setMonth={propsSetMonth}
+                    setYear={propsSetYear}
                 />
 
                 <Summary
