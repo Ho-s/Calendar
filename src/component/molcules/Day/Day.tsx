@@ -144,7 +144,7 @@ const Day = ({nowDay,
             setLocation(moment().hours() * 61 + moment().minutes())
             setTime(moment().format('LT'))
         }, 5000)
-        return clearInterval(timer)
+        return () => clearInterval(timer)
     },[])
 
     return (

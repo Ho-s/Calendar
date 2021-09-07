@@ -101,7 +101,7 @@ const MainCalendar = ({
         const timer = setInterval(() => {
             setTime(moment().format('HH:mm:ss'))
         }, 1000)
-        return clearInterval(timer)
+        return () => clearInterval(timer)
     }, [])
 
     return (

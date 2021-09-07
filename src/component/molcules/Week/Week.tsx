@@ -109,7 +109,7 @@ const Week = ({
             setLocation(moment().hours() * 61 + 51 + moment().minutes())
             setTime(moment().format('LT'))
         }, 5000)
-        return clearInterval(timer)
+        return () => clearInterval(timer)
     }, [])
 
     return (
