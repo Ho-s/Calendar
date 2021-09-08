@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import "./style.css";
+import * as S from "./style";
 import moment from "moment";
 
 interface ICalendar {
@@ -52,13 +52,13 @@ const Calendar = ({
           ? "selected"
           : "";
       calendar.push(
-        <div className="row" key={week}>
-          <div
+        <S.Row key={week}>
+          <S.Cw
             onClick={onClickWeek}
-            className={`cw ${thisWeekConst} ${weekSelected}`}
+            className={`${thisWeekConst} ${weekSelected}`}
           >
             {week}
-          </div>
+          </S.Cw>
           {Array(7)
             .fill(0)
             .map((n, i) => {
@@ -100,9 +100,9 @@ const Calendar = ({
               }
 
               return (
-                <div
+                <S.Box
                   onClick={clicking}
-                  className={`box ${todaySelect} ${isGrayed} ${isSelected}`}
+                  className={`${todaySelect} ${isGrayed} ${isSelected}`}
                   key={i}
                 >
                   {current.format("D")}
@@ -133,10 +133,10 @@ const Calendar = ({
                         );
                       })}
                   </div>
-                </div>
+                </S.Box>
               );
             })}
-        </div>
+        </S.Row>
       );
     }
     return calendar;
@@ -148,8 +148,8 @@ const Calendar = ({
   }, []);
 
   return (
-    <div className="calendar">
-      <div className="body">
+    <S.Calendar>
+      <S.Body>
         <span style={{ fontSize: "32px", fontWeight: 600 }}>
           {m.set("month", nowMonth).format("MMMM")}
         </span>
@@ -160,40 +160,37 @@ const Calendar = ({
           &gt;
         </button>
         <button onClick={onClickLeft}>&lt;</button>
-      </div>
+      </S.Body>
       <div>
-        <div className="row">
-          <div
-            style={{ borderRight: "1px solid gray", color: "gray" }}
-            className="day"
-          >
+        <S.Row>
+          <S.Day style={{ borderRight: "1px solid gray", color: "gray" }}>
             <span>CW</span>
-          </div>
-          <div className="day">
+          </S.Day>
+          <S.Day>
             <span>SUN</span>
-          </div>
-          <div className="day">
+          </S.Day>
+          <S.Day>
             <span>MON</span>
-          </div>
-          <div className="day">
+          </S.Day>
+          <S.Day>
             <span>TUE</span>
-          </div>
-          <div className="day">
+          </S.Day>
+          <S.Day>
             <span>WED</span>
-          </div>
-          <div className="day">
+          </S.Day>
+          <S.Day>
             <span>THU</span>
-          </div>
-          <div className="day">
+          </S.Day>
+          <S.Day>
             <span>FRI</span>
-          </div>
-          <div className="day">
+          </S.Day>
+          <S.Day>
             <span>SAT</span>
-          </div>
-        </div>
+          </S.Day>
+        </S.Row>
         {Generate()}
       </div>
-    </div>
+    </S.Calendar>
   );
 };
 export default Calendar;

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import moment from "moment";
-import "./style.css";
+import * as S from "./style";
 
 interface IAddScheduler {
   title: string;
@@ -175,8 +175,8 @@ const AddScheduler = ({
   };
 
   return (
-    <div className="scheduler">
-      <div className="scheduler-head">
+    <S.Scheduler>
+      <S.SchedulerHead>
         <input
           spellCheck="false"
           placeholder={titleStyle.placeholder}
@@ -187,9 +187,9 @@ const AddScheduler = ({
           }}
           onChange={changeTitle}
         ></input>
-      </div>
-      <div className="scheduler-body">
-        <div style={{ marginBottom: "0" }} className="scheduler-body-time">
+      </S.SchedulerHead>
+      <S.SchedulerBody>
+        <S.SchedulerBodyTime>
           <span style={{ float: "left" }}>date</span>
           <div style={{ marginLeft: "20px", float: "left" }}>
             <input
@@ -221,7 +221,7 @@ const AddScheduler = ({
             ></input>
           </div>
           {dayError && (
-            <div className="scheduler-day-error">
+            <S.SchedulerDayError>
               <span>
                 This setting have to be under{" "}
                 {m
@@ -229,10 +229,10 @@ const AddScheduler = ({
                   .endOf("month")
                   .date() + 1}
               </span>
-            </div>
+            </S.SchedulerDayError>
           )}
-        </div>
-        <div style={{ border: timeStyle }} className="scheduler-body-time">
+        </S.SchedulerBodyTime>
+        <S.SchedulerBodyTime style={{ border: timeStyle }}>
           <span style={{ float: "left" }}>starts</span>
           <div style={{ marginLeft: "26px", float: "left" }}>
             <input
@@ -274,22 +274,22 @@ const AddScheduler = ({
             ></input>
           </div>
           {timeError && (
-            <div className="scheduler-time-error">
+            <S.SchedulerTimeError>
               <span>Start time must not be earlier than end time</span>
-            </div>
+            </S.SchedulerTimeError>
           )}
-        </div>
-        <div className="scheduler-body-color">
+        </S.SchedulerBodyTime>
+        <S.SchedulerBodyColor>
           <span style={{ float: "left" }}>display</span>
           <input type="color" value={color} onChange={onChangeColor}></input>
-        </div>
-      </div>
-      <div className="scheduler-foot">
+        </S.SchedulerBodyColor>
+      </S.SchedulerBody>
+      <S.SchedulerFoot>
         <button onClick={clickSubmit} style={{ backgroundColor: color }}>
           Add Event
         </button>
-      </div>
-    </div>
+      </S.SchedulerFoot>
+    </S.Scheduler>
   );
 };
 export default AddScheduler;

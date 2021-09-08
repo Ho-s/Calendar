@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import moment from "moment";
 import * as S from "./style";
-import "./style.css";
 
 interface IDay {
   nowDay: number;
@@ -139,7 +138,7 @@ const Day = ({
         });
     }
     return (
-      <div className="day-table">
+      <S.DayTable>
         <>
           {Array(day.length)
             .fill(0)
@@ -250,7 +249,7 @@ const Day = ({
               </div>
             ))}
         </>
-      </div>
+      </S.DayTable>
     );
   };
 
@@ -271,7 +270,7 @@ const Day = ({
   }, []);
 
   return (
-    <div className="day-component">
+    <S.DayComponent>
       <div style={{ marginLeft: "30px", height: "56px" }}>
         <span
           style={{
@@ -330,7 +329,7 @@ const Day = ({
           </div>
         </div>
         <TakeSchedule />
-        <div className="day-left">
+        <S.DayLeft>
           {Array(24)
             .fill(0)
             .map((v, i) => {
@@ -351,11 +350,11 @@ const Day = ({
                 </div>
               );
             })}
-        </div>
+        </S.DayLeft>
         <Generate />
       </div>
       <MakeATable />
-    </div>
+    </S.DayComponent>
   );
 };
 export default Day;

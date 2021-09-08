@@ -1,6 +1,6 @@
 import React from "react";
 import moment from "moment";
-import "./style.css";
+import * as S from "./style";
 
 interface IYear {
   nowDay: number;
@@ -33,7 +33,7 @@ const Year = ({
     const calendar = [];
     for (let week = startWeek; week <= endWeek; week++) {
       calendar.push(
-        <div className="year-row" key={week}>
+        <S.YearRow key={week}>
           {Array(7)
             .fill(0)
             .map((n, i) => {
@@ -78,17 +78,17 @@ const Year = ({
               const five = day.length >= 5 ? "rgb(255, 106, 0)" : "";
               const color = `${zero}${one}${two}${three}${four}${five}`;
               return (
-                <div
+                <S.YearBox
                   onClick={clicking}
                   style={{ backgroundColor: color }}
-                  className={`year-box  ${todaySelected} ${isGrayed} ${isSelected}`}
+                  className={`${todaySelected} ${isGrayed} ${isSelected}`}
                   key={i}
                 >
                   {current.format("D")}
-                </div>
+                </S.YearBox>
               );
             })}
-        </div>
+        </S.YearRow>
       );
     }
     return calendar;
@@ -112,29 +112,29 @@ const Year = ({
               <div style={{ fontWeight: 600, marginBottom: "5px" }}>
                 {m.add(i - 2, "month").format("MMMM")}
               </div>
-              <div className="year-row">
-                <div className="year-day">
+              <S.YearRow>
+                <S.YearDay>
                   <span>SUN</span>
-                </div>
-                <div className="year-day">
+                </S.YearDay>
+                <S.YearDay>
                   <span>MON</span>
-                </div>
-                <div className="year-day">
+                </S.YearDay>
+                <S.YearDay>
                   <span>TUE</span>
-                </div>
-                <div className="year-day">
+                </S.YearDay>
+                <S.YearDay>
                   <span>WED</span>
-                </div>
-                <div className="year-day">
+                </S.YearDay>
+                <S.YearDay>
                   <span>THU</span>
-                </div>
-                <div className="year-day">
+                </S.YearDay>
+                <S.YearDay>
                   <span>FRI</span>
-                </div>
-                <div className="year-day">
+                </S.YearDay>
+                <S.YearDay>
                   <span>SAT</span>
-                </div>
-              </div>
+                </S.YearDay>
+              </S.YearRow>
               {Generate(nowYear, i)}
             </div>
           ))}
@@ -143,10 +143,10 @@ const Year = ({
   };
 
   return (
-    <div className="year-component">
+    <S.YearComponent>
       <div style={{ color: "red", fontSize: "30px" }}>{nowYear}</div>
       {GenerateWrap()}
-    </div>
+    </S.YearComponent>
   );
 };
 export default Year;

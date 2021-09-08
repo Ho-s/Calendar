@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import moment from "moment";
-import "./style.css";
+import * as S from "./style";
 
 interface IWeek {
   nowWeek: number;
@@ -67,7 +67,7 @@ const Week = ({ nowWeek, monthStorage, yearStorage, storage }: IWeek) => {
                 <div
                   style={{ width: "calc((100vw - 430px) / 7)", height: "50px" }}
                 >
-                  <div className="week-day">
+                  <S.WeekDay>
                     <span>
                       {sun}
                       {mon}
@@ -77,13 +77,10 @@ const Week = ({ nowWeek, monthStorage, yearStorage, storage }: IWeek) => {
                       {fri}
                       {sat}
                     </span>
-                  </div>
-                  <div
-                    className={`week-box  ${todaySelect} ${isGrayed} `}
-                    key={i}
-                  >
+                  </S.WeekDay>
+                  <S.WeekBox className={`${todaySelect} ${isGrayed}`} key={i}>
                     <span>{current.format("D")}</span>
-                  </div>
+                  </S.WeekBox>
                 </div>
                 <div style={{ width: "100%" }}>
                   {Array(24)
@@ -184,9 +181,9 @@ const Week = ({ nowWeek, monthStorage, yearStorage, storage }: IWeek) => {
   }, []);
 
   return (
-    <div className="week-component">
+    <S.WeekComponent>
       <div style={{ float: "left" }}>
-        <div className="week-left">
+        <S.WeekLeft>
           <div
             style={{
               float: "left",
@@ -225,7 +222,7 @@ const Week = ({ nowWeek, monthStorage, yearStorage, storage }: IWeek) => {
                 );
               })}
           </div>
-        </div>
+        </S.WeekLeft>
         <Generate />
       </div>
       <div
@@ -238,7 +235,7 @@ const Week = ({ nowWeek, monthStorage, yearStorage, storage }: IWeek) => {
       >
         <div style={{ fontWeight: 600, color: "red", height: "0" }}>{time}</div>
       </div>
-    </div>
+    </S.WeekComponent>
   );
 };
 export default Week;

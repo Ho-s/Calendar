@@ -4,7 +4,7 @@ import Calendar from "../../component/organisms/Calendar/Calendar";
 import Summary from "../../component/organisms/Summary/Summary";
 import MainCalendar from "../../component/organisms/MainCalendar/MainCalendar";
 import AddScheduler from "../../component/organisms/AddScheduler/AddScheduler";
-import "./style.css";
+import * as S from "./style";
 
 const Main = () => {
   const m = moment();
@@ -340,7 +340,7 @@ const Main = () => {
     <>
       <div style={{ height: "100vh", float: "left" }}>
         <div style={{ backgroundColor: "#292726" }}>
-          <button onClick={onClickAddSchedule} className="add-schedule">
+          <S.AddSchedule onClick={onClickAddSchedule}>
             <span
               style={{
                 paddingRight: spanStyle.paddingRight,
@@ -350,10 +350,8 @@ const Main = () => {
             >
               {spanStyle.textContent}
             </span>
-            <div style={{ animation: divStyle }} className="add-schedule-div">
-              ▶
-            </div>
-          </button>
+            <div style={{ animation: divStyle }}>▶</div>
+          </S.AddSchedule>
           {addSchedule && (
             <AddScheduler
               title={title}

@@ -1,6 +1,6 @@
 import React from "react";
 import moment from "moment";
-import "./style.css";
+import * as S from "./style";
 
 interface ISummary {
   storage: any[] | any;
@@ -31,7 +31,7 @@ const Summary = ({
     m.set("week", nowWeek);
     let num = 0;
     return (
-      <div className="load-list">
+      <S.LoadList>
         <span
           style={{
             fontSize: "16px",
@@ -104,7 +104,7 @@ const Summary = ({
                   {Array(day.length)
                     .fill(0)
                     .map((v, n) => (
-                      <div data-name={day[n].name} className="summary-schedule">
+                      <S.SummarySchedule data-name={day[n].name}>
                         <div
                           style={{
                             marginTop: "6px",
@@ -158,11 +158,8 @@ const Summary = ({
                         >
                           {day[n].endHours}:{day[n].endMinutes}
                         </div>
-                        <button
-                          onClick={onClickDelete}
-                          className="summary-delete-button"
-                        ></button>
-                      </div>
+                        <button onClick={onClickDelete}></button>
+                      </S.SummarySchedule>
                     ))}
                 </>
               );
@@ -182,7 +179,7 @@ const Summary = ({
               }
             }
           })}
-      </div>
+      </S.LoadList>
     );
   };
 

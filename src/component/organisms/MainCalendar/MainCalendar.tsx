@@ -4,7 +4,7 @@ import Day from "../../molcules/Day/Day";
 import Week from "../../molcules/Week/Week";
 import Month from "../../molcules/Month/Month";
 import Year from "../../molcules/Year/Year";
-import "./style.css";
+import * as S from "./style";
 
 interface IMainCalendar {
   nowDay: number;
@@ -91,12 +91,12 @@ const MainCalendar = ({
       <>
         <div
           onClick={clickToday}
-          className={`main-calendar-head-div   ${todayStyle}`}
+          className={`${todayStyle}`}
           style={{ position: "absolute", left: "14px", lineHeight: 1.7 }}
         >
           Today
         </div>
-        <div style={{ margin: "0 auto", lineHeight: 1.7 }}>
+        <S.MainCalendarHeadMid>
           <span onClick={onClickDay} className={dayCheck ? "clicked" : ""}>
             Day
           </span>
@@ -109,7 +109,7 @@ const MainCalendar = ({
           <span onClick={onClickYear} className={yearCheck ? "clicked" : ""}>
             Year
           </span>
-        </div>
+        </S.MainCalendarHeadMid>
         <div
           style={{
             textAlign: "center",
@@ -138,10 +138,10 @@ const MainCalendar = ({
   }, []);
 
   return (
-    <div className="main-calendar">
-      <div className="main-calendar-head">
+    <S.MainCalendar>
+      <S.MainCalendarHead>
         <Generate />
-      </div>
+      </S.MainCalendarHead>
       <div>
         {dayCheck && (
           <Day
@@ -165,7 +165,6 @@ const MainCalendar = ({
         {monthCheck && (
           <Month
             nowDay={nowDay}
-            nowWeek={nowWeek}
             monthStorage={monthStorage}
             yearStorage={yearStorage}
             nowMonth={nowMonth}
@@ -185,7 +184,7 @@ const MainCalendar = ({
           />
         )}
       </div>
-    </div>
+    </S.MainCalendar>
   );
 };
 export default MainCalendar;

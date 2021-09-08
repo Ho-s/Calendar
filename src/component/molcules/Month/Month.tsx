@@ -1,10 +1,9 @@
 import React from "react";
 import moment from "moment";
-import "./style.css";
+import * as S from "./style";
 
 interface IMonth {
   nowDay: number;
-  nowWeek: number;
   monthStorage: number;
   yearStorage: number;
   nowMonth: number;
@@ -15,7 +14,6 @@ interface IMonth {
 
 const Month = ({
   nowDay,
-  nowWeek,
   monthStorage,
   yearStorage,
   nowMonth,
@@ -37,7 +35,7 @@ const Month = ({
     const calendar = [];
     for (let week = startWeek; week <= endWeek; week++) {
       calendar.push(
-        <div className="month-row" key={week}>
+        <S.MonthRow key={week}>
           {Array(7)
             .fill(0)
             .map((n, i) => {
@@ -92,13 +90,13 @@ const Month = ({
               day.sort(compare);
 
               return (
-                <div
+                <S.MonthBox
                   onClick={clicking}
-                  className={`month-box  ${todaySelected} ${isGrayed} ${isSelected}`}
+                  className={`${todaySelected} ${isGrayed} ${isSelected}`}
                   key={i}
                 >
                   <span>{current.format("D")}</span>
-                  <div className="month-display">
+                  <S.MonthDisplay>
                     {Array(day.length)
                       .fill(0)
                       .map((v, n) => (
@@ -149,49 +147,49 @@ const Month = ({
                           </div>
                         </div>
                       ))}
-                  </div>
-                </div>
+                  </S.MonthDisplay>
+                </S.MonthBox>
               );
             })}
-        </div>
+        </S.MonthRow>
       );
     }
     return calendar;
   };
 
   return (
-    <div className="month-component">
+    <S.MonthComponent>
       <div>
         <span style={{ color: "black", fontSize: "30px", fontWeight: 500 }}>
           {m.set("month", nowMonth).format("MMMM")}
         </span>
         <span style={{ fontSize: "36px", color: "red" }}>{nowYear}</span>
       </div>
-      <div className="month-row">
-        <div className="month-day">
+      <S.MonthRow>
+        <S.MonthDay>
           <span>SUN</span>
-        </div>
-        <div className="month-day">
+        </S.MonthDay>
+        <S.MonthDay>
           <span>MON</span>
-        </div>
-        <div className="month-day">
+        </S.MonthDay>
+        <S.MonthDay>
           <span>TUE</span>
-        </div>
-        <div className="month-day">
+        </S.MonthDay>
+        <S.MonthDay>
           <span>WED</span>
-        </div>
-        <div className="month-day">
+        </S.MonthDay>
+        <S.MonthDay>
           <span>THU</span>
-        </div>
-        <div className="month-day">
+        </S.MonthDay>
+        <S.MonthDay>
           <span>FRI</span>
-        </div>
-        <div className="month-day">
+        </S.MonthDay>
+        <S.MonthDay>
           <span>SAT</span>
-        </div>
-      </div>
+        </S.MonthDay>
+      </S.MonthRow>
       {Generate()}
-    </div>
+    </S.MonthComponent>
   );
 };
 export default Month;
