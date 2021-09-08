@@ -184,9 +184,9 @@ const Summary = ({
 	}
 
 	return (
-		<div className="summary">
+		<S.Summary>
 			<Generate />
-		</div>
+		</S.Summary>
 	)
 }
 export default Summary

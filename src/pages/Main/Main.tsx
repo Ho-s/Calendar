@@ -338,7 +338,7 @@ const Main = () => {
 
 	return (
 		<>
-			<div style={{ height: '100vh', float: 'left' }}>
+			<div style={{ height: '100vh', float: 'left', width: '350px' }}>
 				<div style={{ backgroundColor: '#292726' }}>
 					<S.AddSchedule onClick={onClickAddSchedule}>
 						<span

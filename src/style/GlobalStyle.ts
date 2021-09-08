@@ -24,9 +24,6 @@ const GlobalStyle = createGlobalStyle`
     margin: 0;
     padding: 0;
     border: 0;
-    font-size: 10px;
-    vertical-align: baseline;
-    box-sizing: border-box;
   }
   html, body, #root, .Section__container___3YYTG {
     height: 100%;
@@ -62,39 +59,39 @@ const GlobalStyle = createGlobalStyle`
     outline:none;
   }
   ::-webkit-scrollbar-track {
-  background-color: white;
-  border-radius: 10px;
-  box-shadow: inset 0px 0px 5px white;
-}
-
-::-webkit-scrollbar {
-  width: 10px;
-}
-
-::-webkit-scrollbar-thumb {
-  background-color: rgb(199, 199, 199);
-  border-radius: 10px;
-  background-clip: padding-box;
-  border: 2px solid transparent;
-}
-
-@keyframes forward {
-  100% {
-    opacity: 1;
-    right: 83px;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: inset 0px 0px 5px white;
   }
-}
 
-@keyframes backward {
-  0% {
-    opacity: 1;
-    right: 83px;
+  ::-webkit-scrollbar {
+    width: 10px;
   }
-  100% {
-    opacity: 0;
-    right: 0;
+
+  ::-webkit-scrollbar-thumb {
+    background-color: rgb(199, 199, 199);
+    border-radius: 10px;
+    background-clip: padding-box;
+    border: 2px solid transparent;
   }
-}
+
+  @keyframes forward {
+    100% {
+      opacity: 1;
+      right: 83px;
+    }
+  }
+
+  @keyframes backward {
+    0% {
+      opacity: 1;
+      right: 83px;
+    }
+    100% {
+      opacity: 0;
+      right: 0;
+    }
+  }
 `
 
 export default GlobalStyle
