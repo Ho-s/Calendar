@@ -1,6 +1,11 @@
-import React from 'react'
-import ReactDOM from 'react-dom'
+import React from "react";
+import ReactDOM from "react-dom";
+import GlobalThemeProvider from "style/GlobalThemeProvider";
+import Main from "./pages/Main/Main.tsx";
 
-import Main from './pages/Main/Main.tsx'
-
-ReactDOM.render(<Main />, document.querySelector('#root'))
+ReactDOM.render(
+  <GlobalThemeProvider>
+    <Main />
+  </GlobalThemeProvider>,
+  document.querySelector("#root")
+);
