@@ -1,6 +1,6 @@
-import React from "react";
-import moment from "moment";
-import * as S from "./style";
+import React from 'react'
+import moment from 'moment'
+import * as S from './style'
 
 interface IMonth {
   nowDay: number;
@@ -13,183 +13,183 @@ interface IMonth {
 }
 
 const Month = ({
-  nowDay,
-  monthStorage,
-  yearStorage,
-  nowMonth,
-  nowYear,
-  onClickDayInMonth,
-  storage,
+	nowDay,
+	monthStorage,
+	yearStorage,
+	nowMonth,
+	nowYear,
+	onClickDayInMonth,
+	storage,
 }: IMonth) => {
-  const m = moment();
-  const today = m.format("YYYYMMDD");
+	const m = moment()
+	const today = m.format('YYYYMMDD')
 
-  const Generate = () => {
-    m.set("year", nowYear);
-    m.set("month", nowMonth);
-    const startWeek = m.clone().startOf("month").week();
-    const endWeek =
-      m.clone().endOf("month").week() === 1
-        ? 53
-        : m.clone().endOf("month").week();
-    const calendar = [];
-    for (let week = startWeek; week <= endWeek; week++) {
-      calendar.push(
-        <S.MonthRow key={week}>
-          {Array(7)
-            .fill(0)
-            .map((n, i) => {
-              const current = m
-                .clone()
-                .week(week)
-                .startOf("week")
-                .add(n + i, "day");
-              const todaySelected =
-                today === current.format("YYYYMMDD") ? "month-selected" : "";
-              const isSelected =
-                Number(nowDay) === Number(current.format("D")) &&
+	const Generate = () => {
+		m.set('year', nowYear)
+		m.set('month', nowMonth)
+		const startWeek = m.clone().startOf('month').week()
+		const endWeek =
+      m.clone().endOf('month').week() === 1
+      	? 53
+      	: m.clone().endOf('month').week()
+		const calendar = []
+		for (let week = startWeek; week <= endWeek; week++) {
+			calendar.push(
+				<S.MonthRow key={week}>
+					{Array(7)
+						.fill(0)
+						.map((n, i) => {
+							const current = m
+								.clone()
+								.week(week)
+								.startOf('week')
+								.add(n + i, 'day')
+							const todaySelected =
+                today === current.format('YYYYMMDD') ? 'month-selected' : ''
+							const isSelected =
+                Number(nowDay) === Number(current.format('D')) &&
                 Number(yearStorage) === nowYear &&
                 monthStorage === nowMonth
-                  ? "monthSelected"
-                  : "";
-              const isGrayed =
-                current.format("MM") === m.format("MM") ? "" : "month-grayed";
-              const clicking =
-                current.format("MM") === m.format("MM")
-                  ? onClickDayInMonth
-                  : (e: any) => e.preventDefault();
+                	? 'monthSelected'
+                	: ''
+							const isGrayed =
+                current.format('MM') === m.format('MM') ? '' : 'month-grayed'
+							const clicking =
+                current.format('MM') === m.format('MM')
+                	? onClickDayInMonth
+                	: (e: any) => e.preventDefault()
 
-              const day: any = [];
-              if (current.format("MM") === m.format("MM")) {
-                {
-                  Array(storage.length).forEach((v, n) => {
-                    if (storage[n].year === Number(current.year())) {
-                      if (storage[n].month === Number(current.month() + 1)) {
-                        if (storage[n].day === Number(current.date())) {
-                          day.push(storage[n]);
-                        }
-                      }
-                    }
-                  });
-                }
-              }
+							const day: any = []
+							if (current.format('MM') === m.format('MM')) {
+								{
+									Array(storage.length).forEach((v, n) => {
+										if (storage[n].year === Number(current.year())) {
+											if (storage[n].month === Number(current.month() + 1)) {
+												if (storage[n].day === Number(current.date())) {
+													day.push(storage[n])
+												}
+											}
+										}
+									})
+								}
+							}
 
-              // for sorting
-              function compare(a: any, b: any) {
-                const A = Number(a.startHours + a.startMinutes);
-                const B = Number(b.startHours + a.startMinutes);
+							// for sorting
+							function compare(a: any, b: any) {
+								const A = Number(a.startHours + a.startMinutes)
+								const B = Number(b.startHours + a.startMinutes)
 
-                let comparison = 0;
-                if (A > B) {
-                  comparison = 1;
-                } else if (A < B) {
-                  comparison = -1;
-                }
-                return comparison;
-              }
-              day.sort(compare);
+								let comparison = 0
+								if (A > B) {
+									comparison = 1
+								} else if (A < B) {
+									comparison = -1
+								}
+								return comparison
+							}
+							day.sort(compare)
 
-              return (
-                <S.MonthBox
-                  onClick={clicking}
-                  className={`${todaySelected} ${isGrayed} ${isSelected}`}
-                  key={i}
-                >
-                  <span>{current.format("D")}</span>
-                  <S.MonthDisplay>
-                    {Array(day.length)
-                      .fill(0)
-                      .map((v, n) => (
-                        <div
-                          style={{
-                            display: "block",
-                            width: "100%",
-                            height: "18px",
-                            position: "relative",
-                          }}
-                        >
-                          <div
-                            style={{
-                              marginLeft: "6px",
-                              marginTop: "4px",
-                              float: "left",
-                              width: "10px",
-                              height: "10px",
-                              backgroundColor: day[n].color,
-                              borderRadius: "10px",
-                            }}
-                          ></div>
-                          <div
-                            style={{
-                              marginLeft: "6px",
-                              float: "left",
-                              width: "calc(100% - 71px)",
-                              textOverflow: "ellipsis",
-                              overflow: "hidden",
-                              whiteSpace: "nowrap",
-                              fontWeight: 600,
-                              color: "black",
-                            }}
-                          >
-                            {day[n].title}
-                          </div>
-                          <div
-                            style={{
-                              lineHeight: "1.5",
-                              float: "right",
-                              marginRight: "6px",
-                              fontSize: "14px",
-                              fontWeight: 600,
-                              color: "gray",
-                            }}
-                          >
-                            {day[n].startHours}:{day[n].startMinutes}
-                          </div>
-                        </div>
-                      ))}
-                  </S.MonthDisplay>
-                </S.MonthBox>
-              );
-            })}
-        </S.MonthRow>
-      );
-    }
-    return calendar;
-  };
+							return (
+								<S.MonthBox
+									onClick={clicking}
+									className={`${todaySelected} ${isGrayed} ${isSelected}`}
+									key={i}
+								>
+									<span>{current.format('D')}</span>
+									<S.MonthDisplay>
+										{Array(day.length)
+											.fill(0)
+											.map((v, n) => (
+												<div
+													style={{
+														display: 'block',
+														width: '100%',
+														height: '18px',
+														position: 'relative',
+													}}
+												>
+													<div
+														style={{
+															marginLeft: '6px',
+															marginTop: '4px',
+															float: 'left',
+															width: '10px',
+															height: '10px',
+															backgroundColor: day[n].color,
+															borderRadius: '10px',
+														}}
+													></div>
+													<div
+														style={{
+															marginLeft: '6px',
+															float: 'left',
+															width: 'calc(100% - 71px)',
+															textOverflow: 'ellipsis',
+															overflow: 'hidden',
+															whiteSpace: 'nowrap',
+															fontWeight: 600,
+															color: 'black',
+														}}
+													>
+														{day[n].title}
+													</div>
+													<div
+														style={{
+															lineHeight: '1.5',
+															float: 'right',
+															marginRight: '6px',
+															fontSize: '14px',
+															fontWeight: 600,
+															color: 'gray',
+														}}
+													>
+														{day[n].startHours}:{day[n].startMinutes}
+													</div>
+												</div>
+											))}
+									</S.MonthDisplay>
+								</S.MonthBox>
+							)
+						})}
+				</S.MonthRow>
+			)
+		}
+		return calendar
+	}
 
-  return (
-    <S.MonthComponent>
-      <div>
-        <span style={{ color: "black", fontSize: "30px", fontWeight: 500 }}>
-          {m.set("month", nowMonth).format("MMMM")}
-        </span>
-        <span style={{ fontSize: "36px", color: "red" }}>{nowYear}</span>
-      </div>
-      <S.MonthRow>
-        <S.MonthDay>
-          <span>SUN</span>
-        </S.MonthDay>
-        <S.MonthDay>
-          <span>MON</span>
-        </S.MonthDay>
-        <S.MonthDay>
-          <span>TUE</span>
-        </S.MonthDay>
-        <S.MonthDay>
-          <span>WED</span>
-        </S.MonthDay>
-        <S.MonthDay>
-          <span>THU</span>
-        </S.MonthDay>
-        <S.MonthDay>
-          <span>FRI</span>
-        </S.MonthDay>
-        <S.MonthDay>
-          <span>SAT</span>
-        </S.MonthDay>
-      </S.MonthRow>
-      {Generate()}
-    </S.MonthComponent>
-  );
-};
-export default Month;
+	return (
+		<S.MonthComponent>
+			<div>
+				<span style={{ color: 'black', fontSize: '30px', fontWeight: 500 }}>
+					{m.set('month', nowMonth).format('MMMM')}
+				</span>
+				<span style={{ fontSize: '36px', color: 'red' }}>{nowYear}</span>
+			</div>
+			<S.MonthRow>
+				<S.MonthDay>
+					<span>SUN</span>
+				</S.MonthDay>
+				<S.MonthDay>
+					<span>MON</span>
+				</S.MonthDay>
+				<S.MonthDay>
+					<span>TUE</span>
+				</S.MonthDay>
+				<S.MonthDay>
+					<span>WED</span>
+				</S.MonthDay>
+				<S.MonthDay>
+					<span>THU</span>
+				</S.MonthDay>
+				<S.MonthDay>
+					<span>FRI</span>
+				</S.MonthDay>
+				<S.MonthDay>
+					<span>SAT</span>
+				</S.MonthDay>
+			</S.MonthRow>
+			{Generate()}
+		</S.MonthComponent>
+	)
+}
+export default Month

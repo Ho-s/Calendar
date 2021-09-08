@@ -1,6 +1,6 @@
   
-import { createGlobalStyle } from 'styled-components';
-import './GlobalFonts.css';
+import { createGlobalStyle } from 'styled-components'
+import './GlobalFonts.css'
 
 const GlobalStyle = createGlobalStyle`
   body {
@@ -95,6 +95,6 @@ const GlobalStyle = createGlobalStyle`
     right: 0;
   }
 }
-`;
+`
 
-export default GlobalStyle;
+export default GlobalStyle

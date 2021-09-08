@@ -1,6 +1,6 @@
-import React, { useState } from "react";
-import moment from "moment";
-import * as S from "./style";
+import React, { useState } from 'react'
+import moment from 'moment'
+import * as S from './style'
 
 interface IAddScheduler {
   title: string;
@@ -26,270 +26,270 @@ interface IAddScheduler {
 }
 
 const AddScheduler = ({
-  title,
-  year,
-  month,
-  day,
-  startHours,
-  startMinutes,
-  endHours,
-  endMinutes,
-  color,
-  onChangeTitle,
-  onChangeYear,
-  onChangeMonth,
-  onChangeDay,
-  onChangeSHours,
-  onChangeSMinutes,
-  onChangeEHours,
-  onChangeEMinutes,
-  onChangeColor,
-  onClickSubmit,
+	title,
+	year,
+	month,
+	day,
+	startHours,
+	startMinutes,
+	endHours,
+	endMinutes,
+	color,
+	onChangeTitle,
+	onChangeYear,
+	onChangeMonth,
+	onChangeDay,
+	onChangeSHours,
+	onChangeSMinutes,
+	onChangeEHours,
+	onChangeEMinutes,
+	onChangeColor,
+	onClickSubmit,
 }: IAddScheduler) => {
-  const m = moment();
-  const [timeError, setTimeError] = useState<boolean>(false);
-  const [dayError, setDayError] = useState<boolean>(false);
-  const [dayStyle, setDayStyle] = useState<string>("");
-  const [timeStyle, setTimeStyle] = useState<string>("");
-  const [titleStyle, setTitleStyle] = useState<any>({
-    border: 0,
-    backgroundColor: "white",
-    color: null,
-    placeholder: "Title",
-  });
+	const m = moment()
+	const [timeError, setTimeError] = useState<boolean>(false)
+	const [dayError, setDayError] = useState<boolean>(false)
+	const [dayStyle, setDayStyle] = useState<string>('')
+	const [timeStyle, setTimeStyle] = useState<string>('')
+	const [titleStyle, setTitleStyle] = useState<any>({
+		border: 0,
+		backgroundColor: 'white',
+		color: null,
+		placeholder: 'Title',
+	})
 
-  const changeTitle = (): void => {
-    onChangeTitle();
-    if (title) {
-      setTitleStyle((prev: any) => ({
-        ...prev,
-        border: "0",
-        placeholder: "Title",
-      }));
-    }
-  };
+	const changeTitle = (): void => {
+		onChangeTitle()
+		if (title) {
+			setTitleStyle((prev: any) => ({
+				...prev,
+				border: '0',
+				placeholder: 'Title',
+			}))
+		}
+	}
 
-  const changeDay = (): void => {
-    onChangeDay();
-    if (
-      day <=
+	const changeDay = (): void => {
+		onChangeDay()
+		if (
+			day <=
       m
-        .set({ year: Number(year), month: Number(month - 1) })
-        .endOf("month")
-        .date()
-    ) {
-      setDayError(false);
-      setDayStyle("");
-    }
-  };
+      	.set({ year: Number(year), month: Number(month - 1) })
+      	.endOf('month')
+      	.date()
+		) {
+			setDayError(false)
+			setDayStyle('')
+		}
+	}
 
-  const changeSHours = () => {
-    onChangeSHours();
-    if (
-      Number(String(endHours) + String(endMinutes)) -
+	const changeSHours = () => {
+		onChangeSHours()
+		if (
+			Number(String(endHours) + String(endMinutes)) -
         Number(String(startHours) + String(startMinutes)) <
       0
-    ) {
-      setTimeError(false);
-      setTimeStyle("");
-    }
-  };
+		) {
+			setTimeError(false)
+			setTimeStyle('')
+		}
+	}
 
-  const changeSMinutes = () => {
-    onChangeSMinutes();
-    if (
-      Number(String(endHours) + String(endMinutes)) -
+	const changeSMinutes = () => {
+		onChangeSMinutes()
+		if (
+			Number(String(endHours) + String(endMinutes)) -
         Number(String(startHours) + String(startMinutes)) <
       0
-    ) {
-      setTimeError(false);
-      setTimeStyle("");
-    }
-  };
+		) {
+			setTimeError(false)
+			setTimeStyle('')
+		}
+	}
 
-  const changeEHours = () => {
-    onChangeEHours();
-    if (
-      Number(String(endHours) + String(endMinutes)) -
+	const changeEHours = () => {
+		onChangeEHours()
+		if (
+			Number(String(endHours) + String(endMinutes)) -
         Number(String(startHours) + String(startMinutes)) <
       0
-    ) {
-      setTimeError(false);
-      setTimeStyle("");
-    }
-  };
+		) {
+			setTimeError(false)
+			setTimeStyle('')
+		}
+	}
 
-  const changeEMinutes = () => {
-    onChangeEMinutes();
-    if (
-      Number(String(endHours) + String(endMinutes)) -
+	const changeEMinutes = () => {
+		onChangeEMinutes()
+		if (
+			Number(String(endHours) + String(endMinutes)) -
         Number(String(startHours) + String(startMinutes)) <
       0
-    ) {
-      setTimeError(false);
-      setTimeStyle("");
-    }
-  };
+		) {
+			setTimeError(false)
+			setTimeStyle('')
+		}
+	}
 
-  const clickSubmit = () => {
-    if (title) {
-      if (
-        Number(String(endHours) + String(endMinutes)) -
+	const clickSubmit = () => {
+		if (title) {
+			if (
+				Number(String(endHours) + String(endMinutes)) -
           Number(String(startHours) + String(startMinutes)) >
         0
-      ) {
-        if (
-          day <=
+			) {
+				if (
+					day <=
           m
-            .set({ year: Number(year), month: Number(month - 1) })
-            .endOf("month")
-            .date()
-        ) {
-          onClickSubmit();
-        } else {
-          setDayError(true);
-          setDayStyle("1px solid red");
-        }
-      } else {
-        setTimeError(true);
-        setTimeStyle("1px solid red");
-      }
-    } else {
-      setTitleStyle((prev: any) => ({
-        ...prev,
-        border: "4px solid red",
-        placeholder: "There must be a title",
-        backgroundColor: "red",
-        color: "white",
-      }));
-      setTimeout(() => {
-        setTitleStyle((prev: any) => ({
-          ...prev,
-          backgroundColor: "transparent",
-          color: "black",
-          border: "4px solid red",
-          placeholder: "There must be a title",
-        }));
-      }, 400);
-    }
-  };
+          	.set({ year: Number(year), month: Number(month - 1) })
+          	.endOf('month')
+          	.date()
+				) {
+					onClickSubmit()
+				} else {
+					setDayError(true)
+					setDayStyle('1px solid red')
+				}
+			} else {
+				setTimeError(true)
+				setTimeStyle('1px solid red')
+			}
+		} else {
+			setTitleStyle((prev: any) => ({
+				...prev,
+				border: '4px solid red',
+				placeholder: 'There must be a title',
+				backgroundColor: 'red',
+				color: 'white',
+			}))
+			setTimeout(() => {
+				setTitleStyle((prev: any) => ({
+					...prev,
+					backgroundColor: 'transparent',
+					color: 'black',
+					border: '4px solid red',
+					placeholder: 'There must be a title',
+				}))
+			}, 400)
+		}
+	}
 
-  return (
-    <S.Scheduler>
-      <S.SchedulerHead>
-        <input
-          spellCheck="false"
-          placeholder={titleStyle.placeholder}
-          style={{
-            border: titleStyle.border,
-            backgroundColor: titleStyle.backgroundColor,
-            color: titleStyle.color,
-          }}
-          onChange={changeTitle}
-        ></input>
-      </S.SchedulerHead>
-      <S.SchedulerBody>
-        <S.SchedulerBodyTime>
-          <span style={{ float: "left" }}>date</span>
-          <div style={{ marginLeft: "20px", float: "left" }}>
-            <input
-              max="12"
-              min="1"
-              type="number"
-              value={month}
-              onChange={onChangeMonth}
-            ></input>
+	return (
+		<S.Scheduler>
+			<S.SchedulerHead>
+				<input
+					spellCheck="false"
+					placeholder={titleStyle.placeholder}
+					style={{
+						border: titleStyle.border,
+						backgroundColor: titleStyle.backgroundColor,
+						color: titleStyle.color,
+					}}
+					onChange={changeTitle}
+				></input>
+			</S.SchedulerHead>
+			<S.SchedulerBody>
+				<S.SchedulerBodyTime>
+					<span style={{ float: 'left' }}>date</span>
+					<div style={{ marginLeft: '20px', float: 'left' }}>
+						<input
+							max="12"
+							min="1"
+							type="number"
+							value={month}
+							onChange={onChangeMonth}
+						></input>
             /
-            <input
-              style={{ border: dayStyle }}
-              max={m
-                .set({ year: Number(year), month: Number(month - 1) })
-                .endOf("month")
-                .date()}
-              min="1"
-              type="number"
-              value={day}
-              onChange={changeDay}
-            ></input>
+						<input
+							style={{ border: dayStyle }}
+							max={m
+								.set({ year: Number(year), month: Number(month - 1) })
+								.endOf('month')
+								.date()}
+							min="1"
+							type="number"
+							value={day}
+							onChange={changeDay}
+						></input>
             /
-            <input
-              max="9999"
-              min="1"
-              type="number"
-              value={year}
-              onChange={onChangeYear}
-            ></input>
-          </div>
-          {dayError && (
-            <S.SchedulerDayError>
-              <span>
-                This setting have to be under{" "}
-                {m
-                  .set({ year: Number(year), month: Number(month - 1) })
-                  .endOf("month")
-                  .date() + 1}
-              </span>
-            </S.SchedulerDayError>
-          )}
-        </S.SchedulerBodyTime>
-        <S.SchedulerBodyTime style={{ border: timeStyle }}>
-          <span style={{ float: "left" }}>starts</span>
-          <div style={{ marginLeft: "26px", float: "left" }}>
-            <input
-              max="24"
-              min="0"
-              type="number"
-              style={{ marginRight: "10px" }}
-              value={startHours}
-              onChange={changeSHours}
-            ></input>
+						<input
+							max="9999"
+							min="1"
+							type="number"
+							value={year}
+							onChange={onChangeYear}
+						></input>
+					</div>
+					{dayError && (
+						<S.SchedulerDayError>
+							<span>
+                This setting have to be under{' '}
+								{m
+									.set({ year: Number(year), month: Number(month - 1) })
+									.endOf('month')
+									.date() + 1}
+							</span>
+						</S.SchedulerDayError>
+					)}
+				</S.SchedulerBodyTime>
+				<S.SchedulerBodyTime style={{ border: timeStyle }}>
+					<span style={{ float: 'left' }}>starts</span>
+					<div style={{ marginLeft: '26px', float: 'left' }}>
+						<input
+							max="24"
+							min="0"
+							type="number"
+							style={{ marginRight: '10px' }}
+							value={startHours}
+							onChange={changeSHours}
+						></input>
             :
-            <input
-              max="59"
-              min="0"
-              style={{ marginLeft: "10px", marginRight: "130px" }}
-              type="number"
-              value={startMinutes}
-              onChange={changeSMinutes}
-            ></input>
-          </div>
-          <span style={{ float: "left", marginRight: "6px" }}>ends</span>
-          <div style={{ marginLeft: "26px", float: "left" }}>
-            <input
-              max="24"
-              min="0"
-              type="number"
-              style={{ marginRight: "10px" }}
-              value={endHours}
-              onChange={changeEHours}
-            ></input>
+						<input
+							max="59"
+							min="0"
+							style={{ marginLeft: '10px', marginRight: '130px' }}
+							type="number"
+							value={startMinutes}
+							onChange={changeSMinutes}
+						></input>
+					</div>
+					<span style={{ float: 'left', marginRight: '6px' }}>ends</span>
+					<div style={{ marginLeft: '26px', float: 'left' }}>
+						<input
+							max="24"
+							min="0"
+							type="number"
+							style={{ marginRight: '10px' }}
+							value={endHours}
+							onChange={changeEHours}
+						></input>
             :
-            <input
-              max="59"
-              min="0"
-              style={{ marginLeft: "10px" }}
-              type="number"
-              value={endMinutes}
-              onChange={changeEMinutes}
-            ></input>
-          </div>
-          {timeError && (
-            <S.SchedulerTimeError>
-              <span>Start time must not be earlier than end time</span>
-            </S.SchedulerTimeError>
-          )}
-        </S.SchedulerBodyTime>
-        <S.SchedulerBodyColor>
-          <span style={{ float: "left" }}>display</span>
-          <input type="color" value={color} onChange={onChangeColor}></input>
-        </S.SchedulerBodyColor>
-      </S.SchedulerBody>
-      <S.SchedulerFoot>
-        <button onClick={clickSubmit} style={{ backgroundColor: color }}>
+						<input
+							max="59"
+							min="0"
+							style={{ marginLeft: '10px' }}
+							type="number"
+							value={endMinutes}
+							onChange={changeEMinutes}
+						></input>
+					</div>
+					{timeError && (
+						<S.SchedulerTimeError>
+							<span>Start time must not be earlier than end time</span>
+						</S.SchedulerTimeError>
+					)}
+				</S.SchedulerBodyTime>
+				<S.SchedulerBodyColor>
+					<span style={{ float: 'left' }}>display</span>
+					<input type="color" value={color} onChange={onChangeColor}></input>
+				</S.SchedulerBodyColor>
+			</S.SchedulerBody>
+			<S.SchedulerFoot>
+				<button onClick={clickSubmit} style={{ backgroundColor: color }}>
           Add Event
-        </button>
-      </S.SchedulerFoot>
-    </S.Scheduler>
-  );
-};
-export default AddScheduler;
+				</button>
+			</S.SchedulerFoot>
+		</S.Scheduler>
+	)
+}
+export default AddScheduler

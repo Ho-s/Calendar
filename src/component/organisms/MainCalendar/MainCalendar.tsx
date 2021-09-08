@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from "react";
-import moment from "moment";
-import Day from "../../molcules/Day/Day";
-import Week from "../../molcules/Week/Week";
-import Month from "../../molcules/Month/Month";
-import Year from "../../molcules/Year/Year";
-import * as S from "./style";
+import React, { useEffect, useState } from 'react'
+import moment from 'moment'
+import Day from '../../molcules/Day/Day'
+import Week from '../../molcules/Week/Week'
+import Month from '../../molcules/Month/Month'
+import Year from '../../molcules/Year/Year'
+import * as S from './style'
 
 interface IMainCalendar {
   nowDay: number;
@@ -22,169 +22,169 @@ interface IMainCalendar {
 }
 
 const MainCalendar = ({
-  nowDay,
-  nowWeek,
-  nowMonth,
-  nowYear,
-  whatDay,
-  monthStorage,
-  yearStorage,
-  storage,
-  onClickToday,
-  onClickDayInMonth,
-  onClickDayInYear,
-  onClickDeleteInDayTable,
+	nowDay,
+	nowWeek,
+	nowMonth,
+	nowYear,
+	whatDay,
+	monthStorage,
+	yearStorage,
+	storage,
+	onClickToday,
+	onClickDayInMonth,
+	onClickDayInYear,
+	onClickDeleteInDayTable,
 }: IMainCalendar) => {
-  const m = moment();
-  const [dayCheck, setDayCheck] = useState<boolean>(true);
-  const [weekCheck, setWeekCheck] = useState<boolean>(false);
-  const [monthCheck, setMonthCheck] = useState<boolean>(false);
-  const [yearCheck, setYearCheck] = useState<boolean>(false);
-  const [time, setTime] = useState<string>(m.format("HH:mm:ss"));
+	const m = moment()
+	const [dayCheck, setDayCheck] = useState<boolean>(true)
+	const [weekCheck, setWeekCheck] = useState<boolean>(false)
+	const [monthCheck, setMonthCheck] = useState<boolean>(false)
+	const [yearCheck, setYearCheck] = useState<boolean>(false)
+	const [time, setTime] = useState<string>(m.format('HH:mm:ss'))
 
-  const onClickDay = () => {
-    setDayCheck(true);
-    setWeekCheck(false);
-    setMonthCheck(false);
-    setYearCheck(false);
-  };
+	const onClickDay = () => {
+		setDayCheck(true)
+		setWeekCheck(false)
+		setMonthCheck(false)
+		setYearCheck(false)
+	}
 
-  const onClickWeek = () => {
-    setDayCheck(false);
-    setWeekCheck(true);
-    setMonthCheck(false);
-    setYearCheck(false);
-  };
+	const onClickWeek = () => {
+		setDayCheck(false)
+		setWeekCheck(true)
+		setMonthCheck(false)
+		setYearCheck(false)
+	}
 
-  const onClickMonth = () => {
-    setDayCheck(false);
-    setWeekCheck(false);
-    setMonthCheck(true);
-    setYearCheck(false);
-  };
+	const onClickMonth = () => {
+		setDayCheck(false)
+		setWeekCheck(false)
+		setMonthCheck(true)
+		setYearCheck(false)
+	}
 
-  const onClickYear = () => {
-    setDayCheck(false);
-    setWeekCheck(false);
-    setMonthCheck(false);
-    setYearCheck(true);
-  };
+	const onClickYear = () => {
+		setDayCheck(false)
+		setWeekCheck(false)
+		setMonthCheck(false)
+		setYearCheck(true)
+	}
 
-  const clickToday = () => {
-    setDayCheck(true);
-    setWeekCheck(false);
-    setMonthCheck(false);
-    setYearCheck(false);
-    onClickToday();
-  };
+	const clickToday = () => {
+		setDayCheck(true)
+		setWeekCheck(false)
+		setMonthCheck(false)
+		setYearCheck(false)
+		onClickToday()
+	}
 
-  const Generate = () => {
-    const todayStyle =
+	const Generate = () => {
+		const todayStyle =
       dayCheck &&
       Number(nowDay) === m.date() &&
       Number(nowWeek) === m.week() &&
       monthStorage === m.month() &&
       yearStorage === m.year()
-        ? "clicked"
-        : "";
-    return (
-      <>
-        <div
-          onClick={clickToday}
-          className={`${todayStyle}`}
-          style={{ position: "absolute", left: "14px", lineHeight: 1.7 }}
-        >
+      	? 'clicked'
+      	: ''
+		return (
+			<>
+				<div
+					onClick={clickToday}
+					className={`${todayStyle}`}
+					style={{ position: 'absolute', left: '14px', lineHeight: 1.7 }}
+				>
           Today
-        </div>
-        <S.MainCalendarHeadMid>
-          <span onClick={onClickDay} className={dayCheck ? "clicked" : ""}>
+				</div>
+				<S.MainCalendarHeadMid>
+					<span onClick={onClickDay} className={dayCheck ? 'clicked' : ''}>
             Day
-          </span>
-          <span onClick={onClickWeek} className={weekCheck ? "clicked" : ""}>
+					</span>
+					<span onClick={onClickWeek} className={weekCheck ? 'clicked' : ''}>
             Week
-          </span>
-          <span onClick={onClickMonth} className={monthCheck ? "clicked" : ""}>
+					</span>
+					<span onClick={onClickMonth} className={monthCheck ? 'clicked' : ''}>
             Month
-          </span>
-          <span onClick={onClickYear} className={yearCheck ? "clicked" : ""}>
+					</span>
+					<span onClick={onClickYear} className={yearCheck ? 'clicked' : ''}>
             Year
-          </span>
-        </S.MainCalendarHeadMid>
-        <div
-          style={{
-            textAlign: "center",
-            fontWeight: 600,
-            height: "28px",
-            width: "80px",
-            lineHeight: "1.7",
-            backgroundColor: "rgb(201, 201, 201)",
-            borderRadius: "7px",
-            fontSize: "",
-            position: "absolute",
-            right: "14px",
-          }}
-        >
-          {time}
-        </div>
-      </>
-    );
-  };
+					</span>
+				</S.MainCalendarHeadMid>
+				<div
+					style={{
+						textAlign: 'center',
+						fontWeight: 600,
+						height: '28px',
+						width: '80px',
+						lineHeight: '1.7',
+						backgroundColor: 'rgb(201, 201, 201)',
+						borderRadius: '7px',
+						fontSize: '',
+						position: 'absolute',
+						right: '14px',
+					}}
+				>
+					{time}
+				</div>
+			</>
+		)
+	}
 
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setTime(m.format("HH:mm:ss"));
-    }, 1000);
-    return () => clearInterval(timer);
-  }, []);
+	useEffect(() => {
+		const timer = setInterval(() => {
+			setTime(m.format('HH:mm:ss'))
+		}, 1000)
+		return () => clearInterval(timer)
+	}, [])
 
-  return (
-    <S.MainCalendar>
-      <S.MainCalendarHead>
-        <Generate />
-      </S.MainCalendarHead>
-      <div>
-        {dayCheck && (
-          <Day
-            nowDay={nowDay}
-            nowWeek={nowWeek}
-            monthStorage={monthStorage}
-            yearStorage={yearStorage}
-            whatDay={whatDay}
-            storage={storage}
-            onClickDeleteInDayTable={onClickDeleteInDayTable}
-          />
-        )}
-        {weekCheck && (
-          <Week
-            nowWeek={nowWeek}
-            monthStorage={monthStorage}
-            yearStorage={yearStorage}
-            storage={storage}
-          />
-        )}
-        {monthCheck && (
-          <Month
-            nowDay={nowDay}
-            monthStorage={monthStorage}
-            yearStorage={yearStorage}
-            nowMonth={nowMonth}
-            nowYear={nowYear}
-            onClickDayInMonth={onClickDayInMonth}
-            storage={storage}
-          />
-        )}
-        {yearCheck && (
-          <Year
-            nowDay={nowDay}
-            nowWeek={nowWeek}
-            yearStorage={yearStorage}
-            nowYear={nowYear}
-            onClickDayInYear={onClickDayInYear}
-            storage={storage}
-          />
-        )}
-      </div>
-    </S.MainCalendar>
-  );
-};
-export default MainCalendar;
+	return (
+		<S.MainCalendar>
+			<S.MainCalendarHead>
+				<Generate />
+			</S.MainCalendarHead>
+			<div>
+				{dayCheck && (
+					<Day
+						nowDay={nowDay}
+						nowWeek={nowWeek}
+						monthStorage={monthStorage}
+						yearStorage={yearStorage}
+						whatDay={whatDay}
+						storage={storage}
+						onClickDeleteInDayTable={onClickDeleteInDayTable}
+					/>
+				)}
+				{weekCheck && (
+					<Week
+						nowWeek={nowWeek}
+						monthStorage={monthStorage}
+						yearStorage={yearStorage}
+						storage={storage}
+					/>
+				)}
+				{monthCheck && (
+					<Month
+						nowDay={nowDay}
+						monthStorage={monthStorage}
+						yearStorage={yearStorage}
+						nowMonth={nowMonth}
+						nowYear={nowYear}
+						onClickDayInMonth={onClickDayInMonth}
+						storage={storage}
+					/>
+				)}
+				{yearCheck && (
+					<Year
+						nowDay={nowDay}
+						nowWeek={nowWeek}
+						yearStorage={yearStorage}
+						nowYear={nowYear}
+						onClickDayInYear={onClickDayInYear}
+						storage={storage}
+					/>
+				)}
+			</div>
+		</S.MainCalendar>
+	)
+}
+export default MainCalendar
