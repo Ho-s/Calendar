@@ -74,7 +74,60 @@ export const MonthBox = styled.div`
   }
 `
 
+export const MonthTitleWrapper = styled.div``
 
+export const MonthTitleLeft = styled.span`
+color: black;
+font-size: 30px;
+font-weight: 500;
+`
 
+export const MonthTitleRight = styled.span`
+font-size: 36px;
+color: red;
+`
 
+export const MonthDayText = styled.span``
 
+export const DaySpan = styled.span``
+
+export const ScheduleWrapper = styled.div`
+  display: block;
+  width: 100%;
+  height: 18px;
+  position: relative;
+`
+
+interface ScheduleColorProps {
+  backgroundColor: string
+}
+
+export const ScheduleColor = styled.div<ScheduleColorProps>`
+margin-left: 6px;
+margin-top: 4px;
+float: left;
+width: 10px;
+border-radius: 10px;
+height: 10px;
+background-color:${(props)=>props.backgroundColor};
+`
+
+export const ScheduleTitle = styled.div`
+margin-left: 6px;
+float: left;
+width: calc(100% - 71px);
+text-overflow: ellipsis;
+overflow: hidden;
+white-space: nowrap;
+font-weight: 600;
+color: black;
+`
+
+export const ScheduleTime = styled.div`
+line-height: 1.5;
+float: right;
+margin-right: 6px;
+font-size: 14px;
+font-weight: 600;
+color: gray;
+`
