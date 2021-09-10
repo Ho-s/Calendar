@@ -341,11 +341,11 @@ const Main:React.FunctionComponent = () => {
 		setStorage(JSON.parse(localStorage.getItem('storage') || '{}'))
 	}, [])
 
-	const propsSetMonth = (v: any) => {
+	const propsSetMonth = (v: number) => {
 		setMonth(v)
 	}
 
-	const propsSetYear = (v: any) => {
+	const propsSetYear = (v: number) => {
 		setYear(v)
 	}
 
