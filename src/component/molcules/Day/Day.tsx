@@ -145,12 +145,12 @@ const Day = ({
 	}
 
 	useEffect(() => {
-		const timer = setInterval(() => {
+		const timer = setTimeout(() => {
 			setLocation(m.hours() * 61 + m.minutes())
 			setTime(m.format('LT'))
 		}, 5000)
-		return () => clearInterval(timer)
-	}, [])
+		return () => clearTimeout(timer)
+	}, [time, location])
 
 	return (
 		<S.DayComponent>

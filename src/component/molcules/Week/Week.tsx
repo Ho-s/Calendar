@@ -118,12 +118,12 @@ const Week = ({ nowWeek, monthStorage, yearStorage, storage }: IWeek) => {
 	}
 
 	useEffect(() => {
-		const timer = setInterval(() => {
+		const timer = setTimeout(() => {
 			setLocation(m.hours() * 61 + 51 + m.minutes())
 			setTime(m.format('LT'))
 		}, 5000)
-		return () => clearInterval(timer)
-	}, [])
+		return () => clearTimeout(timer)
+	}, [time, location])
 
 	return (
 		<S.WeekComponent>

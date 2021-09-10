@@ -4,6 +4,7 @@ import Day from '../../molcules/Day/Day'
 import Week from '../../molcules/Week/Week'
 import Month from '../../molcules/Month/Month'
 import Year from '../../molcules/Year/Year'
+import useInterval from '../../utils/useInterval'
 import * as S from './style'
 
 interface IMainCalendar {
@@ -124,10 +125,10 @@ const MainCalendar = ({
 	}
 
 	useEffect(() => {
-		const timer = setInterval(() => {
+		const timer = setTimeout(() => {
 			setTime(m.format('HH:mm:ss'))
 		}, 1000)
-		return () => clearInterval(timer)
+		return () => clearTimeout(timer)
 	}, [])
 
 	return (
