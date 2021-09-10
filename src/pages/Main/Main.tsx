@@ -177,7 +177,6 @@ const Main = () => {
 		})
 	}
 
-	// for AddSchedule
 	const onChangeTitle = (e: any): void => {
 		setTitle(e.target.value)
 	}
@@ -338,44 +337,36 @@ const Main = () => {
 
 	return (
 		<>
-			<div style={{ height: '100vh', float: 'left', width: '350px' }}>
-				<div style={{ backgroundColor: '#292726' }}>
-					<S.AddSchedule onClick={onClickAddSchedule}>
-						<span
-							style={{
-								paddingRight: spanStyle.paddingRight,
-								position: 'relative',
-								transition: 'all .6s',
-							}}
-						>
-							{spanStyle.textContent}
-						</span>
-						<div style={{ animation: divStyle }}>▶</div>
-					</S.AddSchedule>
-					{addSchedule && (
-						<AddScheduler
-							title={title}
-							year={year}
-							month={month}
-							day={day}
-							startHours={startHours}
-							startMinutes={startMinutes}
-							endHours={endHours}
-							endMinutes={endMinutes}
-							color={color}
-							onChangeTitle={(e: any) => onChangeTitle(e)}
-							onChangeYear={(e: any) => onChangeYear(e)}
-							onChangeMonth={(e: any) => onChangeMonth(e)}
-							onChangeDay={(e: any) => onChangeDay(e)}
-							onChangeSHours={(e: any) => onChangeSHours(e)}
-							onChangeSMinutes={(e: any) => onChangeSMinutes(e)}
-							onChangeEHours={(e: any) => onChangeEHours(e)}
-							onChangeEMinutes={(e: any) => onChangeEMinutes(e)}
-							onChangeColor={(e: any) => onChangeColor(e)}
-							onClickSubmit={onClickSubmit}
-						/>
-					)}
-				</div>
+			<S.MainLeft>
+				<S.AddSchedule onClick={onClickAddSchedule}>
+					<S.AddScheduleSpan paddingRight={spanStyle.paddingRight}>
+						{spanStyle.textContent}
+					</S.AddScheduleSpan>
+					<S.AddScheduleDiv animation={divStyle}>▶</S.AddScheduleDiv>
+				</S.AddSchedule>
+				{addSchedule && (
+					<AddScheduler
+						title={title}
+						year={year}
+						month={month}
+						day={day}
+						startHours={startHours}
+						startMinutes={startMinutes}
+						endHours={endHours}
+						endMinutes={endMinutes}
+						color={color}
+						onChangeTitle={(e: any) => onChangeTitle(e)}
+						onChangeYear={(e: any) => onChangeYear(e)}
+						onChangeMonth={(e: any) => onChangeMonth(e)}
+						onChangeDay={(e: any) => onChangeDay(e)}
+						onChangeSHours={(e: any) => onChangeSHours(e)}
+						onChangeSMinutes={(e: any) => onChangeSMinutes(e)}
+						onChangeEHours={(e: any) => onChangeEHours(e)}
+						onChangeEMinutes={(e: any) => onChangeEMinutes(e)}
+						onChangeColor={(e: any) => onChangeColor(e)}
+						onClickSubmit={onClickSubmit}
+					/>
+				)}
 
 				<Calendar
 					nowDay={nowDay}
@@ -403,8 +394,8 @@ const Main = () => {
 					monthStorage={monthStorage}
 					yearStorage={yearStorage}
 				/>
-			</div>
-			<div style={{ float: 'left' }}>
+			</S.MainLeft>
+			<S.MainRight>
 				<MainCalendar
 					nowDay={nowDay}
 					nowWeek={nowWeek}
@@ -419,7 +410,7 @@ const Main = () => {
 					onClickDayInYear={(e: any) => onClickDayInYear(e)}
 					onClickDeleteInDayTable={(e: any) => onClickDeleteInDayTable(e)}
 				/>
-			</div>
+			</S.MainRight>
 		</>
 	)
 }

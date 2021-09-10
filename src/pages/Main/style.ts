@@ -63,3 +63,50 @@ export const AddSchedule = styled.button`
   z-index: 1;
     }
 `
+
+interface AddScheduleDivProps {
+  animation:string
+}
+
+export const AddScheduleDiv = styled.div<AddScheduleDivProps>`
+  animation: ${(props)=>props.animation};
+
+@keyframes forward {
+  100% {
+    opacity: 1;
+    right: 83px;
+  }
+}
+
+@keyframes backward {
+  0% {
+    opacity: 1;
+    right: 83px;
+  }
+  100% {
+    opacity: 0;
+    right: 0;
+  }
+}
+`
+
+interface AddScheduleSpanProps {
+  paddingRight: string
+}
+
+export const AddScheduleSpan = styled.span<AddScheduleSpanProps>`
+padding-right: ${(props)=>props.paddingRight};
+position: relative;
+transition: all .6s;
+`
+
+export const MainLeft = styled.div`
+  height: 100vh;
+  float: left;
+  width: 350px;
+  background-color: #292726;
+`
+
+export const MainRight = styled.div`
+float: 'left;
+`
