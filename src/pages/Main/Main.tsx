@@ -52,7 +52,7 @@ const Main = () => {
 	}
 
 	const onClickWeek = (e: any): void => {
-		if (e.target.parentNode.childNodes[1].className === 'box  grayed ') {
+		if (e.target.parentNode.childNodes[1].dataset.gray === 'true') {
 			setNowDay(1)
 			setNowWeek(e.target.textContent)
 			setYearStorage(nowYear)
@@ -61,7 +61,7 @@ const Main = () => {
 			setMonth(nowMonth + 1)
 			setDay(1)
 			Array(8).forEach((v, i) => {
-				if (e.target.parentNode.childNodes[i].className === 'box  grayed ') {
+				if (e.target.parentNode.childNodes[1].dataset.gray) {
 					setWhatDay(i - 1)
 				}
 			})

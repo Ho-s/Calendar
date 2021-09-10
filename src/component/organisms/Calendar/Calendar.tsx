@@ -105,6 +105,11 @@ const Calendar = ({
 									return (
 										<S.Box
 											onClick={clicking}
+											data-gray={
+												current.format('MM') === m.format('MM')
+													? 'false'
+													: 'true'
+											}
 											className={`${todaySelect} ${isGrayed} ${isSelected}`}
 											key={i}
 										>
