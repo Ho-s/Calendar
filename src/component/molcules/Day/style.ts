@@ -202,7 +202,6 @@ top: ${(props)=>props.top};
 `
 
 interface ScheduleColorProps {
-  top:number
   backgroundColor:string
   height:number
 }
@@ -211,7 +210,7 @@ export const ScheduleColor = styled.div<ScheduleColorProps>`
 left: 0;
 position: absolute;
 width: 10px;
-top:${(props)=>props.top};
+top:${(props)=>props.height};
 background-color:${(props)=>props.backgroundColor};
 height:${(props)=>props.height};
 `

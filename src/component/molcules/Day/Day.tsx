@@ -78,11 +78,7 @@ const Day = ({
 						>
 							<S.ScheduleBack backgroundColor={v.color} />
 							<S.ScheduleTextWrapper top={-height}>
-								<S.ScheduleColor
-									top={height}
-									backgroundColor={v.color}
-									height={height}
-								/>
+								<S.ScheduleColor backgroundColor={v.color} height={height} />
 								<S.ScheduleText>
 									{v.startHours}:{v.startMinutes}
 								</S.ScheduleText>
