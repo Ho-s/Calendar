@@ -89,43 +89,36 @@ const MainCalendar = ({
 				: ''
 		return (
 			<>
-				<div
-					onClick={clickToday}
-					className={`${todayStyle}`}
-					style={{ position: 'absolute', left: '14px', lineHeight: 1.7 }}
-				>
+				<S.TodayButton onClick={clickToday} className={`${todayStyle}`}>
 					Today
-				</div>
+				</S.TodayButton>
 				<S.MainCalendarHeadMid>
-					<span onClick={onClickDay} className={dayCheck ? 'clicked' : ''}>
+					<S.HeadSpan
+						onClick={onClickDay}
+						className={dayCheck ? 'clicked' : ''}
+					>
 						Day
-					</span>
-					<span onClick={onClickWeek} className={weekCheck ? 'clicked' : ''}>
+					</S.HeadSpan>
+					<S.HeadSpan
+						onClick={onClickWeek}
+						className={weekCheck ? 'clicked' : ''}
+					>
 						Week
-					</span>
-					<span onClick={onClickMonth} className={monthCheck ? 'clicked' : ''}>
+					</S.HeadSpan>
+					<S.HeadSpan
+						onClick={onClickMonth}
+						className={monthCheck ? 'clicked' : ''}
+					>
 						Month
-					</span>
-					<span onClick={onClickYear} className={yearCheck ? 'clicked' : ''}>
+					</S.HeadSpan>
+					<S.HeadSpan
+						onClick={onClickYear}
+						className={yearCheck ? 'clicked' : ''}
+					>
 						Year
-					</span>
+					</S.HeadSpan>
 				</S.MainCalendarHeadMid>
-				<div
-					style={{
-						textAlign: 'center',
-						fontWeight: 600,
-						height: '28px',
-						width: '80px',
-						lineHeight: '1.7',
-						backgroundColor: 'rgb(201, 201, 201)',
-						borderRadius: '7px',
-						fontSize: '',
-						position: 'absolute',
-						right: '14px',
-					}}
-				>
-					{time}
-				</div>
+				<S.Time>{time}</S.Time>
 			</>
 		)
 	}
@@ -142,48 +135,46 @@ const MainCalendar = ({
 			<S.MainCalendarHead>
 				<Generate />
 			</S.MainCalendarHead>
-			<div>
-				{dayCheck && (
-					<Day
-						nowDay={nowDay}
-						nowWeek={nowWeek}
-						monthStorage={monthStorage}
-						yearStorage={yearStorage}
-						whatDay={whatDay}
-						storage={storage}
-						onClickDeleteInDayTable={onClickDeleteInDayTable}
-					/>
-				)}
-				{weekCheck && (
-					<Week
-						nowWeek={nowWeek}
-						monthStorage={monthStorage}
-						yearStorage={yearStorage}
-						storage={storage}
-					/>
-				)}
-				{monthCheck && (
-					<Month
-						nowDay={nowDay}
-						monthStorage={monthStorage}
-						yearStorage={yearStorage}
-						nowMonth={nowMonth}
-						nowYear={nowYear}
-						onClickDayInMonth={onClickDayInMonth}
-						storage={storage}
-					/>
-				)}
-				{yearCheck && (
-					<Year
-						nowDay={nowDay}
-						nowWeek={nowWeek}
-						yearStorage={yearStorage}
-						nowYear={nowYear}
-						onClickDayInYear={onClickDayInYear}
-						storage={storage}
-					/>
-				)}
-			</div>
+			{dayCheck && (
+				<Day
+					nowDay={nowDay}
+					nowWeek={nowWeek}
+					monthStorage={monthStorage}
+					yearStorage={yearStorage}
+					whatDay={whatDay}
+					storage={storage}
+					onClickDeleteInDayTable={onClickDeleteInDayTable}
+				/>
+			)}
+			{weekCheck && (
+				<Week
+					nowWeek={nowWeek}
+					monthStorage={monthStorage}
+					yearStorage={yearStorage}
+					storage={storage}
+				/>
+			)}
+			{monthCheck && (
+				<Month
+					nowDay={nowDay}
+					monthStorage={monthStorage}
+					yearStorage={yearStorage}
+					nowMonth={nowMonth}
+					nowYear={nowYear}
+					onClickDayInMonth={onClickDayInMonth}
+					storage={storage}
+				/>
+			)}
+			{yearCheck && (
+				<Year
+					nowDay={nowDay}
+					nowWeek={nowWeek}
+					yearStorage={yearStorage}
+					nowYear={nowYear}
+					onClickDayInYear={onClickDayInYear}
+					storage={storage}
+				/>
+			)}
 		</S.MainCalendar>
 	)
 }

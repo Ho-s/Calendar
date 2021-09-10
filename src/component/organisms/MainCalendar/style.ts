@@ -23,18 +23,9 @@ export const MainCalendarHead = styled.div`
     border-radius: 7px;
     display: inline-block;
     }
-    & span {
-        cursor: pointer;
-    font-weight: 600;
-    background-color: rgb(201, 201, 201);
-    border:1px solid white;
-    text-align: center;
-    height: 28px;
-    width: 80px;
-    border-radius: 7px;
-    display: inline-block;
-    }
+
 `
+
 export const MainCalendarHeadMid = styled.div`
     margin:0 auto;
     line-height: 1.7;
@@ -43,4 +34,34 @@ export const MainCalendarHeadMid = styled.div`
     transition: background-color .5s, color .5s;
     background-color: red !important;
 }
+`
+
+export const HeadSpan = styled.span`
+    cursor: pointer;
+    font-weight: 600;
+    background-color: rgb(201, 201, 201);
+    border:1px solid white;
+    text-align: center;
+    height: 28px;
+    width: 80px;
+    border-radius: 7px;
+    display: inline-block;
+`
+
+export const TodayButton = styled.div`
+position: absolute;
+left: 14px;
+line-height: 1.7;
+`
+
+export const Time = styled.div`
+text-align: center;
+font-weight: 600;
+height: 28px;
+width: 80px;
+line-height: 1.7;
+background-color: rgb(201, 201, 201);
+border-radius: 7px;
+position: absolute;
+right: 14px;
 `
