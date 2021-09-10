@@ -7,7 +7,7 @@ import AddScheduler from '../../component/organisms/AddScheduler/AddScheduler'
 import * as S from './style'
 
 export interface StorageType {
-	name: string |number
+	name: string | number
 	title:string
 	year: number
 	month: number
@@ -40,7 +40,7 @@ const Main:React.FunctionComponent = () => {
 	const [endHours, setEndHours] = useState<number | string>(m.hour() + 1)
 	const [endMinutes, setEndMinutes] = useState<number | string>(0)
 	const [color, setColor] = useState<string>('#04B910')
-	const [storage, setStorage] = useState<any>([])
+	const [storage, setStorage] = useState<StorageType[]>([])
 	const [spanStyle, setSpanStyle] = useState<any>({
 		paddingRight: 0,
 		textContent: 'Add Schedule',
@@ -273,7 +273,7 @@ const Main:React.FunctionComponent = () => {
 
 	const onClickSubmit = (): void => {
 		const blockStorage:StorageType = {
-			name: storage.length === 0 ? 0 : storage[storage.length - 1].name + 1,
+			name: storage.length === 0 ? 0 : Number(storage[storage.length - 1].name) + 1,
 			title,
 			year: Number(year),
 			month: Number(month),
