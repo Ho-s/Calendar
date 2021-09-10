@@ -1,7 +1,7 @@
 @font-face {
   font-family: "s-core-dream-light";
-  src: url("../font/scdream3-webfont.woff2") format("woff2"),
-    url("../font/scdream3-webfont.woff") format("woff");
+  src: url("./font/scdream3-webfont.woff2") format("woff2"),
+    url("./font/scdream3-webfont.woff") format("woff");
   font-weight: normal;
   font-style: normal;
 }
