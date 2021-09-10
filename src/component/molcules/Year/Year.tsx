@@ -34,14 +34,14 @@ const Year = ({
 			.map((v, i) => startWeek + i)
 		return (
 			<>
-				{calendar.map((v: any) => (
-					<S.YearRow key={v}>
+				{calendar.map((week: any) => (
+					<S.YearRow key={week}>
 						{Array(7)
 							.fill(0)
 							.map((n, i) => {
 								const current = m
 									.clone()
-									.week(v)
+									.week(week)
 									.startOf('week')
 									.add(n + i, 'day')
 								const todaySelected =
@@ -51,7 +51,7 @@ const Year = ({
 								const isSelected =
 									Number(nowDay) === Number(current.format('D')) &&
 									Number(yearStorage) === nowYear &&
-									nowWeek === v
+									nowWeek === week
 										? 'yearSelected'
 										: ''
 								const isGrayed =
