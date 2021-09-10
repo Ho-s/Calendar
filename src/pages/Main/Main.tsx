@@ -6,6 +6,20 @@ import MainCalendar from '../../component/organisms/MainCalendar/MainCalendar'
 import AddScheduler from '../../component/organisms/AddScheduler/AddScheduler'
 import * as S from './style'
 
+export interface StorageType {
+	name: string |number
+	title:string
+	year: number
+	month: number
+	day: number
+	week: number
+	startHours: number|string
+	startMinutes: number|string
+	endHours: number|string
+	endMinutes: number|string
+	color:string
+}
+
 const Main:React.FunctionComponent = () => {
 	const m = moment()
 	const [nowDay, setNowDay] = useState<number>(m.date())
@@ -258,7 +272,7 @@ const Main:React.FunctionComponent = () => {
 	}
 
 	const onClickSubmit = (): void => {
-		const blockStorage = {
+		const blockStorage:StorageType = {
 			name: storage.length === 0 ? 0 : storage[storage.length - 1].name + 1,
 			title,
 			year: Number(year),
@@ -301,7 +315,7 @@ const Main:React.FunctionComponent = () => {
 			textContent: 'Add Schedule',
 		}))
 		setDivStyle('backward .4s forwards')
-		setStorage((prev: any[]) => [...prev, blockStorage])
+		setStorage((prev: StorageType[]) => [...prev, blockStorage])
 		setAddSchedule(false)
 	}
 
@@ -310,14 +324,14 @@ const Main:React.FunctionComponent = () => {
 	}, [storage])
 
 	const onClickDelete = (e: any): void => {
-		const filteredStorage = storage.filter((v: any) => {
+		const filteredStorage = storage.filter((v: StorageType) => {
 			return v.name !== Number(e.target.parentNode.getAttribute('data-name'))
 		})
 		setStorage(filteredStorage)
 	}
 
 	const onClickDeleteInDayTable = (e: any): void => {
-		const filteredStorage = storage.filter((v: any) => {
+		const filteredStorage = storage.filter((v: StorageType) => {
 			return v.name !== Number(e.target.parentNode.getAttribute('data-name'))
 		})
 		setStorage(filteredStorage)
