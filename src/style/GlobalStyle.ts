@@ -74,24 +74,6 @@ const GlobalStyle = createGlobalStyle`
     background-clip: padding-box;
     border: 2px solid transparent;
   }
-
-  @keyframes forward {
-    100% {
-      opacity: 1;
-      right: 83px;
-    }
-  }
-
-  @keyframes backward {
-    0% {
-      opacity: 1;
-      right: 83px;
-    }
-    100% {
-      opacity: 0;
-      right: 0;
-    }
-  }
 `
 
 export default GlobalStyle
