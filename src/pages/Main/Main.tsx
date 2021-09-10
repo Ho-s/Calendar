@@ -6,7 +6,7 @@ import MainCalendar from '../../component/organisms/MainCalendar/MainCalendar'
 import AddScheduler from '../../component/organisms/AddScheduler/AddScheduler'
 import * as S from './style'
 
-const Main = () => {
+const Main:React.FunctionComponent = () => {
 	const m = moment()
 	const [nowDay, setNowDay] = useState<number>(m.date())
 	const [nowWeek, setNowWeek] = useState<number>(m.week())
@@ -120,12 +120,12 @@ const Main = () => {
 				.week() === 1 && e.target.childNodes[0].textContent > 24
 				? 53
 				: m
-						.set({
-							year: nowYear,
-							month: nowMonth,
-							date: e.target.childNodes[0].textContent,
-						})
-						.week(),
+					.set({
+						year: nowYear,
+						month: nowMonth,
+						date: e.target.childNodes[0].textContent,
+					})
+					.week(),
 		)
 		setYearStorage(nowYear)
 		setMonthStorage(nowMonth)
@@ -155,12 +155,12 @@ const Main = () => {
 				.week() === 1 && e.target.childNodes[0].textContent > 24
 				? 53
 				: m
-						.set({
-							year: nowYear,
-							month: e.target.parentNode.parentNode.id,
-							date: e.target.childNodes[0].textContent,
-						})
-						.week(),
+					.set({
+						year: nowYear,
+						month: e.target.parentNode.parentNode.id,
+						date: e.target.childNodes[0].textContent,
+					})
+					.week(),
 		)
 		setNowMonth(Number(e.target.parentNode.parentNode.id))
 		setYearStorage(nowYear)
@@ -229,7 +229,7 @@ const Main = () => {
 		setColor(e.target.value)
 	}
 
-	const onClickAddSchedule = (e: any): void => {
+	const onClickAddSchedule = (): void => {
 		if (!addSchedule) {
 			setAddSchedule(true)
 			setSpanStyle({

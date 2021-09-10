@@ -4,10 +4,9 @@ import Day from '../../molcules/Day/Day'
 import Week from '../../molcules/Week/Week'
 import Month from '../../molcules/Month/Month'
 import Year from '../../molcules/Year/Year'
-import useInterval from '../../utils/useInterval'
 import * as S from './style'
 
-interface IMainCalendar {
+interface MainCalendarProps {
 	nowDay: number
 	nowWeek: number
 	nowMonth: number
@@ -22,7 +21,7 @@ interface IMainCalendar {
 	onClickDeleteInDayTable: any
 }
 
-const MainCalendar = ({
+const MainCalendar: React.FunctionComponent<MainCalendarProps> = ({
 	nowDay,
 	nowWeek,
 	nowMonth,
@@ -35,7 +34,7 @@ const MainCalendar = ({
 	onClickDayInMonth,
 	onClickDayInYear,
 	onClickDeleteInDayTable,
-}: IMainCalendar) => {
+}) => {
 	const m = moment()
 	const [dayCheck, setDayCheck] = useState<boolean>(true)
 	const [weekCheck, setWeekCheck] = useState<boolean>(false)

@@ -2,7 +2,7 @@ import React from 'react'
 import moment from 'moment'
 import * as S from './style'
 
-interface ISummary {
+interface SummaryProps {
 	storage: any[] | any
 	onClickDelete: any
 	nowDay: number
@@ -13,7 +13,7 @@ interface ISummary {
 	yearStorage: number
 }
 
-const Summary = ({
+const Summary: React.FunctionComponent<SummaryProps> =({
 	storage,
 	onClickDelete,
 	nowDay,
@@ -22,7 +22,7 @@ const Summary = ({
 	nowYear,
 	monthStorage,
 	yearStorage,
-}: ISummary) => {
+}) => {
 	const m = moment()
 
 	const Generate = () => {

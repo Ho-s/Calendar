@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import moment from 'moment'
 import * as S from './style'
 
-interface IAddScheduler {
+interface AddSchedulerProps {
 	title: string
 	year: number
 	month: number
@@ -25,7 +25,7 @@ interface IAddScheduler {
 	onClickSubmit: () => void
 }
 
-const AddScheduler = ({
+const AddScheduler:React.FunctionComponent<AddSchedulerProps> = ({
 	title,
 	year,
 	month,
@@ -45,7 +45,7 @@ const AddScheduler = ({
 	onChangeEMinutes,
 	onChangeColor,
 	onClickSubmit,
-}: IAddScheduler) => {
+}) => {
 	const m = moment()
 	const [timeError, setTimeError] = useState<boolean>(false)
 	const [dayError, setDayError] = useState<boolean>(false)

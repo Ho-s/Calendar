@@ -2,14 +2,14 @@ import React, { useEffect, useState } from 'react'
 import moment from 'moment'
 import * as S from './style'
 
-interface IWeek {
+interface WeekProps {
 	nowWeek: number
 	monthStorage: number
 	yearStorage: number
 	storage: any
 }
 
-const Week = ({ nowWeek, monthStorage, yearStorage, storage }: IWeek) => {
+const Week: React.FunctionComponent<WeekProps> = ({ nowWeek, monthStorage, yearStorage, storage }) => {
 	const m = moment()
 	const [time, setTime] = useState(m.format('LT'))
 	const [location, setLocation] = useState(m.hours() * 61 + 51 + m.minutes())
@@ -37,22 +37,22 @@ const Week = ({ nowWeek, monthStorage, yearStorage, storage }: IWeek) => {
 								: 'week-grayed'
 						const whatDay = () => {
 							switch (i) {
-								case 0:
-									return 'SUN'
-								case 1:
-									return 'MON'
-								case 2:
-									return 'TUE'
-								case 3:
-									return 'WED'
-								case 4:
-									return 'THU'
-								case 5:
-									return 'FRI'
-								case 6:
-									return 'SAT'
-								default:
-									return ''
+							case 0:
+								return 'SUN'
+							case 1:
+								return 'MON'
+							case 2:
+								return 'TUE'
+							case 3:
+								return 'WED'
+							case 4:
+								return 'THU'
+							case 5:
+								return 'FRI'
+							case 6:
+								return 'SAT'
+							default:
+								return ''
 							}
 						}
 
@@ -70,7 +70,7 @@ const Week = ({ nowWeek, monthStorage, yearStorage, storage }: IWeek) => {
 						}
 
 						return (
-							<S.BodyWrapper>
+							<S.BodyWrapper key={i}>
 								<S.BodyTopWrapper>
 									<S.WeekDay>{whatDay()}</S.WeekDay>
 									<S.WeekBox className={`${todaySelect} ${isGrayed}`} key={i}>
@@ -79,16 +79,16 @@ const Week = ({ nowWeek, monthStorage, yearStorage, storage }: IWeek) => {
 								</S.BodyTopWrapper>
 								{Array(24)
 									.fill(0)
-									.map(() => {
-										return <S.TimeLine />
+									.map((v,i) => {
+										return <S.TimeLine key={i}/>
 									})}
-								{day.map((v: any) => {
+								{day.map((v: any,i:number) => {
 									const height: number =
 										(Number(v.endHours) - Number(v.startHours)) * 61 +
 										Number(v.endMinutes) -
 										Number(v.startMinutes)
 									return (
-										<S.ScheduleWrapper
+										<S.ScheduleWrapper key={i}
 											top={
 												Number(v.startHours) * 61 +
 												Number(v.startMinutes) +
@@ -140,7 +140,7 @@ const Week = ({ nowWeek, monthStorage, yearStorage, storage }: IWeek) => {
 				{Array(24)
 					.fill(0)
 					.map((v, i) => {
-						return <S.Time>{`${i + 1}:00`}</S.Time>
+						return <S.Time key={i}>{`${i + 1}:00`}</S.Time>
 					})}
 			</S.WeekLeft>
 			<Generate />

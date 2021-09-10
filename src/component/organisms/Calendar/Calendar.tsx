@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import * as S from './style'
 import moment from 'moment'
 
-interface ICalendar {
+interface CalendarProps {
 	nowDay: number
 	nowWeek: number
 	nowMonth: number
@@ -18,7 +18,7 @@ interface ICalendar {
 	setYear: any
 }
 
-const Calendar = ({
+const Calendar: React.FunctionComponent<CalendarProps> = ({
 	nowDay,
 	nowWeek,
 	nowMonth,
@@ -32,7 +32,7 @@ const Calendar = ({
 	onClickWeek,
 	setMonth,
 	setYear,
-}: ICalendar) => {
+}) => {
 	const m = moment()
 	const today = m.format('YYYYMMDD')
 

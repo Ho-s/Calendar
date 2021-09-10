@@ -12,7 +12,7 @@ interface DayProps {
 	onClickDeleteInDayTable: () => void
 }
 
-const Day = ({
+const Day:React.FunctionComponent<DayProps> = ({
 	nowDay,
 	nowWeek,
 	monthStorage,
@@ -20,7 +20,7 @@ const Day = ({
 	whatDay,
 	storage,
 	onClickDeleteInDayTable,
-}: DayProps) => {
+}) => {
 	const m = moment()
 	const [location, setLocation] = useState(m.hours() * 61 + m.minutes())
 	const [time, setTime] = useState(m.format('LT'))

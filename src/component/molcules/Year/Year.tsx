@@ -2,7 +2,7 @@ import React from 'react'
 import moment from 'moment'
 import * as S from './style'
 
-interface IYear {
+interface YearProps {
 	nowDay: number
 	nowWeek: number
 	yearStorage: number
@@ -11,14 +11,14 @@ interface IYear {
 	onClickDayInYear: () => void
 }
 
-const Year = ({
+const Year:React.FunctionComponent<YearProps> = ({
 	nowDay,
 	nowWeek,
 	yearStorage,
 	storage,
 	nowYear,
 	onClickDayInYear,
-}: IYear) => {
+}) => {
 	const m = moment()
 	const today = m.format('YYYYMMDD')
 
