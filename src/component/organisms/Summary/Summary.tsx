@@ -32,16 +32,7 @@ const Summary = ({
 		let num = 0
 		return (
 			<S.LoadList>
-				<span
-					style={{
-						fontSize: '16px',
-						fontWeight: 600,
-						color: 'black',
-						textShadow: '-1px 0 white, 0 1px white, 1px 0 white, 0 -1px white',
-					}}
-				>
-					Schedules of the week
-				</span>
+				<S.Title>Schedules of the week</S.Title>
 				{Array(7)
 					.fill(0)
 					.map((n: any, i: number) => {
@@ -59,11 +50,11 @@ const Summary = ({
 						const day: any[] = []
 						if (Number(current.format('MM')) === Number(monthStorage) + 1) {
 							{
-								Array(storage.length).forEach((v, n) => {
-									if (storage[n].year === Number(current.year())) {
-										if (storage[n].month === Number(current.month() + 1)) {
-											if (storage[n].day === Number(current.date())) {
-												day.push(storage[n])
+								storage.forEach((v: any) => {
+									if (v.year === Number(current.year())) {
+										if (v.month === Number(current.month() + 1)) {
+											if (v.day === Number(current.date())) {
+												day.push(v)
 											}
 										}
 									}
@@ -90,91 +81,33 @@ const Summary = ({
 							num++
 							return (
 								<>
-									<div
-										style={{
-											color: selectedColor,
-											fontWeight: 600,
-											fontSize: '18PX',
-											marginBottom: '10px',
-										}}
-									>
+									<S.Date color={selectedColor}>
 										{current.month() + 1} / {current.date()} / {current.year()}{' '}
 										{current.format('dddd')}
-									</div>
-									{Array(day.length)
-										.fill(0)
-										.map((v, n) => (
-											<S.SummarySchedule data-name={day[n].name}>
-												<div
-													style={{
-														marginTop: '6px',
-														position: 'absolute',
-														left: '3px',
-														width: '10px',
-														height: '10px',
-														backgroundColor: day[n].color,
-														borderRadius: '10px',
-													}}
-												></div>
-												<div
-													style={{
-														lineHeight: '1',
-														float: 'left',
-														fontSize: '20px',
-														marginLeft: '17px',
-														width: '11.6vw',
-														textOverflow: 'ellipsis',
-														overflow: 'hidden',
-														whiteSpace: 'nowrap',
-														fontWeight: 100,
-														color: 'white',
-													}}
-												>
-													{day[n].title}
-												</div>
-												<div
-													style={{
-														lineHeight: '1.5',
-														position: 'absolute',
-														right: '40px',
-														overflow: 'noWrap',
-														fontSize: '14px',
-														fontWeight: 600,
-														color: 'gray',
-													}}
-												>
-													{day[n].startHours}:{day[n].startMinutes}~
-												</div>
-												<div
-													style={{
-														lineHeight: '1.5',
-														position: 'absolute',
-														right: '5px',
-														overflow: 'noWrap',
-														fontSize: '14px',
-														fontWeight: 600,
-														color: 'gray',
-													}}
-												>
-													{day[n].endHours}:{day[n].endMinutes}
-												</div>
-												<button onClick={onClickDelete}></button>
-											</S.SummarySchedule>
-										))}
+									</S.Date>
+									{day.map((v: any) => (
+										<S.SummarySchedule data-name={v.name}>
+											<S.SummaryScheduleColor
+												backgroundColor={v.color}
+											></S.SummaryScheduleColor>
+											<S.SummaryScheduleTitle>{v.title}</S.SummaryScheduleTitle>
+											<S.SummaryScheduleTime>
+												{v.startHours}:{v.startMinutes}~
+											</S.SummaryScheduleTime>
+											<S.SummaryScheduleTime>
+												{v.endHours}:{v.endMinutes}
+											</S.SummaryScheduleTime>
+											<S.SummaryScheduleButton onClick={onClickDelete} />
+										</S.SummarySchedule>
+									))}
 								</>
 							)
 						} else {
 							if (i === 6 && num === 0) {
 								return (
-									<div
-										style={{
-											color: 'gray',
-											marginTop: '15px',
-											fontSize: '15px',
-										}}
-									>
+									<S.NoSchedule>
 										There is no schedule in the week you selected
-									</div>
+									</S.NoSchedule>
 								)
 							}
 						}
