@@ -34,8 +34,9 @@ const Calendar = ({
 	setYear,
 }: ICalendar) => {
 	const m = moment()
+	const today = m.format('YYYYMMDD')
+
 	const Generate = () => {
-		const today = m.format('YYYYMMDD')
 		m.set('year', nowYear)
 		m.set('month', nowMonth)
 		const startWeek = m.clone().startOf('month').week()
@@ -49,7 +50,7 @@ const Calendar = ({
 		return (
 			<>
 				{calendar.map((week: any) => {
-					const thisWeekConst = Number(m.format('w')) === week ? 'today' : ''
+					const thisWeekConst = nowWeek === week ? 'today' : ''
 					const weekSelected =
 						Number(nowWeek) === week &&
 						Number(yearStorage) === nowYear &&

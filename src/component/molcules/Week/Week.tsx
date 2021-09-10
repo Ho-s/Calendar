@@ -13,9 +13,9 @@ const Week = ({ nowWeek, monthStorage, yearStorage, storage }: IWeek) => {
 	const m = moment()
 	const [time, setTime] = useState(m.format('LT'))
 	const [location, setLocation] = useState(m.hours() * 61 + 51 + m.minutes())
+	const today = m.format('YYYYMMDD')
 
 	const Generate = () => {
-		const today = m.format('YYYYMMDD')
 		m.set('year', yearStorage)
 		m.set('month', monthStorage)
 		m.set('week', nowWeek)

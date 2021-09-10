@@ -22,9 +22,9 @@ const Month = ({
 	storage,
 }: IMonth) => {
 	const m = moment()
+	const today = m.format('YYYYMMDD')
 
 	const Generate = () => {
-		const today = m.format('YYYYMMDD')
 		m.set('year', nowYear)
 		m.set('month', nowMonth)
 		const startWeek = m.clone().startOf('month').week()
