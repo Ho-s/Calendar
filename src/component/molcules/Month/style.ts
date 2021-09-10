@@ -87,8 +87,6 @@ font-size: 36px;
 color: red;
 `
 
-export const MonthDayText = styled.span``
-
 export const DaySpan = styled.span``
 
 export const ScheduleWrapper = styled.div`

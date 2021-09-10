@@ -125,27 +125,13 @@ const Month = ({
 				<S.MonthTitleRight>{nowYear}</S.MonthTitleRight>
 			</S.MonthTitleWrapper>
 			<S.MonthRow>
-				<S.MonthDay>
-					<S.MonthDayText>SUN</S.MonthDayText>
-				</S.MonthDay>
-				<S.MonthDay>
-					<S.MonthDayText>MON</S.MonthDayText>
-				</S.MonthDay>
-				<S.MonthDay>
-					<S.MonthDayText>TUE</S.MonthDayText>
-				</S.MonthDay>
-				<S.MonthDay>
-					<S.MonthDayText>WED</S.MonthDayText>
-				</S.MonthDay>
-				<S.MonthDay>
-					<S.MonthDayText>THU</S.MonthDayText>
-				</S.MonthDay>
-				<S.MonthDay>
-					<S.MonthDayText>FRI</S.MonthDayText>
-				</S.MonthDay>
-				<S.MonthDay>
-					<S.MonthDayText>SAT</S.MonthDayText>
-				</S.MonthDay>
+				<S.MonthDay>SUN</S.MonthDay>
+				<S.MonthDay>MON</S.MonthDay>
+				<S.MonthDay>TUE</S.MonthDay>
+				<S.MonthDay>WED</S.MonthDay>
+				<S.MonthDay>THU</S.MonthDay>
+				<S.MonthDay>FRI</S.MonthDay>
+				<S.MonthDay>SAT</S.MonthDay>
 			</S.MonthRow>
 			{Generate()}
 		</S.MonthComponent>
