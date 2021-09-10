@@ -20,9 +20,9 @@ const Year = ({
 	onClickDayInYear,
 }: IYear) => {
 	const m = moment()
+	const today = m.format('YYYYMMDD')
 
 	const Generate = (year: any, month: any) => {
-		const today = m.format('YYYYMMDD')
 		m.set('year', year)
 		m.set('month', month)
 		const startWeek = m.clone().startOf('month').week()
@@ -89,7 +89,7 @@ const Year = ({
 										case 5:
 											return 'rgb(255, 106, 0)'
 										default:
-											return ''
+											return 'rgb(255, 106, 0)'
 									}
 								}
 								return (
@@ -114,23 +114,23 @@ const Year = ({
 			<>
 				{Array(12)
 					.fill(0)
-					.map((v, i) => (
-						<S.MonthWrapper id={i.toString()}>
-							<S.MonthTitle>
-								{m.add(i - 2, 'month').format('MMMM')}
-							</S.MonthTitle>
-							<S.YearRow>
-								<S.YearDay>SUN</S.YearDay>
-								<S.YearDay>MON</S.YearDay>
-								<S.YearDay>TUE</S.YearDay>
-								<S.YearDay>WED</S.YearDay>
-								<S.YearDay>THU</S.YearDay>
-								<S.YearDay>FRI</S.YearDay>
-								<S.YearDay>SAT</S.YearDay>
-							</S.YearRow>
-							{Generate(nowYear, i)}
-						</S.MonthWrapper>
-					))}
+					.map((v, i) => {
+						return (
+							<S.MonthWrapper id={i.toString()}>
+								<S.MonthTitle>{m.set('month', i).format('MMMM')}</S.MonthTitle>
+								<S.YearRow>
+									<S.YearDay>SUN</S.YearDay>
+									<S.YearDay>MON</S.YearDay>
+									<S.YearDay>TUE</S.YearDay>
+									<S.YearDay>WED</S.YearDay>
+									<S.YearDay>THU</S.YearDay>
+									<S.YearDay>FRI</S.YearDay>
+									<S.YearDay>SAT</S.YearDay>
+								</S.YearRow>
+								{Generate(nowYear, i)}
+							</S.MonthWrapper>
+						)
+					})}
 			</>
 		)
 	}

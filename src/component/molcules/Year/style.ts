@@ -34,7 +34,7 @@ export const YearBox = styled.div<YearBoxProps>`
         background-color: transparent !important;
     }
     &.yearSelected{
-        background-color: gray !important;
+        background-color: gray;
     }
 `
 
@@ -44,16 +44,16 @@ export const YearDay = styled.div`
     line-height: 2.5;
     float: left;
     text-align: center;
-    color:black;
+    color:black !important;
     border:1px solid white;
     transition: background-color .5s;
 `
 
 export const YearRow = styled.div`
-    &.year-box:first-child{
+    & div:first-child{
         color: red;
     }
-    &.year-box:last-child{
+    & div:last-child{
         color: rgb(61, 61, 255);
     }
 `
