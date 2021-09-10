@@ -52,6 +52,8 @@ const Week = ({ nowWeek, monthStorage, yearStorage, storage }: IWeek) => {
 									return 'FRI'
 								case 6:
 									return 'SAT'
+								default:
+									return ''
 							}
 						}
 
