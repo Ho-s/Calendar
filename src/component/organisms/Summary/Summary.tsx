@@ -3,14 +3,14 @@ import moment from 'moment'
 import * as S from './style'
 
 interface ISummary {
-  storage: any[] | any;
-  onClickDelete: any;
-  nowDay: number;
-  nowWeek: number;
-  nowMonth: number;
-  nowYear: number;
-  monthStorage: number;
-  yearStorage: number;
+	storage: any[] | any
+	onClickDelete: any
+	nowDay: number
+	nowWeek: number
+	nowMonth: number
+	nowYear: number
+	monthStorage: number
+	yearStorage: number
 }
 
 const Summary = ({
@@ -40,7 +40,7 @@ const Summary = ({
 						textShadow: '-1px 0 white, 0 1px white, 1px 0 white, 0 -1px white',
 					}}
 				>
-          Schedules of the week
+					Schedules of the week
 				</span>
 				{Array(7)
 					.fill(0)
@@ -50,11 +50,11 @@ const Summary = ({
 							.startOf('week')
 							.add(n + i, 'day')
 						const selectedColor =
-              Number(nowDay) === Number(current.format('D')) &&
-              Number(yearStorage) === nowYear &&
-              monthStorage === nowMonth
-              	? '#4D4FFF'
-              	: 'gray'
+							Number(nowDay) === Number(current.format('D')) &&
+							Number(yearStorage) === nowYear &&
+							monthStorage === nowMonth
+								? '#4D4FFF'
+								: 'gray'
 
 						const day: any[] = []
 						if (Number(current.format('MM')) === Number(monthStorage) + 1) {
@@ -173,7 +173,7 @@ const Summary = ({
 											fontSize: '15px',
 										}}
 									>
-                    There is no schedule in the week you selected
+										There is no schedule in the week you selected
 									</div>
 								)
 							}

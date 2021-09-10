@@ -3,13 +3,13 @@ import moment from 'moment'
 import * as S from './style'
 
 interface IMonth {
-  nowDay: number;
-  monthStorage: number;
-  yearStorage: number;
-  nowMonth: number;
-  nowYear: number;
-  onClickDayInMonth: () => void;
-  storage: any;
+	nowDay: number
+	monthStorage: number
+	yearStorage: number
+	nowMonth: number
+	nowYear: number
+	onClickDayInMonth: () => void
+	storage: any
 }
 
 const Month = ({
@@ -29,9 +29,9 @@ const Month = ({
 		m.set('month', nowMonth)
 		const startWeek = m.clone().startOf('month').week()
 		const endWeek =
-      m.clone().endOf('month').week() === 1
-      	? 53
-      	: m.clone().endOf('month').week()
+			m.clone().endOf('month').week() === 1
+				? 53
+				: m.clone().endOf('month').week()
 		const calendar = []
 		for (let week = startWeek; week <= endWeek; week++) {
 			calendar.push(
@@ -45,19 +45,19 @@ const Month = ({
 								.startOf('week')
 								.add(n + i, 'day')
 							const todaySelected =
-                today === current.format('YYYYMMDD') ? 'month-selected' : ''
+								today === current.format('YYYYMMDD') ? 'month-selected' : ''
 							const isSelected =
-                Number(nowDay) === Number(current.format('D')) &&
-                Number(yearStorage) === nowYear &&
-                monthStorage === nowMonth
-                	? 'monthSelected'
-                	: ''
+								Number(nowDay) === Number(current.format('D')) &&
+								Number(yearStorage) === nowYear &&
+								monthStorage === nowMonth
+									? 'monthSelected'
+									: ''
 							const isGrayed =
-                current.format('MM') === m.format('MM') ? '' : 'month-grayed'
+								current.format('MM') === m.format('MM') ? '' : 'month-grayed'
 							const clicking =
-                current.format('MM') === m.format('MM')
-                	? onClickDayInMonth
-                	: (e: any) => e.preventDefault()
+								current.format('MM') === m.format('MM')
+									? onClickDayInMonth
+									: (e: any) => e.preventDefault()
 
 							const day: any = []
 							if (current.format('MM') === m.format('MM')) {
@@ -151,7 +151,7 @@ const Month = ({
 								</S.MonthBox>
 							)
 						})}
-				</S.MonthRow>
+				</S.MonthRow>,
 			)
 		}
 		return calendar

@@ -120,12 +120,12 @@ const Main = () => {
 				.week() === 1 && e.target.childNodes[0].textContent > 24
 				? 53
 				: m
-					.set({
-						year: nowYear,
-						month: nowMonth,
-						date: e.target.childNodes[0].textContent,
-					})
-					.week()
+						.set({
+							year: nowYear,
+							month: nowMonth,
+							date: e.target.childNodes[0].textContent,
+						})
+						.week(),
 		)
 		setYearStorage(nowYear)
 		setMonthStorage(nowMonth)
@@ -136,7 +136,7 @@ const Main = () => {
 		Array(7).forEach((v, i) => {
 			if (
 				e.target.parentNode.childNodes[i].childNodes[0].textContent ===
-        e.target.childNodes[0].textContent
+				e.target.childNodes[0].textContent
 			) {
 				setWhatDay(i - 1)
 			}
@@ -155,12 +155,12 @@ const Main = () => {
 				.week() === 1 && e.target.childNodes[0].textContent > 24
 				? 53
 				: m
-					.set({
-						year: nowYear,
-						month: e.target.parentNode.parentNode.id,
-						date: e.target.childNodes[0].textContent,
-					})
-					.week()
+						.set({
+							year: nowYear,
+							month: e.target.parentNode.parentNode.id,
+							date: e.target.childNodes[0].textContent,
+						})
+						.week(),
 		)
 		setNowMonth(Number(e.target.parentNode.parentNode.id))
 		setYearStorage(nowYear)
@@ -272,7 +272,7 @@ const Main = () => {
 						month: Number(month - 1),
 						date: Number(day),
 					})
-					.week()
+					.week(),
 			),
 			startHours: startHours === 0 ? '00' : startHours,
 			startMinutes: startMinutes === 0 ? '00' : startMinutes,
@@ -284,12 +284,12 @@ const Main = () => {
 			for (let i = 0; i < storage.length; i++) {
 				if (
 					storage[i].startHours === blockStorage.startHours &&
-          storage[i].startMinutes === blockStorage.startMinutes &&
-          storage[i].endHours === blockStorage.endHours &&
-          storage[i].endMinutes === blockStorage.endMinutes &&
-          storage[i].year === blockStorage.year &&
-          storage[i].month === blockStorage.month &&
-          storage[i].day === blockStorage.day
+					storage[i].startMinutes === blockStorage.startMinutes &&
+					storage[i].endHours === blockStorage.endHours &&
+					storage[i].endMinutes === blockStorage.endMinutes &&
+					storage[i].year === blockStorage.year &&
+					storage[i].month === blockStorage.month &&
+					storage[i].day === blockStorage.day
 				) {
 					alert('There is same schedule alredy')
 					break

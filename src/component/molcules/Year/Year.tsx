@@ -3,12 +3,12 @@ import moment from 'moment'
 import * as S from './style'
 
 interface IYear {
-  nowDay: number;
-  nowWeek: number;
-  yearStorage: number;
-  storage: any;
-  nowYear: number;
-  onClickDayInYear: () => void;
+	nowDay: number
+	nowWeek: number
+	yearStorage: number
+	storage: any
+	nowYear: number
+	onClickDayInYear: () => void
 }
 
 const Year = ({
@@ -27,9 +27,9 @@ const Year = ({
 		m.set('month', month)
 		const startWeek = m.clone().startOf('month').week()
 		const endWeek =
-      m.clone().endOf('month').week() === 1
-      	? 53
-      	: m.clone().endOf('month').week()
+			m.clone().endOf('month').week() === 1
+				? 53
+				: m.clone().endOf('month').week()
 		const calendar = []
 		for (let week = startWeek; week <= endWeek; week++) {
 			calendar.push(
@@ -43,19 +43,19 @@ const Year = ({
 								.startOf('week')
 								.add(n + i, 'day')
 							const todaySelected =
-                today === current.format('YYYYMMDD') ? 'year-selected' : ''
+								today === current.format('YYYYMMDD') ? 'year-selected' : ''
 							const isSelected =
-                Number(nowDay) === Number(current.format('D')) &&
-                Number(yearStorage) === nowYear &&
-                nowWeek === week
-                	? 'yearSelected'
-                	: ''
+								Number(nowDay) === Number(current.format('D')) &&
+								Number(yearStorage) === nowYear &&
+								nowWeek === week
+									? 'yearSelected'
+									: ''
 							const isGrayed =
-                current.format('MM') === m.format('MM') ? '' : 'year-grayed'
+								current.format('MM') === m.format('MM') ? '' : 'year-grayed'
 							const clicking =
-                current.format('MM') === m.format('MM')
-                	? onClickDayInYear
-                	: (e: any) => e.preventDefault()
+								current.format('MM') === m.format('MM')
+									? onClickDayInYear
+									: (e: any) => e.preventDefault()
 							const day = []
 							if (current.format('MM') === m.format('MM')) {
 								{
@@ -88,7 +88,7 @@ const Year = ({
 								</S.YearBox>
 							)
 						})}
-				</S.YearRow>
+				</S.YearRow>,
 			)
 		}
 		return calendar

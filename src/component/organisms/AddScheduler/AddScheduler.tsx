@@ -3,26 +3,26 @@ import moment from 'moment'
 import * as S from './style'
 
 interface IAddScheduler {
-  title: string;
-  year: number;
-  month: number;
-  day: number;
-  startHours: number | string;
-  startMinutes: number | string;
-  endHours: number | string;
-  endMinutes: number | string;
-  color: string;
+	title: string
+	year: number
+	month: number
+	day: number
+	startHours: number | string
+	startMinutes: number | string
+	endHours: number | string
+	endMinutes: number | string
+	color: string
 
-  onChangeTitle: any;
-  onChangeYear: any;
-  onChangeMonth: any;
-  onChangeDay: any;
-  onChangeSHours: any;
-  onChangeSMinutes: any;
-  onChangeEHours: any;
-  onChangeEMinutes: any;
-  onChangeColor: any;
-  onClickSubmit: () => void;
+	onChangeTitle: any
+	onChangeYear: any
+	onChangeMonth: any
+	onChangeDay: any
+	onChangeSHours: any
+	onChangeSMinutes: any
+	onChangeEHours: any
+	onChangeEMinutes: any
+	onChangeColor: any
+	onClickSubmit: () => void
 }
 
 const AddScheduler = ({
@@ -73,10 +73,10 @@ const AddScheduler = ({
 		onChangeDay()
 		if (
 			day <=
-      m
-      	.set({ year: Number(year), month: Number(month - 1) })
-      	.endOf('month')
-      	.date()
+			m
+				.set({ year: Number(year), month: Number(month - 1) })
+				.endOf('month')
+				.date()
 		) {
 			setDayError(false)
 			setDayStyle('')
@@ -87,8 +87,8 @@ const AddScheduler = ({
 		onChangeSHours()
 		if (
 			Number(String(endHours) + String(endMinutes)) -
-        Number(String(startHours) + String(startMinutes)) <
-      0
+				Number(String(startHours) + String(startMinutes)) <
+			0
 		) {
 			setTimeError(false)
 			setTimeStyle('')
@@ -99,8 +99,8 @@ const AddScheduler = ({
 		onChangeSMinutes()
 		if (
 			Number(String(endHours) + String(endMinutes)) -
-        Number(String(startHours) + String(startMinutes)) <
-      0
+				Number(String(startHours) + String(startMinutes)) <
+			0
 		) {
 			setTimeError(false)
 			setTimeStyle('')
@@ -111,8 +111,8 @@ const AddScheduler = ({
 		onChangeEHours()
 		if (
 			Number(String(endHours) + String(endMinutes)) -
-        Number(String(startHours) + String(startMinutes)) <
-      0
+				Number(String(startHours) + String(startMinutes)) <
+			0
 		) {
 			setTimeError(false)
 			setTimeStyle('')
@@ -123,8 +123,8 @@ const AddScheduler = ({
 		onChangeEMinutes()
 		if (
 			Number(String(endHours) + String(endMinutes)) -
-        Number(String(startHours) + String(startMinutes)) <
-      0
+				Number(String(startHours) + String(startMinutes)) <
+			0
 		) {
 			setTimeError(false)
 			setTimeStyle('')
@@ -135,15 +135,15 @@ const AddScheduler = ({
 		if (title) {
 			if (
 				Number(String(endHours) + String(endMinutes)) -
-          Number(String(startHours) + String(startMinutes)) >
-        0
+					Number(String(startHours) + String(startMinutes)) >
+				0
 			) {
 				if (
 					day <=
-          m
-          	.set({ year: Number(year), month: Number(month - 1) })
-          	.endOf('month')
-          	.date()
+					m
+						.set({ year: Number(year), month: Number(month - 1) })
+						.endOf('month')
+						.date()
 				) {
 					onClickSubmit()
 				} else {
@@ -199,7 +199,7 @@ const AddScheduler = ({
 							value={month}
 							onChange={onChangeMonth}
 						></input>
-            /
+						/
 						<input
 							style={{ border: dayStyle }}
 							max={m
@@ -211,7 +211,7 @@ const AddScheduler = ({
 							value={day}
 							onChange={changeDay}
 						></input>
-            /
+						/
 						<input
 							max="9999"
 							min="1"
@@ -223,7 +223,7 @@ const AddScheduler = ({
 					{dayError && (
 						<S.SchedulerDayError>
 							<span>
-                This setting have to be under{' '}
+								This setting have to be under{' '}
 								{m
 									.set({ year: Number(year), month: Number(month - 1) })
 									.endOf('month')
@@ -243,7 +243,7 @@ const AddScheduler = ({
 							value={startHours}
 							onChange={changeSHours}
 						></input>
-            :
+						:
 						<input
 							max="59"
 							min="0"
@@ -263,7 +263,7 @@ const AddScheduler = ({
 							value={endHours}
 							onChange={changeEHours}
 						></input>
-            :
+						:
 						<input
 							max="59"
 							min="0"
@@ -286,7 +286,7 @@ const AddScheduler = ({
 			</S.SchedulerBody>
 			<S.SchedulerFoot>
 				<button onClick={clickSubmit} style={{ backgroundColor: color }}>
-          Add Event
+					Add Event
 				</button>
 			</S.SchedulerFoot>
 		</S.Scheduler>

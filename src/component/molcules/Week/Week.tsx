@@ -3,10 +3,10 @@ import moment from 'moment'
 import * as S from './style'
 
 interface IWeek {
-  nowWeek: number;
-  monthStorage: number;
-  yearStorage: number;
-  storage: any;
+	nowWeek: number
+	monthStorage: number
+	yearStorage: number
+	storage: any
 }
 
 const Week = ({ nowWeek, monthStorage, yearStorage, storage }: IWeek) => {
@@ -30,11 +30,11 @@ const Week = ({ nowWeek, monthStorage, yearStorage, storage }: IWeek) => {
 							.startOf('week')
 							.add(n + i, 'day')
 						const todaySelect =
-              today === current.format('YYYYMMDD') ? 'week-selected' : ''
+							today === current.format('YYYYMMDD') ? 'week-selected' : ''
 						const isGrayed =
-              Number(current.format('MM')) === Number(monthStorage) + 1
-              	? ''
-              	: 'week-grayed'
+							Number(current.format('MM')) === Number(monthStorage) + 1
+								? ''
+								: 'week-grayed'
 						const sun = i === 0 ? 'SUN' : ''
 						const mon = i === 1 ? 'MON' : ''
 						const tue = i === 2 ? 'TUE' : ''
@@ -103,16 +103,16 @@ const Week = ({ nowWeek, monthStorage, yearStorage, storage }: IWeek) => {
 									.fill(0)
 									.map((v, n) => {
 										const height: number =
-                      (Number(day[n].endHours) - Number(day[n].startHours)) *
-                        61 +
-                      Number(day[n].endMinutes) -
-                      Number(day[n].startMinutes)
+											(Number(day[n].endHours) - Number(day[n].startHours)) *
+												61 +
+											Number(day[n].endMinutes) -
+											Number(day[n].startMinutes)
 										const style = {
 											position: 'absolute',
 											top:
-                        Number(day[n].startHours) * 61 +
-                        Number(day[n].startMinutes) +
-                        48.55,
+												Number(day[n].startHours) * 61 +
+												Number(day[n].startMinutes) +
+												48.55,
 											right: 0,
 											width: '100%',
 											height: height,
@@ -195,7 +195,7 @@ const Week = ({ nowWeek, monthStorage, yearStorage, storage }: IWeek) => {
 						}}
 					>
 						<div style={{ color: 'rgb(47, 72, 218)' }}>
-              CW{m.set('week', nowWeek).format('W')}
+							CW{m.set('week', nowWeek).format('W')}
 						</div>
 						<div style={{ color: 'black', fontSize: '14px' }}>
 							{m.set('month', monthStorage).format('MMMM')}

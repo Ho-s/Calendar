@@ -3,19 +3,19 @@ import * as S from './style'
 import moment from 'moment'
 
 interface ICalendar {
-  nowDay: number;
-  nowWeek: number;
-  nowMonth: number;
-  nowYear: number;
-  monthStorage: number;
-  yearStorage: number;
-  storage: any;
-  onClickLeft: () => void;
-  onClickRight: () => void;
-  onClickDay: any;
-  onClickWeek: any;
-  setMonth: any;
-  setYear: any;
+	nowDay: number
+	nowWeek: number
+	nowMonth: number
+	nowYear: number
+	monthStorage: number
+	yearStorage: number
+	storage: any
+	onClickLeft: () => void
+	onClickRight: () => void
+	onClickDay: any
+	onClickWeek: any
+	setMonth: any
+	setYear: any
 }
 
 const Calendar = ({
@@ -39,18 +39,18 @@ const Calendar = ({
 		m.set('month', nowMonth)
 		const startWeek = m.clone().startOf('month').week()
 		const endWeek =
-      m.clone().endOf('month').week() === 1
-      	? 53
-      	: m.clone().endOf('month').week()
+			m.clone().endOf('month').week() === 1
+				? 53
+				: m.clone().endOf('month').week()
 		const calendar = []
 		for (let week = startWeek; week <= endWeek; week++) {
 			const thisWeekConst = Number(m.format('w')) === week ? 'today' : ''
 			const weekSelected =
-        Number(nowWeek) === week &&
-        Number(yearStorage) === nowYear &&
-        monthStorage === nowMonth
-        	? 'selected'
-        	: ''
+				Number(nowWeek) === week &&
+				Number(yearStorage) === nowYear &&
+				monthStorage === nowMonth
+					? 'selected'
+					: ''
 			calendar.push(
 				<S.Row key={week}>
 					<S.Cw
@@ -68,21 +68,21 @@ const Calendar = ({
 								.startOf('week')
 								.add(n + i, 'day')
 							const todaySelect =
-                m.format('YYYYMMDD') === current.format('YYYYMMDD')
-                	? 'today'
-                	: ''
+								m.format('YYYYMMDD') === current.format('YYYYMMDD')
+									? 'today'
+									: ''
 							const isSelected =
-                Number(nowDay) === Number(current.format('D')) &&
-                Number(yearStorage) === nowYear &&
-                monthStorage === nowMonth
-                	? 'selected'
-                	: ''
+								Number(nowDay) === Number(current.format('D')) &&
+								Number(yearStorage) === nowYear &&
+								monthStorage === nowMonth
+									? 'selected'
+									: ''
 							const clicking =
-                current.format('MM') === m.format('MM')
-                	? onClickDay
-                	: (e: any) => e.preventDefault()
+								current.format('MM') === m.format('MM')
+									? onClickDay
+									: (e: any) => e.preventDefault()
 							const isGrayed =
-                current.format('MM') === m.format('MM') ? '' : 'grayed'
+								current.format('MM') === m.format('MM') ? '' : 'grayed'
 
 							const day: any = []
 							if (current.format('MM') === m.format('MM')) {
@@ -136,7 +136,7 @@ const Calendar = ({
 								</S.Box>
 							)
 						})}
-				</S.Row>
+				</S.Row>,
 			)
 		}
 		return calendar
@@ -157,7 +157,7 @@ const Calendar = ({
 					{nowYear}
 				</span>
 				<button style={{ marginLeft: '10px' }} onClick={onClickRight}>
-          &gt;
+					&gt;
 				</button>
 				<button onClick={onClickLeft}>&lt;</button>
 			</S.Body>

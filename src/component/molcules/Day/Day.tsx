@@ -3,13 +3,13 @@ import moment from 'moment'
 import * as S from './style'
 
 interface IDay {
-  nowDay: number;
-  nowWeek: number;
-  monthStorage: number;
-  yearStorage: number;
-  whatDay: number | string;
-  storage: any;
-  onClickDeleteInDayTable: () => void;
+	nowDay: number
+	nowWeek: number
+	monthStorage: number
+	yearStorage: number
+	whatDay: number | string
+	storage: any
+	onClickDeleteInDayTable: () => void
 }
 
 const Day = ({
@@ -71,9 +71,9 @@ const Day = ({
 					.fill(0)
 					.map((v, i) => {
 						const height =
-              (Number(day[i].endHours) - Number(day[i].startHours)) * 61 +
-              Number(day[i].endMinutes) -
-              Number(day[i].startMinutes)
+							(Number(day[i].endHours) - Number(day[i].startHours)) * 61 +
+							Number(day[i].endMinutes) -
+							Number(day[i].startMinutes)
 						const style = {
 							position: 'absolute',
 							top: Number(day[i].startHours) * 61 + Number(day[i].startMinutes),
@@ -175,7 +175,7 @@ const Day = ({
 												marginRight: '20px',
 											}}
 										>
-                      date
+											date
 										</span>
 										<span>
 											{day[i].month}/{day[i].day}/{day[i].year}
@@ -189,7 +189,7 @@ const Day = ({
 												marginRight: '20px',
 											}}
 										>
-                      start
+											start
 										</span>
 										<span>
 											{day[i].startHours}:{day[i].startMinutes}
@@ -203,7 +203,7 @@ const Day = ({
 												marginRight: '20px',
 											}}
 										>
-                      ends
+											ends
 										</span>
 										<span>
 											{day[i].endHours}:{day[i].endMinutes}
@@ -218,7 +218,7 @@ const Day = ({
 												marginRight: '20px',
 											}}
 										>
-                      display
+											display
 										</span>
 										<div
 											style={{
@@ -242,7 +242,7 @@ const Day = ({
 										width: '24px',
 										height: '24px',
 										backgroundImage:
-                      'url(https://user-images.githubusercontent.com/71132893/103125964-2e5e3580-46d0-11eb-9cdd-15ce0c5ca318.png)',
+											'url(https://user-images.githubusercontent.com/71132893/103125964-2e5e3580-46d0-11eb-9cdd-15ce0c5ca318.png)',
 										cursor: 'pointer',
 									}}
 								></div>
@@ -279,7 +279,7 @@ const Day = ({
 						fontWeight: 600,
 					}}
 				>
-          CW{m.set('week', nowWeek).format('W')}
+					CW{m.set('week', nowWeek).format('W')}
 				</span>
 				<span
 					style={{

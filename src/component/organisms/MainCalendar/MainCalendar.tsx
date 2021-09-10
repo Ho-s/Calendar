@@ -7,18 +7,18 @@ import Year from '../../molcules/Year/Year'
 import * as S from './style'
 
 interface IMainCalendar {
-  nowDay: number;
-  nowWeek: number;
-  nowMonth: number;
-  nowYear: number;
-  whatDay: number | string;
-  monthStorage: number;
-  yearStorage: number;
-  storage: any;
-  onClickToday: () => void;
-  onClickDayInMonth: any;
-  onClickDayInYear: any;
-  onClickDeleteInDayTable: any;
+	nowDay: number
+	nowWeek: number
+	nowMonth: number
+	nowYear: number
+	whatDay: number | string
+	monthStorage: number
+	yearStorage: number
+	storage: any
+	onClickToday: () => void
+	onClickDayInMonth: any
+	onClickDayInYear: any
+	onClickDeleteInDayTable: any
 }
 
 const MainCalendar = ({
@@ -80,13 +80,13 @@ const MainCalendar = ({
 
 	const Generate = () => {
 		const todayStyle =
-      dayCheck &&
-      Number(nowDay) === m.date() &&
-      Number(nowWeek) === m.week() &&
-      monthStorage === m.month() &&
-      yearStorage === m.year()
-      	? 'clicked'
-      	: ''
+			dayCheck &&
+			Number(nowDay) === m.date() &&
+			Number(nowWeek) === m.week() &&
+			monthStorage === m.month() &&
+			yearStorage === m.year()
+				? 'clicked'
+				: ''
 		return (
 			<>
 				<div
@@ -94,20 +94,20 @@ const MainCalendar = ({
 					className={`${todayStyle}`}
 					style={{ position: 'absolute', left: '14px', lineHeight: 1.7 }}
 				>
-          Today
+					Today
 				</div>
 				<S.MainCalendarHeadMid>
 					<span onClick={onClickDay} className={dayCheck ? 'clicked' : ''}>
-            Day
+						Day
 					</span>
 					<span onClick={onClickWeek} className={weekCheck ? 'clicked' : ''}>
-            Week
+						Week
 					</span>
 					<span onClick={onClickMonth} className={monthCheck ? 'clicked' : ''}>
-            Month
+						Month
 					</span>
 					<span onClick={onClickYear} className={yearCheck ? 'clicked' : ''}>
-            Year
+						Year
 					</span>
 				</S.MainCalendarHeadMid>
 				<div
