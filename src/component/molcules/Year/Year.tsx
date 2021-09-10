@@ -20,7 +20,6 @@ const Year = ({
 	onClickDayInYear,
 }: IYear) => {
 	const m = moment()
-	const today = m.format('YYYYMMDD')
 
 	const Generate = (year: any, month: any) => {
 		m.set('year', year)
@@ -43,7 +42,9 @@ const Year = ({
 								.startOf('week')
 								.add(n + i, 'day')
 							const todaySelected =
-								today === current.format('YYYYMMDD') ? 'year-selected' : ''
+								m.format('YYYYMMDD') === current.format('YYYYMMDD')
+									? 'year-selected'
+									: ''
 							const isSelected =
 								Number(nowDay) === Number(current.format('D')) &&
 								Number(yearStorage) === nowYear &&

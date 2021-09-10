@@ -11,7 +11,6 @@ interface IWeek {
 
 const Week = ({ nowWeek, monthStorage, yearStorage, storage }: IWeek) => {
 	const m = moment()
-	const today = m.format('YYYYMMDD')
 	const [time, setTime] = useState(m.format('LT'))
 	const [location, setLocation] = useState(m.hours() * 61 + 51 + m.minutes())
 
@@ -30,7 +29,9 @@ const Week = ({ nowWeek, monthStorage, yearStorage, storage }: IWeek) => {
 							.startOf('week')
 							.add(n + i, 'day')
 						const todaySelect =
-							today === current.format('YYYYMMDD') ? 'week-selected' : ''
+							m.format('YYYYMMDD') === current.format('YYYYMMDD')
+								? 'week-selected'
+								: ''
 						const isGrayed =
 							Number(current.format('MM')) === Number(monthStorage) + 1
 								? ''
