@@ -177,31 +177,29 @@ const AddScheduler = ({
 	return (
 		<S.Scheduler>
 			<S.SchedulerHead>
-				<input
+				<S.SchedulerHeadInput
 					spellCheck="false"
 					placeholder={titleStyle.placeholder}
-					style={{
-						border: titleStyle.border,
-						backgroundColor: titleStyle.backgroundColor,
-						color: titleStyle.color,
-					}}
+					border={titleStyle.border}
+					backgroundColor={titleStyle.backgroundColor}
+					color={titleStyle.color}
 					onChange={changeTitle}
-				></input>
+				/>
 			</S.SchedulerHead>
 			<S.SchedulerBody>
 				<S.SchedulerBodyTime>
-					<span style={{ float: 'left' }}>date</span>
-					<div style={{ marginLeft: '20px', float: 'left' }}>
-						<input
+					<S.TimeSpan>date</S.TimeSpan>
+					<S.TimeDiv>
+						<S.NoStyleInput
 							max="12"
 							min="1"
 							type="number"
 							value={month}
 							onChange={onChangeMonth}
-						></input>
+						></S.NoStyleInput>
 						/
-						<input
-							style={{ border: dayStyle }}
+						<S.NoStyleInput
+							border={dayStyle}
 							max={m
 								.set({ year: Number(year), month: Number(month - 1) })
 								.endOf('month')
@@ -210,84 +208,82 @@ const AddScheduler = ({
 							type="number"
 							value={day}
 							onChange={changeDay}
-						></input>
+						></S.NoStyleInput>
 						/
-						<input
+						<S.NoStyleInput
 							max="9999"
 							min="1"
 							type="number"
 							value={year}
 							onChange={onChangeYear}
-						></input>
-					</div>
+						></S.NoStyleInput>
+					</S.TimeDiv>
 					{dayError && (
 						<S.SchedulerDayError>
-							<span>
-								This setting have to be under{' '}
-								{m
-									.set({ year: Number(year), month: Number(month - 1) })
-									.endOf('month')
-									.date() + 1}
-							</span>
+							This setting have to be under{' '}
+							{m
+								.set({ year: Number(year), month: Number(month - 1) })
+								.endOf('month')
+								.date() + 1}
 						</S.SchedulerDayError>
 					)}
 				</S.SchedulerBodyTime>
-				<S.SchedulerBodyTime style={{ border: timeStyle }}>
-					<span style={{ float: 'left' }}>starts</span>
-					<div style={{ marginLeft: '26px', float: 'left' }}>
-						<input
+				<S.SchedulerBodyTime border={timeStyle}>
+					<S.TimeSpan>starts</S.TimeSpan>
+					<S.TimeDiv>
+						<S.NoStyleInput
 							max="24"
 							min="0"
 							type="number"
-							style={{ marginRight: '10px' }}
 							value={startHours}
 							onChange={changeSHours}
-						></input>
+						></S.NoStyleInput>
 						:
-						<input
+						<S.NoStyleInput
 							max="59"
 							min="0"
-							style={{ marginLeft: '10px', marginRight: '130px' }}
 							type="number"
 							value={startMinutes}
 							onChange={changeSMinutes}
-						></input>
-					</div>
-					<span style={{ float: 'left', marginRight: '6px' }}>ends</span>
-					<div style={{ marginLeft: '26px', float: 'left' }}>
-						<input
+						></S.NoStyleInput>
+					</S.TimeDiv>
+					<S.TimeSpan> ends </S.TimeSpan>
+					<S.TimeDiv>
+						<S.NoStyleInput
 							max="24"
 							min="0"
 							type="number"
-							style={{ marginRight: '10px' }}
 							value={endHours}
 							onChange={changeEHours}
-						></input>
+						></S.NoStyleInput>
 						:
-						<input
+						<S.NoStyleInput
 							max="59"
 							min="0"
-							style={{ marginLeft: '10px' }}
 							type="number"
 							value={endMinutes}
 							onChange={changeEMinutes}
-						></input>
-					</div>
+						></S.NoStyleInput>
+					</S.TimeDiv>
 					{timeError && (
 						<S.SchedulerTimeError>
-							<span>Start time must not be earlier than end time</span>
+							Start time must not be earlier than end time
 						</S.SchedulerTimeError>
 					)}
 				</S.SchedulerBodyTime>
 				<S.SchedulerBodyColor>
-					<span style={{ float: 'left' }}>display</span>
-					<input type="color" value={color} onChange={onChangeColor}></input>
+					<S.SchedulerBodyColorSpan>display</S.SchedulerBodyColorSpan>
+					<S.SchedulerBodyColorInput
+						type="color"
+						value={color}
+						onChange={onChangeColor}
+					></S.SchedulerBodyColorInput>
 				</S.SchedulerBodyColor>
 			</S.SchedulerBody>
 			<S.SchedulerFoot>
-				<button onClick={clickSubmit} style={{ backgroundColor: color }}>
+				<S.SchedulerFootButton backgroundColor={color} onClick={clickSubmit}>
 					Add Event
-				</button>
+				</S.SchedulerFootButton>
 			</S.SchedulerFoot>
 		</S.Scheduler>
 	)

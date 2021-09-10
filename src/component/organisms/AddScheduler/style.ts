@@ -16,7 +16,15 @@ export const SchedulerHead = styled.div`
     padding: 5%;
     border-bottom: 1px solid #e9e9e9;
     position: relative;
-    & input{
+`
+
+interface SchedulerHeadInputProps {
+    border:string;
+    backgroundColor: string
+    color: string
+}
+
+export const SchedulerHeadInput = styled.input<SchedulerHeadInputProps>`
     padding: 0;
     outline: 0;
     height: 100%;
@@ -26,7 +34,9 @@ export const SchedulerHead = styled.div`
     float: left;
     text-decoration: none;
     transition: color .4s, background-color .4s;
-}
+    border:${(props)=>props.border};
+    background-color:${(props)=>props.backgroundColor};
+    color:${(props)=>props.color};
 `
 
 export const SchedulerBody = styled.div`
@@ -34,15 +44,26 @@ export const SchedulerBody = styled.div`
     padding: 5%;
     color: black;
     font-weight: 600;
-    & input{
-    border: 0;
-    outline: 0;
-}
 `
 
-export const SchedulerBodyTime = styled.div`
+interface NoStyleInputProps {
+    border?:string
+}
+
+export const NoStyleInput = styled.input<NoStyleInputProps>`
+    border: 0;
+    outline: 0;
+    border:${(props)=>props.border}
+`
+
+interface SchedulerBodyTimeProps {
+    border?:string
+}
+
+export const SchedulerBodyTime = styled.div<SchedulerBodyTimeProps>`
     height: 37px;
     margin-bottom: 20px;
+    border:${(props)=>props.border}
     & input:nth-child(1),
     & input:nth-child(2),
     & input:nth-child(4),
@@ -101,33 +122,54 @@ export const SchedulerDayError = styled.div`
 
 export const SchedulerBodyColor = styled.div`
     height: 40px;
-    & input {
-        height: 40px;
-        width: 40px;
-        margin:0 19px;
-        cursor: pointer;
-        float: left;
-        padding: 0;
-    }
+`
+
+export const SchedulerBodyColorSpan = styled.span`
+    float: left;
+`
+
+export const SchedulerBodyColorInput = styled.input`
+    height: 40px;
+    width: 40px;
+    margin:0 19px;
+    cursor: pointer;
+    float: left;
+    padding: 0;
 `
 
 export const SchedulerFoot = styled.div`
     width: 100%;
-    & button {
-        outline: none;
-        border: 0;
-        padding: 0;
-        color:white;
-        border-radius: 14px;
-        font-size: 20px;
-        width: 250px;
-        height: 50px;
-        margin:20px 49px;
-        cursor: pointer;
-        transition: background-color .4s;
-        &:hover{
-            background-color:#292726 !important;
-            border: 1px solid gray;
-        }
+
+`
+
+interface SchedulerFootButtonProps {
+    backgroundColor: string
+}
+
+export const SchedulerFootButton = styled.button<SchedulerFootButtonProps>`
+    outline: none;
+    border: 0;
+    padding: 0;
+    color:white;
+    border-radius: 14px;
+    font-size: 20px;
+    width: 250px;
+    height: 50px;
+    margin:20px 49px;
+    cursor: pointer;
+    transition: background-color .4s;
+    background-color: ${(props)=>props.backgroundColor};
+    &:hover{
+        background-color:#292726 !important;
+        border: 1px solid gray;
     }
+`
+
+export const TimeSpan = styled.span`
+float: left;
+`
+
+export const TimeDiv = styled.div`
+margin-left: 26px;
+float: left;
 `
