@@ -22,6 +22,7 @@ const Year = ({
 	const m = moment()
 
 	const Generate = (year: any, month: any) => {
+		const today = m.format('YYYYMMDD')
 		m.set('year', year)
 		m.set('month', month)
 		const startWeek = m.clone().startOf('month').week()
@@ -45,9 +46,7 @@ const Year = ({
 									.startOf('week')
 									.add(n + i, 'day')
 								const todaySelected =
-									m.format('YYYYMMDD') === current.format('YYYYMMDD')
-										? 'year-selected'
-										: ''
+									today === current.format('YYYYMMDD') ? 'year-selected' : ''
 								const isSelected =
 									Number(nowDay) === Number(current.format('D')) &&
 									Number(yearStorage) === nowYear &&

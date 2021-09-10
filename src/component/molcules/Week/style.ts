@@ -20,13 +20,6 @@ export const WeekBox = styled.div`
     transition: background-color .5s;
     font-size: 26px;
     width: calc((100vw - 430px) / 7);
-`
-
-export const WeekDay = styled.div`
-    float: left;
-    font-weight: 600;
-    color: #e9e9e9;
-    width: calc((100vw - 430px) / 7);
     &.week-selected span{
         background-color: skyblue;
         color: white;
@@ -37,6 +30,15 @@ export const WeekDay = styled.div`
         cursor: unset;
         background-color: transparent !important;
     }
+`
+
+export const WeekBoxSpan = styled.span``
+
+export const WeekDay = styled.div`
+    float: left;
+    font-weight: 600;
+    color: #e9e9e9;
+    width: calc((100vw - 430px) / 7);
 `
 
 interface RedLineProps {

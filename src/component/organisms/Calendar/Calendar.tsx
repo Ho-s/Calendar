@@ -35,6 +35,7 @@ const Calendar = ({
 }: ICalendar) => {
 	const m = moment()
 	const Generate = () => {
+		const today = m.format('YYYYMMDD')
 		m.set('year', nowYear)
 		m.set('month', nowMonth)
 		const startWeek = m.clone().startOf('month').week()
@@ -72,9 +73,7 @@ const Calendar = ({
 										.startOf('week')
 										.add(n + i, 'day')
 									const todaySelect =
-										m.format('YYYYMMDD') === current.format('YYYYMMDD')
-											? 'today'
-											: ''
+										today === current.format('YYYYMMDD') ? 'today' : ''
 									const isSelected =
 										Number(nowDay) === Number(current.format('D')) &&
 										Number(yearStorage) === nowYear &&

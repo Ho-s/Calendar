@@ -77,13 +77,6 @@ const MainCalendar = ({
 		setYearCheck(false)
 		onClickToday()
 	}
-	console.log(
-		dayCheck &&
-			Number(nowDay) === m.date() &&
-			Number(nowWeek) === m.week() &&
-			monthStorage === m.month() &&
-			yearStorage === m.year(),
-	)
 
 	const Generate = () => {
 		const todayStyle =

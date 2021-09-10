@@ -24,6 +24,7 @@ const Month = ({
 	const m = moment()
 
 	const Generate = () => {
+		const today = m.format('YYYYMMDD')
 		m.set('year', nowYear)
 		m.set('month', nowMonth)
 		const startWeek = m.clone().startOf('month').week()
@@ -44,9 +45,7 @@ const Month = ({
 								.startOf('week')
 								.add(n + i, 'day')
 							const todaySelected =
-								m.format('YYYYMMDD') === current.format('YYYYMMDD')
-									? 'month-selected'
-									: ''
+								today === current.format('YYYYMMDD') ? 'month-selected' : ''
 							const isSelected =
 								Number(nowDay) === Number(current.format('D')) &&
 								Number(yearStorage) === nowYear &&

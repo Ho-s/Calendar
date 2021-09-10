@@ -15,6 +15,7 @@ const Week = ({ nowWeek, monthStorage, yearStorage, storage }: IWeek) => {
 	const [location, setLocation] = useState(m.hours() * 61 + 51 + m.minutes())
 
 	const Generate = () => {
+		const today = m.format('YYYYMMDD')
 		m.set('year', yearStorage)
 		m.set('month', monthStorage)
 		m.set('week', nowWeek)
@@ -29,9 +30,7 @@ const Week = ({ nowWeek, monthStorage, yearStorage, storage }: IWeek) => {
 							.startOf('week')
 							.add(n + i, 'day')
 						const todaySelect =
-							m.format('YYYYMMDD') === current.format('YYYYMMDD')
-								? 'week-selected'
-								: ''
+							today === current.format('YYYYMMDD') ? 'week-selected' : ''
 						const isGrayed =
 							Number(current.format('MM')) === Number(monthStorage) + 1
 								? ''
@@ -75,7 +74,7 @@ const Week = ({ nowWeek, monthStorage, yearStorage, storage }: IWeek) => {
 								<S.BodyTopWrapper>
 									<S.WeekDay>{whatDay()}</S.WeekDay>
 									<S.WeekBox className={`${todaySelect} ${isGrayed}`} key={i}>
-										{current.format('D')}
+										<S.WeekBoxSpan>{current.format('D')}</S.WeekBoxSpan>
 									</S.WeekBox>
 								</S.BodyTopWrapper>
 								{Array(24)

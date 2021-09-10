@@ -53,7 +53,7 @@ export const TodayButton = styled.div`
 position: absolute;
 left: 14px;
 line-height: 1.7;
-&.clicked{
+    &.clicked{
         color: white;
         transition: background-color .5s, color .5s;
         background-color: red !important;
