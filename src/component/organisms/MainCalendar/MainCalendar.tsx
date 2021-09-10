@@ -77,6 +77,13 @@ const MainCalendar = ({
 		setYearCheck(false)
 		onClickToday()
 	}
+	console.log(
+		dayCheck &&
+			Number(nowDay) === m.date() &&
+			Number(nowWeek) === m.week() &&
+			monthStorage === m.month() &&
+			yearStorage === m.year(),
+	)
 
 	const Generate = () => {
 		const todayStyle =
@@ -89,7 +96,7 @@ const MainCalendar = ({
 				: ''
 		return (
 			<>
-				<S.TodayButton onClick={clickToday} className={`${todayStyle}`}>
+				<S.TodayButton onClick={clickToday} className={todayStyle}>
 					Today
 				</S.TodayButton>
 				<S.MainCalendarHeadMid>

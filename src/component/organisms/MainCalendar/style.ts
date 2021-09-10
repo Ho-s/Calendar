@@ -29,11 +29,7 @@ export const MainCalendarHead = styled.div`
 export const MainCalendarHeadMid = styled.div`
     margin:0 auto;
     line-height: 1.7;
-    &.clicked{
-    color: white;
-    transition: background-color .5s, color .5s;
-    background-color: red !important;
-}
+
 `
 
 export const HeadSpan = styled.span`
@@ -46,12 +42,22 @@ export const HeadSpan = styled.span`
     width: 80px;
     border-radius: 7px;
     display: inline-block;
+    &.clicked{
+        color: white;
+        transition: background-color .5s, color .5s;
+        background-color: red !important;
+    }
 `
 
 export const TodayButton = styled.div`
 position: absolute;
 left: 14px;
 line-height: 1.7;
+&.clicked{
+        color: white;
+        transition: background-color .5s, color .5s;
+        background-color: red !important;
+    }
 `
 
 export const Time = styled.div`
