@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import moment from 'moment'
 import * as S from './style'
 
-interface IDay {
+interface DayProps {
 	nowDay: number
 	nowWeek: number
 	monthStorage: number
@@ -20,104 +20,77 @@ const Day = ({
 	whatDay,
 	storage,
 	onClickDeleteInDayTable,
-}: IDay) => {
+}: DayProps) => {
 	const m = moment()
 	const [location, setLocation] = useState(m.hours() * 61 + m.minutes())
 	const [time, setTime] = useState(m.format('LT'))
 
-	const Generate = () => {
-		const today = m
-		today.set('year', yearStorage)
-		today.set('month', monthStorage)
-		today.set('week', nowWeek)
-		today.set('date', nowDay)
+	const TimeLinesLeft = Array(24)
+		.fill(0)
+		.map((v, i) => {
+			return (
+				<S.TimeLineLeft>
+					{i < 9 ? `0${i + 1}:00` : `${i + 1}:00`}
+				</S.TimeLineLeft>
+			)
+		})
+
+	const TimeLinesRight = () => {
+		m.set('year', yearStorage)
+		m.set('month', monthStorage)
+		m.set('week', nowWeek)
+		m.set('date', nowDay)
 		return (
 			<>
-				<div style={{ width: '48vw', float: 'left' }}>
-					<div style={{ width: '100%' }}>
-						{Array(24)
-							.fill(0)
-							.map(() => (
-								<div
-									style={{
-										float: 'left',
-										borderBottom: '1px solid #e9e9e9',
-										height: '60px',
-										width: '100%',
-										borderRight: '1px solid #e9e9e9',
-									}}
-								></div>
-							))}
-					</div>
-				</div>
+				<S.TimeLineRightWrapper>
+					{Array(24)
+						.fill(0)
+						.map(() => (
+							<S.TimeLineRight />
+						))}
+				</S.TimeLineRightWrapper>
 			</>
 		)
 	}
 
 	const TakeSchedule = () => {
 		const day: any = []
-		Array(storage.length).forEach((v, i) => {
-			if (storage[i].year === Number(yearStorage)) {
-				if (storage[i].month === Number(monthStorage + 1)) {
-					if (storage[i].day === Number(nowDay)) {
-						day.push(storage[i])
+		storage.forEach((v: any) => {
+			if (v.year === Number(yearStorage)) {
+				if (v.month === Number(monthStorage + 1)) {
+					if (v.day === Number(nowDay)) {
+						day.push(v)
 					}
 				}
 			}
 		})
 		return (
 			<>
-				{Array(day.length)
-					.fill(0)
-					.map((v, i) => {
-						const height =
-							(Number(day[i].endHours) - Number(day[i].startHours)) * 61 +
-							Number(day[i].endMinutes) -
-							Number(day[i].startMinutes)
-						const style = {
-							position: 'absolute',
-							top: Number(day[i].startHours) * 61 + Number(day[i].startMinutes),
-							right: 0,
-							width: '48vw',
-							height: height,
-						} as React.CSSProperties
-						const back = {
-							backgroundColor: day[i].color,
-							opacity: '0.5',
-							width: '100%',
-							height: '100%',
-							float: 'left',
-						} as React.CSSProperties
-						return (
-							<div style={style}>
-								<div style={back}></div>
-								<div
-									style={{
-										position: 'relative',
-										top: -height,
-										fontSize: '15px',
-										fontWeight: 600,
-										color: 'black',
-									}}
-								>
-									<div
-										style={{
-											position: 'absolute',
-											top: height,
-											left: 0,
-											backgroundColor: day[i].color,
-											height: height,
-											width: '10px',
-										}}
-									></div>
-									<div style={{ marginLeft: '10px' }}>
-										{day[i].startHours}:{day[i].startMinutes}
-									</div>
-									<div style={{ marginLeft: '10px' }}>{day[i].title}</div>
-								</div>
-							</div>
-						)
-					})}
+				{day.map((v: any) => {
+					const height =
+						(Number(v.endHours) - Number(v.startHours)) * 61 +
+						Number(v.endMinutes) -
+						Number(v.startMinutes)
+					return (
+						<S.ScheduleWrapper
+							top={Number(v.startHours) * 61 + Number(v.startMinutes)}
+							height={height}
+						>
+							<S.ScheduleBack backgroundColor={v.color} />
+							<S.ScheduleTextWrapper top={-height}>
+								<S.ScheduleColor
+									top={height}
+									backgroundColor={v.color}
+									height={height}
+								/>
+								<S.ScheduleText>
+									{v.startHours}:{v.startMinutes}
+								</S.ScheduleText>
+								<S.ScheduleText>{v.title}</S.ScheduleText>
+							</S.ScheduleTextWrapper>
+						</S.ScheduleWrapper>
+					)
+				})}
 			</>
 		)
 	}
@@ -125,140 +98,54 @@ const Day = ({
 	const MakeATable = () => {
 		const day: any = []
 		{
-			Array(storage.length)
-				.fill(0)
-				.map((v, i) => {
-					if (storage[i].year === Number(yearStorage)) {
-						if (storage[i].month === Number(monthStorage + 1)) {
-							if (storage[i].day === Number(nowDay)) {
-								day.push(storage[i])
-							}
+			storage.forEach((v: any) => {
+				if (v.year === Number(yearStorage)) {
+					if (v.month === Number(monthStorage + 1)) {
+						if (v.day === Number(nowDay)) {
+							day.push(v)
 						}
 					}
-				})
+				}
+			})
 		}
 		return (
 			<S.DayTable>
 				<>
-					{Array(day.length)
-						.fill(0)
-						.map((v, i) => (
-							<div
-								data-name={day[i].name}
-								style={{
-									position: 'relative',
-									marginBottom: '20px',
-									border: '1px solid #e9e9e9',
-									backgroundColor: 'mintcream',
-								}}
-							>
-								<div
-									style={{
-										width: '253px',
-										textOverflow: 'ellipsis',
-										overflow: 'hidden',
-										whiteSpace: 'nowrap',
-										borderBottom: '1px solid #e9e9e9',
-										padding: '15px',
-										fontWeight: 600,
-										fontSize: '20px',
-									}}
-								>
-									{day[i].title}
-								</div>
-								<div style={{ width: '300px', padding: '15px' }}>
-									<div style={{ marginBottom: '10px' }}>
-										<span
-											style={{
-												fontSize: '17px',
-												fontWeight: 600,
-												marginRight: '20px',
-											}}
-										>
-											date
-										</span>
-										<span>
-											{day[i].month}/{day[i].day}/{day[i].year}
-										</span>
-									</div>
-									<div style={{ marginBottom: '10px' }}>
-										<span
-											style={{
-												fontSize: '17px',
-												fontWeight: 600,
-												marginRight: '20px',
-											}}
-										>
-											start
-										</span>
-										<span>
-											{day[i].startHours}:{day[i].startMinutes}
-										</span>
-									</div>
-									<div style={{ marginBottom: '10px' }}>
-										<span
-											style={{
-												fontSize: '17px',
-												fontWeight: 600,
-												marginRight: '20px',
-											}}
-										>
-											ends
-										</span>
-										<span>
-											{day[i].endHours}:{day[i].endMinutes}
-										</span>
-									</div>
-									<div style={{ height: '20px', marginBottom: '10px' }}>
-										<span
-											style={{
-												float: 'left',
-												fontSize: '17px',
-												fontWeight: 600,
-												marginRight: '20px',
-											}}
-										>
-											display
-										</span>
-										<div
-											style={{
-												float: 'left',
-												width: '20px',
-												marginRight: '200px',
-												height: '20px',
-												backgroundColor: day[i].color,
-											}}
-										></div>
-									</div>
-								</div>
-								<div
-									onClick={onClickDeleteInDayTable}
-									style={{
-										position: 'absolute',
-										top: '15px',
-										right: '15px',
-										backgroundRepeat: 'none',
-										backgroundSize: 'contain',
-										width: '24px',
-										height: '24px',
-										backgroundImage:
-											'url(https://user-images.githubusercontent.com/71132893/103125964-2e5e3580-46d0-11eb-9cdd-15ce0c5ca318.png)',
-										cursor: 'pointer',
-									}}
-								></div>
-							</div>
-						))}
+					{day.map((v: any) => (
+						<S.TableWrapper data-name={v.name}>
+							<S.TableTitle>{v.title}</S.TableTitle>
+							<S.TableBody>
+								<S.TableTextWrapper>
+									<S.TableTextLeft>date</S.TableTextLeft>
+									<S.TableTextRigth>
+										{v.month}/{v.day}/{v.year}
+									</S.TableTextRigth>
+								</S.TableTextWrapper>
+								<S.TableTextWrapper>
+									<S.TableTextLeft>start</S.TableTextLeft>
+									<S.TableTextRigth>
+										{v.startHours}:{v.startMinutes}
+									</S.TableTextRigth>
+								</S.TableTextWrapper>
+								<S.TableTextWrapper>
+									<S.TableTextLeft>ends</S.TableTextLeft>
+									<S.TableTextRigth>
+										{v.endHours}:{v.endMinutes}
+									</S.TableTextRigth>
+								</S.TableTextWrapper>
+								<S.TableTextWrapper>
+									<S.TableTextLeft>display</S.TableTextLeft>
+									<S.TableDisplay backgroundColor={v.color}></S.TableDisplay>
+								</S.TableTextWrapper>
+							</S.TableBody>
+							<S.TableDeleteButton
+								onClick={onClickDeleteInDayTable}
+							></S.TableDeleteButton>
+						</S.TableWrapper>
+					))}
 				</>
 			</S.DayTable>
 		)
-	}
-
-	const whatDayToday = () => {
-		if (whatDay === -1) {
-			return m.set('date', nowDay).format('dddd')
-		} else {
-			return m.day(whatDay).format('dddd')
-		}
 	}
 
 	useEffect(() => {
@@ -271,88 +158,26 @@ const Day = ({
 
 	return (
 		<S.DayComponent>
-			<div style={{ marginLeft: '30px', height: '56px' }}>
-				<span
-					style={{
-						color: 'rgb(47, 72, 218)',
-						fontSize: '15px',
-						fontWeight: 600,
-					}}
-				>
-					CW{m.set('week', nowWeek).format('W')}
-				</span>
-				<span
-					style={{
-						marginLeft: '20px',
-						color: 'rgb(47, 72, 218)',
-						fontSize: '40px',
-						fontWeight: 600,
-					}}
-				>
-					{whatDayToday()}
-				</span>
-				<span
-					style={{
-						marginLeft: '10px',
-						color: 'black',
-						fontSize: '25px',
-						fontWeight: 600,
-					}}
-				>
-					{m.set('month', monthStorage).format('MMMM')}
-					{nowDay},
-				</span>
-				<span style={{ color: 'red', fontSize: '40px', fontWeight: 600 }}>
-					{yearStorage}
-				</span>
-			</div>
-			<div
-				style={{
-					position: 'relative',
-					float: 'left',
-					height: '89vh',
-					overflowY: 'auto',
-					overflowX: 'hidden',
-				}}
-			>
-				<div
-					style={{
-						zIndex: 3,
-						borderBottom: '1px solid red',
-						width: '100%',
-						position: 'absolute',
-						top: `${location}px`,
-					}}
-				>
-					<div style={{ fontWeight: 600, color: 'red', height: '0' }}>
-						{time}
-					</div>
-				</div>
+			<S.DateStorage>
+				<S.WeekStorage>CW{m.set('week', nowWeek).format('W')}</S.WeekStorage>
+				<S.TodayStorage>
+					{whatDay === -1
+						? m.set('date', nowDay).format('dddd')
+						: m.day(whatDay).format('dddd')}
+				</S.TodayStorage>
+				<S.MonthStorage>
+					{`${m.set('month', monthStorage).format('MMMM')}${nowDay}`}
+				</S.MonthStorage>
+				<S.YearStorage>{yearStorage}</S.YearStorage>
+			</S.DateStorage>
+			<S.TimeTable>
+				<S.RedLineWrapper top={`${location}px`}>
+					<S.RedLine>{time}</S.RedLine>
+				</S.RedLineWrapper>
 				<TakeSchedule />
-				<S.DayLeft>
-					{Array(24)
-						.fill(0)
-						.map((v, i) => {
-							return (
-								<div
-									style={{
-										color: 'gray',
-										fontWeight: 600,
-										textAlign: 'right',
-										lineHeight: '7.6',
-										float: 'left',
-										height: '61px',
-										width: '100%',
-										borderRight: '1px solid #e9e9e9',
-									}}
-								>
-									{`${i + 1}:00`}
-								</div>
-							)
-						})}
-				</S.DayLeft>
-				<Generate />
-			</div>
+				<S.DayLeft>{TimeLinesLeft}</S.DayLeft>
+				<TimeLinesRight />
+			</S.TimeTable>
 			<MakeATable />
 		</S.DayComponent>
 	)
