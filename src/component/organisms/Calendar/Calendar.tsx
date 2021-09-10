@@ -118,7 +118,7 @@ const Calendar = ({
 											<S.ThisDayWrapper>
 												{day.map((v: any) => {
 													return (
-														<S.ThisDay backgroundColor={v.color}></S.ThisDay>
+														<S.ThisDay key={v.color} backgroundColor={v.color}></S.ThisDay>
 													)
 												})}
 											</S.ThisDayWrapper>

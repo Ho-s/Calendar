@@ -76,20 +76,20 @@ const Year = ({
 
 								const color = () => {
 									switch (day.length) {
-										case 0:
-											return ''
-										case 1:
-											return 'rgb(229, 255, 0)'
-										case 2:
-											return 'rgb(255, 238, 0)'
-										case 3:
-											return 'rgb(255, 204, 0)'
-										case 4:
-											return 'rgb(255, 170, 0)'
-										case 5:
-											return 'rgb(255, 106, 0)'
-										default:
-											return 'rgb(255, 106, 0)'
+									case 0:
+										return ''
+									case 1:
+										return 'rgb(229, 255, 0)'
+									case 2:
+										return 'rgb(255, 238, 0)'
+									case 3:
+										return 'rgb(255, 204, 0)'
+									case 4:
+										return 'rgb(255, 170, 0)'
+									case 5:
+										return 'rgb(255, 106, 0)'
+									default:
+										return 'rgb(255, 106, 0)'
 									}
 								}
 								return (
@@ -116,7 +116,7 @@ const Year = ({
 					.fill(0)
 					.map((v, i) => {
 						return (
-							<S.MonthWrapper id={i.toString()}>
+							<S.MonthWrapper key={i} id={i.toString()}>
 								<S.MonthTitle>{m.set('month', i).format('MMMM')}</S.MonthTitle>
 								<S.YearRow>
 									<S.YearDay>SUN</S.YearDay>

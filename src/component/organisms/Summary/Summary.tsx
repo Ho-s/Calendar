@@ -86,7 +86,7 @@ const Summary = ({
 										{current.format('dddd')}
 									</S.Date>
 									{day.map((v: any) => (
-										<S.SummarySchedule data-name={v.name}>
+										<S.SummarySchedule key={v.name} data-name={v.name}>
 											<S.SummaryScheduleColor
 												backgroundColor={v.color}
 											></S.SummaryScheduleColor>

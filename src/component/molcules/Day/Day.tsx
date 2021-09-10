@@ -29,7 +29,7 @@ const Day = ({
 		.fill(0)
 		.map((v, i) => {
 			return (
-				<S.TimeLineLeft>
+				<S.TimeLineLeft key={i}>
 					{i < 9 ? `0${i + 1}:00` : `${i + 1}:00`}
 				</S.TimeLineLeft>
 			)
@@ -45,8 +45,8 @@ const Day = ({
 				<S.TimeLineRightWrapper>
 					{Array(24)
 						.fill(0)
-						.map(() => (
-							<S.TimeLineRight />
+						.map((v, i) => (
+							<S.TimeLineRight key={i}/>
 						))}
 				</S.TimeLineRightWrapper>
 			</>
@@ -72,7 +72,7 @@ const Day = ({
 						Number(v.endMinutes) -
 						Number(v.startMinutes)
 					return (
-						<S.ScheduleWrapper
+						<S.ScheduleWrapper key={v}
 							top={Number(v.startHours) * 61 + Number(v.startMinutes)}
 							height={height}
 						>
@@ -108,7 +108,7 @@ const Day = ({
 			<S.DayTable>
 				<>
 					{day.map((v: any) => (
-						<S.TableWrapper data-name={v.name}>
+						<S.TableWrapper key={v.name} data-name={v.name}>
 							<S.TableTitle>{v.title}</S.TableTitle>
 							<S.TableBody>
 								<S.TableTextWrapper>

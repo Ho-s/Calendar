@@ -97,7 +97,7 @@ const Month = ({
 									<S.DaySpan>{current.format('D')}</S.DaySpan>
 									<S.MonthDisplay>
 										{day.map((v: any) => (
-											<S.ScheduleWrapper>
+											<S.ScheduleWrapper key={v}>
 												<S.ScheduleColor backgroundColor={v.color} />
 												<S.ScheduleTitle>{v.title}</S.ScheduleTitle>
 												<S.ScheduleTime>
