@@ -29,70 +29,85 @@ const Year = ({
 			m.clone().endOf('month').week() === 1
 				? 53
 				: m.clone().endOf('month').week()
-		const calendar = []
-		for (let week = startWeek; week <= endWeek; week++) {
-			calendar.push(
-				<S.YearRow key={week}>
-					{Array(7)
-						.fill(0)
-						.map((n, i) => {
-							const current = m
-								.clone()
-								.week(week)
-								.startOf('week')
-								.add(n + i, 'day')
-							const todaySelected =
-								m.format('YYYYMMDD') === current.format('YYYYMMDD')
-									? 'year-selected'
-									: ''
-							const isSelected =
-								Number(nowDay) === Number(current.format('D')) &&
-								Number(yearStorage) === nowYear &&
-								nowWeek === week
-									? 'yearSelected'
-									: ''
-							const isGrayed =
-								current.format('MM') === m.format('MM') ? '' : 'year-grayed'
-							const clicking =
-								current.format('MM') === m.format('MM')
-									? onClickDayInYear
-									: (e: any) => e.preventDefault()
-							const day = []
-							if (current.format('MM') === m.format('MM')) {
-								{
-									Array(storage.length).forEach((v, n) => {
-										if (storage[n].year === Number(current.year())) {
-											if (storage[n].month === Number(current.month() + 1)) {
-												if (storage[n].day === Number(current.date())) {
-													day.push(storage[n])
+		const calendar = Array(endWeek - startWeek + 1)
+			.fill(0)
+			.map((v, i) => startWeek + i)
+		return (
+			<>
+				{calendar.map((v: any) => (
+					<S.YearRow key={v}>
+						{Array(7)
+							.fill(0)
+							.map((n, i) => {
+								const current = m
+									.clone()
+									.week(v)
+									.startOf('week')
+									.add(n + i, 'day')
+								const todaySelected =
+									m.format('YYYYMMDD') === current.format('YYYYMMDD')
+										? 'year-selected'
+										: ''
+								const isSelected =
+									Number(nowDay) === Number(current.format('D')) &&
+									Number(yearStorage) === nowYear &&
+									nowWeek === v
+										? 'yearSelected'
+										: ''
+								const isGrayed =
+									current.format('MM') === m.format('MM') ? '' : 'year-grayed'
+								const clicking =
+									current.format('MM') === m.format('MM')
+										? onClickDayInYear
+										: (e: any) => e.preventDefault()
+								const day = []
+								if (current.format('MM') === m.format('MM')) {
+									{
+										storage.forEach((v: any) => {
+											if (v.year === Number(current.year())) {
+												if (v.month === Number(current.month() + 1)) {
+													if (v.day === Number(current.date())) {
+														day.push(v)
+													}
 												}
 											}
-										}
-									})
+										})
+									}
 								}
-							}
-							const zero = day.length === 0 ? '' : ''
-							const one = day.length === 1 ? 'rgb(229, 255, 0)' : ''
-							const two = day.length === 2 ? 'rgb(255, 238, 0)' : ''
-							const three = day.length === 3 ? 'rgb(255, 204, 0)' : ''
-							const four = day.length === 4 ? 'rgb(255, 170, 0)' : ''
-							const five = day.length >= 5 ? 'rgb(255, 106, 0)' : ''
-							const color = `${zero}${one}${two}${three}${four}${five}`
-							return (
-								<S.YearBox
-									onClick={clicking}
-									style={{ backgroundColor: color }}
-									className={`${todaySelected} ${isGrayed} ${isSelected}`}
-									key={i}
-								>
-									{current.format('D')}
-								</S.YearBox>
-							)
-						})}
-				</S.YearRow>,
-			)
-		}
-		return calendar
+
+								const color = () => {
+									switch (day.length) {
+										case 0:
+											return ''
+										case 1:
+											return 'rgb(229, 255, 0)'
+										case 2:
+											return 'rgb(255, 238, 0)'
+										case 3:
+											return 'rgb(255, 204, 0)'
+										case 4:
+											return 'rgb(255, 170, 0)'
+										case 5:
+											return 'rgb(255, 106, 0)'
+										default:
+											return ''
+									}
+								}
+								return (
+									<S.YearBox
+										backgroundColor={color()}
+										onClick={clicking}
+										className={`${todaySelected} ${isGrayed} ${isSelected}`}
+										key={i}
+									>
+										{current.format('D')}
+									</S.YearBox>
+								)
+							})}
+					</S.YearRow>
+				))}
+			</>
+		)
 	}
 
 	const GenerateWrap = () => {
@@ -101,43 +116,21 @@ const Year = ({
 				{Array(12)
 					.fill(0)
 					.map((v, i) => (
-						<div
-							id={i.toString()}
-							style={{
-								marginRight: '10px',
-								height: '28vh',
-								float: 'left',
-								marginTop: '20px',
-							}}
-						>
-							<div style={{ fontWeight: 600, marginBottom: '5px' }}>
+						<S.MonthWrapper id={i.toString()}>
+							<S.MonthTitle>
 								{m.add(i - 2, 'month').format('MMMM')}
-							</div>
+							</S.MonthTitle>
 							<S.YearRow>
-								<S.YearDay>
-									<span>SUN</span>
-								</S.YearDay>
-								<S.YearDay>
-									<span>MON</span>
-								</S.YearDay>
-								<S.YearDay>
-									<span>TUE</span>
-								</S.YearDay>
-								<S.YearDay>
-									<span>WED</span>
-								</S.YearDay>
-								<S.YearDay>
-									<span>THU</span>
-								</S.YearDay>
-								<S.YearDay>
-									<span>FRI</span>
-								</S.YearDay>
-								<S.YearDay>
-									<span>SAT</span>
-								</S.YearDay>
+								<S.YearDay>SUN</S.YearDay>
+								<S.YearDay>MON</S.YearDay>
+								<S.YearDay>TUE</S.YearDay>
+								<S.YearDay>WED</S.YearDay>
+								<S.YearDay>THU</S.YearDay>
+								<S.YearDay>FRI</S.YearDay>
+								<S.YearDay>SAT</S.YearDay>
 							</S.YearRow>
 							{Generate(nowYear, i)}
-						</div>
+						</S.MonthWrapper>
 					))}
 			</>
 		)
@@ -145,7 +138,7 @@ const Year = ({
 
 	return (
 		<S.YearComponent>
-			<div style={{ color: 'red', fontSize: '30px' }}>{nowYear}</div>
+			<S.YearTitle>{nowYear}</S.YearTitle>
 			{GenerateWrap()}
 		</S.YearComponent>
 	)

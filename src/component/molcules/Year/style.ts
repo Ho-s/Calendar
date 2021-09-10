@@ -7,7 +7,11 @@ export const YearComponent = styled.div`
     background-color: white;
 `
 
-export const YearBox = styled.div`
+interface YearBoxProps {
+    backgroundColor: string
+}
+
+export const YearBox = styled.div<YearBoxProps>`
     width: 2.6vw;
     height: 3.3vh;
     line-height: 2.5;
@@ -17,6 +21,7 @@ export const YearBox = styled.div`
     border:1px solid white;
     cursor: pointer;
     transition: background-color .5s;
+    background-color: ${(props)=>props.backgroundColor};
     &:hover{
         background-color: green;
     }
@@ -51,4 +56,21 @@ export const YearRow = styled.div`
     &.year-box:last-child{
         color: rgb(61, 61, 255);
     }
+`
+
+export const YearTitle = styled.div`
+color: red;
+font-size: 30px;
+`
+
+export const MonthWrapper = styled.div`
+margin-right: 10px;
+height: 28vh;
+float: left;
+margin-top: 20px;
+`
+
+export const MonthTitle = styled.div`
+font-weight: 600;
+margin-bottom: 5px;
 `
