@@ -32,9 +32,12 @@ const Month:React.FunctionComponent<MonthProps> = ({
 			m.clone().endOf('month').week() === 1
 				? 53
 				: m.clone().endOf('month').week()
-		const calendar = []
-		for (let week = startWeek; week <= endWeek; week++) {
-			calendar.push(
+		const calendar = Array(endWeek - startWeek + 1)
+			.fill(0)
+			.map((v, i) => startWeek + i)
+		return(
+			<>
+				{calendar.map((week:any)=>(
 				<S.MonthRow key={week}>
 					{Array(7)
 						.fill(0)
@@ -109,10 +112,12 @@ const Month:React.FunctionComponent<MonthProps> = ({
 								</S.MonthBox>
 							)
 						})}
-				</S.MonthRow>,
-			)
-		}
-		return calendar
+					</S.MonthRow>
+				))}
+			</>
+		)
+
+			
 	}
 
 	return (
