@@ -4,6 +4,7 @@ import Day from '../../molcules/Day/Day'
 import Week from '../../molcules/Week/Week'
 import Month from '../../molcules/Month/Month'
 import Year from '../../molcules/Year/Year'
+import useInterval from '../../utils/useInterval'
 import * as S from './style'
 
 interface MainCalendarProps {
@@ -41,8 +42,6 @@ const MainCalendar: React.FunctionComponent<MainCalendarProps> = ({
 	const [monthCheck, setMonthCheck] = useState<boolean>(false)
 	const [yearCheck, setYearCheck] = useState<boolean>(false)
 	const [timeDetail, setTimeDetail] = useState<string>(m.format('HH:mm:ss'))
-	const [location, setLocation] = useState(m.hours() * 61 + m.minutes())
-	const [lineTime, setlineTime] = useState(m.format('LT'))
 
 	const onClickDay = () => {
 		setDayCheck(true)
@@ -125,20 +124,9 @@ const MainCalendar: React.FunctionComponent<MainCalendarProps> = ({
 		)
 	}
 
-	useEffect(() => {
-		const timer = setTimeout(() => {
-			setTimeDetail(m.format('HH:mm:ss'))
-		}, 1000)
-		return () => clearTimeout(timer)
-	}, [])
-
-	// useEffect(() => {
-	// 	const timer = setTimeout(() => {
-	// 		setLocation(m.hours() * 61 + 51 + m.minutes())
-	// 		setTime(m.format('LT'))
-	// 	}, 5000)
-	// 	return () => clearTimeout(timer)
-	// }, [time, location])
+	useInterval(() => {
+		setTimeDetail(m.format('HH:mm:ss'))
+	}, 1000)
 
 	return (
 		<S.MainCalendar>
@@ -154,8 +142,6 @@ const MainCalendar: React.FunctionComponent<MainCalendarProps> = ({
 					whatDay={whatDay}
 					storage={storage}
 					onClickDeleteInDayTable={onClickDeleteInDayTable}
-					location={location}
-					lineTime={lineTime}
 				/>
 			)}
 			{weekCheck && (
@@ -164,8 +150,6 @@ const MainCalendar: React.FunctionComponent<MainCalendarProps> = ({
 					monthStorage={monthStorage}
 					yearStorage={yearStorage}
 					storage={storage}
-					location={location}
-					lineTime={lineTime}
 				/>
 			)}
 			{monthCheck && (

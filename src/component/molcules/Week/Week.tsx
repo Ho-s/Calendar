@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
+import useInterval from '../../utils/useInterval'
 import moment from 'moment'
 import * as S from './style'
 
@@ -7,8 +8,6 @@ interface WeekProps {
 	monthStorage: number
 	yearStorage: number
 	storage: any
-	location: number
-	lineTime: string
 }
 
 const Week: React.FunctionComponent<WeekProps> = ({
@@ -16,11 +15,13 @@ const Week: React.FunctionComponent<WeekProps> = ({
 	monthStorage,
 	yearStorage,
 	storage,
-	location,
-	lineTime,
 }) => {
 	const m = moment()
 	const today = m.format('YYYYMMDD')
+	const [weekLocation, setWeekLocation] = useState(
+		m.hours() * 61 + 51 + m.minutes(),
+	)
+	const [lineTime, setLineTime] = useState(m.format('LT'))
 
 	const Generate = () => {
 		m.set('year', yearStorage)
@@ -124,6 +125,10 @@ const Week: React.FunctionComponent<WeekProps> = ({
 			</>
 		)
 	}
+	useInterval(() => {
+		setWeekLocation(m.hours() * 61 + 51 + m.minutes())
+		setLineTime(m.format('LT'))
+	}, 1000)
 
 	return (
 		<S.WeekComponent>
@@ -144,7 +149,7 @@ const Week: React.FunctionComponent<WeekProps> = ({
 					})}
 			</S.WeekLeft>
 			<Generate />
-			<S.RedLine top={`${location}px`}>{lineTime}</S.RedLine>
+			<S.RedLine top={`${weekLocation}px`}>{lineTime}</S.RedLine>
 		</S.WeekComponent>
 	)
 }

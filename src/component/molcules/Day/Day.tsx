@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
+import useInterval from '../../utils/useInterval'
 import moment from 'moment'
 import * as S from './style'
 
@@ -10,8 +11,6 @@ interface DayProps {
 	whatDay: number | string
 	storage: any
 	onClickDeleteInDayTable: () => void
-	location: number
-	lineTime: string
 }
 
 const Day: React.FunctionComponent<DayProps> = ({
@@ -22,10 +21,10 @@ const Day: React.FunctionComponent<DayProps> = ({
 	whatDay,
 	storage,
 	onClickDeleteInDayTable,
-	location,
-	lineTime,
 }) => {
 	const m = moment()
+	const [dayLocation, setDayLocation] = useState(m.hours() * 61 + m.minutes())
+	const [lineTime, setLineTime] = useState(m.format('LT'))
 
 	const TimeLinesLeft = Array(24)
 		.fill(0)
@@ -146,6 +145,10 @@ const Day: React.FunctionComponent<DayProps> = ({
 			</S.DayTable>
 		)
 	}
+	useInterval(() => {
+		setDayLocation(m.hours() * 61 + m.minutes())
+		setLineTime(m.format('LT'))
+	}, 1000)
 
 	return (
 		<S.DayComponent>
@@ -162,7 +165,7 @@ const Day: React.FunctionComponent<DayProps> = ({
 				<S.YearStorage>{yearStorage}</S.YearStorage>
 			</S.DateStorage>
 			<S.TimeTable>
-				<S.RedLineWrapper top={`${location}px`}>
+				<S.RedLineWrapper top={`${dayLocation}px`}>
 					<S.RedLine>{lineTime}</S.RedLine>
 				</S.RedLineWrapper>
 				<TakeSchedule />
