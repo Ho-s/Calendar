@@ -7,12 +7,19 @@ interface WeekProps {
 	monthStorage: number
 	yearStorage: number
 	storage: any
+	location: number
+	lineTime: string
 }
 
-const Week: React.FunctionComponent<WeekProps> = ({ nowWeek, monthStorage, yearStorage, storage }) => {
+const Week: React.FunctionComponent<WeekProps> = ({
+	nowWeek,
+	monthStorage,
+	yearStorage,
+	storage,
+	location,
+	lineTime,
+}) => {
 	const m = moment()
-	const [time, setTime] = useState(m.format('LT'))
-	const [location, setLocation] = useState(m.hours() * 61 + 51 + m.minutes())
 	const today = m.format('YYYYMMDD')
 
 	const Generate = () => {
@@ -37,22 +44,22 @@ const Week: React.FunctionComponent<WeekProps> = ({ nowWeek, monthStorage, yearS
 								: 'week-grayed'
 						const whatDay = () => {
 							switch (i) {
-							case 0:
-								return 'SUN'
-							case 1:
-								return 'MON'
-							case 2:
-								return 'TUE'
-							case 3:
-								return 'WED'
-							case 4:
-								return 'THU'
-							case 5:
-								return 'FRI'
-							case 6:
-								return 'SAT'
-							default:
-								return ''
+								case 0:
+									return 'SUN'
+								case 1:
+									return 'MON'
+								case 2:
+									return 'TUE'
+								case 3:
+									return 'WED'
+								case 4:
+									return 'THU'
+								case 5:
+									return 'FRI'
+								case 6:
+									return 'SAT'
+								default:
+									return ''
 							}
 						}
 
@@ -79,16 +86,17 @@ const Week: React.FunctionComponent<WeekProps> = ({ nowWeek, monthStorage, yearS
 								</S.BodyTopWrapper>
 								{Array(24)
 									.fill(0)
-									.map((v,i) => {
-										return <S.TimeLine key={i}/>
+									.map((v, i) => {
+										return <S.TimeLine key={i} />
 									})}
-								{day.map((v: any,i:number) => {
+								{day.map((v: any, i: number) => {
 									const height: number =
 										(Number(v.endHours) - Number(v.startHours)) * 61 +
 										Number(v.endMinutes) -
 										Number(v.startMinutes)
 									return (
-										<S.ScheduleWrapper key={i}
+										<S.ScheduleWrapper
+											key={i}
 											top={
 												Number(v.startHours) * 61 +
 												Number(v.startMinutes) +
@@ -117,14 +125,6 @@ const Week: React.FunctionComponent<WeekProps> = ({ nowWeek, monthStorage, yearS
 		)
 	}
 
-	useEffect(() => {
-		const timer = setTimeout(() => {
-			setLocation(m.hours() * 61 + 51 + m.minutes())
-			setTime(m.format('LT'))
-		}, 5000)
-		return () => clearTimeout(timer)
-	}, [time, location])
-
 	return (
 		<S.WeekComponent>
 			<S.WeekLeft>
@@ -144,7 +144,7 @@ const Week: React.FunctionComponent<WeekProps> = ({ nowWeek, monthStorage, yearS
 					})}
 			</S.WeekLeft>
 			<Generate />
-			<S.RedLine top={`${location}px`}>{time}</S.RedLine>
+			<S.RedLine top={`${location}px`}>{lineTime}</S.RedLine>
 		</S.WeekComponent>
 	)
 }

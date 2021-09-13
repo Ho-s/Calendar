@@ -10,9 +10,11 @@ interface DayProps {
 	whatDay: number | string
 	storage: any
 	onClickDeleteInDayTable: () => void
+	location: number
+	lineTime: string
 }
 
-const Day:React.FunctionComponent<DayProps> = ({
+const Day: React.FunctionComponent<DayProps> = ({
 	nowDay,
 	nowWeek,
 	monthStorage,
@@ -20,10 +22,10 @@ const Day:React.FunctionComponent<DayProps> = ({
 	whatDay,
 	storage,
 	onClickDeleteInDayTable,
+	location,
+	lineTime,
 }) => {
 	const m = moment()
-	const [location, setLocation] = useState(m.hours() * 61 + m.minutes())
-	const [time, setTime] = useState(m.format('LT'))
 
 	const TimeLinesLeft = Array(24)
 		.fill(0)
@@ -46,7 +48,7 @@ const Day:React.FunctionComponent<DayProps> = ({
 					{Array(24)
 						.fill(0)
 						.map((v, i) => (
-							<S.TimeLineRight key={i}/>
+							<S.TimeLineRight key={i} />
 						))}
 				</S.TimeLineRightWrapper>
 			</>
@@ -72,7 +74,8 @@ const Day:React.FunctionComponent<DayProps> = ({
 						Number(v.endMinutes) -
 						Number(v.startMinutes)
 					return (
-						<S.ScheduleWrapper key={v}
+						<S.ScheduleWrapper
+							key={v}
 							top={Number(v.startHours) * 61 + Number(v.startMinutes)}
 							height={height}
 						>
@@ -144,14 +147,6 @@ const Day:React.FunctionComponent<DayProps> = ({
 		)
 	}
 
-	useEffect(() => {
-		const timer = setTimeout(() => {
-			setLocation(m.hours() * 61 + m.minutes())
-			setTime(m.format('LT'))
-		}, 5000)
-		return () => clearTimeout(timer)
-	}, [time, location])
-
 	return (
 		<S.DayComponent>
 			<S.DateStorage>
@@ -168,7 +163,7 @@ const Day:React.FunctionComponent<DayProps> = ({
 			</S.DateStorage>
 			<S.TimeTable>
 				<S.RedLineWrapper top={`${location}px`}>
-					<S.RedLine>{time}</S.RedLine>
+					<S.RedLine>{lineTime}</S.RedLine>
 				</S.RedLineWrapper>
 				<TakeSchedule />
 				<S.DayLeft>{TimeLinesLeft}</S.DayLeft>
