@@ -50,7 +50,9 @@ const Calendar: React.FunctionComponent<CalendarProps> = ({
 		return (
 			<>
 				{calendar.map((week: any) => {
-					const thisWeekConst = nowWeek === week ? 'today' : ''
+					const thisWeekConst =
+						today === m.clone().week(week).format('YYYYMMDD') ? 'today' : ''
+					console.log(nowWeek, week)
 					const weekSelected =
 						Number(nowWeek) === week &&
 						Number(yearStorage) === nowYear &&
@@ -118,7 +120,10 @@ const Calendar: React.FunctionComponent<CalendarProps> = ({
 											<S.ThisDayWrapper>
 												{day.map((v: any) => {
 													return (
-														<S.ThisDay key={v.color} backgroundColor={v.color}></S.ThisDay>
+														<S.ThisDay
+															key={v.color}
+															backgroundColor={v.color}
+														></S.ThisDay>
 													)
 												})}
 											</S.ThisDayWrapper>
