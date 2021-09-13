@@ -8,7 +8,7 @@ module.exports = {
   resolve: {
     extensions: ['.js', '.jsx', '.ts', '.tsx'],
   },
-  entry: path.resolve(__dirname,'./src/client.jsx'),
+  entry: path.resolve(__dirname, './src/client.tsx'),
   output: {
     path: path.resolve(__dirname, './dist'),
     filename: 'app.js',
@@ -31,17 +31,17 @@ module.exports = {
       exclude: path.resolve(__dirname, './node_modules'),
     },
     {
-      test: /\.tsx$/, 
+      test: /\.tsx$/,
       use: 'ts-loader'
     },
     {
-      test:/\.css$/,
-      use:['style-loader','css-loader'],
+      test: /\.css$/,
+      use: ['style-loader', 'css-loader'],
     }
-  ],
+    ],
   },
   plugins: [
-    new HtmlWebpackPlugin({template: './src/index.html'}),
+    new HtmlWebpackPlugin({ template: './src/index.html' }),
     new webpack.ContextReplacementPlugin(/moment[/\\]locale$/, /ko/),
   ],
   devServer: {
