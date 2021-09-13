@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import moment from 'moment'
 import Day from '../../molcules/Day/Day'
 import Week from '../../molcules/Week/Week'
@@ -125,7 +125,7 @@ const MainCalendar: React.FunctionComponent<MainCalendarProps> = ({
 	}
 
 	useInterval(() => {
-		setTimeDetail(m.format('HH:mm:ss'))
+		setTimeDetail(' ' + m.format('HH:mm:ss') + ' ')
 	}, 1000)
 
 	return (
