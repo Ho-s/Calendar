@@ -52,7 +52,6 @@ const Calendar: React.FunctionComponent<CalendarProps> = ({
 				{calendar.map((week: any) => {
 					const thisWeekConst =
 						today === m.clone().week(week).format('YYYYMMDD') ? 'today' : ''
-					console.log(nowWeek, week)
 					const weekSelected =
 						Number(nowWeek) === week &&
 						Number(yearStorage) === nowYear &&
