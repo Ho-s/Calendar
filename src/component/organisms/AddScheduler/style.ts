@@ -53,7 +53,7 @@ interface NoStyleInputProps {
 export const NoStyleInput = styled.input<NoStyleInputProps>`
     border: 0;
     outline: 0;
-    border:${(props)=>props.border}
+    border:${(props)=>props.border};
 `
 
 interface SchedulerBodyTimeProps {
@@ -63,7 +63,7 @@ interface SchedulerBodyTimeProps {
 export const SchedulerBodyTime = styled.div<SchedulerBodyTimeProps>`
     height: 37px;
     margin-bottom: 20px;
-    border:${(props)=>props.border}
+    border:${(props)=>props.border};
     & input:nth-child(1),
     & input:nth-child(2),
     & input:nth-child(4),
@@ -172,4 +172,105 @@ float: left;
 export const TimeDiv = styled.div`
 margin-left: 26px;
 float: left;
+`
+
+
+export const AddSchedule = styled.button`
+  background-color: #292726;
+  color: white;
+  position: relative;
+  height: 40px;
+  width: 320px;
+  margin: 5px 15px;
+  text-align: center;
+  font-size: 18px;
+  cursor: pointer;
+  outline: 0;
+  border: 0;
+  border: 1px solid transparent;
+  -webkit-transition: all 0.4s cubic-bezier(0.5, 0.24, 0, 1);
+  transition: all 0.4s cubic-bezier(0.5, 0.24, 0, 1);
+  &::before {
+    content: "";
+    position: absolute;
+    left: 0px;
+    bottom: 0px;
+    z-index: 1;
+    width: 0%;
+    height: 1px;
+    background: gray;
+    box-shadow: inset 0px 0px 0px gray;
+    display: block;
+    -webkit-transition: all 0.4s cubic-bezier(0.5, 0.24, 0, 1);
+    transition: all 0.4s cubic-bezier(0.5, 0.24, 0, 1);
+}
+    &:hover::before{
+    width: 100%;
+    }
+    &::after {
+  content: "";
+  position: absolute;
+  right: 0px;
+  top: 0px;
+  z-index: 1;
+  width: 0%;
+  height: 1px;
+  background: gray;
+  -webkit-transition: all 0.4s cubic-bezier(0.5, 0.24, 0, 1);
+  transition: all 0.4s cubic-bezier(0.5, 0.24, 0, 1);
+}
+&:hover::after {
+  width: 100%;
+}
+    &:hover{
+        border-left: 1px solid gray;
+  border-right: 1px solid gray;
+    }
+    & div {
+        content: "";
+  color: white;
+  position: absolute;
+  top: 3px;
+  right: 0;
+  opacity: 0;
+  font-size: 20px;
+  transition: 0.2s;
+  z-index: 1;
+    }
+`
+
+interface AddScheduleDivProps {
+  animation:string
+}
+
+export const AddScheduleDiv = styled.div<AddScheduleDivProps>`
+  animation: ${(props)=>props.animation};
+
+@keyframes forward {
+  100% {
+    opacity: 1;
+    right: 83px;
+  }
+}
+
+@keyframes backward {
+  0% {
+    opacity: 1;
+    right: 83px;
+  }
+  100% {
+    opacity: 0;
+    right: 0;
+  }
+}
+`
+
+interface AddScheduleSpanProps {
+  paddingRight: string
+}
+
+export const AddScheduleSpan = styled.span<AddScheduleSpanProps>`
+padding-right: ${(props)=>props.paddingRight};
+position: relative;
+transition: all .6s;
 `

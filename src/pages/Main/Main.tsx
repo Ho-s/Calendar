@@ -5,22 +5,9 @@ import Summary from '../../component/organisms/Summary/Summary'
 import MainCalendar from '../../component/organisms/MainCalendar/MainCalendar'
 import AddScheduler from '../../component/organisms/AddScheduler/AddScheduler'
 import * as S from './style'
+import StorageType from '../../types/type'
 
-export interface StorageType {
-	name: string | number
-	title:string
-	year: number
-	month: number
-	day: number
-	week: number
-	startHours: number|string
-	startMinutes: number|string
-	endHours: number|string
-	endMinutes: number|string
-	color:string
-}
-
-const Main:React.FunctionComponent = () => {
+const Main: React.FunctionComponent = () => {
 	const m = moment()
 	const [nowDay, setNowDay] = useState<number>(m.date())
 	const [nowWeek, setNowWeek] = useState<number>(m.week())
@@ -30,22 +17,10 @@ const Main:React.FunctionComponent = () => {
 	const [yearStorage, setYearStorage] = useState<number>(m.year())
 	const [monthStorage, setMonthStorage] = useState<number>(m.month())
 
-	const [addSchedule, setAddSchedule] = useState<boolean>(false)
-	const [title, setTitle] = useState<string>('')
+	const [storage, setStorage] = useState<StorageType[]>([])
 	const [year, setYear] = useState<number>(m.year())
 	const [month, setMonth] = useState<number>(m.month() + 1)
 	const [day, setDay] = useState<number>(m.date())
-	const [startHours, setStartHours] = useState<number | string>(m.hour())
-	const [startMinutes, setStartMinutes] = useState<number | string>(0)
-	const [endHours, setEndHours] = useState<number | string>(m.hour() + 1)
-	const [endMinutes, setEndMinutes] = useState<number | string>(0)
-	const [color, setColor] = useState<string>('#04B910')
-	const [storage, setStorage] = useState<StorageType[]>([])
-	const [spanStyle, setSpanStyle] = useState<any>({
-		paddingRight: 0,
-		textContent: 'Add Schedule',
-	})
-	const [divStyle, setDivStyle] = useState<string>('')
 
 	const onClickDay = (e: any): void => {
 		setNowDay(e.target.textContent)
@@ -134,12 +109,12 @@ const Main:React.FunctionComponent = () => {
 				.week() === 1 && e.target.childNodes[0].textContent > 24
 				? 53
 				: m
-					.set({
-						year: nowYear,
-						month: nowMonth,
-						date: e.target.childNodes[0].textContent,
-					})
-					.week(),
+						.set({
+							year: nowYear,
+							month: nowMonth,
+							date: e.target.childNodes[0].textContent,
+						})
+						.week(),
 		)
 		setYearStorage(nowYear)
 		setMonthStorage(nowMonth)
@@ -169,12 +144,12 @@ const Main:React.FunctionComponent = () => {
 				.week() === 1 && e.target.childNodes[0].textContent > 24
 				? 53
 				: m
-					.set({
-						year: nowYear,
-						month: e.target.parentNode.parentNode.id,
-						date: e.target.childNodes[0].textContent,
-					})
-					.week(),
+						.set({
+							year: nowYear,
+							month: e.target.parentNode.parentNode.id,
+							date: e.target.childNodes[0].textContent,
+						})
+						.week(),
 		)
 		setNowMonth(Number(e.target.parentNode.parentNode.id))
 		setYearStorage(nowYear)
@@ -191,138 +166,6 @@ const Main:React.FunctionComponent = () => {
 		})
 	}
 
-	const onChangeTitle = (e: any): void => {
-		setTitle(e.target.value)
-	}
-
-	const onChangeYear = (e: any): void => {
-		setYear(e.target.value)
-	}
-
-	const onChangeMonth = (e: any): void => {
-		setMonth(e.target.value)
-	}
-
-	const onChangeDay = (e: any): void => {
-		setDay(e.target.value)
-	}
-
-	const onChangeSHours = (e: any): void => {
-		if (Number(e.target.value) < 10) {
-			setStartHours(`0${e.target.value}`)
-		} else {
-			setStartHours(e.target.value)
-		}
-	}
-
-	const onChangeSMinutes = (e: any): void => {
-		if (Number(e.target.value) < 10) {
-			setStartMinutes(`0${e.target.value}`)
-		} else {
-			setStartMinutes(e.target.value)
-		}
-	}
-
-	const onChangeEHours = (e: any): void => {
-		if (Number(e.target.value) < 10) {
-			setEndHours(`0${e.target.value}`)
-		} else {
-			setEndHours(e.target.value)
-		}
-	}
-
-	const onChangeEMinutes = (e: any): void => {
-		if (Number(e.target.value) < 10) {
-			setEndMinutes(`0${e.target.value}`)
-		} else {
-			setEndMinutes(e.target.value)
-		}
-	}
-
-	const onChangeColor = (e: any): void => {
-		setColor(e.target.value)
-	}
-
-	const onClickAddSchedule = (): void => {
-		if (!addSchedule) {
-			setAddSchedule(true)
-			setSpanStyle({
-				...spanStyle,
-				paddingRight: '20px',
-				textContent: 'Close Scheduler',
-			})
-			setDivStyle('forward .4s forwards')
-		} else {
-			setAddSchedule(false)
-			setSpanStyle({
-				...spanStyle,
-				paddingRight: '0',
-				textContent: 'Add Schedule',
-			})
-			setDivStyle('backward .4s forwards')
-		}
-		setTitle('null')
-		setYear(yearStorage)
-		setMonth(monthStorage + 1)
-		setDay(nowDay)
-		setStartHours(m.hour())
-		setStartMinutes(0)
-		setEndHours(m.hour() + 1)
-		setEndMinutes(0)
-	}
-
-	const onClickSubmit = (): void => {
-		const blockStorage:StorageType = {
-			name: storage.length === 0 ? 0 : Number(storage[storage.length - 1].name) + 1,
-			title,
-			year: Number(year),
-			month: Number(month),
-			day: Number(day),
-			week: Number(
-				m
-					.set({
-						year: Number(year),
-						month: Number(month - 1),
-						date: Number(day),
-					})
-					.week(),
-			),
-			startHours: startHours === 0 ? '00' : startHours,
-			startMinutes: startMinutes === 0 ? '00' : startMinutes,
-			endHours: endHours === 0 ? '00' : endHours,
-			endMinutes: endMinutes === 0 ? '00' : endMinutes,
-			color,
-		}
-		if (storage.length !== 0) {
-			for (let i = 0; i < storage.length; i++) {
-				if (
-					storage[i].startHours === blockStorage.startHours &&
-					storage[i].startMinutes === blockStorage.startMinutes &&
-					storage[i].endHours === blockStorage.endHours &&
-					storage[i].endMinutes === blockStorage.endMinutes &&
-					storage[i].year === blockStorage.year &&
-					storage[i].month === blockStorage.month &&
-					storage[i].day === blockStorage.day
-				) {
-					alert('There is same schedule alredy')
-					break
-				}
-			}
-		}
-		setSpanStyle((prev: any) => ({
-			...prev,
-			paddingRight: '0',
-			textContent: 'Add Schedule',
-		}))
-		setDivStyle('backward .4s forwards')
-		setStorage((prev: StorageType[]) => [...prev, blockStorage])
-		setAddSchedule(false)
-	}
-
-	useEffect(() => {
-		localStorage.setItem('storage', JSON.stringify(storage))
-	}, [storage])
-
 	const onClickDelete = (e: any): void => {
 		const filteredStorage = storage.filter((v: StorageType) => {
 			return v.name !== Number(e.target.parentNode.getAttribute('data-name'))
@@ -338,8 +181,9 @@ const Main:React.FunctionComponent = () => {
 	}
 
 	useEffect(() => {
+		localStorage.setItem('storage', JSON.stringify(storage))
 		setStorage(JSON.parse(localStorage.getItem('storage') || '{}'))
-	}, [])
+	}, [storage])
 
 	const propsSetMonth = (v: number) => {
 		setMonth(v)
@@ -349,38 +193,27 @@ const Main:React.FunctionComponent = () => {
 		setYear(v)
 	}
 
+	const propsSetDay = (v: number) => {
+		setDay(v)
+	}
+
+	const propsSetStorage = (v: StorageType[]) => {
+		setStorage(v)
+	}
+
 	return (
 		<>
 			<S.MainLeft>
-				<S.AddSchedule onClick={onClickAddSchedule}>
-					<S.AddScheduleSpan paddingRight={spanStyle.paddingRight}>
-						{spanStyle.textContent}
-					</S.AddScheduleSpan>
-					<S.AddScheduleDiv animation={divStyle}>▶</S.AddScheduleDiv>
-				</S.AddSchedule>
-				{addSchedule && (
-					<AddScheduler
-						title={title}
-						year={year}
-						month={month}
-						day={day}
-						startHours={startHours}
-						startMinutes={startMinutes}
-						endHours={endHours}
-						endMinutes={endMinutes}
-						color={color}
-						onChangeTitle={(e: any) => onChangeTitle(e)}
-						onChangeYear={(e: any) => onChangeYear(e)}
-						onChangeMonth={(e: any) => onChangeMonth(e)}
-						onChangeDay={(e: any) => onChangeDay(e)}
-						onChangeSHours={(e: any) => onChangeSHours(e)}
-						onChangeSMinutes={(e: any) => onChangeSMinutes(e)}
-						onChangeEHours={(e: any) => onChangeEHours(e)}
-						onChangeEMinutes={(e: any) => onChangeEMinutes(e)}
-						onChangeColor={(e: any) => onChangeColor(e)}
-						onClickSubmit={onClickSubmit}
-					/>
-				)}
+				<AddScheduler
+					storage={storage}
+					year={year}
+					day={day}
+					month={month}
+					setMonth={propsSetMonth}
+					setYear={propsSetYear}
+					setDay={propsSetDay}
+					setStorage={propsSetStorage}
+				/>
 
 				<Calendar
 					nowDay={nowDay}
