@@ -7,7 +7,7 @@ export const Calendar = styled.div`
 `
 
 export const Body = styled.div`
-  margin: 0 0 5px 0;
+  margin: 0 0 15px 0;
   color: white;
   position: relative;
   padding: 0 7px;
