@@ -138,8 +138,8 @@ const Calendar: React.FunctionComponent<CalendarProps> = ({
 
 	useEffect(() => {
 		setYear(Number(m.set('year', nowYear).format('YYYY')))
-		setMonth(Number(m.set('month', nowMonth).format('MMMM')))
-	}, [])
+		setMonth(nowMonth + 1)
+	}, [nowDay, nowWeek])
 
 	return (
 		<S.Calendar>
