@@ -1,8 +1,11 @@
 import styled from 'styled-components'
 
-export const Scheduler = styled.div`
-    top:-40px;
-    left:350px;
+interface SchedulerProps {
+    top: boolean
+}
+
+export const Scheduler = styled.div<SchedulerProps>`
+    display:${(props)=>(props.top ? 'block' : 'none')};
     width: 344px;
     background-color: white;
     border-radius: 4px;
@@ -19,9 +22,7 @@ export const SchedulerHead = styled.div`
 `
 
 interface SchedulerHeadInputProps {
-    border:string;
-    backgroundColor: string
-    color: string
+    placeholder:string;
 }
 
 export const SchedulerHeadInput = styled.input<SchedulerHeadInputProps>`
@@ -34,9 +35,21 @@ export const SchedulerHeadInput = styled.input<SchedulerHeadInputProps>`
     float: left;
     text-decoration: none;
     transition: color .4s, background-color .4s;
-    border:${(props)=>props.border};
-    background-color:${(props)=>props.backgroundColor};
-    color:${(props)=>props.color};
+    border:${(props)=>(props.placeholder === 'Title' ? 0 : '4px solid red')};
+    background-color:${(props)=>(props.placeholder === 'Title' ? 'transparent' : 'red')};
+    color:${(props)=>(props.placeholder === 'Title' ? 'black' : 'white')};
+    animation: ${(props)=>(props.placeholder === 'Title' ? '' : 'alert .4s .4s forwards')};
+    @keyframes alert {
+    0% {
+        opacity: 1;
+        right: 83px;
+    }
+    100% {
+        background-color: transparent;
+        color: black;
+        border: 4px solid red;
+    }
+    }
 `
 
 export const SchedulerBody = styled.div`
@@ -186,6 +199,7 @@ export const AddSchedule = styled.button`
   font-size: 18px;
   cursor: pointer;
   outline: 0;
+  z-index:3;
   border: 0;
   border: 1px solid transparent;
   -webkit-transition: all 0.4s cubic-bezier(0.5, 0.24, 0, 1);
@@ -240,11 +254,11 @@ export const AddSchedule = styled.button`
 `
 
 interface AddScheduleDivProps {
-  animation:string
+  animation:boolean
 }
 
 export const AddScheduleDiv = styled.div<AddScheduleDivProps>`
-  animation: ${(props)=>props.animation};
+  animation: ${(props)=>(props.animation ? 'backward .4s forwards' : 'forward .4s forwards')};
 
 @keyframes forward {
   100% {
@@ -270,7 +284,7 @@ interface AddScheduleSpanProps {
 }
 
 export const AddScheduleSpan = styled.span<AddScheduleSpanProps>`
-padding-right: ${(props)=>props.paddingRight};
+padding-right: ${(props)=>(props.paddingRight === 'Close Scheduler' ? '20px' : '0')};
 position: relative;
 transition: all .6s;
 `

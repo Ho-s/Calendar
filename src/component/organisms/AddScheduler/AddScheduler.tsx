@@ -29,12 +29,7 @@ const AddScheduler: React.FunctionComponent<AddSchedulerProps> = ({
 	const [dayError, setDayError] = useState<boolean>(false)
 	const [dayStyle, setDayStyle] = useState<string>('')
 	const [timeStyle, setTimeStyle] = useState<string>('')
-	const [titleStyle, setTitleStyle] = useState<any>({
-		border: 0,
-		backgroundColor: 'white',
-		color: null,
-		placeholder: 'Title',
-	})
+	const [titleHolder, setTitleHolder] = useState<string>('Title')
 	const [addSchedule, setAddSchedule] = useState<boolean>(false)
 	const [title, setTitle] = useState<string>('')
 
@@ -43,20 +38,13 @@ const AddScheduler: React.FunctionComponent<AddSchedulerProps> = ({
 	const [endHours, setEndHours] = useState<number | string>(m.hour() + 1)
 	const [endMinutes, setEndMinutes] = useState<number | string>(0)
 	const [color, setColor] = useState<string>('#04B910')
-	const [spanStyle, setSpanStyle] = useState<any>({
-		paddingRight: 0,
-		textContent: 'Add Schedule',
-	})
-	const [divStyle, setDivStyle] = useState<string>('')
+	const [spanText, setSpanText] = useState<string>('Add Schedule')
+	const [arrowBoolean, setArrowBoolean] = useState<boolean>(true)
 
 	const onChangeTitle = (e: any): void => {
 		setTitle(e.target.value)
 		if (title) {
-			setTitleStyle((prev: any) => ({
-				...prev,
-				border: '0',
-				placeholder: 'Title',
-			}))
+			setTitleHolder('Title')
 		}
 	}
 
@@ -153,22 +141,14 @@ const AddScheduler: React.FunctionComponent<AddSchedulerProps> = ({
 	const onClickAddSchedule = (): void => {
 		if (!addSchedule) {
 			setAddSchedule(true)
-			setSpanStyle({
-				...spanStyle,
-				paddingRight: '20px',
-				textContent: 'Close Scheduler',
-			})
-			setDivStyle('forward .4s forwards')
+			setSpanText('Close Scheduler')
+			setArrowBoolean(false)
 		} else {
 			setAddSchedule(false)
-			setSpanStyle({
-				...spanStyle,
-				paddingRight: '0',
-				textContent: 'Add Schedule',
-			})
-			setDivStyle('backward .4s forwards')
+			setSpanText('Add Schedule')
+			setArrowBoolean(true)
 		}
-		setTitle('null')
+		setTitle('')
 		// setYear(yearStorage)
 		// setMonth(monthStorage + 1)
 		// setDay(nowDay)
@@ -217,12 +197,8 @@ const AddScheduler: React.FunctionComponent<AddSchedulerProps> = ({
 				}
 			}
 		}
-		setSpanStyle((prev: any) => ({
-			...prev,
-			paddingRight: '0',
-			textContent: 'Add Schedule',
-		}))
-		setDivStyle('backward .4s forwards')
+		setSpanText('Add Schedule')
+		setArrowBoolean(true)
 		setStorage((prev: StorageType[]) => [...prev, blockStorage])
 		setAddSchedule(false)
 	}
@@ -251,41 +227,23 @@ const AddScheduler: React.FunctionComponent<AddSchedulerProps> = ({
 				setTimeStyle('1px solid red')
 			}
 		} else {
-			setTitleStyle((prev: any) => ({
-				...prev,
-				border: '4px solid red',
-				placeholder: 'There must be a title',
-				backgroundColor: 'red',
-				color: 'white',
-			}))
-			setTimeout(() => {
-				setTitleStyle((prev: any) => ({
-					...prev,
-					backgroundColor: 'transparent',
-					color: 'black',
-					border: '4px solid red',
-					placeholder: 'There must be a title',
-				}))
-			}, 400)
+			setTitleHolder('There must be a title')
 		}
 	}
 
 	return (
 		<>
 			<S.AddSchedule onClick={onClickAddSchedule}>
-				<S.AddScheduleSpan paddingRight={spanStyle.paddingRight}>
-					{spanStyle.textContent}
+				<S.AddScheduleSpan paddingRight={spanText}>
+					{spanText}
 				</S.AddScheduleSpan>
-				<S.AddScheduleDiv animation={divStyle}>▶</S.AddScheduleDiv>
+				<S.AddScheduleDiv animation={arrowBoolean}>▶</S.AddScheduleDiv>
 			</S.AddSchedule>
-			<S.Scheduler>
+			<S.Scheduler top={addSchedule}>
 				<S.SchedulerHead>
 					<S.SchedulerHeadInput
 						spellCheck="false"
-						placeholder={titleStyle.placeholder}
-						border={titleStyle.border}
-						backgroundColor={titleStyle.backgroundColor}
-						color={titleStyle.color}
+						placeholder={titleHolder}
 						onChange={onChangeTitle}
 					/>
 				</S.SchedulerHead>
