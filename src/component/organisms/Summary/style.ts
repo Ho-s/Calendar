@@ -50,7 +50,7 @@ export const SummaryScheduleButton = styled.button`
     border: 0;
     padding: 0;
     position: absolute;
-    right: 85px;
+    right: 0;
     top:-0;
     cursor: pointer;
     background-color: transparent;
@@ -85,10 +85,20 @@ font-weight: 100;
 color: white;
 `
 
-export const SummaryScheduleTime = styled.div`
+export const SummaryScheduleTimeLeft = styled.div`
 line-height: 1.5;
 position: absolute;
-right: 40px;
+right: 60px;
+overflow: noWrap;
+font-size: 14px;
+font-weight: 600;
+color: gray;
+`
+
+export const SummaryScheduleTimeRight = styled.div`
+line-height: 1.5;
+position: absolute;
+right:20px;
 overflow: noWrap;
 font-size: 14px;
 font-weight: 600;

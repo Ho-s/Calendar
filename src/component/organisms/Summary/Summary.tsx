@@ -91,12 +91,12 @@ const Summary: React.FunctionComponent<SummaryProps> = ({
 												backgroundColor={v.color}
 											></S.SummaryScheduleColor>
 											<S.SummaryScheduleTitle>{v.title}</S.SummaryScheduleTitle>
-											<S.SummaryScheduleTime>
+											<S.SummaryScheduleTimeLeft>
 												{v.startHours}:{v.startMinutes}~
-											</S.SummaryScheduleTime>
-											<S.SummaryScheduleTime>
+											</S.SummaryScheduleTimeLeft>
+											<S.SummaryScheduleTimeRight>
 												{v.endHours}:{v.endMinutes}
-											</S.SummaryScheduleTime>
+											</S.SummaryScheduleTimeRight>
 											<S.SummaryScheduleButton onClick={onClickDelete} />
 										</S.SummarySchedule>
 									))}
