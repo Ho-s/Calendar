@@ -63,22 +63,19 @@ export const TimeTable =styled.div`
   overflow-x: hidden;
 `
 
-interface RedLineWrapperProps {
-  top: string;
+interface RedLineProps {
+  top:string
 }
 
-export const RedLineWrapper = styled.div<RedLineWrapperProps>`
- z-index: 3;
- border-bottom: 1px solid red;
- width: 100%;
- position: absolute;
- top:${(props)=>props.top};
-`
-
-export const RedLine = styled.div`
-font-weight: 600;
- color: red;
- height: 0;
+export const RedLine = styled.div<RedLineProps>`
+  z-index: 3;
+  font-weight: 600;
+  color: red;
+  height: 0;
+  border-bottom: 1px solid red;
+  width: 100%;
+  position: absolute;
+  top:${(props)=>props.top};
 `
 
 export const TimeLineLeft = styled.div`

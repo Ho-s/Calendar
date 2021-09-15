@@ -46,6 +46,7 @@ interface RedLineProps {
 }
 
 export const RedLine = styled.div<RedLineProps>`
+    z-index: 3;
     font-weight: 600;
     color: red;
     height: 0;

@@ -165,9 +165,7 @@ const Day: React.FunctionComponent<DayProps> = ({
 				<S.YearStorage>{yearStorage}</S.YearStorage>
 			</S.DateStorage>
 			<S.TimeTable>
-				<S.RedLineWrapper top={`${dayLocation}px`}>
-					<S.RedLine>{lineTime}</S.RedLine>
-				</S.RedLineWrapper>
+				<S.RedLine top={`${dayLocation}px`}>{lineTime}</S.RedLine>
 				<TakeSchedule />
 				<S.DayLeft>{TimeLinesLeft}</S.DayLeft>
 				<TimeLinesRight />
