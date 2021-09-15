@@ -97,7 +97,7 @@ export const TableWrapper = styled.div`
 `
 
 export const TableTitle = styled.div`
-  width: 253px;
+  width: 300px;
   text-overflow: ellipsis;
   overflow: hidden;
   white-space: nowrap;
@@ -109,12 +109,12 @@ export const TableTitle = styled.div`
 
 export const TableBody = styled.div`
 width: 300px;
- padding: 20px;
+ padding: 15px;
 `
 
 export const TableDeleteButton = styled.div`
   position: absolute;
-  top: 15px;
+  top: 12px;
   right: 15px;
   background-repeat: none;
   background-size: contain;
