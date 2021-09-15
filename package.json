@@ -6,7 +6,7 @@
   "homepage": "http://ho-s.github.io/Calendar",
   "scripts": {
     "start": "webpack serve --config webpack.config.js --open",
-    "lint": "eslint src/** --fix",
+    "lint": "eslint src/**/* --fix",
     "dev": "webpack-dev-server",
     "build": "webpack --mode production",
     "predeploy": "npm run build",
