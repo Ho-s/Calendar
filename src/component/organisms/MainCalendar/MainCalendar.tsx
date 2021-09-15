@@ -16,7 +16,7 @@ interface MainCalendarProps {
 	monthStorage: number
 	yearStorage: number
 	storage: any
-	onClickToday: () => void
+	clickToday: () => void
 	onClickDayIn: any
 	onClickDeleteInDayTable: any
 }
@@ -30,7 +30,7 @@ const MainCalendar: React.FunctionComponent<MainCalendarProps> = ({
 	monthStorage,
 	yearStorage,
 	storage,
-	onClickToday,
+	clickToday,
 	onClickDayIn,
 	onClickDeleteInDayTable,
 }) => {
@@ -69,12 +69,9 @@ const MainCalendar: React.FunctionComponent<MainCalendarProps> = ({
 		setYearCheck(true)
 	}
 
-	const clickToday = () => {
-		setDayCheck(true)
-		setWeekCheck(false)
-		setMonthCheck(false)
-		setYearCheck(false)
-		onClickToday()
+	const onClickToday = () => {
+		onClickDay()
+		clickToday()
 	}
 
 	const Generate = () => {
@@ -88,7 +85,7 @@ const MainCalendar: React.FunctionComponent<MainCalendarProps> = ({
 				: ''
 		return (
 			<>
-				<S.TodayButton onClick={clickToday} className={todayStyle}>
+				<S.TodayButton onClick={onClickToday} className={todayStyle}>
 					Today
 				</S.TodayButton>
 				<S.MainCalendarHeadMid>

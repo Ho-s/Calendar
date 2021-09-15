@@ -13,7 +13,7 @@ const Main: React.FunctionComponent = () => {
 	const [nowWeek, setNowWeek] = useState<number>(m.week())
 	const [nowMonth, setNowMonth] = useState<number>(m.month())
 	const [nowYear, setNowYear] = useState<number>(m.year())
-	const [whatDay, setWhatDay] = useState<number | string>(-1)
+	const [whatDay, setWhatDay] = useState<number>(-1)
 	const [yearStorage, setYearStorage] = useState<number>(m.year())
 	const [monthStorage, setMonthStorage] = useState<number>(m.month())
 
@@ -33,8 +33,6 @@ const Main: React.FunctionComponent = () => {
 		setYear(Number(dateInfo.year))
 		setWhatDay(Number(dateInfo.whatDay))
 	}
-
-	// console.log(nowDay, nowWeek, nowMonth, nowYear, monthStorage, yearStorage)
 
 	const onClickWeek = (e: any): void => {
 		const firstDayOfTheMonth = m.month(nowMonth).startOf('month').format('d')
@@ -187,7 +185,7 @@ const Main: React.FunctionComponent = () => {
 					monthStorage={monthStorage}
 					yearStorage={yearStorage}
 					storage={storage}
-					onClickToday={onClickToday}
+					clickToday={onClickToday}
 					onClickDayIn={(e: any) => onClickDay(e)}
 					onClickDeleteInDayTable={(e: any) => onClickDeleteInDayTable(e)}
 				/>
