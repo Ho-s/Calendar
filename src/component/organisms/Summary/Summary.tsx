@@ -13,7 +13,7 @@ interface SummaryProps {
 	yearStorage: number
 }
 
-const Summary: React.FunctionComponent<SummaryProps> =({
+const Summary: React.FunctionComponent<SummaryProps> = ({
 	storage,
 	onClickDelete,
 	nowDay,
@@ -86,7 +86,7 @@ const Summary: React.FunctionComponent<SummaryProps> =({
 										{current.format('dddd')}
 									</S.Date>
 									{day.map((v: any) => (
-										<S.SummarySchedule key={v.name} data-name={v.name}>
+										<S.SummarySchedule key={v.id} id={v.id}>
 											<S.SummaryScheduleColor
 												backgroundColor={v.color}
 											></S.SummaryScheduleColor>

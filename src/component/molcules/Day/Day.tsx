@@ -110,7 +110,7 @@ const Day: React.FunctionComponent<DayProps> = ({
 			<S.DayTable>
 				<>
 					{day.map((v: any) => (
-						<S.TableWrapper key={v.name} data-name={v.name}>
+						<S.TableWrapper key={v.id} id={v.id}>
 							<S.TableTitle>{v.title}</S.TableTitle>
 							<S.TableBody>
 								<S.TableTextWrapper>

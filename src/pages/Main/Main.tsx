@@ -97,7 +97,7 @@ const Main: React.FunctionComponent = () => {
 
 	const onClickDelete = (e: any): void => {
 		const filteredStorage = storage.filter((v: StorageType) => {
-			return v.name !== Number(e.target.parentNode.dataset.name)
+			return v.name !== Number(e.target.parentNode.id)
 		})
 		setStorage(filteredStorage)
 	}
