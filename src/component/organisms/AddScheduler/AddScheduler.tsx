@@ -31,8 +31,8 @@ const AddScheduler: React.FunctionComponent<AddSchedulerProps> = ({
 	const [timeStyle, setTimeStyle] = useState<string>('')
 	const [titleHolder, setTitleHolder] = useState<string>('Title')
 	const [addSchedule, setAddSchedule] = useState<boolean>(false)
-	const [title, setTitle] = useState<string>('')
 
+	const [title, setTitle] = useState<string>('')
 	const [startHours, setStartHours] = useState<number | string>(m.hour())
 	const [startMinutes, setStartMinutes] = useState<number | string>(0)
 	const [endHours, setEndHours] = useState<number | string>(m.hour() + 1)
@@ -77,9 +77,8 @@ const AddScheduler: React.FunctionComponent<AddSchedulerProps> = ({
 			setStartHours(e.target.value)
 		}
 		if (
-			Number(String(endHours) + String(endMinutes)) -
-				Number(String(startHours) + String(startMinutes)) <
-			0
+			Number(String(endHours) + String(endMinutes)) <
+			Number(String(startHours) + String(startMinutes))
 		) {
 			setTimeError(false)
 			setTimeStyle('')
@@ -93,9 +92,8 @@ const AddScheduler: React.FunctionComponent<AddSchedulerProps> = ({
 			setStartMinutes(e.target.value)
 		}
 		if (
-			Number(String(endHours) + String(endMinutes)) -
-				Number(String(startHours) + String(startMinutes)) <
-			0
+			Number(String(endHours) + String(endMinutes)) <
+			Number(String(startHours) + String(startMinutes))
 		) {
 			setTimeError(false)
 			setTimeStyle('')
@@ -109,9 +107,8 @@ const AddScheduler: React.FunctionComponent<AddSchedulerProps> = ({
 			setEndHours(e.target.value)
 		}
 		if (
-			Number(String(endHours) + String(endMinutes)) -
-				Number(String(startHours) + String(startMinutes)) <
-			0
+			Number(String(endHours) + String(endMinutes)) <
+			Number(String(startHours) + String(startMinutes))
 		) {
 			setTimeError(false)
 			setTimeStyle('')
@@ -125,9 +122,8 @@ const AddScheduler: React.FunctionComponent<AddSchedulerProps> = ({
 			setEndMinutes(e.target.value)
 		}
 		if (
-			Number(String(endHours) + String(endMinutes)) -
-				Number(String(startHours) + String(startMinutes)) <
-			0
+			Number(String(endHours) + String(endMinutes)) <
+			Number(String(startHours) + String(startMinutes))
 		) {
 			setTimeError(false)
 			setTimeStyle('')
@@ -148,14 +144,10 @@ const AddScheduler: React.FunctionComponent<AddSchedulerProps> = ({
 			setSpanText('Add Schedule')
 			setArrowBoolean(true)
 		}
-		setTitle('')
-		// setYear(yearStorage)
-		// setMonth(monthStorage + 1)
-		// setDay(nowDay)
 		setStartHours(m.hour())
-		setStartMinutes(0)
+		setStartMinutes('00')
 		setEndHours(m.hour() + 1)
-		setEndMinutes(0)
+		setEndMinutes('00')
 	}
 
 	const onClickSubmit = (): void => {
@@ -206,9 +198,8 @@ const AddScheduler: React.FunctionComponent<AddSchedulerProps> = ({
 	const clickSubmit = () => {
 		if (title) {
 			if (
-				Number(String(endHours) + String(endMinutes)) -
-					Number(String(startHours) + String(startMinutes)) >
-				0
+				Number(String(endHours) + String(endMinutes)) >
+				Number(String(startHours) + String(startMinutes))
 			) {
 				if (
 					day <=
