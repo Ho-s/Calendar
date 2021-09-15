@@ -93,41 +93,6 @@ const Main: React.FunctionComponent = () => {
 		}
 	}
 
-	const onClickDayInMonth = (e: any): void => {
-		setNowDay(e.target.childNodes[0].textContent)
-		setNowWeek(
-			m
-				.set({
-					year: nowYear,
-					month: nowMonth,
-					date: e.target.childNodes[0].textContent,
-				})
-				.week() === 1 && e.target.childNodes[0].textContent > 24
-				? 53
-				: m
-						.set({
-							year: nowYear,
-							month: nowMonth,
-							date: e.target.childNodes[0].textContent,
-						})
-						.week(),
-		)
-		setYearStorage(nowYear)
-		setMonthStorage(nowMonth)
-		setYear(nowYear)
-		setMonth(nowMonth + 1)
-		setDay(e.target.childNodes[0].textContent)
-
-		Array(7).forEach((v, i) => {
-			if (
-				e.target.parentNode.childNodes[i].childNodes[0].textContent ===
-				e.target.childNodes[0].textContent
-			) {
-				setWhatDay(i - 1)
-			}
-		})
-	}
-
 	const onClickDayInYear = (e: any): void => {
 		setNowDay(e.target.textContent)
 		setNowWeek(
@@ -252,7 +217,7 @@ const Main: React.FunctionComponent = () => {
 					yearStorage={yearStorage}
 					storage={storage}
 					onClickToday={onClickToday}
-					onClickDayInMonth={(e: any) => onClickDayInMonth(e)}
+					onClickDayInMonth={(e: any) => onClickDay(e)}
 					onClickDayInYear={(e: any) => onClickDayInYear(e)}
 					onClickDeleteInDayTable={(e: any) => onClickDeleteInDayTable(e)}
 				/>
