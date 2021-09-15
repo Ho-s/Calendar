@@ -240,7 +240,7 @@ const AddScheduler: React.FunctionComponent<AddSchedulerProps> = ({
 				</S.SchedulerHead>
 				<S.SchedulerBody>
 					<S.SchedulerBodyTime>
-						<S.TimeSpan>date</S.TimeSpan>
+						<S.TimeSpan>Date</S.TimeSpan>
 						<S.TimeDiv>
 							<S.NoStyleInput
 								max="12"
@@ -281,7 +281,7 @@ const AddScheduler: React.FunctionComponent<AddSchedulerProps> = ({
 						)}
 					</S.SchedulerBodyTime>
 					<S.SchedulerBodyTime border={timeStyle}>
-						<S.TimeSpan>starts</S.TimeSpan>
+						<S.TimeSpan>Start</S.TimeSpan>
 						<S.TimeDiv>
 							<S.NoStyleInput
 								max="24"
@@ -299,7 +299,7 @@ const AddScheduler: React.FunctionComponent<AddSchedulerProps> = ({
 								onChange={onChangeSMinutes}
 							></S.NoStyleInput>
 						</S.TimeDiv>
-						<S.TimeSpan> ends </S.TimeSpan>
+						<S.TimeSpan> End </S.TimeSpan>
 						<S.TimeDiv>
 							<S.NoStyleInput
 								max="24"
@@ -324,7 +324,7 @@ const AddScheduler: React.FunctionComponent<AddSchedulerProps> = ({
 						)}
 					</S.SchedulerBodyTime>
 					<S.SchedulerBodyColor>
-						<S.SchedulerBodyColorSpan>display</S.SchedulerBodyColorSpan>
+						<S.SchedulerBodyColorSpan>Color</S.SchedulerBodyColorSpan>
 						<S.SchedulerBodyColorInput
 							type="color"
 							value={color}

@@ -75,7 +75,7 @@ interface SchedulerBodyTimeProps {
 
 export const SchedulerBodyTime = styled.div<SchedulerBodyTimeProps>`
     height: 37px;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
     border:${(props)=>props.border};
     & input:nth-child(1),
     & input:nth-child(2),
@@ -139,6 +139,7 @@ export const SchedulerBodyColor = styled.div`
 
 export const SchedulerBodyColorSpan = styled.span`
     float: left;
+    line-height: 2.5;
 `
 
 export const SchedulerBodyColorInput = styled.input`
