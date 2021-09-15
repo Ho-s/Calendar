@@ -58,6 +58,7 @@ const Calendar: React.FunctionComponent<CalendarProps> = ({
 						monthStorage === nowMonth
 							? 'selected'
 							: ''
+
 					return (
 						<S.Row key={week}>
 							<S.Cw
@@ -74,6 +75,7 @@ const Calendar: React.FunctionComponent<CalendarProps> = ({
 										.week(week)
 										.startOf('week')
 										.add(n + i, 'day')
+
 									const todaySelect =
 										today === current.format('YYYYMMDD') ? 'today' : ''
 									const isSelected =
@@ -106,6 +108,11 @@ const Calendar: React.FunctionComponent<CalendarProps> = ({
 
 									return (
 										<S.Box
+											data-day={current.format('DD')}
+											data-week={week}
+											data-month={Number(current.format('MM')) - 1}
+											data-year={current.format('YYYY')}
+											data-what-day={i}
 											onClick={clicking}
 											data-gray={
 												current.format('MM') === m.format('MM')

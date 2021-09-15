@@ -23,46 +23,42 @@ const Main: React.FunctionComponent = () => {
 	const [day, setDay] = useState<number>(m.date())
 
 	const onClickDay = (e: any): void => {
-		setNowDay(e.target.textContent)
-		setNowWeek(e.target.parentNode.childNodes[0].textContent)
-		setYearStorage(nowYear)
-		setMonthStorage(nowMonth)
-		setYear(nowYear)
-		setMonth(nowMonth + 1)
-		setDay(e.target.textContent)
-
-		Array(8).forEach((v, i) => {
-			if (
-				e.target.parentNode.childNodes[i].textContent === e.target.textContent
-			) {
-				setWhatDay(i - 1)
-			}
-		})
+		const dateInfo = e.target.dataset
+		setNowDay(Number(dateInfo.day))
+		setNowWeek(Number(dateInfo.week))
+		setMonthStorage(Number(dateInfo.month))
+		setYearStorage(Number(dateInfo.year))
+		setDay(Number(dateInfo.day))
+		setMonth(Number(dateInfo.month))
+		setYear(Number(dateInfo.year))
+		setWhatDay(Number(dateInfo.whatDay))
 	}
 
 	const onClickWeek = (e: any): void => {
-		if (e.target.parentNode.childNodes[1].dataset.gray === 'true') {
+		const firstDayOfTheMonth = m.month(nowMonth).startOf('month').format('d')
+		const isGrayed = e.target.parentNode.childNodes[1].dataset.gray === 'true'
+
+		if (isGrayed) {
+			const dateInfo =
+				e.target.parentNode.childNodes[Number(firstDayOfTheMonth) + 1].dataset
 			setNowDay(1)
-			setNowWeek(e.target.textContent)
-			setYearStorage(nowYear)
-			setMonthStorage(nowMonth)
-			setYear(nowYear)
-			setMonth(nowMonth + 1)
 			setDay(1)
-			Array(8).forEach((v, i) => {
-				if (e.target.parentNode.childNodes[1].dataset.gray) {
-					setWhatDay(i - 1)
-				}
-			})
+			setMonth(Number(dateInfo.month))
+			setYear(Number(dateInfo.year))
+			setMonthStorage(Number(dateInfo.month))
+			setYearStorage(Number(dateInfo.year))
+			setNowWeek(Number(dateInfo.week))
+			setWhatDay(Number(firstDayOfTheMonth))
 		} else {
-			setNowDay(e.target.parentNode.childNodes[1].textContent)
-			setNowWeek(e.target.textContent)
-			setYearStorage(nowYear)
-			setMonthStorage(nowMonth)
-			setWhatDay('Sunday')
-			setYear(nowYear)
-			setMonth(nowMonth + 1)
-			setDay(e.target.parentNode.childNodes[1].textContent)
+			const dateInfo = e.target.parentNode.childNodes[1].dataset
+			setNowDay(Number(dateInfo.day))
+			setWhatDay(0)
+			setMonth(Number(dateInfo.month))
+			setYear(Number(dateInfo.year))
+			setMonthStorage(Number(dateInfo.month))
+			setYearStorage(Number(dateInfo.year))
+			setNowWeek(Number(dateInfo.week))
+			setDay(Number(dateInfo.day))
 		}
 	}
 
@@ -182,8 +178,11 @@ const Main: React.FunctionComponent = () => {
 
 	useEffect(() => {
 		localStorage.setItem('storage', JSON.stringify(storage))
-		setStorage(JSON.parse(localStorage.getItem('storage') || '{}'))
 	}, [storage])
+
+	useEffect(() => {
+		setStorage(JSON.parse(localStorage.getItem('storage') || '{}'))
+	}, [])
 
 	const propsSetMonth = (v: number) => {
 		setMonth(v)
