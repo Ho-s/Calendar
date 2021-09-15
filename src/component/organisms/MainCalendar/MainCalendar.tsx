@@ -18,7 +18,7 @@ interface MainCalendarProps {
 	storage: any
 	clickToday: () => void
 	onClickDayIn: any
-	onClickDeleteInDayTable: any
+	onClickDelete: any
 }
 
 const MainCalendar: React.FunctionComponent<MainCalendarProps> = ({
@@ -32,7 +32,7 @@ const MainCalendar: React.FunctionComponent<MainCalendarProps> = ({
 	storage,
 	clickToday,
 	onClickDayIn,
-	onClickDeleteInDayTable,
+	onClickDelete,
 }) => {
 	const m = moment()
 	const [dayCheck, setDayCheck] = useState<boolean>(true)
@@ -136,7 +136,7 @@ const MainCalendar: React.FunctionComponent<MainCalendarProps> = ({
 					yearStorage={yearStorage}
 					whatDay={whatDay}
 					storage={storage}
-					onClickDeleteInDayTable={onClickDeleteInDayTable}
+					onClickDelete={onClickDelete}
 				/>
 			)}
 			{weekCheck && (

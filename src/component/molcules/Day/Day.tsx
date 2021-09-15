@@ -10,7 +10,7 @@ interface DayProps {
 	yearStorage: number
 	whatDay: number | string
 	storage: any
-	onClickDeleteInDayTable: () => void
+	onClickDelete: () => void
 }
 
 const Day: React.FunctionComponent<DayProps> = ({
@@ -20,7 +20,7 @@ const Day: React.FunctionComponent<DayProps> = ({
 	yearStorage,
 	whatDay,
 	storage,
-	onClickDeleteInDayTable,
+	onClickDelete,
 }) => {
 	const m = moment()
 	const [dayLocation, setDayLocation] = useState(m.hours() * 61 + m.minutes())
@@ -137,7 +137,7 @@ const Day: React.FunctionComponent<DayProps> = ({
 								</S.TableTextWrapper>
 							</S.TableBody>
 							<S.TableDeleteButton
-								onClick={onClickDeleteInDayTable}
+								onClick={onClickDelete}
 							></S.TableDeleteButton>
 						</S.TableWrapper>
 					))}

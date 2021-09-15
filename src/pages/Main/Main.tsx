@@ -95,14 +95,7 @@ const Main: React.FunctionComponent = () => {
 
 	const onClickDelete = (e: any): void => {
 		const filteredStorage = storage.filter((v: StorageType) => {
-			return v.name !== Number(e.target.parentNode.getAttribute('data-name'))
-		})
-		setStorage(filteredStorage)
-	}
-
-	const onClickDeleteInDayTable = (e: any): void => {
-		const filteredStorage = storage.filter((v: StorageType) => {
-			return v.name !== Number(e.target.parentNode.getAttribute('data-name'))
+			return v.name !== Number(e.target.parentNode.dataset.name)
 		})
 		setStorage(filteredStorage)
 	}
@@ -187,7 +180,7 @@ const Main: React.FunctionComponent = () => {
 					storage={storage}
 					clickToday={onClickToday}
 					onClickDayIn={(e: any) => onClickDay(e)}
-					onClickDeleteInDayTable={(e: any) => onClickDeleteInDayTable(e)}
+					onClickDelete={(e: any) => onClickDelete(e)}
 				/>
 			</S.MainRight>
 		</>
