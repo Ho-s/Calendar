@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import * as S from './style'
 import moment from 'moment'
 
@@ -14,8 +14,6 @@ interface CalendarProps {
 	onClickRight: () => void
 	onClickDay: any
 	onClickWeek: any
-	setMonth: any
-	setYear: any
 }
 
 const Calendar: React.FunctionComponent<CalendarProps> = ({
@@ -30,8 +28,6 @@ const Calendar: React.FunctionComponent<CalendarProps> = ({
 	onClickRight,
 	onClickDay,
 	onClickWeek,
-	setMonth,
-	setYear,
 }) => {
 	const m = moment()
 	const today = m.format('YYYYMMDD')
@@ -143,10 +139,7 @@ const Calendar: React.FunctionComponent<CalendarProps> = ({
 		)
 	}
 
-	useEffect(() => {
-		setYear(Number(m.set('year', nowYear).format('YYYY')))
-		setMonth(nowMonth + 1)
-	}, [nowDay, nowWeek])
+	console.log(nowDay, nowWeek, nowMonth, nowYear, monthStorage, yearStorage)
 
 	return (
 		<S.Calendar>

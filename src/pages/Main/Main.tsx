@@ -34,7 +34,7 @@ const Main: React.FunctionComponent = () => {
 		setWhatDay(Number(dateInfo.whatDay))
 	}
 
-	console.log(nowDay, nowWeek, nowMonth, nowYear, monthStorage, yearStorage)
+	// console.log(nowDay, nowWeek, nowMonth, nowYear, monthStorage, yearStorage)
 
 	const onClickWeek = (e: any): void => {
 		const firstDayOfTheMonth = m.month(nowMonth).startOf('month').format('d')
@@ -117,6 +117,11 @@ const Main: React.FunctionComponent = () => {
 		setStorage(JSON.parse(localStorage.getItem('storage') || '{}'))
 	}, [])
 
+	useEffect(() => {
+		setYear(Number(m.set('year', nowYear).format('YYYY')))
+		setMonth(nowMonth + 1)
+	}, [nowDay || nowWeek])
+
 	const propsSetMonth = (v: number) => {
 		setMonth(v)
 	}
@@ -159,8 +164,6 @@ const Main: React.FunctionComponent = () => {
 					onClickRight={onClickRight}
 					onClickDay={(e: any) => onClickDay(e)}
 					onClickWeek={(e: any) => onClickWeek(e)}
-					setMonth={propsSetMonth}
-					setYear={propsSetYear}
 				/>
 
 				<Summary
