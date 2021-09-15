@@ -34,6 +34,8 @@ const Main: React.FunctionComponent = () => {
 		setWhatDay(Number(dateInfo.whatDay))
 	}
 
+	console.log(nowDay, nowWeek, nowMonth, nowYear, monthStorage, yearStorage)
+
 	const onClickWeek = (e: any): void => {
 		const firstDayOfTheMonth = m.month(nowMonth).startOf('month').format('d')
 		const isGrayed = e.target.parentNode.childNodes[1].dataset.gray === 'true'
@@ -91,40 +93,6 @@ const Main: React.FunctionComponent = () => {
 			setNowMonth(11)
 			setNowYear((prev: number): number => prev - 1)
 		}
-	}
-
-	const onClickDayInYear = (e: any): void => {
-		setNowDay(e.target.textContent)
-		setNowWeek(
-			m
-				.set({
-					year: nowYear,
-					month: e.target.parentNode.parentNode.id,
-					date: e.target.childNodes[0].textContent,
-				})
-				.week() === 1 && e.target.childNodes[0].textContent > 24
-				? 53
-				: m
-						.set({
-							year: nowYear,
-							month: e.target.parentNode.parentNode.id,
-							date: e.target.childNodes[0].textContent,
-						})
-						.week(),
-		)
-		setNowMonth(Number(e.target.parentNode.parentNode.id))
-		setYearStorage(nowYear)
-		setMonthStorage(Number(e.target.parentNode.parentNode.id))
-		setYear(nowYear)
-		setMonth(Number(e.target.parentNode.parentNode.id) + 1)
-		setDay(e.target.textContent)
-		Array(7).forEach((v, i) => {
-			if (
-				e.target.parentNode.childNodes[i].textContent === e.target.textContent
-			) {
-				setWhatDay(i)
-			}
-		})
 	}
 
 	const onClickDelete = (e: any): void => {
@@ -217,8 +185,7 @@ const Main: React.FunctionComponent = () => {
 					yearStorage={yearStorage}
 					storage={storage}
 					onClickToday={onClickToday}
-					onClickDayInMonth={(e: any) => onClickDay(e)}
-					onClickDayInYear={(e: any) => onClickDayInYear(e)}
+					onClickDayIn={(e: any) => onClickDay(e)}
 					onClickDeleteInDayTable={(e: any) => onClickDeleteInDayTable(e)}
 				/>
 			</S.MainRight>

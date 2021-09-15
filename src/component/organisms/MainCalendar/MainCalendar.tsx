@@ -17,8 +17,7 @@ interface MainCalendarProps {
 	yearStorage: number
 	storage: any
 	onClickToday: () => void
-	onClickDayInMonth: any
-	onClickDayInYear: any
+	onClickDayIn: any
 	onClickDeleteInDayTable: any
 }
 
@@ -32,8 +31,7 @@ const MainCalendar: React.FunctionComponent<MainCalendarProps> = ({
 	yearStorage,
 	storage,
 	onClickToday,
-	onClickDayInMonth,
-	onClickDayInYear,
+	onClickDayIn,
 	onClickDeleteInDayTable,
 }) => {
 	const m = moment()
@@ -159,7 +157,7 @@ const MainCalendar: React.FunctionComponent<MainCalendarProps> = ({
 					yearStorage={yearStorage}
 					nowMonth={nowMonth}
 					nowYear={nowYear}
-					onClickDayInMonth={onClickDayInMonth}
+					onClickDayInMonth={onClickDayIn}
 					storage={storage}
 				/>
 			)}
@@ -169,7 +167,7 @@ const MainCalendar: React.FunctionComponent<MainCalendarProps> = ({
 					nowWeek={nowWeek}
 					yearStorage={yearStorage}
 					nowYear={nowYear}
-					onClickDayInYear={onClickDayInYear}
+					onClickDayInYear={onClickDayIn}
 					storage={storage}
 				/>
 			)}
