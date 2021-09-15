@@ -2,7 +2,7 @@ import styled from 'styled-components'
 
 export const YearComponent = styled.div`
     height: calc(100vh - 30px);
-    width: 100%;
+    width: calc(100% - 14px);
     padding-left: 14px;
     background-color: white;
 `
