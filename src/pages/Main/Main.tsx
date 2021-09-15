@@ -26,6 +26,8 @@ const Main: React.FunctionComponent = () => {
 		const dateInfo = e.target.dataset
 		setNowDay(Number(dateInfo.day))
 		setNowWeek(Number(dateInfo.week))
+		setNowMonth(Number(dateInfo.month))
+		setNowYear(Number(dateInfo.year))
 		setMonthStorage(Number(dateInfo.month))
 		setYearStorage(Number(dateInfo.year))
 		setDay(Number(dateInfo.day))

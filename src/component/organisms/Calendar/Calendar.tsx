@@ -139,8 +139,6 @@ const Calendar: React.FunctionComponent<CalendarProps> = ({
 		)
 	}
 
-	console.log(nowDay, nowWeek, nowMonth, nowYear, monthStorage, yearStorage)
-
 	return (
 		<S.Calendar>
 			<S.Body>
