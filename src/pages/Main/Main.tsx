@@ -17,7 +17,9 @@ const Main: React.FunctionComponent = () => {
 	const [yearStorage, setYearStorage] = useState<number>(m.year())
 	const [monthStorage, setMonthStorage] = useState<number>(m.month())
 
-	const [storage, setStorage] = useState<StorageType[]>([])
+	const [storage, setStorage] = useState<StorageType[]>(
+		JSON.parse(localStorage.getItem('storage') || '[]'),
+	)
 	const [year, setYear] = useState<number>(m.year())
 	const [month, setMonth] = useState<number>(m.month() + 1)
 	const [day, setDay] = useState<number>(m.date())
@@ -107,7 +109,7 @@ const Main: React.FunctionComponent = () => {
 	}, [storage])
 
 	useEffect(() => {
-		setStorage(JSON.parse(localStorage.getItem('storage') || '{}'))
+		setStorage(JSON.parse(localStorage.getItem('storage') || '[]'))
 	}, [])
 
 	useEffect(() => {

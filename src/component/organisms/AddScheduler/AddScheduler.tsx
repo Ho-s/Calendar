@@ -152,42 +152,34 @@ const AddScheduler: React.FunctionComponent<AddSchedulerProps> = ({
 
 	const onClickSubmit = (): void => {
 		const blockStorage: StorageType = {
-			id: '213',
+			id: Math.random().toString(36).substr(2, 16),
 			title,
-			year: Number(year),
-			month: Number(month),
-			day: Number(day),
-			week: Number(
-				m
-					.set({
-						year: Number(year),
-						month: Number(month - 1),
-						date: Number(day),
-					})
-					.week(),
-			),
+			year,
+			month,
+			day,
 			startHours: startHours === 0 ? '00' : startHours,
 			startMinutes: startMinutes === 0 ? '00' : startMinutes,
 			endHours: endHours === 0 ? '00' : endHours,
 			endMinutes: endMinutes === 0 ? '00' : endMinutes,
 			color,
 		}
-		if (storage.length !== 0) {
-			for (let i = 0; i < storage.length; i++) {
-				if (
-					storage[i].startHours === blockStorage.startHours &&
-					storage[i].startMinutes === blockStorage.startMinutes &&
-					storage[i].endHours === blockStorage.endHours &&
-					storage[i].endMinutes === blockStorage.endMinutes &&
-					storage[i].year === blockStorage.year &&
-					storage[i].month === blockStorage.month &&
-					storage[i].day === blockStorage.day
-				) {
-					alert('There is same schedule alredy')
-					break
-				}
-			}
-		}
+		// if (storage.length !== 0) {
+		// 	for (let i = 0; i < storage.length; i++) {
+		// 		if (
+		// 			storage[i].startHours === blockStorage.startHours &&
+		// 			storage[i].startMinutes === blockStorage.startMinutes &&
+		// 			storage[i].endHours === blockStorage.endHours &&
+		// 			storage[i].endMinutes === blockStorage.endMinutes &&
+		// 			storage[i].year === blockStorage.year &&
+		// 			storage[i].month === blockStorage.month &&
+		// 			storage[i].day === blockStorage.day
+		// 		) {
+		// 			alert('There is same schedule alredy')
+		// 			break
+		// 		}
+		// 	}
+		// }
+		setTitle('')
 		setSpanText('Add Schedule')
 		setArrowBoolean(true)
 		setStorage((prev: StorageType[]) => [...prev, blockStorage])
@@ -235,6 +227,7 @@ const AddScheduler: React.FunctionComponent<AddSchedulerProps> = ({
 						spellCheck="false"
 						placeholder={titleHolder}
 						onChange={onChangeTitle}
+						value={title}
 					/>
 				</S.SchedulerHead>
 				<S.SchedulerBody>

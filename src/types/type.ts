@@ -4,7 +4,6 @@ export interface StorageType {
 	year: number
 	month: number
 	day: number
-	week: number
 	startHours: number|string
 	startMinutes: number|string
 	endHours: number|string
