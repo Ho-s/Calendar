@@ -42,7 +42,7 @@ export const SummarySchedule = styled.div`
 `
 
 export const SummaryScheduleButton = styled.button`
-    background-image: url(https://user-images.githubusercontent.com/71132893/103125964-2e5e3580-46d0-11eb-9cdd-15ce0c5ca318.png);
+    background-image: url('https://user-images.githubusercontent.com/71132893/103125964-2e5e3580-46d0-11eb-9cdd-15ce0c5ca318.png');
     background-repeat: no-repeat;
     background-size: contain;
     width: 16px;
@@ -97,7 +97,6 @@ color: gray;
 
 export const NoSchedule = styled.div`
 color: gray;
-margin-top: 15px;
 font-size: 15px;
 `
 
@@ -112,9 +111,10 @@ font-size: 18px;
 margin-bottom: 10px;
 `
 
-export const Title = styled.span`
+export const Title = styled.div`
 font-size: 16px;
 font-weight: 600;
 color: black;
 text-shadow: -1px 0 white, 0 1px white, 1px 0 white, 0 -1px white;
+margin-bottom: 15px;
 `
