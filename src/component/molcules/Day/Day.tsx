@@ -147,7 +147,7 @@ const Day: React.FunctionComponent<DayProps> = ({
 	}
 	useInterval(() => {
 		setDayLocation(m.hours() * 61 + m.minutes())
-		setLineTime(m.format('LT'))
+		setLineTime(m.format('LT') + '')
 	}, 1000)
 
 	return (

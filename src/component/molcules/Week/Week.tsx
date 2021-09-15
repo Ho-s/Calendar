@@ -127,8 +127,10 @@ const Week: React.FunctionComponent<WeekProps> = ({
 	}
 	useInterval(() => {
 		setWeekLocation(m.hours() * 61 + 51 + m.minutes())
-		setLineTime(m.format('LT'))
+		setLineTime(m.format('LT') + '')
 	}, 1000)
+
+	console.log(m.hours() * 61 + 51 + m.minutes(), m.format('LT'))
 
 	return (
 		<S.WeekComponent>
