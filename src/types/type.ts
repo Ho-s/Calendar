@@ -1,5 +1,5 @@
 export interface StorageType {
-	name: string | number
+	id: string
 	title:string
 	year: number
 	month: number

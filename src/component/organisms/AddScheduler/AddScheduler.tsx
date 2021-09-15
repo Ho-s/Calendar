@@ -30,16 +30,16 @@ const AddScheduler: React.FunctionComponent<AddSchedulerProps> = ({
 	const [dayStyle, setDayStyle] = useState<string>('')
 	const [timeStyle, setTimeStyle] = useState<string>('')
 	const [titleHolder, setTitleHolder] = useState<string>('Title')
-	const [addSchedule, setAddSchedule] = useState<boolean>(false)
+	const [spanText, setSpanText] = useState<string>('Add Schedule')
+	const [arrowBoolean, setArrowBoolean] = useState<boolean>(true)
 
+	const [addSchedule, setAddSchedule] = useState<boolean>(false)
 	const [title, setTitle] = useState<string>('')
 	const [startHours, setStartHours] = useState<number | string>(m.hour())
 	const [startMinutes, setStartMinutes] = useState<number | string>(0)
 	const [endHours, setEndHours] = useState<number | string>(m.hour() + 1)
 	const [endMinutes, setEndMinutes] = useState<number | string>(0)
 	const [color, setColor] = useState<string>('#04B910')
-	const [spanText, setSpanText] = useState<string>('Add Schedule')
-	const [arrowBoolean, setArrowBoolean] = useState<boolean>(true)
 
 	const onChangeTitle = (e: any): void => {
 		setTitle(e.target.value)
@@ -152,8 +152,7 @@ const AddScheduler: React.FunctionComponent<AddSchedulerProps> = ({
 
 	const onClickSubmit = (): void => {
 		const blockStorage: StorageType = {
-			name:
-				storage.length === 0 ? 0 : Number(storage[storage.length - 1].name) + 1,
+			id: '213',
 			title,
 			year: Number(year),
 			month: Number(month),
