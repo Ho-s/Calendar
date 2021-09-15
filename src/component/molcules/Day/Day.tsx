@@ -114,25 +114,25 @@ const Day: React.FunctionComponent<DayProps> = ({
 							<S.TableTitle>{v.title}</S.TableTitle>
 							<S.TableBody>
 								<S.TableTextWrapper>
-									<S.TableTextLeft>date</S.TableTextLeft>
+									<S.TableTextLeft>Date</S.TableTextLeft>
 									<S.TableTextRigth>
 										{v.month}/{v.day}/{v.year}
 									</S.TableTextRigth>
 								</S.TableTextWrapper>
 								<S.TableTextWrapper>
-									<S.TableTextLeft>start</S.TableTextLeft>
+									<S.TableTextLeft>Start</S.TableTextLeft>
 									<S.TableTextRigth>
 										{v.startHours}:{v.startMinutes}
 									</S.TableTextRigth>
 								</S.TableTextWrapper>
 								<S.TableTextWrapper>
-									<S.TableTextLeft>ends</S.TableTextLeft>
+									<S.TableTextLeft>End</S.TableTextLeft>
 									<S.TableTextRigth>
 										{v.endHours}:{v.endMinutes}
 									</S.TableTextRigth>
 								</S.TableTextWrapper>
 								<S.TableTextWrapper>
-									<S.TableTextLeft>display</S.TableTextLeft>
+									<S.TableTextLeft>Color</S.TableTextLeft>
 									<S.TableDisplay backgroundColor={v.color}></S.TableDisplay>
 								</S.TableTextWrapper>
 							</S.TableBody>

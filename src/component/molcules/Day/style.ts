@@ -120,13 +120,13 @@ export const TableDeleteButton = styled.div`
   background-size: contain;
   width: 24px;
   height: 24px;
-  background-image: url(https://user-images.githubusercontent.com/71132893/103125964-2e5e3580-46d0-11eb-9cdd-15ce0c5ca318.png);
+  background-image: url('https://user-images.githubusercontent.com/71132893/103125964-2e5e3580-46d0-11eb-9cdd-15ce0c5ca318.png');
   cursor: pointer;
 `
 
 export const TableTextWrapper = styled.div`
 margin-bottom: 10px;
-
+position: relative;
 `
 
 export const TableTextLeft = styled.span`
@@ -142,6 +142,9 @@ interface TableDisplayProps {
 }
 
 export const TableDisplay = styled.div<TableDisplayProps>`
+position: absolute;
+top:0;
+right:0;
 width: 20px;
 margin-right: 200px;
 height: 20px;
