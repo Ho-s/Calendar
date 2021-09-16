@@ -1,24 +1,22 @@
 import React from 'react'
 import moment from 'moment'
 import * as S from './style'
-
-interface YearProps {
-	nowDay: number
-	nowWeek: number
-	yearStorage: number
-	storage: any
-	nowYear: number
-	onClickDayInYear: () => void
-}
-
-const Year: React.FunctionComponent<YearProps> = ({
+import {
 	nowDay,
 	nowWeek,
 	yearStorage,
 	storage,
 	nowYear,
-	onClickDayInYear,
-}) => {
+	onClickDay,
+} from '../../../stores/store'
+import { useReactiveVar } from '@apollo/client'
+
+const Year: React.FunctionComponent = () => {
+	const nowDayProps = useReactiveVar(nowDay)
+	const nowWeekProps = useReactiveVar(nowWeek)
+	const yearStorageProps = useReactiveVar(yearStorage)
+	const storageProps = useReactiveVar(storage)
+	const nowYearProps = useReactiveVar(nowYear)
 	const m = moment()
 	const today = m.format('YYYYMMDD')
 
@@ -48,21 +46,21 @@ const Year: React.FunctionComponent<YearProps> = ({
 								const todaySelected =
 									today === current.format('YYYYMMDD') ? 'year-selected' : ''
 								const isSelected =
-									Number(nowDay) === Number(current.format('D')) &&
-									Number(yearStorage) === nowYear &&
-									nowWeek === week
+									Number(nowDayProps) === Number(current.format('D')) &&
+									Number(yearStorageProps) === nowYearProps &&
+									nowWeekProps === week
 										? 'yearSelected'
 										: ''
 								const isGrayed =
 									current.format('MM') === m.format('MM') ? '' : 'year-grayed'
 								const clicking =
 									current.format('MM') === m.format('MM')
-										? onClickDayInYear
+										? onClickDay
 										: (e: any) => e.preventDefault()
 								const day = []
 								if (current.format('MM') === m.format('MM')) {
 									{
-										storage.forEach((v: any) => {
+										storageProps.forEach((v: any) => {
 											if (v.year === Number(current.year())) {
 												if (v.month === Number(current.month() + 1)) {
 													if (v.day === Number(current.date())) {
@@ -132,7 +130,7 @@ const Year: React.FunctionComponent<YearProps> = ({
 									<S.YearDay>FRI</S.YearDay>
 									<S.YearDay>SAT</S.YearDay>
 								</S.YearRow>
-								{Generate(nowYear, i)}
+								{Generate(nowYearProps, i)}
 							</S.MonthWrapper>
 						)
 					})}
@@ -142,7 +140,7 @@ const Year: React.FunctionComponent<YearProps> = ({
 
 	return (
 		<S.YearComponent>
-			<S.YearTitle>{nowYear}</S.YearTitle>
+			<S.YearTitle>{nowYearProps}</S.YearTitle>
 			{GenerateWrap()}
 		</S.YearComponent>
 	)

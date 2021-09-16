@@ -2,20 +2,19 @@ import React, { useState } from 'react'
 import useInterval from '../../utils/useInterval'
 import moment from 'moment'
 import * as S from './style'
-
-interface WeekProps {
-	nowWeek: number
-	monthStorage: number
-	yearStorage: number
-	storage: any
-}
-
-const Week: React.FunctionComponent<WeekProps> = ({
+import {
 	nowWeek,
 	monthStorage,
 	yearStorage,
 	storage,
-}) => {
+} from '../../../stores/store'
+import { useReactiveVar } from '@apollo/client'
+
+const Week: React.FunctionComponent = () => {
+	const nowWeekProps = useReactiveVar(nowWeek)
+	const monthStorageProps = useReactiveVar(monthStorage)
+	const yearStorageProps = useReactiveVar(yearStorage)
+	const storageProps = useReactiveVar(storage)
 	const m = moment()
 	const today = m.format('YYYYMMDD')
 	const [weekLocation, setWeekLocation] = useState(
@@ -24,9 +23,9 @@ const Week: React.FunctionComponent<WeekProps> = ({
 	const [lineTime, setLineTime] = useState(m.format('LT'))
 
 	const Generate = () => {
-		m.set('year', yearStorage)
-		m.set('month', monthStorage)
-		m.set('week', nowWeek)
+		m.set('year', yearStorageProps)
+		m.set('month', monthStorageProps)
+		m.set('week', nowWeekProps)
 		const week = m.week()
 		return (
 			<>
@@ -40,7 +39,7 @@ const Week: React.FunctionComponent<WeekProps> = ({
 						const todaySelect =
 							today === current.format('YYYYMMDD') ? 'week-selected' : ''
 						const isGrayed =
-							Number(current.format('MM')) === Number(monthStorage) + 1
+							Number(current.format('MM')) === Number(monthStorageProps) + 1
 								? ''
 								: 'week-grayed'
 						const whatDay = () => {
@@ -66,7 +65,7 @@ const Week: React.FunctionComponent<WeekProps> = ({
 
 						const day: any = []
 						{
-							storage.forEach((v: any) => {
+							storageProps.forEach((v: any) => {
 								if (v.year === Number(current.year())) {
 									if (v.month === Number(current.month() + 1)) {
 										if (v.day === Number(current.date())) {
@@ -130,19 +129,17 @@ const Week: React.FunctionComponent<WeekProps> = ({
 		setLineTime(m.format('LT') + '')
 	}, 1000)
 
-	console.log(m.hours() * 61 + 51 + m.minutes(), m.format('LT'))
-
 	return (
 		<S.WeekComponent>
 			<S.WeekLeft>
 				<S.WeekTitleWrapper>
 					<S.WeekTitleWeek>
-						CW{m.set('week', nowWeek).format('W')}
+						CW{m.set('week', nowWeekProps).format('W')}
 					</S.WeekTitleWeek>
 					<S.WeekTitleMonth>
-						{m.set('month', monthStorage).format('MMMM')}
+						{m.set('month', monthStorageProps).format('MMMM')}
 					</S.WeekTitleMonth>
-					<S.WeekTitleYear>{yearStorage}</S.WeekTitleYear>
+					<S.WeekTitleYear>{yearStorageProps}</S.WeekTitleYear>
 				</S.WeekTitleWrapper>
 				{Array(24)
 					.fill(0)

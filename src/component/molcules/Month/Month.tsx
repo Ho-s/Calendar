@@ -1,32 +1,30 @@
 import React from 'react'
 import moment from 'moment'
 import * as S from './style'
-
-interface MonthProps {
-	nowDay: number
-	monthStorage: number
-	yearStorage: number
-	nowMonth: number
-	nowYear: number
-	onClickDayInMonth: () => void
-	storage: any
-}
-
-const Month: React.FunctionComponent<MonthProps> = ({
+import {
 	nowDay,
 	monthStorage,
 	yearStorage,
 	nowMonth,
 	nowYear,
-	onClickDayInMonth,
 	storage,
-}) => {
+	onClickDay,
+} from '../../../stores/store'
+import { useReactiveVar } from '@apollo/client'
+
+const Month: React.FunctionComponent = () => {
+	const nowDayProps = useReactiveVar(nowDay)
+	const monthStorageProps = useReactiveVar(monthStorage)
+	const yearStorageProps = useReactiveVar(yearStorage)
+	const nowMonthProps = useReactiveVar(nowMonth)
+	const nowYearProps = useReactiveVar(nowYear)
+	const storageProps = useReactiveVar(storage)
 	const m = moment()
 	const today = m.format('YYYYMMDD')
 
 	const Generate = () => {
-		m.set('year', nowYear)
-		m.set('month', nowMonth)
+		m.set('year', nowYearProps)
+		m.set('month', nowMonthProps)
 		const startWeek = m.clone().startOf('month').week()
 		const endWeek =
 			m.clone().endOf('month').week() === 1
@@ -50,22 +48,22 @@ const Month: React.FunctionComponent<MonthProps> = ({
 								const todaySelected =
 									today === current.format('YYYYMMDD') ? 'month-selected' : ''
 								const isSelected =
-									Number(nowDay) === Number(current.format('D')) &&
-									Number(yearStorage) === nowYear &&
-									monthStorage === nowMonth
+									Number(nowDayProps) === Number(current.format('D')) &&
+									Number(yearStorageProps) === nowYearProps &&
+									monthStorageProps === nowMonthProps
 										? 'monthSelected'
 										: ''
 								const isGrayed =
 									current.format('MM') === m.format('MM') ? '' : 'month-grayed'
 								const clicking =
 									current.format('MM') === m.format('MM')
-										? onClickDayInMonth
+										? onClickDay
 										: (e: any) => e.preventDefault()
 
 								const day: any = []
 								if (current.format('MM') === m.format('MM')) {
 									{
-										storage.forEach((v: any) => {
+										storageProps.forEach((v: any) => {
 											if (v.year === Number(current.year())) {
 												if (v.month === Number(current.month() + 1)) {
 													if (v.day === Number(current.date())) {
@@ -127,9 +125,9 @@ const Month: React.FunctionComponent<MonthProps> = ({
 		<S.MonthComponent>
 			<S.MonthTitleWrapper>
 				<S.MonthTitleLeft>
-					{m.set('month', nowMonth).format('MMMM')}
+					{m.set('month', nowMonthProps).format('MMMM')}
 				</S.MonthTitleLeft>
-				<S.MonthTitleRight>{nowYear}</S.MonthTitleRight>
+				<S.MonthTitleRight>{nowYearProps}</S.MonthTitleRight>
 			</S.MonthTitleWrapper>
 			<S.MonthRow>
 				<S.MonthDay>SUN</S.MonthDay>

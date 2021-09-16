@@ -1,22 +1,7 @@
 import React from 'react'
 import * as S from './style'
 import moment from 'moment'
-
-interface CalendarProps {
-	nowDay: number
-	nowWeek: number
-	nowMonth: number
-	nowYear: number
-	monthStorage: number
-	yearStorage: number
-	storage: any
-	onClickLeft: () => void
-	onClickRight: () => void
-	onClickDay: any
-	onClickWeek: any
-}
-
-const Calendar: React.FunctionComponent<CalendarProps> = ({
+import {
 	nowDay,
 	nowWeek,
 	nowMonth,
@@ -28,13 +13,23 @@ const Calendar: React.FunctionComponent<CalendarProps> = ({
 	onClickRight,
 	onClickDay,
 	onClickWeek,
-}) => {
+} from '../../../stores/store'
+import { useReactiveVar } from '@apollo/client'
+
+const Calendar: React.FunctionComponent = () => {
+	const nowDayProps = useReactiveVar(nowDay)
+	const nowWeekProps = useReactiveVar(nowWeek)
+	const nowMonthProps = useReactiveVar(nowMonth)
+	const nowYearProps = useReactiveVar(nowYear)
+	const monthStorageProps = useReactiveVar(monthStorage)
+	const yearStorageProps = useReactiveVar(yearStorage)
+	const storageProps = useReactiveVar(storage)
 	const m = moment()
 	const today = m.format('YYYYMMDD')
 
 	const Generate = () => {
-		m.set('year', nowYear)
-		m.set('month', nowMonth)
+		m.set('year', nowYearProps)
+		m.set('month', nowMonthProps)
 		const startWeek = m.clone().startOf('month').week()
 		const endWeek =
 			m.clone().endOf('month').week() === 1
@@ -49,9 +44,9 @@ const Calendar: React.FunctionComponent<CalendarProps> = ({
 					const thisWeekConst =
 						today === m.clone().week(week).format('YYYYMMDD') ? 'today' : ''
 					const weekSelected =
-						Number(nowWeek) === week &&
-						Number(yearStorage) === nowYear &&
-						monthStorage === nowMonth
+						Number(nowWeekProps) === week &&
+						Number(yearStorageProps) === nowYearProps &&
+						monthStorageProps === nowMonthProps
 							? 'selected'
 							: ''
 
@@ -75,9 +70,9 @@ const Calendar: React.FunctionComponent<CalendarProps> = ({
 									const todaySelect =
 										today === current.format('YYYYMMDD') ? 'today' : ''
 									const isSelected =
-										Number(nowDay) === Number(current.format('D')) &&
-										Number(yearStorage) === nowYear &&
-										monthStorage === nowMonth
+										Number(nowDayProps) === Number(current.format('D')) &&
+										Number(yearStorageProps) === nowYearProps &&
+										monthStorageProps === nowMonthProps
 											? 'selected'
 											: ''
 									const clicking =
@@ -89,9 +84,9 @@ const Calendar: React.FunctionComponent<CalendarProps> = ({
 
 									const day: any = []
 									if (current.format('MM') === m.format('MM')) {
-										storage.forEach((v: any) => {
-											if (v.year === Number(nowYear)) {
-												if (v.month === Number(nowMonth + 1)) {
+										storageProps.forEach((v: any) => {
+											if (v.year === Number(nowYearProps)) {
+												if (v.month === Number(nowMonthProps + 1)) {
 													if (v.day === current.date()) {
 														if (day.length < 3) {
 															day.push(v)
@@ -142,8 +137,10 @@ const Calendar: React.FunctionComponent<CalendarProps> = ({
 	return (
 		<S.Calendar>
 			<S.Body>
-				<S.MonthSpan>{m.set('month', nowMonth).format('MMMM')}</S.MonthSpan>
-				<S.YearSpan>{nowYear}</S.YearSpan>
+				<S.MonthSpan>
+					{m.set('month', nowMonthProps).format('MMMM')}
+				</S.MonthSpan>
+				<S.YearSpan>{nowYearProps}</S.YearSpan>
 				<S.BodyButton onClick={onClickRight}>&gt;</S.BodyButton>
 				<S.BodyButton onClick={onClickLeft}>&lt;</S.BodyButton>
 			</S.Body>

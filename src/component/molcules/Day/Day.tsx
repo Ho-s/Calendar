@@ -2,18 +2,7 @@ import React, { useState } from 'react'
 import useInterval from '../../utils/useInterval'
 import moment from 'moment'
 import * as S from './style'
-
-interface DayProps {
-	nowDay: number
-	nowWeek: number
-	monthStorage: number
-	yearStorage: number
-	whatDay: number | string
-	storage: any
-	onClickDelete: () => void
-}
-
-const Day: React.FunctionComponent<DayProps> = ({
+import {
 	nowDay,
 	nowWeek,
 	monthStorage,
@@ -21,7 +10,16 @@ const Day: React.FunctionComponent<DayProps> = ({
 	whatDay,
 	storage,
 	onClickDelete,
-}) => {
+} from '../../../stores/store'
+import { useReactiveVar } from '@apollo/client'
+
+const Day: React.FunctionComponent = () => {
+	const nowDayProps = useReactiveVar(nowDay)
+	const nowWeekProps = useReactiveVar(nowWeek)
+	const monthStorageProps = useReactiveVar(monthStorage)
+	const yearStorageProps = useReactiveVar(yearStorage)
+	const whatDayProps = useReactiveVar(whatDay)
+	const storageProps = useReactiveVar(storage)
 	const m = moment()
 	const [dayLocation, setDayLocation] = useState(m.hours() * 61 + m.minutes())
 	const [lineTime, setLineTime] = useState(m.format('LT'))
@@ -37,10 +35,10 @@ const Day: React.FunctionComponent<DayProps> = ({
 		})
 
 	const TimeLinesRight = () => {
-		m.set('year', yearStorage)
-		m.set('month', monthStorage)
-		m.set('week', nowWeek)
-		m.set('date', nowDay)
+		m.set('year', yearStorageProps)
+		m.set('month', monthStorageProps)
+		m.set('week', nowWeekProps)
+		m.set('date', nowDayProps)
 		return (
 			<>
 				<S.TimeLineRightWrapper>
@@ -56,10 +54,10 @@ const Day: React.FunctionComponent<DayProps> = ({
 
 	const TakeSchedule = () => {
 		const day: any = []
-		storage.forEach((v: any) => {
-			if (v.year === Number(yearStorage)) {
-				if (v.month === Number(monthStorage + 1)) {
-					if (v.day === Number(nowDay)) {
+		storageProps.forEach((v: any) => {
+			if (v.year === Number(yearStorageProps)) {
+				if (v.month === Number(monthStorageProps + 1)) {
+					if (v.day === Number(nowDayProps)) {
 						day.push(v)
 					}
 				}
@@ -96,10 +94,10 @@ const Day: React.FunctionComponent<DayProps> = ({
 	const MakeATable = () => {
 		const day: any = []
 		{
-			storage.forEach((v: any) => {
-				if (v.year === Number(yearStorage)) {
-					if (v.month === Number(monthStorage + 1)) {
-						if (v.day === Number(nowDay)) {
+			storageProps.forEach((v: any) => {
+				if (v.year === Number(yearStorageProps)) {
+					if (v.month === Number(monthStorageProps + 1)) {
+						if (v.day === Number(nowDayProps)) {
 							day.push(v)
 						}
 					}
@@ -153,16 +151,18 @@ const Day: React.FunctionComponent<DayProps> = ({
 	return (
 		<S.DayComponent>
 			<S.DateStorage>
-				<S.WeekStorage>CW{m.set('week', nowWeek).format('W')}</S.WeekStorage>
+				<S.WeekStorage>
+					CW{m.set('week', nowWeekProps).format('W')}
+				</S.WeekStorage>
 				<S.TodayStorage>
-					{whatDay === -1
-						? m.set('date', nowDay).format('dddd')
-						: m.day(whatDay).format('dddd')}
+					{whatDayProps === -1
+						? m.set('date', nowDayProps).format('dddd')
+						: m.day(whatDayProps).format('dddd')}
 				</S.TodayStorage>
 				<S.MonthStorage>
-					{`${m.set('month', monthStorage).format('MMMM')}${nowDay}`}
+					{`${m.set('month', monthStorageProps).format('MMMM')}${nowDayProps}`}
 				</S.MonthStorage>
-				<S.YearStorage>{yearStorage}</S.YearStorage>
+				<S.YearStorage>{yearStorageProps}</S.YearStorage>
 			</S.DateStorage>
 			<S.TimeTable>
 				<S.RedLine top={`${dayLocation}px`}>{lineTime}</S.RedLine>

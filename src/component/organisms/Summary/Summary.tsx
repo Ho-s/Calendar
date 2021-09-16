@@ -1,34 +1,32 @@
 import React from 'react'
 import moment from 'moment'
 import * as S from './style'
-
-interface SummaryProps {
-	storage: any[] | any
-	onClickDelete: any
-	nowDay: number
-	nowWeek: number
-	nowMonth: number
-	nowYear: number
-	monthStorage: number
-	yearStorage: number
-}
-
-const Summary: React.FunctionComponent<SummaryProps> = ({
+import {
 	storage,
-	onClickDelete,
 	nowDay,
 	nowWeek,
 	nowMonth,
 	nowYear,
 	monthStorage,
 	yearStorage,
-}) => {
+	onClickDelete,
+} from '../../../stores/store'
+import { useReactiveVar } from '@apollo/client'
+
+const Summary: React.FunctionComponent = () => {
+	const storageProps = useReactiveVar(storage)
+	const nowDayProps = useReactiveVar(nowDay)
+	const nowWeekProps = useReactiveVar(nowWeek)
+	const nowMonthProps = useReactiveVar(nowMonth)
+	const nowYearProps = useReactiveVar(nowYear)
+	const monthStorageProps = useReactiveVar(monthStorage)
+	const yearStorageProps = useReactiveVar(yearStorage)
 	const m = moment()
 
 	const Generate = () => {
-		m.set('year', yearStorage)
-		m.set('month', monthStorage)
-		m.set('week', nowWeek)
+		m.set('year', yearStorageProps)
+		m.set('month', monthStorageProps)
+		m.set('week', nowWeekProps)
 		let num = 0
 		return (
 			<S.LoadList>
@@ -41,16 +39,19 @@ const Summary: React.FunctionComponent<SummaryProps> = ({
 							.startOf('week')
 							.add(n + i, 'day')
 						const selectedColor =
-							Number(nowDay) === Number(current.format('D')) &&
-							Number(yearStorage) === nowYear &&
-							monthStorage === nowMonth
+							Number(nowDayProps) === Number(current.format('D')) &&
+							Number(yearStorageProps) === nowYearProps &&
+							monthStorageProps === nowMonthProps
 								? '#4D4FFF'
 								: 'gray'
 
 						const day: any[] = []
-						if (Number(current.format('MM')) === Number(monthStorage) + 1) {
+						if (
+							Number(current.format('MM')) ===
+							Number(monthStorageProps) + 1
+						) {
 							{
-								storage.forEach((v: any) => {
+								storageProps.forEach((v: any) => {
 									if (v.year === Number(current.year())) {
 										if (v.month === Number(current.month() + 1)) {
 											if (v.day === Number(current.date())) {

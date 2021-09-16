@@ -2,28 +2,18 @@ import React, { useState } from 'react'
 import moment from 'moment'
 import * as S from './style'
 import StorageType from '../../../types/type'
+import {
+	addStorage,
+	nowDay,
+	monthStorage,
+	yearStorage,
+} from '../../../stores/store'
+import { useReactiveVar } from '@apollo/client'
 
-interface AddSchedulerProps {
-	storage: StorageType[]
-	year: number
-	day: number
-	month: number
-	setMonth: any
-	setYear: any
-	setDay: any
-	setStorage: any
-}
-
-const AddScheduler: React.FunctionComponent<AddSchedulerProps> = ({
-	storage,
-	year,
-	day,
-	month,
-	setMonth,
-	setYear,
-	setDay,
-	setStorage,
-}) => {
+const AddScheduler: React.FunctionComponent = () => {
+	const nowDayProps = useReactiveVar(nowDay)
+	const monthStorageProps = useReactiveVar(monthStorage)
+	const yearStorageProps = useReactiveVar(yearStorage)
 	const m = moment()
 	const [timeError, setTimeError] = useState<boolean>(false)
 	const [dayError, setDayError] = useState<boolean>(false)
@@ -33,6 +23,9 @@ const AddScheduler: React.FunctionComponent<AddSchedulerProps> = ({
 	const [spanText, setSpanText] = useState<string>('Add Schedule')
 	const [arrowBoolean, setArrowBoolean] = useState<boolean>(true)
 
+	const [day, setDay] = useState<number>(m.date())
+	const [month, setMonth] = useState<number>(m.month() + 1)
+	const [year, setYear] = useState<number>(m.year())
 	const [addSchedule, setAddSchedule] = useState<boolean>(false)
 	const [title, setTitle] = useState<string>('')
 	const [startHours, setStartHours] = useState<number | string>(m.hour())
@@ -148,15 +141,18 @@ const AddScheduler: React.FunctionComponent<AddSchedulerProps> = ({
 		setStartMinutes('00')
 		setEndHours(m.hour() + 1)
 		setEndMinutes('00')
+		setDay(nowDayProps)
+		setMonth(monthStorageProps + 1)
+		setYear(yearStorageProps)
 	}
 
 	const onClickSubmit = (): void => {
 		const blockStorage: StorageType = {
 			id: Math.random().toString(36).substr(2, 16),
 			title,
-			year,
-			month,
-			day,
+			year: year,
+			month: month,
+			day: day,
 			startHours: startHours === 0 ? '00' : startHours,
 			startMinutes: startMinutes === 0 ? '00' : startMinutes,
 			endHours: endHours === 0 ? '00' : endHours,
@@ -182,7 +178,7 @@ const AddScheduler: React.FunctionComponent<AddSchedulerProps> = ({
 		setTitle('')
 		setSpanText('Add Schedule')
 		setArrowBoolean(true)
-		setStorage((prev: StorageType[]) => [...prev, blockStorage])
+		addStorage(blockStorage)
 		setAddSchedule(false)
 	}
 
@@ -245,7 +241,10 @@ const AddScheduler: React.FunctionComponent<AddSchedulerProps> = ({
 							<S.NoStyleInput
 								border={dayStyle}
 								max={m
-									.set({ year: Number(year), month: Number(month - 1) })
+									.set({
+										year: Number(year),
+										month: Number(month - 1),
+									})
 									.endOf('month')
 									.date()}
 								min="1"
@@ -266,7 +265,10 @@ const AddScheduler: React.FunctionComponent<AddSchedulerProps> = ({
 							<S.SchedulerDayError>
 								This setting have to be under{' '}
 								{m
-									.set({ year: Number(year), month: Number(month - 1) })
+									.set({
+										year: Number(year),
+										month: Number(month - 1),
+									})
 									.endOf('month')
 									.date() + 1}
 							</S.SchedulerDayError>
