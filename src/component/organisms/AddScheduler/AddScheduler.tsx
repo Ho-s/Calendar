@@ -7,6 +7,7 @@ import {
 	nowDay,
 	monthStorage,
 	yearStorage,
+	isDuplicate,
 } from '../../../stores/store'
 
 import StorageType from '../../../types/type'
@@ -153,36 +154,24 @@ const AddScheduler: React.FunctionComponent = () => {
 		const blockStorage: StorageType = {
 			id: Math.random().toString(36).substr(2, 16),
 			title,
-			year: year,
-			month: month,
-			day: day,
+			year,
+			month,
+			day,
 			startHours: startHours === 0 ? '00' : startHours,
 			startMinutes: startMinutes === 0 ? '00' : startMinutes,
 			endHours: endHours === 0 ? '00' : endHours,
 			endMinutes: endMinutes === 0 ? '00' : endMinutes,
 			color,
 		}
-		// if (storage.length !== 0) {
-		// 	for (let i = 0; i < storage.length; i++) {
-		// 		if (
-		// 			storage[i].startHours === blockStorage.startHours &&
-		// 			storage[i].startMinutes === blockStorage.startMinutes &&
-		// 			storage[i].endHours === blockStorage.endHours &&
-		// 			storage[i].endMinutes === blockStorage.endMinutes &&
-		// 			storage[i].year === blockStorage.year &&
-		// 			storage[i].month === blockStorage.month &&
-		// 			storage[i].day === blockStorage.day
-		// 		) {
-		// 			alert('There is same schedule alredy')
-		// 			break
-		// 		}
-		// 	}
-		// }
-		setTitle('')
-		setSpanText('Add Schedule')
-		setArrowBoolean(true)
-		addStorage(blockStorage)
-		setAddSchedule(false)
+		if (isDuplicate(blockStorage)) {
+			setTitle('')
+			setSpanText('Add Schedule')
+			setArrowBoolean(true)
+			addStorage(blockStorage)
+			setAddSchedule(false)
+		} else {
+			alert('There is same schedule alredy')
+		}
 	}
 
 	const clickSubmit = () => {
