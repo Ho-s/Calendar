@@ -1,14 +1,17 @@
 import React, { useState } from 'react'
 import moment from 'moment'
-import * as S from './style'
-import StorageType from '../../../types/type'
+import { useReactiveVar } from '@apollo/client'
+
 import {
 	addStorage,
 	nowDay,
 	monthStorage,
 	yearStorage,
 } from '../../../stores/store'
-import { useReactiveVar } from '@apollo/client'
+
+import StorageType from '../../../types/type'
+
+import * as S from './style'
 
 const AddScheduler: React.FunctionComponent = () => {
 	const nowDayProps = useReactiveVar(nowDay)

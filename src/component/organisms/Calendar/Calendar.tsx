@@ -1,7 +1,6 @@
 import React from 'react'
-import today from '../../utils/today'
-import * as S from './style'
 import moment from 'moment'
+import { useReactiveVar } from '@apollo/client'
 import {
 	nowDay,
 	nowWeek,
@@ -15,7 +14,10 @@ import {
 	onClickDay,
 	onClickWeek,
 } from '../../../stores/store'
-import { useReactiveVar } from '@apollo/client'
+
+import today from '../../utils/today'
+
+import * as S from './style'
 
 const Calendar: React.FunctionComponent = () => {
 	const nowDayProps = useReactiveVar(nowDay)

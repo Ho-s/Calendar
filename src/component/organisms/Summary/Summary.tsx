@@ -1,6 +1,7 @@
 import React from 'react'
 import moment from 'moment'
-import * as S from './style'
+import { useReactiveVar } from '@apollo/client'
+
 import {
 	storage,
 	nowDay,
@@ -11,7 +12,8 @@ import {
 	yearStorage,
 	onClickDelete,
 } from '../../../stores/store'
-import { useReactiveVar } from '@apollo/client'
+
+import * as S from './style'
 
 const Summary: React.FunctionComponent = () => {
 	const storageProps = useReactiveVar(storage)

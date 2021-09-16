@@ -1,7 +1,7 @@
 import React from 'react'
 import moment from 'moment'
-import * as S from './style'
-import today from '../../utils/today'
+import { useReactiveVar } from '@apollo/client'
+
 import {
 	nowDay,
 	monthStorage,
@@ -11,7 +11,10 @@ import {
 	storage,
 	onClickDay,
 } from '../../../stores/store'
-import { useReactiveVar } from '@apollo/client'
+
+import today from '../../utils/today'
+
+import * as S from './style'
 
 const Month: React.FunctionComponent = () => {
 	const nowDayProps = useReactiveVar(nowDay)

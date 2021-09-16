@@ -1,11 +1,14 @@
 import React, { useEffect } from 'react'
+import { useReactiveVar } from '@apollo/client'
+
 import Calendar from '../../component/organisms/Calendar/Calendar'
 import Summary from '../../component/organisms/Summary/Summary'
 import MainCalendar from '../../component/organisms/MainCalendar/MainCalendar'
 import AddScheduler from '../../component/organisms/AddScheduler/AddScheduler'
-import * as S from './style'
+
 import { storage, setItemsInStorage } from '../../stores/store'
-import { useReactiveVar } from '@apollo/client'
+
+import * as S from './style'
 
 const Main: React.FunctionComponent = () => {
 	const storageProps = useReactiveVar(storage)
