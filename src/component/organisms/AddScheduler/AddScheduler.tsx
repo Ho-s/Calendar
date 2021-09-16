@@ -20,8 +20,7 @@ const AddScheduler: React.FunctionComponent = () => {
 	const yearStorageProps = useReactiveVar(yearStorage)
 	const m = moment()
 	const [timeError, setTimeError] = useState<boolean>(false)
-	const [dayError, setDayError] = useState<boolean>(false)
-	const [dayStyle, setDayStyle] = useState<string>('')
+
 	const [timeStyle, setTimeStyle] = useState<string>('')
 	const [titleHolder, setTitleHolder] = useState<string>('Title')
 	const [spanText, setSpanText] = useState<string>('Add Schedule')
@@ -47,25 +46,37 @@ const AddScheduler: React.FunctionComponent = () => {
 
 	const onChangeYear = (e: any): void => {
 		setYear(e.target.value)
+		if (e.target.value > 9999) {
+			setYear(9999)
+		}
 	}
+
+	const lastDay = m
+		.set({
+			year: Number(year),
+			month: Number(month - 1),
+		})
+		.endOf('month')
+		.date()
 
 	const onChangeMonth = (e: any): void => {
 		setMonth(e.target.value)
+		if (e.target.value > 12) {
+			setMonth(12)
+		}
+		setDay(15)
 	}
 
 	const onChangeDay = (e: any): void => {
 		setDay(e.target.value)
-		if (
-			day <=
-			m
-				.set({ year: Number(year), month: Number(month - 1) })
-				.endOf('month')
-				.date()
-		) {
-			setDayError(false)
-			setDayStyle('')
+		if (e.target.value > lastDay) {
+			setDay(lastDay)
 		}
 	}
+
+	const isOverTime: boolean =
+		Number(String(endHours) + String(endMinutes)) <
+		Number(String(startHours) + String(startMinutes))
 
 	const onChangeSHours = (e: any): void => {
 		if (Number(e.target.value) < 10) {
@@ -73,10 +84,7 @@ const AddScheduler: React.FunctionComponent = () => {
 		} else {
 			setStartHours(e.target.value)
 		}
-		if (
-			Number(String(endHours) + String(endMinutes)) <
-			Number(String(startHours) + String(startMinutes))
-		) {
+		if (isOverTime) {
 			setTimeError(false)
 			setTimeStyle('')
 		}
@@ -88,10 +96,7 @@ const AddScheduler: React.FunctionComponent = () => {
 		} else {
 			setStartMinutes(e.target.value)
 		}
-		if (
-			Number(String(endHours) + String(endMinutes)) <
-			Number(String(startHours) + String(startMinutes))
-		) {
+		if (isOverTime) {
 			setTimeError(false)
 			setTimeStyle('')
 		}
@@ -103,10 +108,7 @@ const AddScheduler: React.FunctionComponent = () => {
 		} else {
 			setEndHours(e.target.value)
 		}
-		if (
-			Number(String(endHours) + String(endMinutes)) <
-			Number(String(startHours) + String(startMinutes))
-		) {
+		if (isOverTime) {
 			setTimeError(false)
 			setTimeStyle('')
 		}
@@ -118,10 +120,7 @@ const AddScheduler: React.FunctionComponent = () => {
 		} else {
 			setEndMinutes(e.target.value)
 		}
-		if (
-			Number(String(endHours) + String(endMinutes)) <
-			Number(String(startHours) + String(startMinutes))
-		) {
+		if (isOverTime) {
 			setTimeError(false)
 			setTimeStyle('')
 		}
@@ -136,18 +135,18 @@ const AddScheduler: React.FunctionComponent = () => {
 			setAddSchedule(true)
 			setSpanText('Close Scheduler')
 			setArrowBoolean(false)
+			setStartHours(m.hour())
+			setStartMinutes('00')
+			setEndHours(m.hour() + 1)
+			setEndMinutes('00')
+			setDay(nowDayProps)
+			setMonth(monthStorageProps + 1)
+			setYear(yearStorageProps)
 		} else {
 			setAddSchedule(false)
 			setSpanText('Add Schedule')
 			setArrowBoolean(true)
 		}
-		setStartHours(m.hour())
-		setStartMinutes('00')
-		setEndHours(m.hour() + 1)
-		setEndMinutes('00')
-		setDay(nowDayProps)
-		setMonth(monthStorageProps + 1)
-		setYear(yearStorageProps)
 	}
 
 	const onClickSubmit = (): void => {
@@ -176,22 +175,8 @@ const AddScheduler: React.FunctionComponent = () => {
 
 	const clickSubmit = () => {
 		if (title) {
-			if (
-				Number(String(endHours) + String(endMinutes)) >
-				Number(String(startHours) + String(startMinutes))
-			) {
-				if (
-					day <=
-					m
-						.set({ year: Number(year), month: Number(month - 1) })
-						.endOf('month')
-						.date()
-				) {
-					onClickSubmit()
-				} else {
-					setDayError(true)
-					setDayStyle('1px solid red')
-				}
+			if (!isOverTime) {
+				onClickSubmit()
 			} else {
 				setTimeError(true)
 				setTimeStyle('1px solid red')
@@ -200,6 +185,16 @@ const AddScheduler: React.FunctionComponent = () => {
 			setTitleHolder('There must be a title')
 		}
 	}
+
+	// const pressEnter = (e: any) => {
+	// 	if (addSchedule) {
+	// 		if (e.keyCode || e.which == 13) {
+	// 			clickSubmit()
+	// 		} else if (e.key === 'Escape') {
+	// 			onClickAddSchedule()
+	// 		}
+	// 	}
+	// }
 
 	return (
 		<>
@@ -231,14 +226,7 @@ const AddScheduler: React.FunctionComponent = () => {
 							></S.NoStyleInput>
 							/
 							<S.NoStyleInput
-								border={dayStyle}
-								max={m
-									.set({
-										year: Number(year),
-										month: Number(month - 1),
-									})
-									.endOf('month')
-									.date()}
+								max={lastDay}
 								min="1"
 								type="number"
 								value={day}
@@ -253,18 +241,6 @@ const AddScheduler: React.FunctionComponent = () => {
 								onChange={onChangeYear}
 							></S.NoStyleInput>
 						</S.TimeDiv>
-						{dayError && (
-							<S.SchedulerDayError>
-								This setting have to be under{' '}
-								{m
-									.set({
-										year: Number(year),
-										month: Number(month - 1),
-									})
-									.endOf('month')
-									.date() + 1}
-							</S.SchedulerDayError>
-						)}
 					</S.SchedulerBodyTime>
 					<S.SchedulerBodyTime border={timeStyle}>
 						<S.TimeSpan>Start</S.TimeSpan>

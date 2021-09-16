@@ -59,14 +59,11 @@ export const SchedulerBody = styled.div`
     font-weight: 600;
 `
 
-interface NoStyleInputProps {
-    border?:string
-}
 
-export const NoStyleInput = styled.input<NoStyleInputProps>`
+
+export const NoStyleInput = styled.input`
     border: 0;
     outline: 0;
-    border:${(props)=>props.border};
 `
 
 interface SchedulerBodyTimeProps {
@@ -111,28 +108,6 @@ export const SchedulerTimeError = styled.div`
 }
 `
 
-export const SchedulerDayError = styled.div`
-    position: relative;
-    font-size: 17px;
-    top: 9px;
-    left: 50px;
-    border:1px solid red;
-    z-index: 4;
-    color: red;
-    background-color: white;
-    display: inline-block;
-    &::after{
-    content: '';
-    width: 0;
-    position: absolute;
-    bottom: 100%;
-    left: 22%;
-    transform: translateX(-50%);
-    border: 10px solid transparent;
-    border-bottom-color: red;
-}
-`
-
 export const SchedulerBodyColor = styled.div`
     height: 40px;
 `
@@ -155,7 +130,6 @@ export const SchedulerFoot = styled.div`
     width: 100%;
 
 `
-
 interface SchedulerFootButtonProps {
     backgroundColor: string
 }
