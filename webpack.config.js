@@ -3,8 +3,8 @@ const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
-  mode: 'development',
-  // mode : 'production',
+  // mode: 'development',
+  mode: 'production',
   resolve: {
     extensions: ['.js', '.jsx', '.ts', '.tsx'],
   },
@@ -41,7 +41,7 @@ module.exports = {
     ],
   },
   plugins: [
-    new HtmlWebpackPlugin({ template: './src/index.html' }),
+    new HtmlWebpackPlugin({ template: './index.html' }),
     new webpack.ContextReplacementPlugin(/moment[/\\]locale$/, /ko/),
   ],
   devServer: {
