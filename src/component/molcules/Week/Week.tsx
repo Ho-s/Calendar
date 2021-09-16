@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import useInterval from '../../utils/useInterval'
+import today from '../../utils/today'
 import moment from 'moment'
 import * as S from './style'
 import {
@@ -16,7 +17,7 @@ const Week: React.FunctionComponent = () => {
 	const yearStorageProps = useReactiveVar(yearStorage)
 	const storageProps = useReactiveVar(storage)
 	const m = moment()
-	const today = m.format('YYYYMMDD')
+
 	const [weekLocation, setWeekLocation] = useState(
 		m.hours() * 61 + 51 + m.minutes(),
 	)

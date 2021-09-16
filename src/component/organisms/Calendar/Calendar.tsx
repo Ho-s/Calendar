@@ -1,4 +1,5 @@
 import React from 'react'
+import today from '../../utils/today'
 import * as S from './style'
 import moment from 'moment'
 import {
@@ -25,7 +26,6 @@ const Calendar: React.FunctionComponent = () => {
 	const yearStorageProps = useReactiveVar(yearStorage)
 	const storageProps = useReactiveVar(storage)
 	const m = moment()
-	const today = m.format('YYYYMMDD')
 
 	const Generate = () => {
 		m.set('year', nowYearProps)

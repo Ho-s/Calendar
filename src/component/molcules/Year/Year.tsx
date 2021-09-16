@@ -1,4 +1,5 @@
 import React from 'react'
+import today from '../../utils/today'
 import moment from 'moment'
 import * as S from './style'
 import {
@@ -18,7 +19,6 @@ const Year: React.FunctionComponent = () => {
 	const storageProps = useReactiveVar(storage)
 	const nowYearProps = useReactiveVar(nowYear)
 	const m = moment()
-	const today = m.format('YYYYMMDD')
 
 	const Generate = (year: any, month: any) => {
 		m.set('year', year)
