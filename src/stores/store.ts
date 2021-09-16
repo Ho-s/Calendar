@@ -10,7 +10,6 @@ export const nowYear = makeVar<number>(m.year())
 export const whatDay = makeVar<number>(-1)
 export const yearStorage = makeVar<number>(m.year())
 export const monthStorage = makeVar<number>(m.month())
-export const sth = makeVar<number>(m.date())
 
 export const storage = makeVar<StorageType[]>(JSON.parse(localStorage.getItem('storage') || '[]'))
 
