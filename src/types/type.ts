@@ -11,4 +11,11 @@ export interface StorageType {
 	color:string
 }
 
+export interface BriefItemType {
+	cl: string
+	to: string
+	text: string
+	onClick?: any
+}
+
 export default StorageType

@@ -9,4 +9,7 @@ export const MainLeft = styled.div`
 
 export const MainRight = styled.div`
 float: left;
+background-color: white;
+width: calc(100vw - 350px);
+height: 100vh;
 `

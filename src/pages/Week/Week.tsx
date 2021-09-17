@@ -1,6 +1,8 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import { useReactiveVar } from '@apollo/client'
 import moment from 'moment'
+
+import BaseTemplate from '../BaseTemplate/BaseTemplate'
 
 import {
 	nowWeek,
@@ -8,9 +10,9 @@ import {
 	yearStorage,
 	storage,
 
-} from '../../../stores/store'
+} from '../../stores/store'
 
-import today from '../../utils/today'
+import today from '../../component/utils/today'
 
 import * as S from './style'
 import StorageType from 'types/type'
@@ -134,6 +136,7 @@ const Week: React.FunctionComponent<WeekProps> = ({location, lineTime}) => {
 
 
 	return (
+		<BaseTemplate>
 		<S.WeekComponent>
 			<S.WeekLeft>
 				<S.WeekTitleWrapper>
@@ -154,6 +157,7 @@ const Week: React.FunctionComponent<WeekProps> = ({location, lineTime}) => {
 			<Generate />
 			<S.RedLine top={`${location + 51}px`}>{lineTime}</S.RedLine>
 		</S.WeekComponent>
+		</BaseTemplate>
 	)
 }
 export default Week

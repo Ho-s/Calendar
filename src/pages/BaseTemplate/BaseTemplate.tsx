@@ -1,16 +1,18 @@
 import React, { useEffect } from 'react'
 import { useReactiveVar } from '@apollo/client'
 
-import Calendar from '../../component/organisms/Calendar/Calendar'
-import Summary from '../../component/organisms/Summary/Summary'
-import MainCalendar from '../../component/organisms/MainCalendar/MainCalendar'
-import AddScheduler from '../../component/organisms/AddScheduler/AddScheduler'
+import Header from '../../component/organisms/Header/Header'
+import Lefter from '../../component/organisms/Lefter/Lefter'
 
 import { storage, setItemsInStorage } from '../../stores/store'
 
 import * as S from './style'
 
-const Main: React.FunctionComponent = () => {
+interface BaseTemplateProps {
+	children: React.ReactNode
+}
+
+const BaseTemplate: React.FunctionComponent<BaseTemplateProps> = ({children}) => {
 	const storageProps = useReactiveVar(storage)
 
 	useEffect(() => {
@@ -24,14 +26,13 @@ const Main: React.FunctionComponent = () => {
 	return (
 		<>
 			<S.MainLeft>
-				<AddScheduler />
-				<Calendar />
-				<Summary />
+				<Lefter />
 			</S.MainLeft>
 			<S.MainRight>
-				<MainCalendar />
+				<Header />
+				{children}
 			</S.MainRight>
 		</>
 	)
 }
-export default Main
+export default BaseTemplate

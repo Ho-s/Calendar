@@ -1,6 +1,8 @@
-import React, { useState,useEffect } from 'react'
+import React from 'react'
 import { useReactiveVar } from '@apollo/client'
 import moment from 'moment'
+
+import BaseTemplate from '../BaseTemplate/BaseTemplate'
 
 import {
 	nowDay,
@@ -11,7 +13,7 @@ import {
 	storage,
 	onClickDelete,
 
-} from '../../../stores/store'
+} from '../../stores/store'
 
 import * as S from './style'
 import StorageType from 'types/type'
@@ -152,6 +154,7 @@ const Day: React.FunctionComponent<dayProps> = ({location, lineTime}) => {
 	}
 
 	return (
+		<BaseTemplate>
 		<S.DayComponent>
 			<S.DateStorage>
 				<S.WeekStorage>
@@ -175,6 +178,7 @@ const Day: React.FunctionComponent<dayProps> = ({location, lineTime}) => {
 			</S.TimeTable>
 			<MakeATable />
 		</S.DayComponent>
+		</BaseTemplate>
 	)
 }
 export default Day

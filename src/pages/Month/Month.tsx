@@ -2,6 +2,8 @@ import React from 'react'
 import moment from 'moment'
 import { useReactiveVar } from '@apollo/client'
 
+import BaseTemplate from '../BaseTemplate/BaseTemplate'
+
 import {
 	nowDay,
 	monthStorage,
@@ -10,9 +12,9 @@ import {
 	nowYear,
 	storage,
 	onClickDay,
-} from '../../../stores/store'
+} from '../../stores/store'
 
-import today from '../../utils/today'
+import today from '../../component/utils/today'
 
 import * as S from './style'
 import StorageType from 'types/type'
@@ -126,6 +128,7 @@ const Month: React.FunctionComponent = () => {
 	}
 
 	return (
+		<BaseTemplate>
 		<S.MonthComponent>
 			<S.MonthTitleWrapper>
 				<S.MonthTitleLeft>
@@ -144,6 +147,7 @@ const Month: React.FunctionComponent = () => {
 			</S.MonthRow>
 			{Generate()}
 		</S.MonthComponent>
+		</BaseTemplate>
 	)
 }
 export default Month

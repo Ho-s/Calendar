@@ -2,6 +2,8 @@ import React from 'react'
 import moment from 'moment'
 import { useReactiveVar } from '@apollo/client'
 
+import BaseTemplate from '../BaseTemplate/BaseTemplate'
+
 import {
 	nowDay,
 	nowWeek,
@@ -9,9 +11,9 @@ import {
 	storage,
 	nowYear,
 	onClickDay,
-} from '../../../stores/store'
+} from '../../stores/store'
 
-import today from '../../utils/today'
+import today from '../../component/utils/today'
 
 import * as S from './style'
 import StorageType from 'types/type'
@@ -143,10 +145,12 @@ const Year: React.FunctionComponent = () => {
 	}
 
 	return (
+		<BaseTemplate>
 		<S.YearComponent>
 			<S.YearTitle>{nowYearProps}</S.YearTitle>
 			{GenerateWrap()}
 		</S.YearComponent>
+		</BaseTemplate>
 	)
 }
 export default Year
