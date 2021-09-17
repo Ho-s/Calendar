@@ -1,4 +1,5 @@
-import { makeVar } from '@apollo/client';
+import React, {useEffect} from 'react'
+import { makeVar, useReactiveVar } from '@apollo/client';
 import StorageType from '../types/type'
 import moment from 'moment'
 
@@ -12,6 +13,15 @@ export const yearStorage = makeVar<number>(m.year())
 export const monthStorage = makeVar<number>(m.month())
 
 export const storage = makeVar<StorageType[]>(JSON.parse(localStorage.getItem('storage') || '[]'))
+
+export const location = makeVar<number>(m.hours() * 61 + m.minutes())
+export const lineTime = makeVar<string>(m.format('LT'))
+
+export const timer = setInterval(()=>{
+    location(m.hours() * 61 + m.minutes())
+    lineTime(m.format('LT') + '')
+}, 1000)
+
 
 export const onClickDay = (e: any): void => {
     const dateInfo = e.target.dataset

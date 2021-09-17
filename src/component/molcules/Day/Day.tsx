@@ -10,6 +10,9 @@ import {
 	whatDay,
 	storage,
 	onClickDelete,
+	timer,
+	lineTime,
+	location
 } from '../../../stores/store'
 
 import * as S from './style'
@@ -21,9 +24,14 @@ const Day: React.FunctionComponent = () => {
 	const yearStorageProps = useReactiveVar(yearStorage)
 	const whatDayProps = useReactiveVar(whatDay)
 	const storageProps = useReactiveVar(storage)
+	const lineTimeProps = useReactiveVar(lineTime)
+	const locationProps = useReactiveVar(location)
+	
+	useEffect(()=>{
+		timer
+		return () => clearInterval(timer)
+	},[])
 	const m = moment()
-	const [dayLocation, setDayLocation] = useState(m.hours() * 61 + m.minutes())
-	const [lineTime, setLineTime] = useState(m.format('LT'))
 
 	const TimeLinesLeft = Array(24)
 		.fill(0)
@@ -145,14 +153,6 @@ const Day: React.FunctionComponent = () => {
 		)
 	}
 
-	useEffect(()=>{
-		const timer = setInterval(()=>{
-			setDayLocation(m.hours() * 61 + m.minutes())
-			setLineTime(m.format('LT') + '')
-		}, 1000)
-		return () => clearInterval(timer)
-	},[lineTime])
-
 	return (
 		<S.DayComponent>
 			<S.DateStorage>
@@ -170,7 +170,7 @@ const Day: React.FunctionComponent = () => {
 				<S.YearStorage>{yearStorageProps}</S.YearStorage>
 			</S.DateStorage>
 			<S.TimeTable>
-				<S.RedLine top={`${dayLocation}px`}>{lineTime}</S.RedLine>
+				<S.RedLine top={`${locationProps}px`}>{lineTimeProps}</S.RedLine>
 				<TakeSchedule />
 				<S.DayLeft>{TimeLinesLeft}</S.DayLeft>
 				<TimeLinesRight />

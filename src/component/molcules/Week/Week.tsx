@@ -7,6 +7,9 @@ import {
 	monthStorage,
 	yearStorage,
 	storage,
+	timer,
+	lineTime,
+	location
 } from '../../../stores/store'
 
 import today from '../../utils/today'
@@ -18,12 +21,15 @@ const Week: React.FunctionComponent = () => {
 	const monthStorageProps = useReactiveVar(monthStorage)
 	const yearStorageProps = useReactiveVar(yearStorage)
 	const storageProps = useReactiveVar(storage)
-	const m = moment()
+	const lineTimeProps = useReactiveVar(lineTime)
+	const locationProps = useReactiveVar(location)
 
-	const [weekLocation, setWeekLocation] = useState(
-		m.hours() * 61 + 51 + m.minutes(),
-	)
-	const [lineTime, setLineTime] = useState(m.format('LT'))
+	useEffect(()=>{
+		timer
+		return () => clearInterval(timer)
+	},[])
+
+	const m = moment()
 
 	const Generate = () => {
 		m.set('year', yearStorageProps)
@@ -128,13 +134,7 @@ const Week: React.FunctionComponent = () => {
 		)
 	}
 
-	useEffect(()=>{
-		const timer = setInterval(()=>{
-			setWeekLocation(m.hours() * 61 + 51 + m.minutes())
-			setLineTime(m.format('LT') + '')
-		}, 1000)
-		return () => clearInterval(timer)
-	},[lineTime])
+
 
 	return (
 		<S.WeekComponent>
@@ -155,7 +155,7 @@ const Week: React.FunctionComponent = () => {
 					})}
 			</S.WeekLeft>
 			<Generate />
-			<S.RedLine top={`${weekLocation}px`}>{lineTime}</S.RedLine>
+			<S.RedLine top={`${locationProps + 51}px`}>{lineTimeProps}</S.RedLine>
 		</S.WeekComponent>
 	)
 }
