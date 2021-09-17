@@ -18,7 +18,8 @@ module.exports = {
 	},
 	'plugins': [
 		'react',
-		'@typescript-eslint'
+		'@typescript-eslint',
+		'import'
 	],
 	'rules': {
 		'indent': [
@@ -37,14 +38,14 @@ module.exports = {
 			'error',
 			'never'
 		],
-		"import/extensions": [
-			"error",
-			"ignorePackages",
+		'import/extensions': [
+			'error',
+			'ignorePackages',
 			{
-				"js": "never",
-				"jsx": "never",
-				"ts": "never",
-				"tsx": "never"
+				'js': 'never',
+				'jsx': 'never',
+				'ts': 'never',
+				'tsx': 'never'
 			}
 		]
 	}
