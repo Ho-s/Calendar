@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useReactiveVar } from '@apollo/client'
 import moment from 'moment'
 
@@ -9,7 +9,6 @@ import {
 	storage,
 } from '../../../stores/store'
 
-import useInterval from '../../utils/useInterval'
 import today from '../../utils/today'
 
 import * as S from './style'
@@ -128,10 +127,14 @@ const Week: React.FunctionComponent = () => {
 			</>
 		)
 	}
-	useInterval(() => {
-		setWeekLocation(m.hours() * 61 + 51 + m.minutes())
-		setLineTime(m.format('LT') + '')
-	}, 1000)
+
+	useEffect(()=>{
+		const timer = setInterval(()=>{
+			setWeekLocation(m.hours() * 61 + 51 + m.minutes())
+			setLineTime(m.format('LT') + '')
+		}, 1000)
+		return () => clearInterval(timer)
+	},[lineTime])
 
 	return (
 		<S.WeekComponent>

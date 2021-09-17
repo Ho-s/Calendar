@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState,useEffect } from 'react'
 import { useReactiveVar } from '@apollo/client'
 import moment from 'moment'
 
@@ -11,8 +11,6 @@ import {
 	storage,
 	onClickDelete,
 } from '../../../stores/store'
-
-import useInterval from '../../utils/useInterval'
 
 import * as S from './style'
 
@@ -146,10 +144,14 @@ const Day: React.FunctionComponent = () => {
 			</S.DayTable>
 		)
 	}
-	useInterval(() => {
-		setDayLocation(m.hours() * 61 + m.minutes())
-		setLineTime(m.format('LT') + '')
-	}, 1000)
+
+	useEffect(()=>{
+		const timer = setInterval(()=>{
+			setDayLocation(m.hours() * 61 + m.minutes())
+			setLineTime(m.format('LT') + '')
+		}, 1000)
+		return () => clearInterval(timer)
+	},[lineTime])
 
 	return (
 		<S.DayComponent>

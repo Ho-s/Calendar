@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import moment from 'moment'
 import { useReactiveVar } from '@apollo/client'
 
@@ -14,8 +14,6 @@ import {
 	yearStorage,
 	onClickToday,
 } from '../../../stores/store'
-
-import useInterval from '../../utils/useInterval'
 
 import * as S from './style'
 
@@ -108,10 +106,13 @@ const MainCalendar: React.FunctionComponent = () => {
 			</>
 		)
 	}
+	useEffect(()=>{
+		const timer = setInterval(()=>{
+			setTimeDetail(' ' + m.format('HH:mm:ss') + ' ')
 
-	useInterval(() => {
-		setTimeDetail(' ' + m.format('HH:mm:ss') + ' ')
-	}, 1000)
+		}, 1000)
+		return () => clearInterval(timer)
+	},[timeDetail])
 
 	return (
 		<S.MainCalendar>
