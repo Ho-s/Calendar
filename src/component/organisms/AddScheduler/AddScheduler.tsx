@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import moment from 'moment'
 import { useReactiveVar } from '@apollo/client'
 
@@ -36,6 +36,8 @@ const AddScheduler: React.FunctionComponent = () => {
 	const [endHours, setEndHours] = useState<number | string>(m.hour() + 1)
 	const [endMinutes, setEndMinutes] = useState<number | string>(0)
 	const [color, setColor] = useState<string>('#04B910')
+
+	const [keyType, setKeyType] = useState<string>('')
 
 	const onChangeTitle = (e: any): void => {
 		setTitle(e.target.value)
@@ -170,6 +172,7 @@ const AddScheduler: React.FunctionComponent = () => {
 			setAddSchedule(false)
 		} else {
 			alert('There is same schedule alredy')
+			setKeyType('')
 		}
 	}
 
@@ -180,25 +183,57 @@ const AddScheduler: React.FunctionComponent = () => {
 			} else {
 				setTimeError(true)
 				setTimeStyle('1px solid red')
+				setKeyType('')
 			}
 		} else {
 			setTitleHolder('There must be a title')
+			setKeyType('')
 		}
 	}
 
-	// const pressEnter = (e: any) => {
-	// 	if (addSchedule) {
-	// 		if (e.keyCode || e.which == 13) {
-	// 			clickSubmit()
-	// 		} else if (e.key === 'Escape') {
-	// 			onClickAddSchedule()
-	// 		}
-	// 	}
-	// }
+	const pushKey = (e: any) => {
+		if(e.key === 'Escape' || e.keyCode === 27) {
+			setKeyType('escape')
+		} else if(e.key === 'Enter' || e.keyCode === 13) {
+			setKeyType(`enter`)
+		}
+	}
+
+	useEffect(()=>{
+		window.addEventListener('keyup', pushKey)
+	}, [])
+
+	useEffect(()=>{
+		if(addSchedule){
+			if(keyType === 'enter'){
+				clickSubmit()
+			}else if(keyType === 'escape'){
+				setAddSchedule(false)
+				setSpanText('Add Schedule')
+				setArrowBoolean(true)
+				setKeyType('')
+			}
+		}else{
+			if(keyType === 'escape'){
+				setAddSchedule(true)
+				setSpanText('Close Scheduler')
+				setArrowBoolean(false)
+				setStartHours(m.hour())
+				setStartMinutes('00')
+				setEndHours(m.hour() + 1)
+				setEndMinutes('00')
+				setDay(nowDayProps)
+				setMonth(monthStorageProps + 1)
+				setYear(yearStorageProps)
+			}
+			setKeyType('')
+		}
+		console.log(addSchedule,keyType)
+	}, [keyType])
 
 	return (
 		<>
-			<S.AddSchedule onClick={onClickAddSchedule}>
+			<S.AddSchedule onKeyDown={(e:any)=>{e.preventDefault()}} onClick={onClickAddSchedule}>
 				<S.AddScheduleSpan paddingRight={spanText}>
 					{spanText}
 				</S.AddScheduleSpan>
