@@ -94,7 +94,7 @@ export const addStorage = (newItem: StorageType):void => {
     storage([...storage(),newItem])
 }
 
-export const isDuplicate = (blockStorage:StorageType):boolean => {
+export const isDuplicated = (blockStorage:StorageType):boolean => {
     if (storage().length !== 0) {
         for (let i = 0; i < storage().length; i++) {
             if (

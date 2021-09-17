@@ -7,7 +7,7 @@ import {
 	nowDay,
 	monthStorage,
 	yearStorage,
-	isDuplicate,
+	isDuplicated,
 } from '../../../stores/store'
 
 import StorageType from '../../../types/type'
@@ -162,7 +162,7 @@ const AddScheduler: React.FunctionComponent = () => {
 			endMinutes: endMinutes === 0 ? '00' : endMinutes,
 			color,
 		}
-		if (isDuplicate(blockStorage)) {
+		if (isDuplicated(blockStorage)) {
 			setTitle('')
 			setSpanText('Add Schedule')
 			setArrowBoolean(true)
