@@ -51,7 +51,6 @@ const Calendar: React.FunctionComponent = () => {
 						monthStorageProps === nowMonthProps
 							? 'selected'
 							: ''
-
 					return (
 						<S.Row key={week}>
 							<S.Cw
@@ -113,14 +112,14 @@ const Calendar: React.FunctionComponent = () => {
 													: 'true'
 											}
 											className={`${todaySelect} ${isGrayed} ${isSelected}`}
-											key={i}
+											key={`${week}${i}`}
 										>
 											{current.format('D')}
 											<S.ThisDayWrapper>
 												{day.map((v: any) => {
 													return (
 														<S.ThisDay
-															key={v.color}
+															key={v.id}
 															backgroundColor={v.color}
 														></S.ThisDay>
 													)

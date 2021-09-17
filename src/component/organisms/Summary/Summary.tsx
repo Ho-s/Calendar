@@ -83,8 +83,8 @@ const Summary: React.FunctionComponent = () => {
 						if (day.length > 0) {
 							num++
 							return (
-								<>
-									<S.Date color={selectedColor}>
+								<S.DayWrapper key={i}>
+									<S.Date key={i} color={selectedColor}>
 										{current.month() + 1} / {current.date()} / {current.year()}{' '}
 										{current.format('dddd')}
 									</S.Date>
@@ -103,7 +103,7 @@ const Summary: React.FunctionComponent = () => {
 											<S.SummaryScheduleButton onClick={onClickDelete} />
 										</S.SummarySchedule>
 									))}
-								</>
+								</S.DayWrapper>
 							)
 						} else {
 							if (i === 6 && num === 0) {

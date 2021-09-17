@@ -106,7 +106,7 @@ const Month: React.FunctionComponent = () => {
 										<S.DaySpan>{current.format('D')}</S.DaySpan>
 										<S.MonthDisplay>
 											{day.map((v: any) => (
-												<S.ScheduleWrapper key={v}>
+												<S.ScheduleWrapper key={v.id}>
 													<S.ScheduleColor backgroundColor={v.color} />
 													<S.ScheduleTitle>{v.title}</S.ScheduleTitle>
 													<S.ScheduleTime>

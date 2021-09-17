@@ -78,7 +78,7 @@ const Day: React.FunctionComponent<dayProps> = ({location, lineTime}) => {
 						Number(v.startMinutes)
 					return (
 						<S.ScheduleWrapper
-							key={v}
+							key={v.id}
 							top={Number(v.startHours) * 61 + Number(v.startMinutes)}
 							height={height}
 						>

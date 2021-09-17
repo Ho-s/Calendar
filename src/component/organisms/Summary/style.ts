@@ -128,3 +128,5 @@ color: black;
 text-shadow: -1px 0 white, 0 1px white, 1px 0 white, 0 -1px white;
 margin-bottom: 15px;
 `
+
+export const DayWrapper = styled.div``
