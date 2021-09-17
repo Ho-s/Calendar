@@ -28,6 +28,17 @@ const MainCalendar: React.FunctionComponent = () => {
 	const [monthCheck, setMonthCheck] = useState<boolean>(false)
 	const [yearCheck, setYearCheck] = useState<boolean>(false)
 	const [timeDetail, setTimeDetail] = useState<string>(m.format('HH:mm:ss'))
+	const [location, setLocation] = useState<number>(m.hours() * 61 + m.minutes())
+	const [lineTime, setLineTime] = useState<string>(m.format('LT'))
+
+	useEffect(()=>{
+		const timer = setInterval(()=>{
+			setTimeDetail(' ' + m.format('HH:mm:ss') + ' ')
+			setLineTime(m.format('LT'))
+			setLocation(m.hours() * 61 + m.minutes())
+		}, 1000)
+		return () => clearInterval(timer)
+	},[timeDetail])
 
 	const onClickDayButton = () => {
 		setDayCheck(true)
@@ -106,21 +117,14 @@ const MainCalendar: React.FunctionComponent = () => {
 			</>
 		)
 	}
-	useEffect(()=>{
-		const timer = setInterval(()=>{
-			setTimeDetail(' ' + m.format('HH:mm:ss') + ' ')
-
-		}, 1000)
-		return () => clearInterval(timer)
-	},[timeDetail])
 
 	return (
 		<S.MainCalendar>
 			<S.MainCalendarHead>
 				<Generate />
 			</S.MainCalendarHead>
-			{dayCheck && <Day />}
-			{weekCheck && <Week />}
+			{dayCheck && <Day location={location} lineTime={lineTime}/>}
+			{weekCheck && <Week location={location} lineTime={lineTime}/>}
 			{monthCheck && <Month />}
 			{yearCheck && <Year />}
 		</S.MainCalendar>

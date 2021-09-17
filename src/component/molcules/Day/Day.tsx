@@ -10,27 +10,24 @@ import {
 	whatDay,
 	storage,
 	onClickDelete,
-	timer,
-	lineTime,
-	location
+
 } from '../../../stores/store'
 
 import * as S from './style'
 
-const Day: React.FunctionComponent = () => {
+interface dayProps {
+	location: number
+	lineTime: string
+}
+
+const Day: React.FunctionComponent<dayProps> = ({location, lineTime}) => {
 	const nowDayProps = useReactiveVar(nowDay)
 	const nowWeekProps = useReactiveVar(nowWeek)
 	const monthStorageProps = useReactiveVar(monthStorage)
 	const yearStorageProps = useReactiveVar(yearStorage)
 	const whatDayProps = useReactiveVar(whatDay)
 	const storageProps = useReactiveVar(storage)
-	const lineTimeProps = useReactiveVar(lineTime)
-	const locationProps = useReactiveVar(location)
-	
-	useEffect(()=>{
-		timer
-		return () => clearInterval(timer)
-	},[])
+
 	const m = moment()
 
 	const TimeLinesLeft = Array(24)
@@ -170,7 +167,7 @@ const Day: React.FunctionComponent = () => {
 				<S.YearStorage>{yearStorageProps}</S.YearStorage>
 			</S.DateStorage>
 			<S.TimeTable>
-				<S.RedLine top={`${locationProps}px`}>{lineTimeProps}</S.RedLine>
+				<S.RedLine top={`${location}px`}>{lineTime}</S.RedLine>
 				<TakeSchedule />
 				<S.DayLeft>{TimeLinesLeft}</S.DayLeft>
 				<TimeLinesRight />

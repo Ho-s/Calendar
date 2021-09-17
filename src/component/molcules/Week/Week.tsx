@@ -7,27 +7,23 @@ import {
 	monthStorage,
 	yearStorage,
 	storage,
-	timer,
-	lineTime,
-	location
+
 } from '../../../stores/store'
 
 import today from '../../utils/today'
 
 import * as S from './style'
 
-const Week: React.FunctionComponent = () => {
+interface WeekProps {
+	location: number
+	lineTime: string
+}
+
+const Week: React.FunctionComponent<WeekProps> = ({location, lineTime}) => {
 	const nowWeekProps = useReactiveVar(nowWeek)
 	const monthStorageProps = useReactiveVar(monthStorage)
 	const yearStorageProps = useReactiveVar(yearStorage)
 	const storageProps = useReactiveVar(storage)
-	const lineTimeProps = useReactiveVar(lineTime)
-	const locationProps = useReactiveVar(location)
-
-	useEffect(()=>{
-		timer
-		return () => clearInterval(timer)
-	},[])
 
 	const m = moment()
 
@@ -155,7 +151,7 @@ const Week: React.FunctionComponent = () => {
 					})}
 			</S.WeekLeft>
 			<Generate />
-			<S.RedLine top={`${locationProps + 51}px`}>{lineTimeProps}</S.RedLine>
+			<S.RedLine top={`${location + 51}px`}>{lineTime}</S.RedLine>
 		</S.WeekComponent>
 	)
 }
