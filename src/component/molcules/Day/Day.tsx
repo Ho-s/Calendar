@@ -29,7 +29,7 @@ const Day: React.FunctionComponent = () => {
 
 	const TimeLinesLeft = Array(24)
 		.fill(0)
-		.map((v, i) => {
+		.map((_, i) => {
 			return (
 				<S.TimeLineLeft key={i}>
 					{i < 9 ? `0${i + 1}:00` : `${i + 1}:00`}
@@ -47,7 +47,7 @@ const Day: React.FunctionComponent = () => {
 				<S.TimeLineRightWrapper>
 					{Array(24)
 						.fill(0)
-						.map((v, i) => (
+						.map((_, i) => (
 							<S.TimeLineRight key={i} />
 						))}
 				</S.TimeLineRightWrapper>

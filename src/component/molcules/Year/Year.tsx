@@ -33,7 +33,7 @@ const Year: React.FunctionComponent = () => {
 				: m.clone().endOf('month').week()
 		const calendar = Array(endWeek - startWeek + 1)
 			.fill(0)
-			.map((v, i) => startWeek + i)
+			.map((_, i) => startWeek + i)
 		return (
 			<>
 				{calendar.map((week: any) => (
@@ -120,7 +120,7 @@ const Year: React.FunctionComponent = () => {
 			<>
 				{Array(12)
 					.fill(0)
-					.map((v, i) => {
+					.map((_, i) => {
 						return (
 							<S.MonthWrapper key={i}>
 								<S.MonthTitle>{m.set('month', i).format('MMMM')}</S.MonthTitle>

@@ -90,7 +90,7 @@ const Week: React.FunctionComponent = () => {
 								</S.BodyTopWrapper>
 								{Array(24)
 									.fill(0)
-									.map((v, i) => {
+									.map((_, i) => {
 										return <S.TimeLine key={i} />
 									})}
 								{day.map((v: any, i: number) => {
@@ -147,7 +147,7 @@ const Week: React.FunctionComponent = () => {
 				</S.WeekTitleWrapper>
 				{Array(24)
 					.fill(0)
-					.map((v, i) => {
+					.map((_, i) => {
 						return <S.Time key={i}>{`${i + 1}:00`}</S.Time>
 					})}
 			</S.WeekLeft>

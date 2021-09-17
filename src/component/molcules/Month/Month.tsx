@@ -35,7 +35,7 @@ const Month: React.FunctionComponent = () => {
 				: m.clone().endOf('month').week()
 		const calendar = Array(endWeek - startWeek + 1)
 			.fill(0)
-			.map((v, i) => startWeek + i)
+			.map((_, i) => startWeek + i)
 		return (
 			<>
 				{calendar.map((week: any) => (
