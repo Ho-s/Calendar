@@ -18,6 +18,7 @@ import {
 import today from '../../utils/today'
 
 import * as S from './style'
+import StorageType from 'types/type'
 
 const Calendar: React.FunctionComponent = () => {
 	const nowDayProps = useReactiveVar(nowDay)
@@ -42,7 +43,7 @@ const Calendar: React.FunctionComponent = () => {
 			.map((_, i) => startWeek + i)
 		return (
 			<>
-				{calendar.map((week: any) => {
+				{calendar.map((week: number) => {
 					const thisWeekConst =
 						today === m.clone().week(week).format('YYYYMMDD') ? 'today' : ''
 					const weekSelected =
@@ -79,13 +80,13 @@ const Calendar: React.FunctionComponent = () => {
 									const clicking =
 										current.format('MM') === m.format('MM')
 											? onClickDay
-											: (e: any) => e.preventDefault()
+											: (() => {})
 									const isGrayed =
 										current.format('MM') === m.format('MM') ? '' : 'grayed'
 
-									const day: any = []
+									const day: StorageType[] = []
 									if (current.format('MM') === m.format('MM')) {
-										storageProps.forEach((v: any) => {
+										storageProps.forEach((v: StorageType) => {
 											if (v.year === Number(nowYearProps)) {
 												if (v.month === Number(nowMonthProps + 1)) {
 													if (v.day === current.date()) {
@@ -116,7 +117,7 @@ const Calendar: React.FunctionComponent = () => {
 										>
 											{current.format('D')}
 											<S.ThisDayWrapper>
-												{day.map((v: any) => {
+												{day.map((v: StorageType) => {
 													return (
 														<S.ThisDay
 															key={v.id}

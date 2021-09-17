@@ -15,6 +15,7 @@ import {
 import today from '../../utils/today'
 
 import * as S from './style'
+import StorageType from 'types/type'
 
 const Month: React.FunctionComponent = () => {
 	const nowDayProps = useReactiveVar(nowDay)
@@ -38,7 +39,7 @@ const Month: React.FunctionComponent = () => {
 			.map((_, i) => startWeek + i)
 		return (
 			<>
-				{calendar.map((week: any) => (
+				{calendar.map((week: number) => (
 					<S.MonthRow key={week}>
 						{Array(7)
 							.fill(0)
@@ -61,12 +62,12 @@ const Month: React.FunctionComponent = () => {
 								const clicking =
 									current.format('MM') === m.format('MM')
 										? onClickDay
-										: (e: any) => e.preventDefault()
+										: (() => {})
 
-								const day: any = []
+								const day: StorageType[] = []
 								if (current.format('MM') === m.format('MM')) {
 									{
-										storageProps.forEach((v: any) => {
+										storageProps.forEach((v: StorageType) => {
 											if (v.year === Number(current.year())) {
 												if (v.month === Number(current.month() + 1)) {
 													if (v.day === Number(current.date())) {
@@ -78,9 +79,9 @@ const Month: React.FunctionComponent = () => {
 									}
 								}
 
-								function compare(a: any, b: any) {
-									const A = Number(a.startHours + a.startMinutes)
-									const B = Number(b.startHours + a.startMinutes)
+								const compare = (a: StorageType, b: StorageType) => {
+									const A = Number(a.startHours) + Number(a.startMinutes)
+									const B = Number(b.startHours) + Number(a.startMinutes)
 
 									let comparison = 0
 									if (A > B) {
@@ -105,7 +106,7 @@ const Month: React.FunctionComponent = () => {
 									>
 										<S.DaySpan>{current.format('D')}</S.DaySpan>
 										<S.MonthDisplay>
-											{day.map((v: any) => (
+											{day.map((v: StorageType) => (
 												<S.ScheduleWrapper key={v.id}>
 													<S.ScheduleColor backgroundColor={v.color} />
 													<S.ScheduleTitle>{v.title}</S.ScheduleTitle>

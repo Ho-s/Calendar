@@ -14,6 +14,7 @@ import {
 } from '../../../stores/store'
 
 import * as S from './style'
+import StorageType from 'types/type'
 
 interface dayProps {
 	location: number
@@ -59,8 +60,8 @@ const Day: React.FunctionComponent<dayProps> = ({location, lineTime}) => {
 	}
 
 	const TakeSchedule = () => {
-		const day: any = []
-		storageProps.forEach((v: any) => {
+		const day: StorageType[] = []
+		storageProps.forEach((v: StorageType) => {
 			if (v.year === Number(yearStorageProps)) {
 				if (v.month === Number(monthStorageProps + 1)) {
 					if (v.day === Number(nowDayProps)) {
@@ -71,7 +72,7 @@ const Day: React.FunctionComponent<dayProps> = ({location, lineTime}) => {
 		})
 		return (
 			<>
-				{day.map((v: any) => {
+				{day.map((v: StorageType) => {
 					const height =
 						(Number(v.endHours) - Number(v.startHours)) * 61 +
 						Number(v.endMinutes) -
@@ -98,9 +99,9 @@ const Day: React.FunctionComponent<dayProps> = ({location, lineTime}) => {
 	}
 
 	const MakeATable = () => {
-		const day: any = []
+		const day: StorageType[] = []
 		{
-			storageProps.forEach((v: any) => {
+			storageProps.forEach((v: StorageType) => {
 				if (v.year === Number(yearStorageProps)) {
 					if (v.month === Number(monthStorageProps + 1)) {
 						if (v.day === Number(nowDayProps)) {
@@ -113,7 +114,7 @@ const Day: React.FunctionComponent<dayProps> = ({location, lineTime}) => {
 		return (
 			<S.DayTable>
 				<>
-					{day.map((v: any) => (
+					{day.map((v: StorageType) => (
 						<S.TableWrapper key={v.id} id={v.id}>
 							<S.TableTitle>{v.title}</S.TableTitle>
 							<S.TableBody>

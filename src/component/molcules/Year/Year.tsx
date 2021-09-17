@@ -14,6 +14,7 @@ import {
 import today from '../../utils/today'
 
 import * as S from './style'
+import StorageType from 'types/type'
 
 const Year: React.FunctionComponent = () => {
 	const nowDayProps = useReactiveVar(nowDay)
@@ -23,7 +24,7 @@ const Year: React.FunctionComponent = () => {
 	const nowYearProps = useReactiveVar(nowYear)
 	const m = moment()
 
-	const Generate = (year: any, month: any) => {
+	const Generate = (year: number, month: number) => {
 		m.set('year', year)
 		m.set('month', month)
 		const startWeek = m.clone().startOf('month').week()
@@ -36,7 +37,7 @@ const Year: React.FunctionComponent = () => {
 			.map((_, i) => startWeek + i)
 		return (
 			<>
-				{calendar.map((week: any) => (
+				{calendar.map((week: number) => (
 					<S.YearRow key={week}>
 						{Array(7)
 							.fill(0)
@@ -59,11 +60,11 @@ const Year: React.FunctionComponent = () => {
 								const clicking =
 									current.format('MM') === m.format('MM')
 										? onClickDay
-										: (e: any) => e.preventDefault()
-								const day = []
+										: (() => {})
+								const day:StorageType[] = []
 								if (current.format('MM') === m.format('MM')) {
 									{
-										storageProps.forEach((v: any) => {
+										storageProps.forEach((v: StorageType) => {
 											if (v.year === Number(current.year())) {
 												if (v.month === Number(current.month() + 1)) {
 													if (v.day === Number(current.date())) {

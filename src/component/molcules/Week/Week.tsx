@@ -13,6 +13,7 @@ import {
 import today from '../../utils/today'
 
 import * as S from './style'
+import StorageType from 'types/type'
 
 interface WeekProps {
 	location: number
@@ -68,9 +69,9 @@ const Week: React.FunctionComponent<WeekProps> = ({location, lineTime}) => {
 							}
 						}
 
-						const day: any = []
+						const day: StorageType[] = []
 						{
-							storageProps.forEach((v: any) => {
+							storageProps.forEach((v: StorageType) => {
 								if (v.year === Number(current.year())) {
 									if (v.month === Number(current.month() + 1)) {
 										if (v.day === Number(current.date())) {
@@ -94,7 +95,7 @@ const Week: React.FunctionComponent<WeekProps> = ({location, lineTime}) => {
 									.map((_, i) => {
 										return <S.TimeLine key={i} />
 									})}
-								{day.map((v: any, i: number) => {
+								{day.map((v: StorageType, i: number) => {
 									const height: number =
 										(Number(v.endHours) - Number(v.startHours)) * 61 +
 										Number(v.endMinutes) -

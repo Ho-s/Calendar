@@ -14,6 +14,7 @@ import {
 } from '../../../stores/store'
 
 import * as S from './style'
+import StorageType from 'types/type'
 
 const Summary: React.FunctionComponent = () => {
 	const storageProps = useReactiveVar(storage)
@@ -35,7 +36,7 @@ const Summary: React.FunctionComponent = () => {
 				<S.Title>Schedules of the week</S.Title>
 				{Array(7)
 					.fill(0)
-					.map((n: any, i: number) => {
+					.map((n: number, i: number) => {
 						const current = m
 							.week(m.week())
 							.startOf('week')
@@ -47,13 +48,13 @@ const Summary: React.FunctionComponent = () => {
 								? '#4D4FFF'
 								: 'gray'
 
-						const day: any[] = []
+						const day: StorageType[] = []
 						if (
 							Number(current.format('MM')) ===
 							Number(monthStorageProps) + 1
 						) {
 							{
-								storageProps.forEach((v: any) => {
+								storageProps.forEach((v: StorageType) => {
 									if (v.year === Number(current.year())) {
 										if (v.month === Number(current.month() + 1)) {
 											if (v.day === Number(current.date())) {
@@ -65,10 +66,9 @@ const Summary: React.FunctionComponent = () => {
 							}
 						}
 
-						// for sorting
-						const compare = (a: any, b: any) => {
-							const A = Number(a.startHours + a.startMinutes)
-							const B = Number(b.startHours + a.startMinutes)
+						const compare = (a: StorageType, b: StorageType) => {
+							const A = Number(a.startHours) + Number(a.startMinutes)
+							const B = Number(b.startHours) + Number(a.startMinutes)
 
 							let comparison = 0
 							if (A > B) {
@@ -88,7 +88,7 @@ const Summary: React.FunctionComponent = () => {
 										{current.month() + 1} / {current.date()} / {current.year()}{' '}
 										{current.format('dddd')}
 									</S.Date>
-									{day.map((v: any) => (
+									{day.map((v: StorageType) => (
 										<S.SummarySchedule key={v.id} id={v.id}>
 											<S.SummaryScheduleColor
 												backgroundColor={v.color}

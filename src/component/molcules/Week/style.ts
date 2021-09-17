@@ -144,7 +144,7 @@ top:${(props)=>props.top};
 
 interface ScheduleBodyBackProps{
     height:number
-    backgroundColor:number
+    backgroundColor:string
 }
 
 export const ScheduleBodyBack = styled.div<ScheduleBodyBackProps>`
