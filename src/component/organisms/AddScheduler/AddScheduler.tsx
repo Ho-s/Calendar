@@ -228,7 +228,6 @@ const AddScheduler: React.FunctionComponent = () => {
 			}
 			setKeyType('')
 		}
-		console.log(addSchedule,keyType)
 	}, [keyType])
 
 	return (
