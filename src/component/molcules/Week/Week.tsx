@@ -138,7 +138,7 @@ const Week: React.FunctionComponent = () => {
 			<S.WeekLeft>
 				<S.WeekTitleWrapper>
 					<S.WeekTitleWeek>
-						CW{m.set('week', nowWeekProps).format('W')}
+						CW{nowWeekProps}
 					</S.WeekTitleWeek>
 					<S.WeekTitleMonth>
 						{m.set('month', monthStorageProps).format('MMMM')}

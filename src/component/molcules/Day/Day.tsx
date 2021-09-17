@@ -155,7 +155,7 @@ const Day: React.FunctionComponent = () => {
 		<S.DayComponent>
 			<S.DateStorage>
 				<S.WeekStorage>
-					CW{m.set('week', nowWeekProps).format('W')}
+					CW{nowWeekProps}
 				</S.WeekStorage>
 				<S.TodayStorage>
 					{whatDayProps === -1
