@@ -44,7 +44,7 @@ export const HeadSpan = styled.span`
     display: inline-block;
     &.clicked{
         color: white;
-        transition: background-color .5s, color .5s;
+        transition: background-color .2s, color .2s;
         background-color: red !important;
     }
 `
@@ -55,7 +55,7 @@ left: 14px;
 line-height: 1.7;
     &.clicked{
         color: white;
-        transition: background-color .5s, color .5s;
+        transition: background-color .2s, color .2s;
         background-color: red !important;
     }
 `

@@ -24,7 +24,7 @@ export const MonthDay = styled.div`
   font-weight: 600;
   border-right: 1px solid #e9e9e9;
   border-bottom: 1px solid #e9e9e9;
-  transition: background-color 0.4s;
+  transition: background-color 0.2s;
 `
 export const MonthDisplay = styled.div`
   text-align: left;
@@ -40,7 +40,7 @@ export const MonthBox = styled.div`
   font-weight: 600;
   border-right: 1px solid #e9e9e9;
   border-bottom: 1px solid #e9e9e9;
-  transition: background-color 0.4s;
+  transition: background-color 0.2s;
     cursor: pointer;
     color: black;
     height: calc((100vh - 30px) / 7);

@@ -34,11 +34,11 @@ export const SchedulerHeadInput = styled.input<SchedulerHeadInputProps>`
     font-weight: 600;
     float: left;
     text-decoration: none;
-    transition: color .4s, background-color .4s;
+    transition: color .2s, background-color .2s;
     border:${(props)=>(props.placeholder === 'Title' ? 0 : '4px solid red')};
     background-color:${(props)=>(props.placeholder === 'Title' ? 'transparent' : 'red')};
     color:${(props)=>(props.placeholder === 'Title' ? 'black' : 'white')};
-    animation: ${(props)=>(props.placeholder === 'Title' ? '' : 'alert .4s .4s forwards')};
+    animation: ${(props)=>(props.placeholder === 'Title' ? '' : 'alert .2s .2s forwards')};
     @keyframes alert {
     0% {
         opacity: 1;
@@ -145,7 +145,7 @@ export const SchedulerFootButton = styled.button<SchedulerFootButtonProps>`
     height: 50px;
     margin:20px 49px;
     cursor: pointer;
-    transition: background-color .4s;
+    transition: background-color .2s;
     background-color: ${(props)=>props.backgroundColor};
     &:hover{
         background-color:#292726 !important;
@@ -177,8 +177,8 @@ export const AddSchedule = styled.button`
   z-index:3;
   border: 0;
   border: 1px solid transparent;
-  -webkit-transition: all 0.4s cubic-bezier(0.5, 0.24, 0, 1);
-  transition: all 0.4s cubic-bezier(0.5, 0.24, 0, 1);
+  -webkit-transition: all 0.2s cubic-bezier(0.5, 0.24, 0, 1);
+  transition: all 0.2s cubic-bezier(0.5, 0.24, 0, 1);
   &::before {
     content: "";
     position: absolute;
@@ -190,8 +190,8 @@ export const AddSchedule = styled.button`
     background: gray;
     box-shadow: inset 0px 0px 0px gray;
     display: block;
-    -webkit-transition: all 0.4s cubic-bezier(0.5, 0.24, 0, 1);
-    transition: all 0.4s cubic-bezier(0.5, 0.24, 0, 1);
+    -webkit-transition: all 0.2s cubic-bezier(0.5, 0.24, 0, 1);
+    transition: all 0.2s cubic-bezier(0.5, 0.24, 0, 1);
 }
     &:hover::before{
     width: 100%;
@@ -205,8 +205,8 @@ export const AddSchedule = styled.button`
   width: 0%;
   height: 1px;
   background: gray;
-  -webkit-transition: all 0.4s cubic-bezier(0.5, 0.24, 0, 1);
-  transition: all 0.4s cubic-bezier(0.5, 0.24, 0, 1);
+  -webkit-transition: all 0.2s cubic-bezier(0.5, 0.24, 0, 1);
+  transition: all 0.2s cubic-bezier(0.5, 0.24, 0, 1);
 }
 &:hover::after {
   width: 100%;
@@ -233,7 +233,7 @@ interface AddScheduleDivProps {
 }
 
 export const AddScheduleDiv = styled.div<AddScheduleDivProps>`
-  animation: ${(props)=>(props.animation ? 'backward .4s forwards' : 'forward .4s forwards')};
+  animation: ${(props)=>(props.animation ? 'backward .2s forwards' : 'forward .2s forwards')};
 
 @keyframes forward {
   100% {

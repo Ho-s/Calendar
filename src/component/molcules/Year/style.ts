@@ -20,7 +20,7 @@ export const YearBox = styled.div<YearBoxProps>`
     color:black;
     border:1px solid white;
     cursor: pointer;
-    transition: background-color .5s;
+    transition: background-color .2s;
     background-color: ${(props)=>props.backgroundColor};
     &:hover{
         background-color: green;
@@ -46,7 +46,7 @@ export const YearDay = styled.div`
     text-align: center;
     color:black !important;
     border:1px solid white;
-    transition: background-color .5s;
+    transition: background-color .2s;
 `
 
 export const YearRow = styled.div`

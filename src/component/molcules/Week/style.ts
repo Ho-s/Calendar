@@ -17,7 +17,7 @@ export const WeekBox = styled.div`
     float: left;
     font-weight: 600;
     color:black;
-    transition: background-color .5s;
+    transition: background-color .2s;
     font-size: 26px;
     width: calc((100vw - 430px) / 7);
     &.week-selected span{

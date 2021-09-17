@@ -25,7 +25,7 @@ export const BodyButton = styled.button`
   padding: 0;
   background-color: rgb(58, 58, 58);
   cursor: pointer;
-  transition: all 0.3s;
+  transition: all 0.2s;
   &:hover{
       transform: translateY(-5px);
   }
@@ -58,7 +58,7 @@ export const Box = styled.div`
   line-height: 2.1;
   color: white;
   cursor: pointer;
-  transition: background-color 0.5s;
+  transition: background-color 0.2s;
   &:hover {
     background-color: green;
   }
@@ -119,7 +119,7 @@ export const Cw = styled.div`
   color: gray;
   border-right: 1px solid gray;
   cursor: pointer;
-  transition: background-color 0.5s;
+  transition: background-color 0.2s;
   &:hover {
   background-color: green;
 }
