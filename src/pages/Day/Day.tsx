@@ -89,7 +89,7 @@ const Day: React.FunctionComponent<dayProps> = ({location, lineTime}) => {
 							<S.ScheduleTextWrapper top={-height}>
 								<S.ScheduleColor backgroundColor={v.color} height={height} />
 								<S.ScheduleText>
-									{v.startHours}:{v.startMinutes}
+									{v.startHours}:{v.startMinutes} ~ {v.endHours}:{v.endMinutes}
 								</S.ScheduleText>
 								<S.ScheduleText>{v.title}</S.ScheduleText>
 							</S.ScheduleTextWrapper>

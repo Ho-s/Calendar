@@ -119,7 +119,7 @@ const Week: React.FunctionComponent<WeekProps> = ({location, lineTime}) => {
 													backgroundColor={v.color}
 												/>
 												<S.ScheduleTime>
-													{v.startHours}:{v.startMinutes}
+													{v.startHours}:{v.startMinutes} ~ {v.endHours}:{v.endMinutes}
 												</S.ScheduleTime>
 												<S.ScheduleTitle>{v.title}</S.ScheduleTitle>
 											</S.ScheduleBody>

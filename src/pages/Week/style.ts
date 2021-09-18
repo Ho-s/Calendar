@@ -114,8 +114,8 @@ export const ScheduleWrapper = styled.div<ScheduleWrapperProps>`
     right: 0;
     position: absolute;
     width: 100%;
-    top:${(props)=>props.top};
-    height:${(props)=>props.height};
+    top:${(props)=>(`${props.top}px`)};
+    height:${(props)=>(`${props.height}px`)};
 `
 
 interface ScheduleBackProps{
@@ -139,7 +139,7 @@ font-size: 15px;
 font-weight: 600;
 color: black;
 position: relative;
-top:${(props)=>props.top};
+top:${(props)=>(`${props.top}px`)};
 `
 
 interface ScheduleBodyBackProps{
@@ -151,8 +151,8 @@ export const ScheduleBodyBack = styled.div<ScheduleBodyBackProps>`
     width: 10px;
     position: absolute;
     left: 0;
-    top:${(props)=>props.height};
-    height:${(props)=>props.height};
+    top:${(props)=>(`${props.height}px`)};
+    height:${(props)=>(`${props.height}px`)};
     background-color:${(props)=>props.backgroundColor};
 `
 
