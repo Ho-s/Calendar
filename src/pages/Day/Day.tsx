@@ -155,29 +155,29 @@ const Day: React.FunctionComponent<dayProps> = ({location, lineTime}) => {
 
 	return (
 		<BaseTemplate>
-		<S.DayComponent>
-			<S.DateStorage>
-				<S.WeekStorage>
+			<S.DayComponent>
+				<S.DateStorage>
+					<S.WeekStorage>
 					CW{nowWeekProps}
-				</S.WeekStorage>
-				<S.TodayStorage>
-					{whatDayProps === -1
-						? m.set('date', nowDayProps).format('dddd')
-						: m.day(whatDayProps).format('dddd')}
-				</S.TodayStorage>
-				<S.MonthStorage>
-					{`${m.set('month', monthStorageProps).format('MMMM')}${nowDayProps}`}
-				</S.MonthStorage>
-				<S.YearStorage>{yearStorageProps}</S.YearStorage>
-			</S.DateStorage>
-			<S.TimeTable>
-				<S.RedLine top={`${location}px`}>{lineTime}</S.RedLine>
-				<TakeSchedule />
-				<S.DayLeft>{TimeLinesLeft}</S.DayLeft>
-				<TimeLinesRight />
-			</S.TimeTable>
-			<MakeATable />
-		</S.DayComponent>
+					</S.WeekStorage>
+					<S.TodayStorage>
+						{whatDayProps === -1
+							? m.set('date', nowDayProps).format('dddd')
+							: m.day(whatDayProps).format('dddd')}
+					</S.TodayStorage>
+					<S.MonthStorage>
+						{`${m.set('month', monthStorageProps).format('MMMM')}${nowDayProps}`}
+					</S.MonthStorage>
+					<S.YearStorage>{yearStorageProps}</S.YearStorage>
+				</S.DateStorage>
+				<S.TimeTable>
+					<S.RedLine top={`${location}px`}>{lineTime}</S.RedLine>
+					<TakeSchedule />
+					<S.DayLeft>{TimeLinesLeft}</S.DayLeft>
+					<TimeLinesRight />
+				</S.TimeTable>
+				<MakeATable />
+			</S.DayComponent>
 		</BaseTemplate>
 	)
 }

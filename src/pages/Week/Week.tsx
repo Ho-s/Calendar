@@ -52,22 +52,22 @@ const Week: React.FunctionComponent<WeekProps> = ({location, lineTime}) => {
 								: 'week-grayed'
 						const whatDay = () => {
 							switch (i) {
-								case 0:
-									return 'SUN'
-								case 1:
-									return 'MON'
-								case 2:
-									return 'TUE'
-								case 3:
-									return 'WED'
-								case 4:
-									return 'THU'
-								case 5:
-									return 'FRI'
-								case 6:
-									return 'SAT'
-								default:
-									return ''
+							case 0:
+								return 'SUN'
+							case 1:
+								return 'MON'
+							case 2:
+								return 'TUE'
+							case 3:
+								return 'WED'
+							case 4:
+								return 'THU'
+							case 5:
+								return 'FRI'
+							case 6:
+								return 'SAT'
+							default:
+								return ''
 							}
 						}
 
@@ -137,26 +137,26 @@ const Week: React.FunctionComponent<WeekProps> = ({location, lineTime}) => {
 
 	return (
 		<BaseTemplate>
-		<S.WeekComponent>
-			<S.WeekLeft>
-				<S.WeekTitleWrapper>
-					<S.WeekTitleWeek>
+			<S.WeekComponent>
+				<S.WeekLeft>
+					<S.WeekTitleWrapper>
+						<S.WeekTitleWeek>
 						CW{nowWeekProps}
-					</S.WeekTitleWeek>
-					<S.WeekTitleMonth>
-						{m.set('month', monthStorageProps).format('MMMM')}
-					</S.WeekTitleMonth>
-					<S.WeekTitleYear>{yearStorageProps}</S.WeekTitleYear>
-				</S.WeekTitleWrapper>
-				{Array(24)
-					.fill(0)
-					.map((_, i) => {
-						return <S.Time key={i}>{`${i + 1}:00`}</S.Time>
-					})}
-			</S.WeekLeft>
-			<Generate />
-			<S.RedLine top={`${location + 51}px`}>{lineTime}</S.RedLine>
-		</S.WeekComponent>
+						</S.WeekTitleWeek>
+						<S.WeekTitleMonth>
+							{m.set('month', monthStorageProps).format('MMMM')}
+						</S.WeekTitleMonth>
+						<S.WeekTitleYear>{yearStorageProps}</S.WeekTitleYear>
+					</S.WeekTitleWrapper>
+					{Array(24)
+						.fill(0)
+						.map((_, i) => {
+							return <S.Time key={i}>{`${i + 1}:00`}</S.Time>
+						})}
+				</S.WeekLeft>
+				<Generate />
+				<S.RedLine top={`${location + 51}px`}>{lineTime}</S.RedLine>
+			</S.WeekComponent>
 		</BaseTemplate>
 	)
 }

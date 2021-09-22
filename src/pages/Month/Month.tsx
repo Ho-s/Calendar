@@ -129,24 +129,24 @@ const Month: React.FunctionComponent = () => {
 
 	return (
 		<BaseTemplate>
-		<S.MonthComponent>
-			<S.MonthTitleWrapper>
-				<S.MonthTitleLeft>
-					{m.set('month', nowMonthProps).format('MMMM')}
-				</S.MonthTitleLeft>
-				<S.MonthTitleRight>{nowYearProps}</S.MonthTitleRight>
-			</S.MonthTitleWrapper>
-			<S.MonthRow>
-				<S.MonthDay>SUN</S.MonthDay>
-				<S.MonthDay>MON</S.MonthDay>
-				<S.MonthDay>TUE</S.MonthDay>
-				<S.MonthDay>WED</S.MonthDay>
-				<S.MonthDay>THU</S.MonthDay>
-				<S.MonthDay>FRI</S.MonthDay>
-				<S.MonthDay>SAT</S.MonthDay>
-			</S.MonthRow>
-			{Generate()}
-		</S.MonthComponent>
+			<S.MonthComponent>
+				<S.MonthTitleWrapper>
+					<S.MonthTitleLeft>
+						{m.set('month', nowMonthProps).format('MMMM')}
+					</S.MonthTitleLeft>
+					<S.MonthTitleRight>{nowYearProps}</S.MonthTitleRight>
+				</S.MonthTitleWrapper>
+				<S.MonthRow>
+					<S.MonthDay>SUN</S.MonthDay>
+					<S.MonthDay>MON</S.MonthDay>
+					<S.MonthDay>TUE</S.MonthDay>
+					<S.MonthDay>WED</S.MonthDay>
+					<S.MonthDay>THU</S.MonthDay>
+					<S.MonthDay>FRI</S.MonthDay>
+					<S.MonthDay>SAT</S.MonthDay>
+				</S.MonthRow>
+				{Generate()}
+			</S.MonthComponent>
 		</BaseTemplate>
 	)
 }

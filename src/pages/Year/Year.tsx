@@ -80,20 +80,20 @@ const Year: React.FunctionComponent = () => {
 
 								const color = () => {
 									switch (day.length) {
-										case 0:
-											return ''
-										case 1:
-											return 'rgb(229, 255, 0)'
-										case 2:
-											return 'rgb(255, 238, 0)'
-										case 3:
-											return 'rgb(255, 204, 0)'
-										case 4:
-											return 'rgb(255, 170, 0)'
-										case 5:
-											return 'rgb(255, 106, 0)'
-										default:
-											return 'rgb(255, 106, 0)'
+									case 0:
+										return ''
+									case 1:
+										return 'rgb(229, 255, 0)'
+									case 2:
+										return 'rgb(255, 238, 0)'
+									case 3:
+										return 'rgb(255, 204, 0)'
+									case 4:
+										return 'rgb(255, 170, 0)'
+									case 5:
+										return 'rgb(255, 106, 0)'
+									default:
+										return 'rgb(255, 106, 0)'
 									}
 								}
 								return (
@@ -146,10 +146,10 @@ const Year: React.FunctionComponent = () => {
 
 	return (
 		<BaseTemplate>
-		<S.YearComponent>
-			<S.YearTitle>{nowYearProps}</S.YearTitle>
-			{GenerateWrap()}
-		</S.YearComponent>
+			<S.YearComponent>
+				<S.YearTitle>{nowYearProps}</S.YearTitle>
+				{GenerateWrap()}
+			</S.YearComponent>
 		</BaseTemplate>
 	)
 }

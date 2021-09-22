@@ -7,10 +7,10 @@ import AddScheduler from '../../molcules/AddScheduler/AddScheduler'
 import * as S from './style'
 
 const Lefter: React.FunctionComponent = () => (
-		<>
-            <AddScheduler />
-            <Calendar />
-            <Summary />
-		</>
-	)
+	<>
+		<AddScheduler />
+		<Calendar />
+		<Summary />
+	</>
+)
 export default Lefter

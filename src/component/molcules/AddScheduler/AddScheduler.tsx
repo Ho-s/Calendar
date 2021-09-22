@@ -195,7 +195,7 @@ const AddScheduler: React.FunctionComponent = () => {
 		if(e.key === 'Escape' || e.keyCode === 27) {
 			setKeyType('escape')
 		} else if(e.key === 'Enter' || e.keyCode === 13) {
-			setKeyType(`enter`)
+			setKeyType('enter')
 		}
 	}
 

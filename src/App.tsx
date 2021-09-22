@@ -1,6 +1,6 @@
 import React, {useEffect,useState} from 'react'
-import moment from 'moment';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import moment from 'moment'
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import Day from './pages/Day/Day'
 import Week from './pages/Week/Week'
 import Month from './pages/Month/Month'
@@ -23,15 +23,15 @@ const App = () => {
 
 	return(
 		<GlobalThemeProvider>
-		<Router>
-			<Switch>
-				<Route render={(props)=><Day {...props} location={location} lineTime={lineTime}/>} exact path='/'/>
-				<Route render={(props)=><Week {...props} location={location} lineTime={lineTime}/>} exact path='/week'/>
-				<Route exact path='/month' component={Month}/>
-				<Route exact path='/year' component={Year}/>
-			</Switch>
-		</Router>
-	</GlobalThemeProvider>
+			<Router>
+				<Switch>
+					<Route render={(props)=><Day {...props} location={location} lineTime={lineTime}/>} exact path='/'/>
+					<Route render={(props)=><Week {...props} location={location} lineTime={lineTime}/>} exact path='/week'/>
+					<Route exact path='/month' component={Month}/>
+					<Route exact path='/year' component={Year}/>
+				</Switch>
+			</Router>
+		</GlobalThemeProvider>
 	)
 }
 
