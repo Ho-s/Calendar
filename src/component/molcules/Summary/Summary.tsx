@@ -12,6 +12,7 @@ import {
 	yearStorage,
 	onClickDelete,
 } from '../../../stores/store'
+import scheduleStorage from '../../../utils/schedules'
 
 import * as S from './style'
 import StorageType from 'types/type'
@@ -48,24 +49,6 @@ const Summary: React.FunctionComponent = () => {
 								? '#4D4FFF'
 								: 'gray'
 
-						const day: StorageType[] = []
-						if (
-							Number(current.format('MM')) ===
-							Number(monthStorageProps) + 1
-						) {
-							{
-								storageProps.forEach((v: StorageType) => {
-									if (v.year === Number(current.year())) {
-										if (v.month === Number(current.month() + 1)) {
-											if (v.day === Number(current.date())) {
-												day.push(v)
-											}
-										}
-									}
-								})
-							}
-						}
-
 						const compare = (a: StorageType, b: StorageType) => {
 							const A = Number(a.startHours) + Number(a.startMinutes)
 							const B = Number(b.startHours) + Number(a.startMinutes)
@@ -78,9 +61,9 @@ const Summary: React.FunctionComponent = () => {
 							}
 							return comparison
 						}
-						day.sort(compare)
+						const schedules = scheduleStorage(storageProps, current.year(), current.month()+1,current.date()).sort(compare)
 
-						if (day.length > 0) {
+						if (schedules.length > 0) {
 							num++
 							return (
 								<S.DayWrapper key={i}>
@@ -88,7 +71,7 @@ const Summary: React.FunctionComponent = () => {
 										{current.month() + 1} / {current.date()} / {current.year()}{' '}
 										{current.format('dddd')}
 									</S.Date>
-									{day.map((v: StorageType) => (
+									{schedules.map((v: StorageType) => (
 										<S.SummarySchedule key={v.id} id={v.id}>
 											<S.SummaryScheduleColor
 												backgroundColor={v.color}

@@ -9,10 +9,10 @@ import {
 	monthStorage,
 	yearStorage,
 	storage,
-
 } from '../../stores/store'
 
-import today from '../../component/utils/today'
+import today from '../../utils/today'
+import scheduleStorage from '../../utils/schedules'
 
 import * as S from './style'
 import StorageType from 'types/type'
@@ -71,19 +71,6 @@ const Week: React.FunctionComponent<WeekProps> = ({location, lineTime}) => {
 							}
 						}
 
-						const day: StorageType[] = []
-						{
-							storageProps.forEach((v: StorageType) => {
-								if (v.year === Number(current.year())) {
-									if (v.month === Number(current.month() + 1)) {
-										if (v.day === Number(current.date())) {
-											day.push(v)
-										}
-									}
-								}
-							})
-						}
-
 						return (
 							<S.BodyWrapper key={i}>
 								<S.BodyTopWrapper>
@@ -97,7 +84,7 @@ const Week: React.FunctionComponent<WeekProps> = ({location, lineTime}) => {
 									.map((_, i) => {
 										return <S.TimeLine key={i} />
 									})}
-								{day.map((v: StorageType, i: number) => {
+								{scheduleStorage(storageProps, current.year(),current.month() + 1, current.date()).map((v: StorageType, i: number) => {
 									const height: number =
 										(Number(v.endHours) - Number(v.startHours)) * 61 +
 										Number(v.endMinutes) -

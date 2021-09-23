@@ -14,7 +14,8 @@ import {
 	onClickDay,
 } from '../../stores/store'
 
-import today from '../../component/utils/today'
+import today from '../../utils/today'
+import scheduleStorage from '../../utils/schedules'
 
 import * as S from './style'
 import StorageType from 'types/type'
@@ -66,19 +67,9 @@ const Month: React.FunctionComponent = () => {
 										? onClickDay
 										: (() => {})
 
-								const day: StorageType[] = []
+								let schedules
 								if (current.format('MM') === m.format('MM')) {
-									{
-										storageProps.forEach((v: StorageType) => {
-											if (v.year === Number(current.year())) {
-												if (v.month === Number(current.month() + 1)) {
-													if (v.day === Number(current.date())) {
-														day.push(v)
-													}
-												}
-											}
-										})
-									}
+									schedules=scheduleStorage(storageProps, current.year(),current.month()+1,current.date())
 								}
 
 								const compare = (a: StorageType, b: StorageType) => {
@@ -93,7 +84,7 @@ const Month: React.FunctionComponent = () => {
 									}
 									return comparison
 								}
-								day.sort(compare)
+								schedules?.sort(compare)
 
 								return (
 									<S.MonthBox
@@ -108,7 +99,7 @@ const Month: React.FunctionComponent = () => {
 									>
 										<S.DaySpan>{current.format('D')}</S.DaySpan>
 										<S.MonthDisplay>
-											{day.map((v: StorageType) => (
+											{schedules?.map((v: StorageType) => (
 												<S.ScheduleWrapper key={v.id}>
 													<S.ScheduleColor backgroundColor={v.color} />
 													<S.ScheduleTitle>{v.title}</S.ScheduleTitle>

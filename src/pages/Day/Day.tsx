@@ -11,8 +11,9 @@ import {
 	yearStorage,
 	whatDay,
 	storage,
-	onClickDelete,
 } from '../../stores/store'
+
+import scheduleStorage from '../../utils/schedules'
 
 import * as S from './style'
 import StorageType from 'types/type'
@@ -59,20 +60,11 @@ const Day: React.FunctionComponent<dayProps> = ({location, lineTime}) => {
 			</>
 		)
 	}
-	const day: StorageType[] = []
-	storageProps.forEach((v: StorageType) => {
-		if (v.year === Number(yearStorageProps)) {
-			if (v.month === Number(monthStorageProps + 1)) {
-				if (v.day === Number(nowDayProps)) {
-					day.push(v)
-				}
-			}
-		}
-	})
 
+	const schedules = scheduleStorage(storageProps, yearStorageProps, monthStorageProps + 1, nowDayProps)
 	const TakeSchedule = () => (
 		<>
-			{day.map((v: StorageType) => {
+			{schedules.map((v: StorageType) => {
 				const height =
 					(Number(v.endHours) - Number(v.startHours)) * 61 +
 					Number(v.endMinutes) -
@@ -113,10 +105,10 @@ const Day: React.FunctionComponent<dayProps> = ({location, lineTime}) => {
 				</S.MonthStorage>
 				<S.YearStorage>{yearStorageProps}</S.YearStorage>
 				<S.ScheduleCountWrapper>
-					{day.length > 0
+					{schedules.length > 0
 					? <>
-						<S.ScheduleCount>{day.length} </S.ScheduleCount>
-						<S.ScheduleCountText>{day.length === 1 ? `schedule` : 'schedules'} existed on this day</S.ScheduleCountText>
+						<S.ScheduleCount>{schedules.length} </S.ScheduleCount>
+						<S.ScheduleCountText>{schedules.length === 1 ? `schedule` : 'schedules'} existed on this day</S.ScheduleCountText>
 					</>
 					: <S.ScheduleCountText>There is no schedule on this day</S.ScheduleCountText>
 				}

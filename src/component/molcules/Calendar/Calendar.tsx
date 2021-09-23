@@ -15,7 +15,8 @@ import {
 	onClickWeek,
 } from '../../../stores/store'
 
-import today from '../../utils/today'
+import today from '../../../utils/today'
+import scheduleStorage from '../../../utils/schedules'
 
 import * as S from './style'
 import StorageType from 'types/type'
@@ -84,17 +85,9 @@ const Calendar: React.FunctionComponent = () => {
 									const isGrayed =
 										current.format('MM') === m.format('MM') ? '' : 'grayed'
 
-									const day: StorageType[] = []
+									let schedules
 									if (current.format('MM') === m.format('MM')) {
-										storageProps.forEach((v: StorageType) => {
-											if (v.year === Number(nowYearProps)) {
-												if (v.month === Number(nowMonthProps + 1)) {
-													if (v.day === current.date()) {
-														day.push(v)
-													}
-												}
-											}
-										})
+										schedules=scheduleStorage(storageProps, nowYearProps,nowMonthProps+1,current.date())
 									}
 
 									return (
@@ -115,7 +108,7 @@ const Calendar: React.FunctionComponent = () => {
 										>
 											{current.format('D')}
 											<S.ThisDayWrapper>
-												{day.slice(0,3).map((v: StorageType) => {
+												{schedules?.slice(0,3).map((v: StorageType) => {
 													return (
 														<S.ThisDay
 															key={v.id}

@@ -13,10 +13,10 @@ import {
 	onClickDay,
 } from '../../stores/store'
 
-import today from '../../component/utils/today'
+import today from '../../utils/today'
+import scheduleStorage from '../../utils/schedules'
 
 import * as S from './style'
-import StorageType from 'types/type'
 
 const Year: React.FunctionComponent = () => {
 	const nowDayProps = useReactiveVar(nowDay)
@@ -63,23 +63,9 @@ const Year: React.FunctionComponent = () => {
 									current.format('MM') === m.format('MM')
 										? onClickDay
 										: (() => {})
-								const day: StorageType[] = []
-								if (current.format('MM') === m.format('MM')) {
-									{
-										storageProps.forEach((v: StorageType) => {
-											if (v.year === Number(current.year())) {
-												if (v.month === Number(current.month() + 1)) {
-													if (v.day === Number(current.date())) {
-														day.push(v)
-													}
-												}
-											}
-										})
-									}
-								}
 
 								const color = () => {
-									switch (day.length) {
+									switch (scheduleStorage(storageProps,current.year(),current.month()+1,current.date()).length) {
 									case 0:
 										return ''
 									case 1:
