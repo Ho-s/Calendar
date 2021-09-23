@@ -47,7 +47,7 @@ const Week: React.FunctionComponent<WeekProps> = ({location, lineTime}) => {
 						const todaySelect =
 							today === current.format('YYYYMMDD') ? 'week-selected' : ''
 						const isGrayed =
-							Number(current.format('MM')) === Number(monthStorageProps) + 1
+							Number(current.format('MM')) === monthStorageProps + 1
 								? ''
 								: 'week-grayed'
 						const whatDay = () => {

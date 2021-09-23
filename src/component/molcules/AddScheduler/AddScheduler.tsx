@@ -55,8 +55,8 @@ const AddScheduler: React.FunctionComponent = () => {
 
 	const lastDay = m
 		.set({
-			year: Number(year),
-			month: Number(month - 1),
+			year,
+			month: month - 1,
 		})
 		.endOf('month')
 		.date()

@@ -52,8 +52,8 @@ const Year: React.FunctionComponent = () => {
 								const todaySelected =
 									today === current.format('YYYYMMDD') ? 'year-selected' : ''
 								const isSelected =
-									Number(nowDayProps) === Number(current.format('D')) &&
-									Number(yearStorageProps) === nowYearProps &&
+									nowDayProps === Number(current.format('D')) &&
+									yearStorageProps === nowYearProps &&
 									nowWeekProps === week
 										? 'yearSelected'
 										: ''

@@ -43,8 +43,8 @@ const Summary: React.FunctionComponent = () => {
 							.startOf('week')
 							.add(n + i, 'day')
 						const selectedColor =
-							Number(nowDayProps) === Number(current.format('D')) &&
-							Number(yearStorageProps) === nowYearProps &&
+							nowDayProps === Number(current.format('D')) &&
+							yearStorageProps === nowYearProps &&
 							monthStorageProps === nowMonthProps
 								? '#4D4FFF'
 								: 'gray'
@@ -61,7 +61,12 @@ const Summary: React.FunctionComponent = () => {
 							}
 							return comparison
 						}
-						const schedules = scheduleStorage(storageProps, current.year(), current.month()+1,current.date()).sort(compare)
+
+						let schedules:StorageType[] = []
+						if (Number(current.format('yyyy')) === nowYearProps) {
+							schedules=scheduleStorage(storageProps, current.year(),current.month()+1,current.date())
+						}
+						schedules.sort(compare)
 
 						if (schedules.length > 0) {
 							num++

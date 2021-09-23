@@ -55,8 +55,8 @@ const Month: React.FunctionComponent = () => {
 								const todaySelected =
 									today === current.format('YYYYMMDD') ? 'month-selected' : ''
 								const isSelected =
-									Number(nowDayProps) === Number(current.format('D')) &&
-									Number(yearStorageProps) === nowYearProps &&
+									nowDayProps === Number(current.format('D')) &&
+									yearStorageProps === nowYearProps &&
 									monthStorageProps === nowMonthProps
 										? 'monthSelected'
 										: ''
@@ -67,7 +67,7 @@ const Month: React.FunctionComponent = () => {
 										? onClickDay
 										: (() => {})
 
-								let schedules
+								let schedules:StorageType[] = []
 								if (current.format('MM') === m.format('MM')) {
 									schedules=scheduleStorage(storageProps, current.year(),current.month()+1,current.date())
 								}
@@ -84,7 +84,7 @@ const Month: React.FunctionComponent = () => {
 									}
 									return comparison
 								}
-								schedules?.sort(compare)
+								schedules.sort(compare)
 
 								return (
 									<S.MonthBox
@@ -99,7 +99,7 @@ const Month: React.FunctionComponent = () => {
 									>
 										<S.DaySpan>{current.format('D')}</S.DaySpan>
 										<S.MonthDisplay>
-											{schedules?.map((v: StorageType) => (
+											{schedules.map((v: StorageType) => (
 												<S.ScheduleWrapper key={v.id}>
 													<S.ScheduleColor backgroundColor={v.color} />
 													<S.ScheduleTitle>{v.title}</S.ScheduleTitle>

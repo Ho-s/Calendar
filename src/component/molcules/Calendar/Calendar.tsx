@@ -48,8 +48,8 @@ const Calendar: React.FunctionComponent = () => {
 					const thisWeekConst =
 						today === m.clone().week(week).format('YYYYMMDD') ? 'today' : ''
 					const weekSelected =
-						Number(nowWeekProps) === week &&
-						Number(yearStorageProps) === nowYearProps &&
+						nowWeekProps === week &&
+						yearStorageProps === nowYearProps &&
 						monthStorageProps === nowMonthProps
 							? 'selected'
 							: ''
@@ -73,8 +73,8 @@ const Calendar: React.FunctionComponent = () => {
 									const todaySelect =
 										today === current.format('YYYYMMDD') ? 'today' : ''
 									const isSelected =
-										Number(nowDayProps) === Number(current.format('D')) &&
-										Number(yearStorageProps) === nowYearProps &&
+										nowDayProps === Number(current.format('D')) &&
+										yearStorageProps === nowYearProps &&
 										monthStorageProps === nowMonthProps
 											? 'selected'
 											: ''
@@ -85,7 +85,7 @@ const Calendar: React.FunctionComponent = () => {
 									const isGrayed =
 										current.format('MM') === m.format('MM') ? '' : 'grayed'
 
-									let schedules
+									let schedules: StorageType[] = []
 									if (current.format('MM') === m.format('MM')) {
 										schedules=scheduleStorage(storageProps, nowYearProps,nowMonthProps+1,current.date())
 									}
@@ -108,7 +108,7 @@ const Calendar: React.FunctionComponent = () => {
 										>
 											{current.format('D')}
 											<S.ThisDayWrapper>
-												{schedules?.slice(0,3).map((v: StorageType) => {
+												{schedules.slice(0,3).map((v: StorageType) => {
 													return (
 														<S.ThisDay
 															key={v.id}

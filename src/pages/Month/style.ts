@@ -102,7 +102,7 @@ interface ScheduleColorProps {
 
 export const ScheduleColor = styled.div<ScheduleColorProps>`
 margin-left: 6px;
-margin-top: 4px;
+margin-top: 1.3px;
 float: left;
 width: 10px;
 border-radius: 10px;
@@ -116,13 +116,13 @@ float: left;
 width: calc(100% - 71px);
 text-overflow: ellipsis;
 overflow: hidden;
+font-size: 14px;
 white-space: nowrap;
 font-weight: 600;
 color: black;
 `
 
 export const ScheduleTime = styled.div`
-line-height: 1.5;
 float: right;
 margin-right: 6px;
 font-size: 14px;
