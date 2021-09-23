@@ -78,10 +78,6 @@ const Calendar: React.FunctionComponent = () => {
 										monthStorageProps === nowMonthProps
 											? 'selected'
 											: ''
-									const clicking =
-										current.format('MM') === m.format('MM')
-											? onClickDay
-											: (() => {})
 									const isGrayed =
 										current.format('MM') === m.format('MM') ? '' : 'grayed'
 
@@ -97,7 +93,9 @@ const Calendar: React.FunctionComponent = () => {
 											data-month={Number(current.format('MM')) - 1}
 											data-year={current.format('YYYY')}
 											data-what-day={i}
-											onClick={clicking}
+											onClick={										current.format('MM') === m.format('MM')
+											? onClickDay
+											: (() => {})}
 											data-gray={
 												current.format('MM') === m.format('MM')
 													? 'false'

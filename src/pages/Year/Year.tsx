@@ -59,10 +59,6 @@ const Year: React.FunctionComponent = () => {
 										: ''
 								const isGrayed =
 									current.format('MM') === m.format('MM') ? '' : 'year-grayed'
-								const clicking =
-									current.format('MM') === m.format('MM')
-										? onClickDay
-										: (() => {})
 
 								const color = () => {
 									switch (scheduleStorage(storageProps,current.year(),current.month()+1,current.date()).length) {
@@ -85,7 +81,9 @@ const Year: React.FunctionComponent = () => {
 								return (
 									<S.YearBox
 										backgroundColor={color()}
-										onClick={clicking}
+										onClick={									current.format('MM') === m.format('MM')
+										? onClickDay
+										: (() => {})}
 										data-day={current.format('DD')}
 										data-week={week}
 										data-month={Number(current.format('MM')) - 1}

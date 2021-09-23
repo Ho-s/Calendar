@@ -12,7 +12,9 @@ import {
 	yearStorage,
 	onClickDelete,
 } from '../../../stores/store'
+
 import scheduleStorage from '../../../utils/schedules'
+import compare from '../../../utils/compare'
 
 import * as S from './style'
 import StorageType from 'types/type'
@@ -48,19 +50,6 @@ const Summary: React.FunctionComponent = () => {
 							monthStorageProps === nowMonthProps
 								? '#4D4FFF'
 								: 'gray'
-
-						const compare = (a: StorageType, b: StorageType) => {
-							const A = Number(a.startHours) + Number(a.startMinutes)
-							const B = Number(b.startHours) + Number(a.startMinutes)
-
-							let comparison = 0
-							if (A > B) {
-								comparison = 1
-							} else if (A < B) {
-								comparison = -1
-							}
-							return comparison
-						}
 
 						let schedules:StorageType[] = []
 						if (Number(current.format('yyyy')) === nowYearProps) {

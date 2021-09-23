@@ -1,4 +1,3 @@
-import React from "react";
 import StorageType from 'types/type'
 
 const scheduleStorage = (array:StorageType[],year:number, month:number, day:number) => {

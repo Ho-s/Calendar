@@ -14,6 +14,7 @@ import {
 	onClickDay,
 } from '../../stores/store'
 
+import compare from '../../utils/compare'
 import today from '../../utils/today'
 import scheduleStorage from '../../utils/schedules'
 
@@ -62,27 +63,10 @@ const Month: React.FunctionComponent = () => {
 										: ''
 								const isGrayed =
 									current.format('MM') === m.format('MM') ? '' : 'month-grayed'
-								const clicking =
-									current.format('MM') === m.format('MM')
-										? onClickDay
-										: (() => {})
 
 								let schedules:StorageType[] = []
 								if (current.format('MM') === m.format('MM')) {
 									schedules=scheduleStorage(storageProps, current.year(),current.month()+1,current.date())
-								}
-
-								const compare = (a: StorageType, b: StorageType) => {
-									const A = Number(a.startHours) + Number(a.startMinutes)
-									const B = Number(b.startHours) + Number(a.startMinutes)
-
-									let comparison = 0
-									if (A > B) {
-										comparison = 1
-									} else if (A < B) {
-										comparison = -1
-									}
-									return comparison
 								}
 								schedules.sort(compare)
 
@@ -93,7 +77,9 @@ const Month: React.FunctionComponent = () => {
 										data-month={Number(current.format('MM')) - 1}
 										data-year={current.format('YYYY')}
 										data-what-day={i}
-										onClick={clicking}
+										onClick={									current.format('MM') === m.format('MM')
+										? onClickDay
+										: (() => {})}
 										className={`${todaySelected} ${isGrayed} ${isSelected}`}
 										key={i}
 									>
