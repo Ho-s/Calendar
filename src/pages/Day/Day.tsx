@@ -59,45 +59,43 @@ const Day: React.FunctionComponent<dayProps> = ({location, lineTime}) => {
 			</>
 		)
 	}
-
-	const TakeSchedule = () => {
-		const day: StorageType[] = []
-		storageProps.forEach((v: StorageType) => {
-			if (v.year === Number(yearStorageProps)) {
-				if (v.month === Number(monthStorageProps + 1)) {
-					if (v.day === Number(nowDayProps)) {
-						day.push(v)
-					}
+	const day: StorageType[] = []
+	storageProps.forEach((v: StorageType) => {
+		if (v.year === Number(yearStorageProps)) {
+			if (v.month === Number(monthStorageProps + 1)) {
+				if (v.day === Number(nowDayProps)) {
+					day.push(v)
 				}
 			}
-		})
-		return (
-			<>
-				{day.map((v: StorageType) => {
-					const height =
-						(Number(v.endHours) - Number(v.startHours)) * 61 +
-						Number(v.endMinutes) -
-						Number(v.startMinutes)
-					return (
-						<S.ScheduleWrapper
-							key={v.id}
-							top={Number(v.startHours) * 61 + Number(v.startMinutes)}
-							height={height}
-						>
-							<S.ScheduleBack backgroundColor={v.color} />
-							<S.ScheduleTextWrapper top={-height}>
-								<S.ScheduleColor backgroundColor={v.color} height={height} />
-								<S.ScheduleText>
-									{v.startHours}:{v.startMinutes} ~ {v.endHours}:{v.endMinutes}
-								</S.ScheduleText>
-								<S.ScheduleText>{v.title}</S.ScheduleText>
-							</S.ScheduleTextWrapper>
-						</S.ScheduleWrapper>
-					)
-				})}
-			</>
-		)
-	}
+		}
+	})
+
+	const TakeSchedule = () => (
+		<>
+			{day.map((v: StorageType) => {
+				const height =
+					(Number(v.endHours) - Number(v.startHours)) * 61 +
+					Number(v.endMinutes) -
+					Number(v.startMinutes)
+				return (
+					<S.ScheduleWrapper
+						key={v.id}
+						top={Number(v.startHours) * 61 + Number(v.startMinutes)}
+						height={height}
+					>
+						<S.ScheduleBack backgroundColor={v.color} />
+						<S.ScheduleTextWrapper top={-height}>
+							<S.ScheduleColor backgroundColor={v.color} height={height} />
+							<S.ScheduleText>
+								{v.startHours}:{v.startMinutes} ~ {v.endHours}:{v.endMinutes}
+							</S.ScheduleText>
+							<S.ScheduleText>{v.title}</S.ScheduleText>
+						</S.ScheduleTextWrapper>
+					</S.ScheduleWrapper>
+				)
+			})}
+		</>
+	)
 
 	return (
 		<BaseTemplate>
@@ -114,6 +112,15 @@ const Day: React.FunctionComponent<dayProps> = ({location, lineTime}) => {
 					{`${m.set('month', monthStorageProps).format('MMMM')}${nowDayProps}`}
 				</S.MonthStorage>
 				<S.YearStorage>{yearStorageProps}</S.YearStorage>
+				<S.ScheduleCountWrapper>
+					{day.length > 0
+					? <>
+						<S.ScheduleCount>{day.length} </S.ScheduleCount>
+						<S.ScheduleCountText>{day.length === 1 ? `schedule` : 'schedules'} existed on this day</S.ScheduleCountText>
+					</>
+					: <S.ScheduleCountText>There is no schedule on this day</S.ScheduleCountText>
+				}
+				</S.ScheduleCountWrapper>
 			</S.DateStorage>
 			<S.TimeTable>
 				<S.RedLine top={`${location}px`}>{lineTime}</S.RedLine>

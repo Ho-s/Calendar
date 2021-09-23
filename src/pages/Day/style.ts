@@ -13,15 +13,37 @@ export const DayTable = styled.div`
   overflow-y: auto;
   overflow-x: hidden;
   @media screen and (max-width: 1550px) {
-  & {
-    display: none;
+    & {
+      display: none;
+    }
   }
-}
 `
 
 export const DateStorage = styled.div`
-margin-left: '30px';
- height: '56px';
+margin-left: 30px;
+ height: 45px;
+ position: relative
+`
+
+export const ScheduleCountWrapper = styled.div`
+  position: absolute;
+  top: 20px;
+  right: 30px;
+  @media screen and (max-width: 1150px) {
+    & {
+      display: none;
+    }
+  }
+`
+
+export const ScheduleCount = styled.span`
+font-size: 20px;
+font-weight: 600;
+`
+
+export const ScheduleCountText = styled.span`
+font-size: 13px;
+font-weight: 600;
 `
 
 export const WeekStorage = styled.span`
@@ -102,11 +124,6 @@ export const TableTitle = styled.div`
   font-size: 20px;
 `
 
-export const TableBody = styled.div`
-width: 300px;
- padding: 15px;
-`
-
 export const TableDeleteButton = styled.div`
   position: absolute;
   top: 12px;
@@ -147,7 +164,7 @@ background-color: ${(props)=>props.backgroundColor};
 `
 
 export const TimeLineRightWrapper = styled.div`
-width: 48vw;
+width: calc(100vw - 430px);
 float: left;
 `
 
@@ -166,7 +183,7 @@ interface ScheduleWrapperProps {
 
 export const ScheduleWrapper = styled.div<ScheduleWrapperProps>`
 right: 0;
-width: 48vw;
+width: calc(100% - 71px);
 position: absolute;
 top:${(props)=>(`${props.top}px`)};
 height:${(props)=>(`${props.height}px`)};

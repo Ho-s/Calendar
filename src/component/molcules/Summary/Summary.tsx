@@ -109,7 +109,7 @@ const Summary: React.FunctionComponent = () => {
 							if (i === 6 && num === 0) {
 								return (
 									<S.NoSchedule>
-										There is no schedule in the week you selected
+										There is no schedule in this week
 									</S.NoSchedule>
 								)
 							}

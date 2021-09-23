@@ -90,9 +90,7 @@ const Calendar: React.FunctionComponent = () => {
 											if (v.year === Number(nowYearProps)) {
 												if (v.month === Number(nowMonthProps + 1)) {
 													if (v.day === current.date()) {
-														if (day.length < 3) {
-															day.push(v)
-														}
+														day.push(v)
 													}
 												}
 											}
@@ -117,7 +115,7 @@ const Calendar: React.FunctionComponent = () => {
 										>
 											{current.format('D')}
 											<S.ThisDayWrapper>
-												{day.map((v: StorageType) => {
+												{day.slice(0,3).map((v: StorageType) => {
 													return (
 														<S.ThisDay
 															key={v.id}

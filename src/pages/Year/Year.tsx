@@ -63,7 +63,7 @@ const Year: React.FunctionComponent = () => {
 									current.format('MM') === m.format('MM')
 										? onClickDay
 										: (() => {})
-								const day:StorageType[] = []
+								const day: StorageType[] = []
 								if (current.format('MM') === m.format('MM')) {
 									{
 										storageProps.forEach((v: StorageType) => {
