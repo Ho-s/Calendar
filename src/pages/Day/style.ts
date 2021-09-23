@@ -1,10 +1,5 @@
 import styled from 'styled-components'
 
-export const DayComponent = styled.div`
-  width: 100%;
-  position: relative;
-`
-
 export const DayLeft = styled.div`
   height: 100vh;
   width: 70px;

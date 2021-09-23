@@ -1,9 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import moment from 'moment'
 
-import {
-	onClickToday,
-} from '../../../stores/store'
+import { onClickToday } from '../../../stores/store'
 import { BriefItemType } from 'types/type'
 
 import * as S from './style'

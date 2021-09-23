@@ -12,7 +12,6 @@ import {
 	whatDay,
 	storage,
 	onClickDelete,
-
 } from '../../stores/store'
 
 import * as S from './style'
@@ -100,84 +99,28 @@ const Day: React.FunctionComponent<dayProps> = ({location, lineTime}) => {
 		)
 	}
 
-	const MakeATable = () => {
-		const day: StorageType[] = []
-		{
-			storageProps.forEach((v: StorageType) => {
-				if (v.year === Number(yearStorageProps)) {
-					if (v.month === Number(monthStorageProps + 1)) {
-						if (v.day === Number(nowDayProps)) {
-							day.push(v)
-						}
-					}
-				}
-			})
-		}
-		return (
-			<S.DayTable>
-				<>
-					{day.map((v: StorageType) => (
-						<S.TableWrapper key={v.id} id={v.id}>
-							<S.TableTitle>{v.title}</S.TableTitle>
-							<S.TableBody>
-								<S.TableTextWrapper>
-									<S.TableTextLeft>Date</S.TableTextLeft>
-									<S.TableTextRigth>
-										{v.month}/{v.day}/{v.year}
-									</S.TableTextRigth>
-								</S.TableTextWrapper>
-								<S.TableTextWrapper>
-									<S.TableTextLeft>Start</S.TableTextLeft>
-									<S.TableTextRigth>
-										{v.startHours}:{v.startMinutes}
-									</S.TableTextRigth>
-								</S.TableTextWrapper>
-								<S.TableTextWrapper>
-									<S.TableTextLeft>End</S.TableTextLeft>
-									<S.TableTextRigth>
-										{v.endHours}:{v.endMinutes}
-									</S.TableTextRigth>
-								</S.TableTextWrapper>
-								<S.TableTextWrapper>
-									<S.TableTextLeft>Color</S.TableTextLeft>
-									<S.TableDisplay backgroundColor={v.color}></S.TableDisplay>
-								</S.TableTextWrapper>
-							</S.TableBody>
-							<S.TableDeleteButton
-								onClick={onClickDelete}
-							></S.TableDeleteButton>
-						</S.TableWrapper>
-					))}
-				</>
-			</S.DayTable>
-		)
-	}
-
 	return (
 		<BaseTemplate>
-			<S.DayComponent>
-				<S.DateStorage>
-					<S.WeekStorage>
-					CW{nowWeekProps}
-					</S.WeekStorage>
-					<S.TodayStorage>
-						{whatDayProps === -1
-							? m.set('date', nowDayProps).format('dddd')
-							: m.day(whatDayProps).format('dddd')}
-					</S.TodayStorage>
-					<S.MonthStorage>
-						{`${m.set('month', monthStorageProps).format('MMMM')}${nowDayProps}`}
-					</S.MonthStorage>
-					<S.YearStorage>{yearStorageProps}</S.YearStorage>
-				</S.DateStorage>
-				<S.TimeTable>
-					<S.RedLine top={`${location}px`}>{lineTime}</S.RedLine>
-					<TakeSchedule />
-					<S.DayLeft>{TimeLinesLeft}</S.DayLeft>
-					<TimeLinesRight />
-				</S.TimeTable>
-				<MakeATable />
-			</S.DayComponent>
+			<S.DateStorage>
+				<S.WeekStorage>
+				CW{nowWeekProps}
+				</S.WeekStorage>
+				<S.TodayStorage>
+					{whatDayProps === -1
+						? m.set('date', nowDayProps).format('dddd')
+						: m.day(whatDayProps).format('dddd')}
+				</S.TodayStorage>
+				<S.MonthStorage>
+					{`${m.set('month', monthStorageProps).format('MMMM')}${nowDayProps}`}
+				</S.MonthStorage>
+				<S.YearStorage>{yearStorageProps}</S.YearStorage>
+			</S.DateStorage>
+			<S.TimeTable>
+				<S.RedLine top={`${location}px`}>{lineTime}</S.RedLine>
+				<TakeSchedule />
+				<S.DayLeft>{TimeLinesLeft}</S.DayLeft>
+				<TimeLinesRight />
+			</S.TimeTable>
 		</BaseTemplate>
 	)
 }
