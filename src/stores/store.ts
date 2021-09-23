@@ -1,4 +1,3 @@
-import React from 'react'
 import { makeVar } from '@apollo/client'
 import StorageType from '../types/type'
 import moment from 'moment'
@@ -13,6 +12,16 @@ export const yearStorage = makeVar<number>(m.year())
 export const monthStorage = makeVar<number>(m.month())
 
 export const storage = makeVar<StorageType[]>(JSON.parse(localStorage.getItem('storage') || '[]'))
+
+export const navBarClicked = makeVar<boolean>(false)
+
+export const onClickHamburger = ():void => {
+	if(navBarClicked()){
+		navBarClicked(false)
+	} else{
+		navBarClicked(true)
+	}
+}
 
 export const onClickDay = (e: any): void => {
 	const dateInfo = e.target.dataset
