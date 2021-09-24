@@ -8,6 +8,8 @@ import {
 	monthStorage,
 	yearStorage,
 	isDuplicated,
+	navBarClicked,
+	onClickAdd,
 } from '../../../stores/store'
 
 import StorageType from '../../../types/type'
@@ -18,6 +20,8 @@ const AddScheduler: React.FunctionComponent = () => {
 	const nowDayProps = useReactiveVar(nowDay)
 	const monthStorageProps = useReactiveVar(monthStorage)
 	const yearStorageProps = useReactiveVar(yearStorage)
+	const navBarClickedProps = useReactiveVar(navBarClicked)
+
 	const m = moment()
 	const [timeError, setTimeError] = useState<boolean>(false)
 
@@ -149,7 +153,15 @@ const AddScheduler: React.FunctionComponent = () => {
 			setSpanText('Add Schedule')
 			setArrowBoolean(true)
 		}
+		onClickAdd()
 	}
+	useEffect(()=>{
+		if(!navBarClickedProps){
+			setAddSchedule(false)
+			setSpanText('Add Schedule')
+			setArrowBoolean(true)
+		}
+	},[navBarClickedProps])
 
 	const onClickSubmit = (): void => {
 		const blockStorage: StorageType = {
@@ -232,7 +244,7 @@ const AddScheduler: React.FunctionComponent = () => {
 
 	return (
 		<>
-			<S.AddSchedule onKeyDown={(e:any)=>{e.preventDefault()}} onClick={onClickAddSchedule}>
+			<S.AddSchedule clicked={navBarClickedProps} onKeyDown={(e:any)=>{e.preventDefault()}} onClick={onClickAddSchedule}>
 				<S.AddScheduleSpan paddingRight={spanText}>
 					{spanText}
 				</S.AddScheduleSpan>

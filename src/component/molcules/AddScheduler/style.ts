@@ -162,16 +162,19 @@ margin-left: 26px;
 float: left;
 `
 
+interface AddScheduleProps {
+  clicked:boolean
+}
 
-export const AddSchedule = styled.button`
+export const AddSchedule = styled.button<AddScheduleProps>`
   background-color: #292726;
   color: white;
   position: relative;
-  height: 40px;
-  width: 320px;
-  margin: 5px 15px;
+  height: ${(props)=>(props.clicked ? '40px' : '50px')};
+  width: ${(props)=>(props.clicked ? '320px' : '50px')};
+  margin: ${(props)=>(props.clicked ? '5px 15px' : '5px 0')};
   text-align: center;
-  font-size: 18px;
+  font-size: ${(props)=>(props.clicked ? '18px' : '10px')};
   cursor: pointer;
   outline: 0;
   z-index:3;
