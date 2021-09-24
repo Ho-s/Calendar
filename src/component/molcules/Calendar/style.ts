@@ -1,25 +1,32 @@
 import styled from 'styled-components'
 
 export const Calendar = styled.div`
-  width: 350px;
   background-color: #292726;
   display: inline-block;
 `
 
 export const Body = styled.div`
-  margin: 0 0 15px 0;
   color: white;
   position: relative;
-  padding: 0 7px;
+  & button:first-child{
+    margin-left: 30px;
+  }
+`
+interface CalendarWrapperProps {
+  clicked: boolean
+}
+
+export const CalendarWrapper = styled.div<CalendarWrapperProps>`
+  display: ${(props)=>(props.clicked ? 'block' : 'none')};
 `
 
 export const BodyButton = styled.button`
   float: right;
   border-radius: 7px;
   top: 10px;
-  width: 40px;
-  height: 47px;
-  font-size: 35px;
+  width: 50px;
+  height: 50px;
+  font-size: 24px;
   color: white;
   border: 0;
   padding: 0;
@@ -27,13 +34,14 @@ export const BodyButton = styled.button`
   cursor: pointer;
   transition: all 0.2s;
   &:hover{
-      transform: translateY(-5px);
+      color: red;
   }
 `
 
 export const MonthSpan = styled.span`
 font-size: 32px;
 font-weight: 600;
+line-height: 1.62;
 `
 
 export const YearSpan = styled.span`
@@ -43,7 +51,6 @@ color:red;
 `
 
 export const Row = styled.div`
-  width: 350px;
   height: 43px;
   position: relative;
 `

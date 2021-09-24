@@ -13,6 +13,7 @@ import {
 	onClickRight,
 	onClickDay,
 	onClickWeek,
+	navBarClicked
 } from '../../../stores/store'
 
 import today from '../../../utils/today'
@@ -29,6 +30,8 @@ const Calendar: React.FunctionComponent = () => {
 	const monthStorageProps = useReactiveVar(monthStorage)
 	const yearStorageProps = useReactiveVar(yearStorage)
 	const storageProps = useReactiveVar(storage)
+	const navBarClickedProps = useReactiveVar(navBarClicked)
+
 	const m = moment()
 
 	const Generate = () => {
@@ -128,24 +131,31 @@ const Calendar: React.FunctionComponent = () => {
 	return (
 		<S.Calendar>
 			<S.Body>
-				<S.MonthSpan>
-					{m.set('month', nowMonthProps).format('MMMM')}
-				</S.MonthSpan>
-				<S.YearSpan>{nowYearProps}</S.YearSpan>
+				{navBarClickedProps
+				? <>
+					<S.MonthSpan>
+						{m.set('month', nowMonthProps).format('MMMM')}
+					</S.MonthSpan>
+					<S.YearSpan>{nowYearProps}</S.YearSpan>
+				</>
+				: <div></div>
+				}
 				<S.BodyButton onClick={onClickRight}>&gt;</S.BodyButton>
 				<S.BodyButton onClick={onClickLeft}>&lt;</S.BodyButton>
 			</S.Body>
-			<S.Row>
-				<S.DayCw>CW</S.DayCw>
-				<S.Day>SUN</S.Day>
-				<S.Day>MON</S.Day>
-				<S.Day>TUE</S.Day>
-				<S.Day>WED</S.Day>
-				<S.Day>THU</S.Day>
-				<S.Day>FRI</S.Day>
-				<S.Day>SAT</S.Day>
-			</S.Row>
-			{Generate()}
+			<S.CalendarWrapper clicked={navBarClickedProps}>
+				<S.Row>
+					<S.DayCw>CW</S.DayCw>
+					<S.Day>SUN</S.Day>
+					<S.Day>MON</S.Day>
+					<S.Day>TUE</S.Day>
+					<S.Day>WED</S.Day>
+					<S.Day>THU</S.Day>
+					<S.Day>FRI</S.Day>
+					<S.Day>SAT</S.Day>
+				</S.Row>
+				{Generate()}
+			</S.CalendarWrapper>
 		</S.Calendar>
 	)
 }
