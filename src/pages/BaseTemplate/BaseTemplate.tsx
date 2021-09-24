@@ -24,7 +24,7 @@ const BaseTemplate: React.FunctionComponent<BaseTemplateProps> = ({children}) =>
 	}, [])
 
 	return (
-		<>
+		<S.Main>
 			<S.MainLeft>
 				<Lefter />
 			</S.MainLeft>
@@ -32,7 +32,7 @@ const BaseTemplate: React.FunctionComponent<BaseTemplateProps> = ({children}) =>
 				<Header />
 				{children}
 			</S.MainRight>
-		</>
+		</S.Main>
 	)
 }
 export default BaseTemplate
