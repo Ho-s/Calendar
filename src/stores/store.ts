@@ -23,6 +23,10 @@ export const onClickHamburger = ():void => {
 	}
 }
 
+export const onClickAdd = () => {
+	navBarClicked(true)
+}
+
 export const onClickDay = (e: any): void => {
 	const dateInfo = e.target.dataset
 	nowDay(Number(dateInfo.day))
