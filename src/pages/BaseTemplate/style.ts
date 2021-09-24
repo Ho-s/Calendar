@@ -1,15 +1,14 @@
 import styled from 'styled-components'
 
+export const Main = styled.main`
+  display:flex;
+`
+
 export const MainLeft = styled.div`
+  max-width: 350px;
   height: 100vh;
-  float: left;
-  width: 350px;
   background-color: #292726;
 `
 
 export const MainRight = styled.div`
-float: left;
-background-color: white;
-width: calc(100vw - 350px);
-height: 100vh;
 `
