@@ -11,6 +11,7 @@ import {
 	monthStorage,
 	yearStorage,
 	onClickDelete,
+	navBarClicked
 } from '../../../stores/store'
 
 import scheduleStorage from '../../../utils/schedules'
@@ -27,6 +28,7 @@ const Summary: React.FunctionComponent = () => {
 	const nowYearProps = useReactiveVar(nowYear)
 	const monthStorageProps = useReactiveVar(monthStorage)
 	const yearStorageProps = useReactiveVar(yearStorage)
+	const navBarClickedProps = useReactiveVar(navBarClicked)
 	const m = moment()
 
 	const Generate = () => {
@@ -35,8 +37,9 @@ const Summary: React.FunctionComponent = () => {
 		m.set('week', nowWeekProps)
 		let num = 0
 		return (
-			<S.LoadList>
-				<S.Title>Schedules of the week</S.Title>
+			<>
+			<S.Title>Schedules of the week</S.Title>
+			<S.LoadList clicked={navBarClickedProps}>
 				{Array(7)
 					.fill(0)
 					.map((n: number, i: number) => {
@@ -93,6 +96,7 @@ const Summary: React.FunctionComponent = () => {
 						}
 					})}
 			</S.LoadList>
+			</>
 		)
 	}
 

@@ -2,31 +2,20 @@ import styled from 'styled-components'
 
 export const Summary = styled.div`
     background-color: #292726;
-    width: 350px;
     color:white;
     height: calc(100vh - 300px);
     position: relative;
-    &::-webkit-scrollbar-track {
-        background-color: white;
-        border-radius: 1px;
-        box-shadow: inset 0px 0px 5px white;
-    }
-    &::-webkit-scrollbar {
-        width: 1px;
-    }
-    &::-webkit-scrollbar-thumb {
-        background-color: rgb(199, 199, 199);
-        border-radius: 1px;
-        background-clip: padding-box;
-        border: 2px solid transparent;
-    }
 `
 
-export const LoadList = styled.div `
+interface LoadListProps {
+    clicked:boolean
+}
+
+export const LoadList = styled.div<LoadListProps>`
+    display: ${(props)=>(props.clicked ? 'blcok' : 'none')};
     padding: 20px;
-    height: 670px;
+    height: 520px;
     overflow-y: auto;
-    overflow-x: hidden;
 `
 
 export const SummarySchedule = styled.div`
@@ -126,7 +115,7 @@ font-size: 16px;
 font-weight: 600;
 color: black;
 text-shadow: -1px 0 white, 0 1px white, 1px 0 white, 0 -1px white;
-margin-bottom: 15px;
+padding: 20px 20px 0;
 `
 
 export const DayWrapper = styled.div``
