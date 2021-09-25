@@ -38,64 +38,64 @@ const Summary: React.FunctionComponent = () => {
 		let num = 0
 		return (
 			<>
-			<S.Title>Schedules of the week</S.Title>
-			<S.LoadList clicked={navBarClickedProps}>
-				{Array(7)
-					.fill(0)
-					.map((n: number, i: number) => {
-						const current = m
-							.week(m.week())
-							.startOf('week')
-							.add(n + i, 'day')
-						const selectedColor =
+				<S.Title>Schedules of the week</S.Title>
+				<S.LoadList clicked={navBarClickedProps}>
+					{Array(7)
+						.fill(0)
+						.map((n: number, i: number) => {
+							const current = m
+								.week(m.week())
+								.startOf('week')
+								.add(n + i, 'day')
+							const selectedColor =
 							nowDayProps === Number(current.format('D')) &&
 							yearStorageProps === nowYearProps &&
 							monthStorageProps === nowMonthProps
 								? '#4D4FFF'
 								: 'gray'
 
-						let schedules:StorageType[] = []
-						if (Number(current.format('yyyy')) === nowYearProps) {
-							schedules=scheduleStorage(storageProps, current.year(),current.month()+1,current.date())
-						}
-						schedules.sort(compare)
-
-						if (schedules.length > 0) {
-							num++
-							return (
-								<S.DayWrapper key={i}>
-									<S.Date key={i} color={selectedColor}>
-										{current.month() + 1} / {current.date()} / {current.year()}{' '}
-										{current.format('dddd')}
-									</S.Date>
-									{schedules.map((v: StorageType) => (
-										<S.SummarySchedule key={v.id} id={v.id}>
-											<S.SummaryScheduleColor
-												backgroundColor={v.color}
-											></S.SummaryScheduleColor>
-											<S.SummaryScheduleTitle>{v.title}</S.SummaryScheduleTitle>
-											<S.SummaryScheduleTimeLeft>
-												{v.startHours}:{v.startMinutes}~
-											</S.SummaryScheduleTimeLeft>
-											<S.SummaryScheduleTimeRight>
-												{v.endHours}:{v.endMinutes}
-											</S.SummaryScheduleTimeRight>
-											<S.SummaryScheduleButton onClick={onClickDelete} />
-										</S.SummarySchedule>
-									))}
-								</S.DayWrapper>
-							)
-						} else {
-							if (i === 6 && num === 0) {
-								return (
-									<S.NoSchedule>
-										There is no schedule in this week
-									</S.NoSchedule>
-								)
+							let schedules:StorageType[] = []
+							if (Number(current.format('yyyy')) === nowYearProps) {
+								schedules=scheduleStorage(storageProps, current.year(),current.month()+1,current.date())
 							}
-						}
-					})}
-			</S.LoadList>
+							schedules.sort(compare)
+
+							if (schedules.length > 0) {
+								num++
+								return (
+									<S.DayWrapper key={i}>
+										<S.Date key={i} color={selectedColor}>
+											{current.month() + 1} / {current.date()} / {current.year()}{' '}
+											{current.format('dddd')}
+										</S.Date>
+										{schedules.map((v: StorageType) => (
+											<S.SummarySchedule key={v.id} id={v.id}>
+												<S.SummaryScheduleColor
+													backgroundColor={v.color}
+												></S.SummaryScheduleColor>
+												<S.SummaryScheduleTitle>{v.title}</S.SummaryScheduleTitle>
+												<S.SummaryScheduleTimeLeft>
+													{v.startHours}:{v.startMinutes}~
+												</S.SummaryScheduleTimeLeft>
+												<S.SummaryScheduleTimeRight>
+													{v.endHours}:{v.endMinutes}
+												</S.SummaryScheduleTimeRight>
+												<S.SummaryScheduleButton onClick={onClickDelete} />
+											</S.SummarySchedule>
+										))}
+									</S.DayWrapper>
+								)
+							} else {
+								if (i === 6 && num === 0) {
+									return (
+										<S.NoSchedule>
+										There is no schedule in this week
+										</S.NoSchedule>
+									)
+								}
+							}
+						})}
+				</S.LoadList>
 			</>
 		)
 	}

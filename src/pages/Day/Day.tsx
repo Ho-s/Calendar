@@ -106,12 +106,12 @@ const Day: React.FunctionComponent<dayProps> = ({location, lineTime}) => {
 				<S.YearStorage>{yearStorageProps}</S.YearStorage>
 				<S.ScheduleCountWrapper>
 					{schedules.length > 0
-					? <>
-						<S.ScheduleCount>{schedules.length} </S.ScheduleCount>
-						<S.ScheduleCountText>{schedules.length === 1 ? `schedule` : 'schedules'} existed on this day</S.ScheduleCountText>
-					</>
-					: <S.ScheduleCountText>There is no schedule on this day</S.ScheduleCountText>
-				}
+						? <>
+							<S.ScheduleCount>{schedules.length} </S.ScheduleCount>
+							<S.ScheduleCountText>{schedules.length === 1 ? 'schedule' : 'schedules'} existed on this day</S.ScheduleCountText>
+						</>
+						: <S.ScheduleCountText>There is no schedule on this day</S.ScheduleCountText>
+					}
 				</S.ScheduleCountWrapper>
 			</S.DateStorage>
 			<S.TimeTable>

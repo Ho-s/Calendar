@@ -22,7 +22,7 @@ export const DayTable = styled.div`
 export const DateStorage = styled.div`
 margin-left: 30px;
  height: 45px;
- position: relative
+ position: relative;
 `
 
 export const ScheduleCountWrapper = styled.div`

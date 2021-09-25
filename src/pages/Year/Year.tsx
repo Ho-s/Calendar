@@ -82,8 +82,8 @@ const Year: React.FunctionComponent = () => {
 									<S.YearBox
 										backgroundColor={color()}
 										onClick={									current.format('MM') === m.format('MM')
-										? onClickDay
-										: (() => {})}
+											? onClickDay
+											: (() => {})}
 										data-day={current.format('DD')}
 										data-week={week}
 										data-month={Number(current.format('MM')) - 1}

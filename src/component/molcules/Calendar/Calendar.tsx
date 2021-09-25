@@ -97,8 +97,8 @@ const Calendar: React.FunctionComponent = () => {
 											data-year={current.format('YYYY')}
 											data-what-day={i}
 											onClick={										current.format('MM') === m.format('MM')
-											? onClickDay
-											: (() => {})}
+												? onClickDay
+												: (() => {})}
 											data-gray={
 												current.format('MM') === m.format('MM')
 													? 'false'
@@ -132,13 +132,13 @@ const Calendar: React.FunctionComponent = () => {
 		<S.Calendar>
 			<S.Body>
 				{navBarClickedProps
-				? <>
-					<S.MonthSpan>
-						{m.set('month', nowMonthProps).format('MMMM')}
-					</S.MonthSpan>
-					<S.YearSpan>{nowYearProps}</S.YearSpan>
-				</>
-				: <div></div>
+					? <>
+						<S.MonthSpan>
+							{m.set('month', nowMonthProps).format('MMMM')}
+						</S.MonthSpan>
+						<S.YearSpan>{nowYearProps}</S.YearSpan>
+					</>
+					: <div></div>
 				}
 				<S.BodyButton onClick={onClickRight}>&gt;</S.BodyButton>
 				<S.BodyButton onClick={onClickLeft}>&lt;</S.BodyButton>
