@@ -17,6 +17,7 @@ import {
 import compare from '../../utils/compare'
 import today from '../../utils/today'
 import scheduleStorage from '../../utils/schedules'
+import fourWeeks from '../../utils/fourWeeks'
 
 import * as S from './style'
 import StorageType from 'types/type'
@@ -33,17 +34,9 @@ const Month: React.FunctionComponent = () => {
 	const Generate = () => {
 		m.set('year', nowYearProps)
 		m.set('month', nowMonthProps)
-		const startWeek = m.clone().startOf('month').week()
-		const endWeek =
-			m.clone().endOf('month').week() === 1
-				? 53
-				: m.clone().endOf('month').week()
-		const calendar = Array(endWeek - startWeek + 1)
-			.fill(0)
-			.map((_, i) => startWeek + i)
 		return (
 			<>
-				{calendar.map((week: number) => (
+				{fourWeeks(nowMonthProps, nowYearProps).map((week: number) => (
 					<S.MonthRow key={week}>
 						{Array(7)
 							.fill(0)

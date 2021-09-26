@@ -16,6 +16,7 @@ import {
 
 import scheduleStorage from '../../../utils/schedules'
 import compare from '../../../utils/compare'
+import fourWeeks from '../../../utils/fourWeeks'
 
 import * as S from './style'
 import StorageType from 'types/type'
@@ -37,17 +38,8 @@ const Summary: React.FunctionComponent = () => {
 		m.set('week', nowWeekProps)
 
 		const scheduleCount = ():number => {
-			m.set('month', nowMonthProps)
-			const startWeek = m.clone().startOf('month').week()
-			const endWeek =
-				m.clone().endOf('month').week() === 1
-					? 53
-					: m.clone().endOf('month').week()
-			const calendar = Array(endWeek - startWeek + 1)
-				.fill(0)
-				.map((_, i) => startWeek + i)
 			let count = 0
-			calendar.map((week: number) => {
+			fourWeeks(nowMonthProps, nowYearProps).map((week: number) => {
 				Array(7).fill(0).map((n:number, i:number) => {
 					const current = m
 					.clone()
