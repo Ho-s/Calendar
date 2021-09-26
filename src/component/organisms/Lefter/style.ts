@@ -44,7 +44,7 @@ export const Hamburger = styled.div<GetClicked>`
         background-color: #cc0001;
     }
     & span:first-child {
-        transform: ${(props)=>(props.clicked ? 'rotate(-45deg) translate(-7px, 12px)' : '')};
+        transform: ${(props)=>(props.clicked ? 'rotate(-45deg) translate(-7px, 7px)' : '')};
         margin-bottom: .4rem;
     }
     & span:nth-child(2) {
@@ -52,7 +52,7 @@ export const Hamburger = styled.div<GetClicked>`
         opacity: ${(props)=>(props.clicked ? '0' : '')};
     }
     & span:last-child {
-        transform: ${(props)=>(props.clicked ? 'rotate(45deg) translate(-7px, -12px)' : '')};
+        transform: ${(props)=>(props.clicked ? 'rotate(45deg) translate(-7px, -7px)' : '')};
     }
 `
 
@@ -60,7 +60,7 @@ export const HamburgerBars = styled.span`
     cursor: pointer;
     display: block;
     width: 3rem;
-    height: 0.44rem;
+    height: 0.24rem;
     background-color: black;
     transition: all 0.4s;
     background-color: white;
