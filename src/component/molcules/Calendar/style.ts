@@ -1,15 +1,22 @@
 import styled from 'styled-components'
 
-export const Calendar = styled.div`
+export const Calendar = styled.div<CalendarWrapperProps>`
   background-color: #292726;
   display: inline-block;
+  height: ${(props)=>(props.clicked ? '' : '0')};
 `
 
-export const Body = styled.div`
+export const Body = styled.div<CalendarWrapperProps>`
   color: white;
   position: relative;
+  word-break: break-all;
+  text-align: ${(props)=>(props.clicked ? '' : 'center')};;
+
   & button:first-child{
-    margin-left: 30px;
+    margin-top: ${(props)=>(props.clicked ? '0' : '15px')};
+  }
+  & button:last-child{
+    margin: ${(props)=>(props.clicked ? '0 5px 0 0' : '15px 0 0 0')};
   }
 `
 interface CalendarWrapperProps {
@@ -17,7 +24,9 @@ interface CalendarWrapperProps {
 }
 
 export const CalendarWrapper = styled.div<CalendarWrapperProps>`
-  display: ${(props)=>(props.clicked ? 'block' : 'none')};
+  visibility: ${(props)=>(props.clicked ? 'visible' : 'hidden')};
+  opacity: ${(props)=>(props.clicked ? '1' : '0')};
+  transition: ${(props)=>(props.clicked ? 'all .2s .15s' : 'all .05s')};;
 `
 
 export const BodyButton = styled.button`
@@ -26,7 +35,7 @@ export const BodyButton = styled.button`
   top: 10px;
   width: 50px;
   height: 50px;
-  font-size: 24px;
+  font-size: 25px;
   color: white;
   border: 0;
   padding: 0;
@@ -58,7 +67,6 @@ export const Row = styled.div`
 export const Box = styled.div`
   margin: 5px;
   width: 33px;
-  height: 33px;
   border-radius: 33px;
   float: left;
   text-align: center;
@@ -93,7 +101,6 @@ export const Box = styled.div`
 export const Day = styled.div`
   margin: 5px;
   width: 33px;
-  height: 33px;
   border-radius: 33px;
   float: left;
   text-align: center;
@@ -106,7 +113,6 @@ export const DayCw = styled.div`
   color: gray;
   margin: 5px;
   width: 33px;
-  height: 33px;
   border-radius: 33px;
   float: left;
   text-align: center;
@@ -117,7 +123,6 @@ export const DayCw = styled.div`
 export const Cw = styled.div`
   margin: 5px;
   width: 33px;
-  height: 33px;
   border-radius: 33px;
   float: left;
   text-align: center;
