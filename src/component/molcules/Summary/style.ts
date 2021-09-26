@@ -117,7 +117,6 @@ padding: 20px 20px 0;
 export const Count = styled.div`
 color: white;
 font-size: 10px;
-padding: 20px 0 0 ;
 word-break: break-word;
 text-align: center;
 line-height: 1.3;
