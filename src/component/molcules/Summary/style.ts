@@ -116,15 +116,20 @@ padding: 20px 20px 0;
 `
 export const Count = styled.div`
 color: white;
-font-size: 11px;
+font-size: 10px;
 padding: 20px 0 0 ;
 word-break: break-word;
 text-align: center;
+line-height: 1.3;
+& div:first-child{
+    margin-top: 5px;
+    font-size: 16px;
+}
 `
 
 export const CountSpan = styled.div`
 margin-top: 10px;
-font-size: 16px;
+font-size: 25px;
 font-weight: 600;
 color: black;
 text-shadow: -1px 0 white, 0 1px white, 1px 0 white, 0 -1px white;
