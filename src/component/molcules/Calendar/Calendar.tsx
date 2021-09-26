@@ -122,7 +122,7 @@ const Calendar: React.FunctionComponent = () => {
 	}
 
 	return (
-		<S.Calendar clicked={navBarClickedProps}>
+		<>
 			<S.Body clicked={navBarClickedProps}>
 				<S.MonthSpan>
 					{navBarClickedProps ? m.set('month', nowMonthProps).format('MMMM') : (nowMonthProps > 9 ? nowMonthProps : `0${nowMonthProps}`)}
@@ -131,20 +131,22 @@ const Calendar: React.FunctionComponent = () => {
 				<S.BodyButton onClick={onClickRight}>&gt;</S.BodyButton>
 				<S.BodyButton onClick={onClickLeft}>&lt;</S.BodyButton>
 			</S.Body>
-			<S.CalendarWrapper clicked={navBarClickedProps}>
-				<S.Row>
-					<S.DayCw>CW</S.DayCw>
-					<S.Day>SUN</S.Day>
-					<S.Day>MON</S.Day>
-					<S.Day>TUE</S.Day>
-					<S.Day>WED</S.Day>
-					<S.Day>THU</S.Day>
-					<S.Day>FRI</S.Day>
-					<S.Day>SAT</S.Day>
-				</S.Row>
-				{Generate()}
-			</S.CalendarWrapper>
-		</S.Calendar>
+			<S.Calendar clicked={navBarClickedProps}>
+				<S.CalendarWrapper clicked={navBarClickedProps}>
+					<S.Row>
+						<S.DayCw>CW</S.DayCw>
+						<S.Day>SUN</S.Day>
+						<S.Day>MON</S.Day>
+						<S.Day>TUE</S.Day>
+						<S.Day>WED</S.Day>
+						<S.Day>THU</S.Day>
+						<S.Day>FRI</S.Day>
+						<S.Day>SAT</S.Day>
+					</S.Row>
+					{Generate()}
+				</S.CalendarWrapper>
+			</S.Calendar>
+		</>
 	)
 }
 export default Calendar

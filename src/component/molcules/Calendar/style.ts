@@ -1,7 +1,6 @@
 import styled from 'styled-components'
 
 export const Calendar = styled.div<CalendarWrapperProps>`
-  background-color: #292726;
   display: inline-block;
   height: ${(props)=>(props.clicked ? '' : '0')};
 `
@@ -12,11 +11,11 @@ export const Body = styled.div<CalendarWrapperProps>`
   word-break: break-all;
   text-align: ${(props)=>(props.clicked ? '' : 'center')};;
 
-  & button:first-child{
-    margin-top: ${(props)=>(props.clicked ? '0' : '15px')};
+  & button:nth-child(3){
+    margin: ${(props)=>(props.clicked ? '0' : '15px 5px 0 0')};
   }
   & button:last-child{
-    margin: ${(props)=>(props.clicked ? '0 5px 0 0' : '15px 0 0 0')};
+    margin: ${(props)=>(props.clicked ? '0 5px 0 0' : '15px 5px 0 0')};
   }
 `
 interface CalendarWrapperProps {
@@ -33,8 +32,8 @@ export const BodyButton = styled.button`
   float: right;
   border-radius: 7px;
   top: 10px;
-  width: 50px;
-  height: 50px;
+  width: 40px;
+  height: 40px;
   font-size: 25px;
   color: white;
   border: 0;
