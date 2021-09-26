@@ -77,7 +77,7 @@ const Month: React.FunctionComponent = () => {
 										data-month={Number(current.format('MM')) - 1}
 										data-year={current.format('YYYY')}
 										data-what-day={i}
-										onClick={									current.format('MM') === m.format('MM')
+										onClick={ current.format('MM') === m.format('MM')
 											? onClickDay
 											: (() => {})}
 										className={`${todaySelected} ${isGrayed} ${isSelected}`}
