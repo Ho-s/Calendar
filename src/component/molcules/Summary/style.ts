@@ -7,12 +7,9 @@ export const Summary = styled.div`
     position: relative;
 `
 
-interface LoadListProps {
-    clicked:boolean
-}
 
-export const LoadList = styled.div<LoadListProps>`
-    display: ${(props)=>(props.clicked ? 'blcok' : 'none')};
+
+export const LoadList = styled.div`
     padding: 20px;
     height: 520px;
     overflow-y: auto;
@@ -116,6 +113,21 @@ font-weight: 600;
 color: black;
 text-shadow: -1px 0 white, 0 1px white, 1px 0 white, 0 -1px white;
 padding: 20px 20px 0;
+`
+export const Count = styled.div`
+color: white;
+font-size: 11px;
+padding: 20px 0 0 ;
+word-break: break-word;
+text-align: center;
+`
+
+export const CountSpan = styled.div`
+margin-top: 10px;
+font-size: 16px;
+font-weight: 600;
+color: black;
+text-shadow: -1px 0 white, 0 1px white, 1px 0 white, 0 -1px white;
 `
 
 export const DayWrapper = styled.div``

@@ -172,7 +172,7 @@ export const AddSchedule = styled.button<AddScheduleProps>`
   position: relative;
   height: ${(props)=>(props.clicked ? '40px' : '50px')};
   width: ${(props)=>(props.clicked ? '320px' : '50px')};
-  margin: ${(props)=>(props.clicked ? '5px 15px' : '5px 0')};
+  margin: ${(props)=>(props.clicked ? '5px 15px' : '5px 0 0')};
   text-align: center;
   font-size: ${(props)=>(props.clicked ? '18px' : '10px')};
   cursor: pointer;
