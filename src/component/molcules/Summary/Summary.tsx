@@ -122,7 +122,6 @@ const Summary: React.FunctionComponent = () => {
 					</S.LoadList>
 				</>
 				: <S.Count>{scheduleCount() === 1 ? 'Schedule' : 'Schedules'} In This Month
-					<S.CountSpan>&darr;</S.CountSpan>
 					<S.CountSpan>{scheduleCount()}</S.CountSpan>
 				</S.Count>
 				}
