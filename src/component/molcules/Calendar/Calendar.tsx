@@ -125,7 +125,7 @@ const Calendar: React.FunctionComponent = () => {
 		<>
 			<S.Body clicked={navBarClickedProps}>
 				<S.MonthSpan>
-					{navBarClickedProps ? m.set('month', nowMonthProps).format('MMMM') : (nowMonthProps > 9 ? nowMonthProps : `0${nowMonthProps}`)}
+					{navBarClickedProps ? m.set('month', nowMonthProps).format('MMMM') : (nowMonthProps > 8 ? nowMonthProps+1 : `0${nowMonthProps+1}`)}
 				</S.MonthSpan>
 				<S.YearSpan>{nowYearProps}</S.YearSpan>
 				<S.BodyButton onClick={onClickRight}>&gt;</S.BodyButton>
