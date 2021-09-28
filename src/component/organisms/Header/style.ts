@@ -3,9 +3,8 @@ import styled from 'styled-components'
 export const MainCalendarHead = styled.div`
     padding:14px;
     height: 30px;
-    position: relative;
     display: flex;
-    min-width: 620px;
+    justify-content: space-between;
     line-height: 1.7;
 `
 
@@ -37,8 +36,6 @@ export const linkWrapper = styled.div`
 `
 
 export const TodayButton = styled.div`
-position: absolute;
-left: 14px;
 line-height: 1.7;
     &.clicked{
         color: white;
@@ -55,6 +52,4 @@ width: 80px;
 line-height: 1.7;
 background-color: rgb(201, 201, 201);
 border-radius: 7px;
-position: absolute;
-right: 14px;
 `
