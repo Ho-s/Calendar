@@ -226,18 +226,6 @@ const AddScheduler: React.FunctionComponent = () => {
 				setKeyType('')
 			}
 		}else{
-			if(keyType === 'escape'){
-				setAddSchedule(true)
-				setSpanText('Close Scheduler')
-				setArrowBoolean(false)
-				setStartHours(m.hour())
-				setStartMinutes('00')
-				setEndHours(m.hour() + 1)
-				setEndMinutes('00')
-				setDay(nowDayProps)
-				setMonth(monthStorageProps + 1)
-				setYear(yearStorageProps)
-			}
 			setKeyType('')
 		}
 	}, [keyType])
