@@ -6,7 +6,8 @@ module.exports = {
 	'extends': [
 		'eslint:recommended',
 		'plugin:react/recommended',
-		'plugin:@typescript-eslint/recommended'
+		'plugin:@typescript-eslint/recommended',
+		'airbnb-typescript'
 	],
 	'parser': '@typescript-eslint/parser',
 	'parserOptions': {
@@ -38,15 +39,8 @@ module.exports = {
 			'error',
 			'never'
 		],
-		'import/extensions': [
-			'error',
-			'ignorePackages',
-			{
-				'js': 'never',
-				'jsx': 'never',
-				'ts': 'never',
-				'tsx': 'never'
-			}
-		]
-	}
+	},
+	'settings': {
+		'import/extensions': ['.js', '.mjs', '.jsx', '.ts', '.tsx']
+	  },
 }
