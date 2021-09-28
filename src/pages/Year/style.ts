@@ -2,9 +2,6 @@ import styled from 'styled-components'
 
 export const YearComponent = styled.div`
     height: calc(100vh - 30px);
-    width: calc(100% - 14px);
-    padding-left: 14px;
-    background-color: white;
 `
 
 interface YearBoxProps {
@@ -15,7 +12,6 @@ export const YearBox = styled.div<YearBoxProps>`
     width: 2.6vw;
     height: 3.3vh;
     line-height: 2.5;
-    float: left;
     text-align: center;
     color:black;
     border:1px solid white;
@@ -42,7 +38,6 @@ export const YearDay = styled.div`
     width: 2.6vw;
     height: 3.3vh;
     line-height: 2.5;
-    float: left;
     text-align: center;
     color:black !important;
     border:1px solid white;
@@ -50,6 +45,7 @@ export const YearDay = styled.div`
 `
 
 export const YearRow = styled.div`
+    display: flex;
     & div:first-child{
         color: red;
     }
@@ -63,11 +59,17 @@ color: red;
 font-size: 30px;
 `
 
+export const YearWrapper = styled.div`
+display: flex;
+flex-flow: row wrap;
+align-content: stretch;
+`
+
 export const MonthWrapper = styled.div`
 margin-right: 10px;
 height: 28vh;
-float: left;
 margin-top: 20px;
+width: 303px;
 `
 
 export const MonthTitle = styled.div`

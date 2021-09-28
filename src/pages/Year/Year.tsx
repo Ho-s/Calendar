@@ -97,7 +97,7 @@ const Year: React.FunctionComponent = () => {
 
 	const GenerateWrap = () => {
 		return (
-			<>
+			<S.YearWrapper>
 				{Array(12)
 					.fill(0)
 					.map((_, i) => {
@@ -117,7 +117,7 @@ const Year: React.FunctionComponent = () => {
 							</S.MonthWrapper>
 						)
 					})}
-			</>
+			</S.YearWrapper>
 		)
 	}
 
