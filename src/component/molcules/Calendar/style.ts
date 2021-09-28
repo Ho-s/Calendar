@@ -25,7 +25,7 @@ interface CalendarWrapperProps {
 export const CalendarWrapper = styled.div<CalendarWrapperProps>`
   visibility: ${(props)=>(props.clicked ? 'visible' : 'hidden')};
   opacity: ${(props)=>(props.clicked ? '1' : '0')};
-  transition: ${(props)=>(props.clicked ? 'all .2s .15s' : 'all .05s')};;
+  transition: ${(props)=>(props.clicked ? 'all .2s .15s' : 'all .05s')};
 `
 
 export const BodyButton = styled.button`
