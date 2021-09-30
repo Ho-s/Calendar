@@ -1,7 +1,7 @@
 import { gql } from 'apollo-server';
 
 export const GET_SCHEDULES = gql`
-  query GetSchedules{
+  query {
     getScheduels {
       id
       title
