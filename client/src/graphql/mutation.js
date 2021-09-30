@@ -1,7 +1,7 @@
-import { gql } from 'apollo-server';
+import { gql } from '@apollo/client';
 
 export const CREATE_SCHEDULE = gql`
-  mutaion createUser(
+  mutaion createSchedule(
     $title:String
     $year: Int
     $month: Int
