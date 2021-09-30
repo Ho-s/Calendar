@@ -9,12 +9,14 @@ const errorLink = onError(({ graphQLErrors, networkError}) =>{
 	}
 })
 
+// 여기서 4000의 데이터를 받거나 다른 url의 데이터를 받거나
 const link = from([
 	errorLink,
 	new HttpLink({uri: 'http://localhost:4000'})
 ])
 
 const client = new ApolloClient({
+	link,
 	cache: new InMemoryCache(),
 })
 
