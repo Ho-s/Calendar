@@ -4,21 +4,20 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start:server": "start http://localhost:4000 && node --experimental-modules --es-module-specifier-resolution=node server/index.js",
-    "start:client": "cd client && npm run start"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/Ho-s/Calendar.git"
+    "start:client": "cd client && npm run start",
+    "start:server": "start http://localhost:4000 && nodemon --experimental-modules --es-module-specifier-resolution=node server/src/index.js",
+    "lint:client": "cd client && npm run lint",
+    "lint:server": "cd server && npm run lint"
   },
   "keywords": [],
-  "author": "",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Ho-s/Calender.git"
+  },
+  "author": "ho-s",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/Ho-s/Calendar/issues"
+    "url": "https://github.com/Ho-s/Calender/issues"
   },
-  "homepage": "https://github.com/Ho-s/Calendar#readme",
-  "dependencies": {
-    "express": "^4.17.1"
-  }
+  "homepage": "https://github.com/Ho-s/Calendar#readme"
 }

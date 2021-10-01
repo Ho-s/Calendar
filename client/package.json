@@ -6,15 +6,11 @@
   "homepage": "http://ho-s.github.io/Calendar",
   "scripts": {
     "start": "webpack serve --config webpack.config.js --open",
-    "lint": "eslint src/**/* --fix",
     "dev": "webpack-dev-server",
     "build": "webpack --mode production",
     "predeploy": "npm run build",
-    "deploy": "npm run build && gh-pages -d dist"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/Ho-s/Calender.git"
+    "deploy": "npm run build && gh-pages -d dist",
+    "lint": "eslint src --fix"
   },
   "husky": {
     "hooks": {
@@ -22,10 +18,12 @@
     }
   },
   "lint-staged": {
-    "*.{ts,tsx}": [
-      "prettier --write .",
-      "eslint --fix ."
-    ]
+    "*.tsx": "eslint --fix",
+    "*.ts": "eslint --fix"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Ho-s/Calender.git"
   },
   "author": "ho-s",
   "license": "ISC",
@@ -66,10 +64,9 @@
     "@typescript-eslint/eslint-plugin": "^4.32.0",
     "@typescript-eslint/parser": "^4.32.0",
     "eslint": "^7.32.0",
-    "eslint-config-airbnb-typescript": "^14.0.0",
     "eslint-plugin-import": "^2.24.2",
     "eslint-plugin-prettier": "^4.0.0",
-    "eslint-plugin-react": "^7.26.0",
+    "eslint-plugin-react": "^7.26.1",
     "husky": "^7.0.2",
     "lint-staged": "^11.1.2",
     "prettier": "^2.4.1"
