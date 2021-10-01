@@ -1,18 +1,19 @@
 module.exports = {
 	'env': {
 		'browser': true,
-		'es2021': true
+		'es2021': true,
+		node:true
 	},
 	'extends': [
 		'eslint:recommended',
 		'plugin:react/recommended',
-		'plugin:@typescript-eslint/recommended',
-		'airbnb-typescript'
+		'plugin:@typescript-eslint/recommended'
 	],
 	'parser': '@typescript-eslint/parser',
 	'parserOptions': {
 		'ecmaFeatures': {
-			'jsx': true
+			'jsx': true,
+			'tsx': true,
 		},
 		'ecmaVersion': 12,
 		'sourceType': 'module'
@@ -20,7 +21,7 @@ module.exports = {
 	'plugins': [
 		'react',
 		'@typescript-eslint',
-		'import'
+        'import',
 	],
 	'rules': {
 		'indent': [
@@ -38,9 +39,6 @@ module.exports = {
 		'semi': [
 			'error',
 			'never'
-		],
-	},
-	'settings': {
-		'import/extensions': ['.js', '.mjs', '.jsx', '.ts', '.tsx']
-	  },
+		]
+	}
 }

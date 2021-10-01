@@ -2,9 +2,9 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import { useReactiveVar } from '@apollo/client'
 
-import Calendar from '../../molcules/Calendar/Calendar'
-import Summary from '../../molcules/Summary/Summary'
-import AddScheduler from '../../molcules/AddScheduler/AddScheduler'
+import Calendar from '../../molecules/Calendar/Calendar'
+import Summary from '../../molecules/Summary/Summary'
+import AddScheduler from '../../molecules/AddScheduler/AddScheduler'
 
 import { navBarClicked, onClickHamburger } from '../../../stores/store'
 
