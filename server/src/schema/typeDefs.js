@@ -1,4 +1,4 @@
-import { gql } from 'apollo-server';
+import { gql } from 'apollo-server'
 
 export const typeDefs = gql`
   type Schedule {
@@ -33,6 +33,6 @@ export const typeDefs = gql`
   type Mutation {
     createSchedule(input: ScheduleInput!): Schedule!
   }
-`;
+`
 
 export default typeDefs
