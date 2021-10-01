@@ -6,11 +6,11 @@ export const resolvers = {
   },
 
   Mutation: {
-    createSchedule(_, args){
-      const newSchedule = {...args, id:Math.random().toString(36).substr(2, 16)}
+    createSchedule:async (_, args)=>{
+      const newSchedule = {...args.input, id:Math.random().toString(36).substr(2, 16)}
       schedules.push(newSchedule)
       return newSchedule
-    }
+    },
   }
 };
 

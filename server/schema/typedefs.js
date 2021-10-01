@@ -2,7 +2,7 @@ import { gql } from 'apollo-server';
 
 export const typeDefs = gql`
   type Schedule {
-    id: ID
+    id: ID!
     title:String
     year: Int
     month: Int
@@ -15,16 +15,15 @@ export const typeDefs = gql`
   }
 
   input ScheduleInput {
-    id: ID
-    title:String
-    year: Int
-    month: Int
-    day: Int
-    startHours: Int
-    startMinutes: Int
-    endHours: Int
-    endMinutes: Int
-    color:String
+    title:String!
+    year: Int!
+    month: Int!
+    day: Int!
+    startHours: Int!
+    startMinutes: Int!
+    endHours: Int!
+    endMinutes: Int!
+    color:String!
   }
 
   type Query {
@@ -32,7 +31,7 @@ export const typeDefs = gql`
   }
 
   type Mutation {
-    createSchedule(input: ScheduleInput!): Schedule
+    createSchedule(input: ScheduleInput!): Schedule!
   }
 `;
 
