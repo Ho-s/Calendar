@@ -940,14 +940,16 @@ color: gray;
 color: red;
 font-size: 30px;
 `,ju=ns.div`
-display: flex;
-flex-flow: row wrap;
-align-content: stretch;
+  display: flex;
+  flex-flow: row wrap;
+  align-content: center;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 2rem;
 `,Pu=ns.div`
-margin-right: 10px;
-height: 28vh;
-margin-top: 20px;
-width: 303px;
+  margin-right: 10px;
+  height: 28vh;
+  margin-top: 20px;
 `,Nu=ns.div`
 font-weight: 600;
 margin-bottom: 5px;
