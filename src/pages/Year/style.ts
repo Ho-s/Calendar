@@ -60,16 +60,18 @@ font-size: 30px;
 `
 
 export const YearWrapper = styled.div`
-display: flex;
-flex-flow: row wrap;
-align-content: stretch;
+  display: flex;
+  flex-flow: row wrap;
+  align-content: center;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 2rem;
 `
 
 export const MonthWrapper = styled.div`
-margin-right: 10px;
-height: 28vh;
-margin-top: 20px;
-width: 303px;
+  margin-right: 10px;
+  height: 28vh;
+  margin-top: 20px;
 `
 
 export const MonthTitle = styled.div`
